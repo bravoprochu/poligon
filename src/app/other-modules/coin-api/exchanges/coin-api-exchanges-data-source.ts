@@ -1,10 +1,11 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { map, repeatWhen, take, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { Observable, merge, Subject, BehaviorSubject } from 'rxjs';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
+
 
 
 /**
@@ -13,15 +14,29 @@ import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-ex
  * (including sorting, pagination, and filtering).
  */
 export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
+  constructor(
+    private coinService: CoinApiService,
+    private isDestroyed$: Subject<boolean>
+  ) {
+    super(); 
+    this.initServiceDataObservable();
+  }
+
+
+  exchangesFromApi$ = new BehaviorSubject<ICoinApiExchanges[]>([]);
   data: ICoinApiExchanges[] = [];
+  isGettingData$ = new BehaviorSubject<boolean>(true);
   paginator!: MatPaginator;
+  refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
 
-  constructor(
-    private coinService: CoinApiService
-  ) {
-    super();
-  }
+
+
+   
+  
+
+
+
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -31,26 +46,31 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
   connect(): Observable<ICoinApiExchanges[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    const dataMutations = [
-      //observableOf(this.data),
-      this.coinService.getExchanges$(),
-      this.paginator.page,
-      this.sort.sortChange
+
+    const obsToMerge$ = [
+      this.exchangesFromApi$,
+      this.sort.sortChange,
+      this.paginator.page
     ];
 
-
-    // return this.coinService.getExchanges$();
-
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+    return merge(...obsToMerge$).pipe(
+      takeUntil(this.isDestroyed$),
+      tap((v)=>console.log(v)),
+      map((_data:any)=>{     
+        const res = this.getPagedData(this.getSortedData([...this.data]));
+        return res;
+      })
+    )
   }
 
   /**
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect(){
+
+  }
+  
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -74,10 +94,38 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.exchange_id, +b.exchange_id, isAsc);
+        case 'exchange_id': return compare(+a.exchange_id, +b.exchange_id, isAsc);
         default: return 0;
       }
     });
+  }
+
+  initServiceDataObservable() {
+    this.coinService.getExchanges$().pipe(
+      takeUntil(this.isDestroyed$),
+      tap(()=>{
+        this.resetSortGroupSettings();
+      }),
+      repeatWhen(()=>this.refreshHit$)
+    )
+    .subscribe(
+         (_coin_exchanges:any)=>{
+            this.data = _coin_exchanges;
+              this.exchangesFromApi$.next(_coin_exchanges);
+              this.isGettingData$.next(false);
+         },
+         (error)=>console.log('_coin_exchanges error', error),
+         ()=>console.log('_coin_exchanges completed..')
+    );
+  }
+
+  refresh(){
+    this.isGettingData$.next(true);
+    this.refreshHit$.next(true);
+  }
+
+  resetSortGroupSettings() {
+    this.paginator.firstPage();
   }
 }
 

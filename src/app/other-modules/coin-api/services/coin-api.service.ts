@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
 import { COIN_API_EXCHANGES } from '../mock-data/coin-api-exchange';
@@ -25,7 +25,9 @@ export class CoinApiService {
 
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
-    return of(COIN_API_EXCHANGES);
+    return of(COIN_API_EXCHANGES).pipe(
+      delay(1500)
+    );
     // return this.httpClient.get<ICoinApiExchanges[]>(this.coinApiIoUrl + this.coinApiUrlExchanges, { headers: this.coinApiHeader }).pipe()
   }
 }

@@ -1,10 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Subject } from 'rxjs';
 import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
+import { ITableColumn } from '../coin-api/coin-api/interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
 import { CoinApiExchangesDataSource } from './coin-api-exchanges-data-source';
+
 
 @Component({
   selector: 'app-coin-api-exchanges',
@@ -24,14 +27,18 @@ export class CoinApiExchangesComponent implements AfterViewInit, OnInit {
   constructor(
     private coinService: CoinApiService
   ) {
-    this.dataSource = new CoinApiExchangesDataSource(coinService);
+    this.dataSource = new CoinApiExchangesDataSource(coinService, this.isDestroyed$);
   }
 
   
+  ngOnDestroy(): void {
+       this.isDestroyed$.next(true);
+       this.isDestroyed$.complete();
+       this.isDestroyed$.unsubscribe();
+  }
   
-
-
-
+  
+  
 
   ngOnInit() {
     this.initDataTable();
@@ -43,11 +50,15 @@ export class CoinApiExchangesComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  displayedColumns = ['exchange_id', 'name'];
-
+  displayedColumns = ['exchange_id', 'name', 'data_end', 'website'];
+  isDestroyed$: Subject<boolean> = new Subject()
+  
 
   initDataTable() {
-    
-    
+                
+  }
+
+  refresh() {
+    this.dataSource.refresh();
   }
 }

@@ -14,5 +14,23 @@ export interface ICoinApiExchanges {
     volume_1hrs_usd: number;
     volume_1mth_usd: number;
     website: string;
+}
+
+export class CoinApiExchanes implements ICoinApiExchanges {
+    data_end?: string | undefined;
+    data_orderbook_end?: string | Date | undefined;
+    data_orderbook_start?: string | Date | undefined;
+    data_quote_end?: string | Date | undefined;
+    data_quote_start?: string | Date | undefined;
+    data_start?: string | undefined;
+    data_symbols_count!: number;
+    data_trade_end?: string | Date | undefined;
+    data_trade_start?: string | Date | undefined;
+    exchange_id!: string;
+    name!: string;
+    volume_1day_usd!: number;
+    volume_1hrs_usd!: number;
+    volume_1mth_usd!: number;
+    website!: string;
 
 }
