@@ -1,0 +1,28 @@
+.table-container {
+  overflow: auto;
+}
+
+table {
+  width: 1080px;
+}
+
+.mat-column-number,
+.mat-column-state {
+  max-width: 65px;
+}
+
+.mat-column-created {
+  max-width: 150px;
+}
+
+.progress-container {
+  height: 10px;
+}
+
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}

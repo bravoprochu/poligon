@@ -10,17 +10,19 @@ describe('ExchangesComponent', () => {
   let component: CoinApiExchangesComponent;
   let fixture: ComponentFixture<CoinApiExchangesComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CoinApiExchangesComponent ],
-      imports: [
-        NoopAnimationsModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatTableModule,
-      ]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CoinApiExchangesComponent],
+        imports: [
+          NoopAnimationsModule,
+          MatPaginatorModule,
+          MatSortModule,
+          MatTableModule,
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CoinApiExchangesComponent);
