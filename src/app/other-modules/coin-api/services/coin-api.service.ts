@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
 import { COIN_API_EXCHANGES } from '../mock-data/coin-api-exchange';

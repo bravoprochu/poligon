@@ -18,19 +18,19 @@
     <div>
       <ng-container
         *ngFor="let c of tableColumns; index as i"
-        [matColumnDef]="c.definition"
+        [matColumnDef]="c.propName"
         [sticky]="i == 0"
       >
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ c.caption }}
         </th>
         <td mat-cell *matCellDef="let row" [ngSwitch]="c.type">
-          <span *ngSwitchCase="'number'">{{ row[c.definition] | number }}</span>
-          <span *ngSwitchCase="'date'">{{ row[c.definition] | date }}</span>
+          <span *ngSwitchCase="'number'">{{ row[c.propName] | number }}</span>
+          <span *ngSwitchCase="'date'">{{ row[c.propName] | date }}</span>
           <span *ngSwitchCase="'dateMedium'">{{
-            row[c.definition] | date: "medium"
+            row[c.propName] | date: "medium"
           }}</span>
-          <span *ngSwitchCase="'string'">{{ row[c.definition] }}</span>
+          <span *ngSwitchCase="'string'">{{ row[c.propName] }}</span>
         </td>
       </ng-container>
     </div>
@@ -44,7 +44,7 @@
     [length]="dataSource?.data?.length"
     [pageIndex]="0"
     [pageSize]="10"
-    [pageSizeOptions]="[10, 25, 50, 250]"
+    [pageSizeOptions]="dataSource.pageSizeOptions"
   >
   </mat-paginator>
 </div>

@@ -36,6 +36,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
   exchangesFromApi$ = new BehaviorSubject<ICoinApiExchanges[]>([]);
   data: ICoinApiExchanges[] = [];
   isGettingData$ = new BehaviorSubject<boolean>(true);
+  pageSizeOptions: number[] = [];
   paginator!: MatPaginator;
   refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
@@ -57,7 +58,6 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
 
     return merge(...obsToMerge$).pipe(
       takeUntil(this.isDestroyed$),
-      tap((v) => console.log(v)),
       map((data: any) => {
         const res = this.getPagedData(this.getSortedData([...this.data]));
         return res;
@@ -91,53 +91,68 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
 
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
-      switch (this.sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'exchange_id':
-          return compare(+a.exchange_id, +b.exchange_id, isAsc);
-        default:
-          return 0;
-      }
+
+      const definition = this.getTableColumns().find(
+        (f) => f.propName == this.sort.active
+      )?.propName;
+
+      const aKey = definition as keyof typeof a;
+      const bKey = definition as keyof typeof b;
+
+      return compare(a[aKey], b[bKey], isAsc);
     });
   }
 
+  /**
+   * definition of table columns based on interface
+   *
+   */
   getTableColumns(): ITableColumn[] {
     return [
       {
         caption: 'Id',
-        definition: 'exchange_id',
+        propName: 'exchange_id',
         type: TableColumnFieldType.string,
       },
       {
         caption: 'Name',
-        definition: 'name',
+        propName: 'name',
         type: TableColumnFieldType.string,
       },
       {
         caption: 'DataStart',
-        definition: 'data_start',
+        propName: 'data_start',
         type: TableColumnFieldType.date,
       },
       {
         caption: 'DataEnd',
-        definition: 'data_end',
+        propName: 'data_end',
         type: TableColumnFieldType.date,
       },
       {
         caption: 'Data Ordr start',
-        definition: 'data_orderbook_start',
+        propName: 'data_orderbook_start',
         type: TableColumnFieldType.dateMedium,
       },
       {
         caption: 'Data Ordr end',
-        definition: 'data_orderbook_end',
+        propName: 'data_orderbook_end',
         type: TableColumnFieldType.dateMedium,
       },
 
       {
+        caption: 'Vol 1st hour USD',
+        propName: 'volume_1hrs_usd',
+        type: TableColumnFieldType.number,
+      },
+      {
         caption: 'Vol 1st day USD',
-        definition: 'volume_1day_usd',
+        propName: 'volume_1day_usd',
+        type: TableColumnFieldType.number,
+      },
+      {
+        caption: 'Vol 1st month USD',
+        propName: 'volume_1mth_usd',
         type: TableColumnFieldType.number,
       },
     ];
@@ -157,12 +172,36 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
       .subscribe(
         (coinExchanges: any) => {
           this.data = coinExchanges;
+          this.pageSizeOptions = this.prepPageSizeOptions(this.data);
           this.exchangesFromApi$.next(coinExchanges);
           this.isGettingData$.next(false);
         },
         (error) => console.log('coinExchanges error', error),
         () => console.log('coinExchanges completed..')
       );
+  }
+
+  /**
+   * generate page size options based on length
+   *
+   */
+  private prepPageSizeOptions(data: ICoinApiExchanges[]): number[] {
+    let res: number[] = [];
+    if (data.length > 10) {
+      res.push(10);
+    }
+    if (data.length > 25) {
+      res.push(25);
+    }
+    if (data.length > 50) {
+      res.push(50);
+    }
+    if (data.length > 100) {
+      res.push(100);
+    }
+    res.push(data.length);
+
+    return res;
   }
 
   refresh(): void {
@@ -176,12 +215,11 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(
-  a: string | number,
-  b: string | number,
-  isAsc: boolean
-): number {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+function compare(a: TableDataTypes, b: TableDataTypes, isAsc: boolean): number {
+  if (!a || !b) {
+    return 0;
+  }
+  return (a! < b! ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
-type TableDataTypes = number | string | Date;
+type TableDataTypes = number | string | Date | undefined;

@@ -60,10 +60,8 @@ export class CoinApiExchangesComponent
     this.tableColumns = this.dataSource.getTableColumns();
     const tdef = this.dataSource
       .getTableColumns()
-      .map((c: ITableColumn) => c.definition);
+      .map((c: ITableColumn) => c.propName);
     this.displayedColumns = tdef;
-
-    console.log(`-- ${tdef}`);
   }
 
   refresh(): void {

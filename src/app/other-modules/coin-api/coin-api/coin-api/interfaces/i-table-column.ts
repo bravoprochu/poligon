@@ -1,5 +1,5 @@
 export interface ITableColumn {
-  definition: string;
+  propName: string;
   caption: string;
   type: TableColumnFieldType;
 }
