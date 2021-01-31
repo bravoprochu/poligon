@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'coin-api',
     loadChildren: () =>
-      import('./other-modules/coin-api/coin-api/coin-api.module').then(
+      import('./other-modules/coin-api/coin-api.module').then(
         (m) => m.CoinApiModule
       ),
   },
