@@ -5,8 +5,10 @@ export interface ITableColumn {
 }
 
 export enum TableColumnFieldType {
-  string = 'string',
   date = 'date',
+  email = 'email',
   dateMedium = 'dateMedium',
   number = 'number',
+  string = 'string',
+  www = 'www',
 }

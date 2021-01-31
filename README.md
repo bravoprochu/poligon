@@ -1,5 +1,11 @@
 # Poligon
 
+## coin API - table template (data source)
+
+- auto sort
+- auto format
+- force refresh/observable..
+
 # DynamicComponent
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.

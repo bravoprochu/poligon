@@ -1,6 +1,15 @@
 <section>
-  <h3 class="mat-h3">Coin API Exchanges</h3>
-  <button mat-raised-button (click)="refresh()">refresh</button>
+  <h3 class="mat-h3">{{ title }}</h3>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="table-menu">
+    <mat-form-field>
+      <mat-label>Search...</mat-label>
+      <input matInput [formControl]="search$" type="search" />
+      <mat-hint align="start">active data filter</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button color="warn" (click)="refresh()">refresh</button>
+  </div>
 </section>
 
 <div class="progress-container">
@@ -31,6 +40,16 @@
             row[c.propName] | date: "medium"
           }}</span>
           <span *ngSwitchCase="'string'">{{ row[c.propName] }}</span>
+          <span *ngSwitchCase="'www'"
+            ><a [attr.href]="row[c.propName]" target="_blank">{{
+              row[c.propName]
+            }}</a></span
+          >
+          <span *ngSwitchCase="'email'"
+            ><a [attr.href]="'mailto:' + row[c.propName]" target="_blank">{{
+              row[c.propName]
+            }}</a></span
+          >
         </td>
       </ng-container>
     </div>
@@ -41,7 +60,7 @@
 
   <mat-paginator
     #paginator
-    [length]="dataSource?.data?.length"
+    [length]="dataSource?.filteredData?.length"
     [pageIndex]="0"
     [pageSize]="10"
     [pageSizeOptions]="dataSource.pageSizeOptions"

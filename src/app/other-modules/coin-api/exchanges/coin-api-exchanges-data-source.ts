@@ -1,17 +1,8 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import {
-  filter,
-  map,
-  pluck,
-  repeatWhen,
-  take,
-  takeUntil,
-  takeWhile,
-  tap,
-} from 'rxjs/operators';
-import { Observable, merge, Subject, BehaviorSubject } from 'rxjs';
+import { map, repeatWhen, tap } from 'rxjs/operators';
+import { Observable, merge, Subject, BehaviorSubject, of } from 'rxjs';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
 import {
@@ -25,19 +16,23 @@ import {
  * (including sorting, pagination, and filtering).
  */
 export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
-  constructor(
-    private coinService: CoinApiService,
-    private isDestroyed$: Subject<boolean>
-  ) {
+  constructor(private coinService: CoinApiService) {
     super();
     this.initServiceDataObservable();
   }
 
-  exchangesFromApi$ = new BehaviorSubject<ICoinApiExchanges[]>([]);
   data: ICoinApiExchanges[] = [];
+  dataFromcoinApiService$: Observable<ICoinApiExchanges[]> = of([]);
+  filteredData: ICoinApiExchanges[] = [];
+  filterSearchString: string = '';
+  filterSearch$: Subject<string> = new Subject();
   isGettingData$ = new BehaviorSubject<boolean>(true);
   pageSizeOptions: number[] = [];
+  pageSizeOptions$: BehaviorSubject<number[]> = new BehaviorSubject(
+    <number[]>[]
+  );
   paginator!: MatPaginator;
+
   refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
 
@@ -49,18 +44,28 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
   connect(): Observable<ICoinApiExchanges[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-
     const obsToMerge$ = [
-      this.exchangesFromApi$,
+      this.dataFromcoinApiService$,
+      this.refreshHit$,
+      this.filterSearch$.pipe(
+        tap((searchString: string) => (this.filterSearchString = searchString))
+      ),
       this.sort.sortChange,
       this.paginator.page,
     ];
 
     return merge(...obsToMerge$).pipe(
-      takeUntil(this.isDestroyed$),
-      map((data: any) => {
-        const res = this.getPagedData(this.getSortedData([...this.data]));
-        return res;
+      map((data) => {
+        this.filteredData = [
+          ...this.filterTableClientSide(
+            [...this.data],
+            this.filterSearchString
+          ),
+        ];
+        return this.getPagedData(this.getSortedData([...this.filteredData]));
+      }),
+      tap((data: ICoinApiExchanges[]) => {
+        this.pageSizeOptions = [...this.prepPageSizeOptions(this.filteredData)];
       })
     );
   }
@@ -70,6 +75,50 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect(): void {}
+
+  filterTableClientSide(
+    data: ICoinApiExchanges[],
+    search: string
+  ): ICoinApiExchanges[] {
+    if (!search || data.length == 0) {
+      return data;
+    }
+
+    /**
+     *  only string props are filtered
+     *
+     */
+
+    const stringPropNames = this.getTableColumns().filter(
+      (f: ITableColumn) => f.type == TableColumnFieldType.string
+    );
+
+    const coinApiExchangeObj = data[0];
+    let fullString: string = '';
+    let res = data.filter((f) => {
+      /**
+       * concat string values into one 'fullString'
+       *
+       */
+      stringPropNames.forEach((prop) => {
+        const stringPropNamesFields = prop.propName as keyof typeof coinApiExchangeObj;
+        fullString += f[stringPropNamesFields];
+      });
+
+      /**
+       * return if contains
+       *
+       */
+      const isContaining = fullString
+        .toLowerCase()
+        .includes(search.toLowerCase())
+        ? f
+        : null;
+      fullString = '';
+      return isContaining;
+    });
+    return res;
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -155,30 +204,26 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
         propName: 'volume_1mth_usd',
         type: TableColumnFieldType.number,
       },
+      {
+        caption: 'www',
+        propName: 'website',
+        type: TableColumnFieldType.www,
+      },
     ];
   }
 
   initServiceDataObservable(): void {
-    this.coinService
-      .getExchanges$()
-      .pipe(
-        takeUntil(this.isDestroyed$),
-        tap(() => {
-          this.resetSortGroupSettings();
-        }),
-        repeatWhen(() => this.refreshHit$)
-      )
-
-      .subscribe(
-        (coinExchanges: any) => {
-          this.data = coinExchanges;
-          this.pageSizeOptions = this.prepPageSizeOptions(this.data);
-          this.exchangesFromApi$.next(coinExchanges);
-          this.isGettingData$.next(false);
-        },
-        (error) => console.log('coinExchanges error', error),
-        () => console.log('coinExchanges completed..')
-      );
+    this.dataFromcoinApiService$ = this.coinService.getExchanges$().pipe(
+      tap(() => {
+        this.resetSortGroupSettings();
+      }),
+      tap((coinExchanges) => {
+        this.data = coinExchanges;
+        // this.pageSizeOptions = this.prepPageSizeOptions(this.data);
+        this.isGettingData$.next(false);
+      }),
+      repeatWhen(() => this.refreshHit$)
+    );
   }
 
   /**
@@ -199,7 +244,14 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
     if (data.length > 100) {
       res.push(100);
     }
-    res.push(data.length);
+
+    /**
+     * add data lenght page size if greater then one page
+     *
+     */
+    if (data.length > 10) {
+      res.push(data.length);
+    }
 
     return res;
   }

@@ -1,11 +1,3 @@
-.table-container {
-  overflow: auto;
-}
-
-table {
-  width: 1500px;
-}
-
 .mat-column-number,
 .mat-column-state {
   max-width: 65px;
@@ -17,4 +9,15 @@ table {
 
 .progress-container {
   height: 10px;
+}
+
+table {
+  width: 1500px;
+}
+
+.table-container {
+  overflow: auto;
+}
+
+.table-menu {
 }
