@@ -4,11 +4,11 @@ import { MatSort } from '@angular/material/sort';
 import { map, repeatWhen, tap } from 'rxjs/operators';
 import { Observable, merge, Subject, BehaviorSubject, of } from 'rxjs';
 import { CoinApiService } from '../services/coin-api.service';
-import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
+import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import {
   ITableColumn,
   TableColumnFieldType,
-} from '../coin-api/coin-api/interfaces/i-table-column';
+} from '../interfaces/i-table-column';
 
 /**
  * Data source for the Exchanges view. This class should

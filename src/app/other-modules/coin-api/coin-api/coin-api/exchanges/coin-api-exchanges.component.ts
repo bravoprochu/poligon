@@ -11,8 +11,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import { ICoinApiExchanges } from '../coin-api/coin-api/interfaces/i-coin-api-exchanges';
-import { ITableColumn } from '../coin-api/coin-api/interfaces/i-table-column';
+import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
+import { ITableColumn } from '../interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
 import { CoinApiExchangesDataSource } from './coin-api-exchanges-data-source';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoinApiService } from '../../services/coin-api.service';
+import { CoinApiService } from './services/coin-api.service';
 
 @Component({
   selector: 'app-coin-api',
