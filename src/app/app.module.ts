@@ -8,12 +8,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HomeComponent } from './sites/home/home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+const IMPORT_EXPORT_MODULES = [FlexLayoutModule];
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    IMPORT_EXPORT_MODULES,
 
     AppRoutingModule,
     MatTableModule,

@@ -11,14 +11,22 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CoinApiExchangesComponent } from '../exchanges/coin-api-exchanges.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const IMPORT_EXPORT_MODULES = [
+  FlexLayoutModule,
   HttpClientModule,
   MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
   MatPaginatorModule,
   MatProgressBarModule,
   MatTableModule,
   MatSortModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({
