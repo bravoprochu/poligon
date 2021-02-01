@@ -1,14 +1,20 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map, repeatWhen, tap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  repeatWhen,
+  tap,
+} from 'rxjs/operators';
 import { Observable, merge, Subject, BehaviorSubject, of } from 'rxjs';
-import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import {
   ITableColumn,
   TableColumnFieldType,
 } from '../interfaces/i-table-column';
+import { FormControl } from '@angular/forms';
 
 /**
  * Data source for the Exchanges view. This class should
@@ -16,16 +22,16 @@ import {
  * (including sorting, pagination, and filtering).
  */
 export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
-  constructor(private coinService: CoinApiService) {
+  constructor(public tableColumnsDefinition2: ITableColumn[]) {
     super();
-    this.initServiceDataObservable();
+    // this.initServiceDataObservable();
   }
 
   data: ICoinApiExchanges[] = [];
   dataFromcoinApiService$: Observable<ICoinApiExchanges[]> = of([]);
   filteredData: ICoinApiExchanges[] = [];
   filterSearchString: string = '';
-  filterSearch$: Subject<string> = new Subject();
+  filterSearch$: FormControl = new FormControl('');
   isGettingData$ = new BehaviorSubject<boolean>(true);
   pageSizeOptions: number[] = [];
   pageSizeOptions$: BehaviorSubject<number[]> = new BehaviorSubject(
@@ -35,6 +41,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
 
   refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
+  tableColumnsDefinition: ITableColumn[] = [];
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -45,13 +52,22 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const obsToMerge$ = [
-      this.dataFromcoinApiService$,
-      this.refreshHit$,
-      this.filterSearch$.pipe(
+      this.dataFromcoinApiService$.pipe(
+        tap((coinExchanges: ICoinApiExchanges[]) => {
+          this.resetSortGroupSettings();
+          this.data = coinExchanges;
+          this.isGettingData$.next(false);
+        }),
+        repeatWhen(() => this.refreshHit$)
+      ),
+      this.filterSearch$.valueChanges.pipe(
+        debounceTime(750),
+        distinctUntilChanged(),
         tap((searchString: string) => (this.filterSearchString = searchString))
       ),
-      this.sort.sortChange,
       this.paginator.page,
+      this.refreshHit$,
+      this.sort.sortChange,
     ];
 
     return merge(...obsToMerge$).pipe(
@@ -76,6 +92,10 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    */
   disconnect(): void {}
 
+  get displayedColumns(): string[] {
+    return this.tableColumnsDefinition.map((c: ITableColumn) => c.propName);
+  }
+
   filterTableClientSide(
     data: ICoinApiExchanges[],
     search: string
@@ -89,7 +109,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
      *
      */
 
-    const stringPropNames = this.getTableColumns().filter(
+    const stringPropNames = this.tableColumnsDefinition.filter(
       (f: ITableColumn) => f.type == TableColumnFieldType.string
     );
 
@@ -141,7 +161,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
 
-      const definition = this.getTableColumns().find(
+      const definition = this.tableColumnsDefinition.find(
         (f) => f.propName == this.sort.active
       )?.propName;
 
@@ -156,75 +176,20 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * definition of table columns based on interface
    *
    */
-  getTableColumns(): ITableColumn[] {
-    return [
-      {
-        caption: 'Id',
-        propName: 'exchange_id',
-        type: TableColumnFieldType.string,
-      },
-      {
-        caption: 'Name',
-        propName: 'name',
-        type: TableColumnFieldType.string,
-      },
-      {
-        caption: 'DataStart',
-        propName: 'data_start',
-        type: TableColumnFieldType.date,
-      },
-      {
-        caption: 'DataEnd',
-        propName: 'data_end',
-        type: TableColumnFieldType.date,
-      },
-      {
-        caption: 'Data Ordr start',
-        propName: 'data_orderbook_start',
-        type: TableColumnFieldType.dateMedium,
-      },
-      {
-        caption: 'Data Ordr end',
-        propName: 'data_orderbook_end',
-        type: TableColumnFieldType.dateMedium,
-      },
 
-      {
-        caption: 'Vol 1st hour USD',
-        propName: 'volume_1hrs_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'Vol 1st day USD',
-        propName: 'volume_1day_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'Vol 1st month USD',
-        propName: 'volume_1mth_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'www',
-        propName: 'website',
-        type: TableColumnFieldType.www,
-      },
-    ];
-  }
-
-  initServiceDataObservable(): void {
-    this.dataFromcoinApiService$ = this.coinService.getExchanges$().pipe(
-      tap(() => {
-        this.resetSortGroupSettings();
-      }),
-      tap((coinExchanges) => {
-        this.data = coinExchanges;
-        // this.pageSizeOptions = this.prepPageSizeOptions(this.data);
-        this.isGettingData$.next(false);
-      }),
-      repeatWhen(() => this.refreshHit$)
-    );
-  }
+  // initServiceDataObservable(): void {
+  //   this.dataFromcoinApiService$ = this.coinService.getExchanges$().pipe(
+  //     tap(() => {
+  //       this.resetSortGroupSettings();
+  //     }),
+  //     tap((coinExchanges) => {
+  //       this.data = coinExchanges;
+  //       // this.pageSizeOptions = this.prepPageSizeOptions(this.data);
+  //       this.isGettingData$.next(false);
+  //     }),
+  //     repeatWhen(() => this.refreshHit$)
+  //   );
+  // }
 
   /**
    * generate page size options based on length

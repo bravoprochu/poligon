@@ -10,11 +10,67 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
-import { ITableColumn } from '../interfaces/i-table-column';
+import {
+  ITableColumn,
+  TableColumnFieldType,
+} from '../interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
 import { CoinApiExchangesDataSource } from './coin-api-exchanges-data-source';
+
+const COIN_API_EXCHANGES_TABLE_COLUMNS_DEFINITION = [
+  {
+    caption: 'Id',
+    propName: 'exchange_id',
+    type: TableColumnFieldType.string,
+  },
+  {
+    caption: 'Name',
+    propName: 'name',
+    type: TableColumnFieldType.string,
+  },
+  {
+    caption: 'DataStart',
+    propName: 'data_start',
+    type: TableColumnFieldType.date,
+  },
+  {
+    caption: 'DataEnd',
+    propName: 'data_end',
+    type: TableColumnFieldType.date,
+  },
+  {
+    caption: 'Data Ordr start',
+    propName: 'data_orderbook_start',
+    type: TableColumnFieldType.dateMedium,
+  },
+  {
+    caption: 'Data Ordr end',
+    propName: 'data_orderbook_end',
+    type: TableColumnFieldType.dateMedium,
+  },
+
+  {
+    caption: 'Vol 1st hour USD',
+    propName: 'volume_1hrs_usd',
+    type: TableColumnFieldType.number,
+  },
+  {
+    caption: 'Vol 1st day USD',
+    propName: 'volume_1day_usd',
+    type: TableColumnFieldType.number,
+  },
+  {
+    caption: 'Vol 1st month USD',
+    propName: 'volume_1mth_usd',
+    type: TableColumnFieldType.number,
+  },
+  {
+    caption: 'www',
+    propName: 'website',
+    type: TableColumnFieldType.www,
+  },
+];
 
 @Component({
   selector: 'app-coin-api-exchanges',
@@ -27,18 +83,18 @@ export class CoinApiExchangesComponent
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ICoinApiExchanges>;
   dataSource: CoinApiExchangesDataSource;
-
   /**
    *
    */
   constructor(private coinService: CoinApiService) {
-    this.dataSource = new CoinApiExchangesDataSource(coinService);
+    this.dataSource = new CoinApiExchangesDataSource(
+      COIN_API_EXCHANGES_TABLE_COLUMNS_DEFINITION
+    );
   }
 
-  displayedColumns: string[] = [];
   isDestroyed$: Subject<boolean> = new Subject();
-  tableColumns: ITableColumn[] = [];
   search$: FormControl = new FormControl('');
+  tableColumnsDefinition: ITableColumn[] = [];
   title: string = 'Coin API Exchanges';
 
   ngOnDestroy(): void {
@@ -49,40 +105,72 @@ export class CoinApiExchangesComponent
 
   ngOnInit(): void {
     this.initDataTable();
-    this.initObservable();
   }
 
   ngAfterViewInit(): void {
     this.table.dataSource = this.dataSource;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.dataFromcoinApiService$ = this.coinService.getExchangesMocked$();
   }
 
   initDataTable(): void {
-    this.tableColumns = this.dataSource.getTableColumns();
-    const tablePropNames = this.dataSource
-      .getTableColumns()
-      .map((c: ITableColumn) => c.propName);
-    this.displayedColumns = tablePropNames;
+    this.dataSource.tableColumnsDefinition = this.prepTableColumnsDefinition();
   }
 
-  initObservable() {
-    this.search$.valueChanges
-      .pipe(
-        takeUntil(this.isDestroyed$),
-        debounceTime(750),
-        distinctUntilChanged()
-      )
-      .subscribe(
-        (search$: string) => {
-          this.dataSource.filterSearch$.next(search$);
-        },
-        (error) => console.log('search$ error', error),
-        () => console.log('search$ completed..')
-      );
-  }
+  prepTableColumnsDefinition(): ITableColumn[] {
+    return [
+      {
+        caption: 'Id',
+        propName: 'exchange_id',
+        type: TableColumnFieldType.string,
+      },
+      {
+        caption: 'Name',
+        propName: 'name',
+        type: TableColumnFieldType.string,
+      },
+      {
+        caption: 'DataStart',
+        propName: 'data_start',
+        type: TableColumnFieldType.date,
+      },
+      {
+        caption: 'DataEnd',
+        propName: 'data_end',
+        type: TableColumnFieldType.date,
+      },
+      {
+        caption: 'Data Ordr start',
+        propName: 'data_orderbook_start',
+        type: TableColumnFieldType.dateMedium,
+      },
+      {
+        caption: 'Data Ordr end',
+        propName: 'data_orderbook_end',
+        type: TableColumnFieldType.dateMedium,
+      },
 
-  refresh(): void {
-    this.dataSource.refresh();
+      {
+        caption: 'Vol 1st hour USD',
+        propName: 'volume_1hrs_usd',
+        type: TableColumnFieldType.number,
+      },
+      {
+        caption: 'Vol 1st day USD',
+        propName: 'volume_1day_usd',
+        type: TableColumnFieldType.number,
+      },
+      {
+        caption: 'Vol 1st month USD',
+        propName: 'volume_1mth_usd',
+        type: TableColumnFieldType.number,
+      },
+      {
+        caption: 'www',
+        propName: 'website',
+        type: TableColumnFieldType.www,
+      },
+    ];
   }
 }

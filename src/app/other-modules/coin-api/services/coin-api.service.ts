@@ -24,6 +24,14 @@ export class CoinApiService {
   mockedExchangeData$: Subject<any> = new Subject();
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
+    return this.httpClient
+      .get<ICoinApiExchanges[]>(this.coinApiIoUrl + this.coinApiUrlExchanges, {
+        headers: this.coinApiHeader,
+      })
+      .pipe();
+  }
+
+  getExchangesMocked$(): Observable<ICoinApiExchanges[]> {
     return of(COIN_API_EXCHANGES).pipe(delay(850));
     // return this.httpClient
     //   .get<ICoinApiExchanges[]>(this.coinApiIoUrl + this.coinApiUrlExchanges, {

@@ -4,11 +4,13 @@
   <div fxLayout="row" fxLayoutAlign="space-between center" class="table-menu">
     <mat-form-field>
       <mat-label>Search...</mat-label>
-      <input matInput [formControl]="search$" type="search" />
+      <input matInput [formControl]="dataSource.filterSearch$" type="search" />
       <mat-hint align="start">active data filter</mat-hint>
     </mat-form-field>
 
-    <button mat-raised-button color="warn" (click)="refresh()">refresh</button>
+    <button mat-raised-button color="warn" (click)="dataSource.refresh()">
+      refresh
+    </button>
   </div>
 </section>
 
@@ -26,7 +28,7 @@
 
     <div>
       <ng-container
-        *ngFor="let c of tableColumns; index as i"
+        *ngFor="let c of dataSource.tableColumnsDefinition; index as i"
         [matColumnDef]="c.propName"
         [sticky]="i == 0"
       >
@@ -54,8 +56,8 @@
       </ng-container>
     </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="dataSource.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: dataSource.displayedColumns"></tr>
   </table>
 
   <mat-paginator
