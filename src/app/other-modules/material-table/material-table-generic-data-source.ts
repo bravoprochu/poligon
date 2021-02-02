@@ -14,6 +14,7 @@ import {
   TableColumnFieldType,
 } from './interfaces/i-table-column';
 import { FormControl } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 /**
  * Data source for the Exchanges view. This class should
@@ -27,6 +28,7 @@ export class MaterialTableGenericDataSource<T> extends DataSource<T> {
 
   data: T[] = [];
   dataFromcoinApiService$: Observable<T[]> = of([]);
+  errorInfo!: string;
   filteredData: T[] = [];
   filterSearchString: string = '';
   filterSearch$: FormControl = new FormControl('');
@@ -52,8 +54,18 @@ export class MaterialTableGenericDataSource<T> extends DataSource<T> {
     const obsToMerge$ = [
       this.dataFromcoinApiService$.pipe(
         tap((coinExchanges: T[]) => {
-          this.resetSortGroupSettings();
-          this.data = coinExchanges;
+          /**
+           * if error - got of(error object)
+           *
+           */
+          if (Array.isArray(coinExchanges)) {
+            this.resetSortGroupSettings();
+            this.data = coinExchanges;
+            this.errorInfo = '';
+          } else {
+            console.log(coinExchanges);
+            this.errorInfo = (coinExchanges as HttpErrorResponse)?.error?.error;
+          }
           this.isGettingData$.next(false);
         }),
         repeatWhen(() => this.refreshHit$)
