@@ -2,9 +2,12 @@
 
 ## coin API - table template (data source)
 
+- dataSource RxJS-way
+- one object based describing table data
 - auto sort
 - auto format
 - force refresh/observable..
+- filter data (client-side)
 
 # DynamicComponent
 
