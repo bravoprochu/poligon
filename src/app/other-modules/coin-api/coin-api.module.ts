@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TradesComponent } from './trades/trades.component';
 import { CoinApiQuotesComponent } from './quotes/coin-api-quotes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,

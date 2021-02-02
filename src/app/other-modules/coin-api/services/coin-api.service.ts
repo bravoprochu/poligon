@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICoinApiExchanges } from '../exchanges/interfaces/i-coin-api-exchanges';
 import { COIN_API_EXCHANGES } from '../mock-data/coin-api-exchange';
@@ -36,7 +36,11 @@ export class CoinApiService {
       .get<ICoinApiExchanges[]>(this.coinApiIoUrl + this.coinApiUrlExchanges, {
         headers: this.coinApiHeader,
       })
-      .pipe();
+      .pipe(
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getExchangesMocked$(): Observable<ICoinApiExchanges[]> {
@@ -44,12 +48,15 @@ export class CoinApiService {
   }
 
   getQuotes$(): Observable<ICoinApiQuotesCurrent[]> {
-    return this.httpClient.get<ICoinApiQuotesCurrent[]>(
-      this.coinApiIoUrl + this.coinApiUrlQuotes,
-      {
+    return this.httpClient
+      .get<ICoinApiQuotesCurrent[]>(this.coinApiIoUrl + this.coinApiUrlQuotes, {
         headers: this.coinApiHeader,
-      }
-    );
+      })
+      .pipe(
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getQuotesMocked$(): Observable<ICoinApiQuotesCurrent[]> {
@@ -57,12 +64,15 @@ export class CoinApiService {
   }
 
   getTrades$(): Observable<ICoinApiTradesLatest[]> {
-    return this.httpClient.get<ICoinApiTradesLatest[]>(
-      this.coinApiIoUrl + this.coinApiUrlTrades,
-      {
+    return this.httpClient
+      .get<ICoinApiTradesLatest[]>(this.coinApiIoUrl + this.coinApiUrlTrades, {
         headers: this.coinApiHeader,
-      }
-    );
+      })
+      .pipe(
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getTradesMocked$(): Observable<ICoinApiTradesLatest[]> {

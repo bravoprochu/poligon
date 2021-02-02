@@ -18,6 +18,7 @@ import {
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiTradesLatest } from './interfaces/i-coin-api-trades-latest';
 import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-trades',
@@ -38,7 +39,7 @@ export class TradesComponent implements AfterViewInit, OnInit, OnDestroy {
   isDestroyed$: Subject<boolean> = new Subject();
   search$: FormControl = new FormControl('');
   tableColumnsDefinition: ITableColumn[] = [];
-  title: string = 'Coin API Trades';
+  title: string = 'Coin API - Trades';
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -60,7 +61,7 @@ export class TradesComponent implements AfterViewInit, OnInit, OnDestroy {
      */
     this.dataSource.dataFromcoinApiService$ = environment.isRealServerData
       ? this.coinService.getTrades$()
-      : this.coinService.getTradesMocked$();
+      : this.coinService.getTradesMocked$().pipe(tap((data) => {}));
   }
 
   initDataTable(): void {

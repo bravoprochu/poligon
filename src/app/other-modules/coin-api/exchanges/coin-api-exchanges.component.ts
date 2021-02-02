@@ -38,7 +38,7 @@ export class CoinApiExchangesComponent
   isDestroyed$: Subject<boolean> = new Subject();
   search$: FormControl = new FormControl('');
   tableColumnsDefinition: ITableColumn[] = [];
-  title: string = 'Coin API Exchanges';
+  title: string = 'Coin API - Exchanges';
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
