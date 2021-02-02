@@ -9,11 +9,10 @@ import {
   tap,
 } from 'rxjs/operators';
 import { Observable, merge, Subject, BehaviorSubject, of } from 'rxjs';
-import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import {
   ITableColumn,
   TableColumnFieldType,
-} from '../interfaces/i-table-column';
+} from './interfaces/i-table-column';
 import { FormControl } from '@angular/forms';
 
 /**
@@ -21,15 +20,14 @@ import { FormControl } from '@angular/forms';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
-  constructor(public tableColumnsDefinition2: ITableColumn[]) {
+export class MaterialTableGenericDataSource<T> extends DataSource<T> {
+  constructor() {
     super();
-    // this.initServiceDataObservable();
   }
 
-  data: ICoinApiExchanges[] = [];
-  dataFromcoinApiService$: Observable<ICoinApiExchanges[]> = of([]);
-  filteredData: ICoinApiExchanges[] = [];
+  data: T[] = [];
+  dataFromcoinApiService$: Observable<T[]> = of([]);
+  filteredData: T[] = [];
   filterSearchString: string = '';
   filterSearch$: FormControl = new FormControl('');
   isGettingData$ = new BehaviorSubject<boolean>(true);
@@ -48,12 +46,12 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ICoinApiExchanges[]> {
+  connect(): Observable<T[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const obsToMerge$ = [
       this.dataFromcoinApiService$.pipe(
-        tap((coinExchanges: ICoinApiExchanges[]) => {
+        tap((coinExchanges: T[]) => {
           this.resetSortGroupSettings();
           this.data = coinExchanges;
           this.isGettingData$.next(false);
@@ -80,7 +78,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
         ];
         return this.getPagedData(this.getSortedData([...this.filteredData]));
       }),
-      tap((data: ICoinApiExchanges[]) => {
+      tap((data: T[]) => {
         this.pageSizeOptions = [...this.prepPageSizeOptions(this.filteredData)];
       })
     );
@@ -96,10 +94,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
     return this.tableColumnsDefinition.map((c: ITableColumn) => c.propName);
   }
 
-  filterTableClientSide(
-    data: ICoinApiExchanges[],
-    search: string
-  ): ICoinApiExchanges[] {
+  filterTableClientSide(data: T[], search: string): T[] {
     if (!search || data.length == 0) {
       return data;
     }
@@ -144,7 +139,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ICoinApiExchanges[]): ICoinApiExchanges[] {
+  private getPagedData(data: T[]): T[] {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -153,7 +148,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ICoinApiExchanges[]): ICoinApiExchanges[] {
+  private getSortedData(data: T[]): T[] {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -195,7 +190,7 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
    * generate page size options based on length
    *
    */
-  private prepPageSizeOptions(data: ICoinApiExchanges[]): number[] {
+  private prepPageSizeOptions(data: T[]): number[] {
     let res: number[] = [];
     if (data.length > 10) {
       res.push(10);
@@ -232,7 +227,11 @@ export class CoinApiExchangesDataSource extends DataSource<ICoinApiExchanges> {
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: TableDataTypes, b: TableDataTypes, isAsc: boolean): number {
+function compare<TableDataTypes>(
+  a: TableDataTypes,
+  b: TableDataTypes,
+  isAsc: boolean
+): number {
   if (!a || !b) {
     return 0;
   }

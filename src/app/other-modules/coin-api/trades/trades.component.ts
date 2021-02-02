@@ -10,35 +10,35 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
-import { ICoinApiExchanges } from './interfaces/i-coin-api-exchanges';
+import { MaterialTableGenericDataSource } from '../../material-table/material-table-generic-data-source';
 import {
   ITableColumn,
   TableColumnFieldType,
 } from '../../material-table/interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
-import { MaterialTableGenericDataSource } from '../../material-table/material-table-generic-data-source';
+import { ICoinApiTradesLatest } from './interfaces/i-coin-api-trades-latest';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-coin-api-exchanges',
+  selector: 'app-trades',
   templateUrl: '../../material-table/templates/basic-table.html',
   styleUrls: ['../../material-table/templates/basic-table.scss'],
 })
-export class CoinApiExchangesComponent
-  implements AfterViewInit, OnInit, OnDestroy {
+export class TradesComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ICoinApiExchanges>;
-  dataSource: MaterialTableGenericDataSource<ICoinApiExchanges> = new MaterialTableGenericDataSource();
+  @ViewChild(MatTable) table!: MatTable<ICoinApiTradesLatest>;
+  constructor(private coinService: CoinApiService) {}
+
+  dataSource: MaterialTableGenericDataSource<ICoinApiTradesLatest> = new MaterialTableGenericDataSource();
   /**
    *
    */
-  constructor(private coinService: CoinApiService) {}
 
   isDestroyed$: Subject<boolean> = new Subject();
   search$: FormControl = new FormControl('');
   tableColumnsDefinition: ITableColumn[] = [];
-  title: string = 'Coin API Exchanges';
+  title: string = 'Coin API Trades';
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -59,8 +59,8 @@ export class CoinApiExchangesComponent
      *
      */
     this.dataSource.dataFromcoinApiService$ = environment.isRealServerData
-      ? this.coinService.getExchanges$()
-      : this.coinService.getExchangesMocked$();
+      ? this.coinService.getTrades$()
+      : this.coinService.getTradesMocked$();
   }
 
   initDataTable(): void {
@@ -71,54 +71,23 @@ export class CoinApiExchangesComponent
     return [
       {
         caption: 'Id',
-        propName: 'exchange_id',
+        propName: 'symbol_id',
         type: TableColumnFieldType.string,
       },
       {
-        caption: 'Name',
-        propName: 'name',
-        type: TableColumnFieldType.string,
-      },
-      {
-        caption: 'DataStart',
-        propName: 'data_start',
+        caption: 'exchange time',
+        propName: 'time_exchange',
         type: TableColumnFieldType.date,
       },
       {
-        caption: 'DataEnd',
-        propName: 'data_end',
+        caption: 'price',
+        propName: 'price',
+        type: TableColumnFieldType.number,
+      },
+      {
+        caption: 'size',
+        propName: 'size',
         type: TableColumnFieldType.date,
-      },
-      {
-        caption: 'Data Ordr start',
-        propName: 'data_orderbook_start',
-        type: TableColumnFieldType.dateMedium,
-      },
-      {
-        caption: 'Data Ordr end',
-        propName: 'data_orderbook_end',
-        type: TableColumnFieldType.dateMedium,
-      },
-
-      {
-        caption: 'Vol 1st hour USD',
-        propName: 'volume_1hrs_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'Vol 1st day USD',
-        propName: 'volume_1day_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'Vol 1st month USD',
-        propName: 'volume_1mth_usd',
-        type: TableColumnFieldType.number,
-      },
-      {
-        caption: 'www',
-        propName: 'website',
-        type: TableColumnFieldType.www,
       },
     ];
   }
