@@ -9,15 +9,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CoinApiExchangesComponent } from './exchanges/coin-api-exchanges.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TradesComponent } from './trades/trades.component';
-import { CoinApiQuotesComponent } from './quotes/coin-api-quotes.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BasicTableComponent } from '../material-table/basic-table/basic-table.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -33,12 +30,7 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [
-    CoinApiComponent,
-    CoinApiExchangesComponent,
-    TradesComponent,
-    CoinApiQuotesComponent,
-  ],
+  declarations: [CoinApiComponent, BasicTableComponent],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],
   providers: [CoinApiService],

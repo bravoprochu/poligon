@@ -1,6 +1,6 @@
 <section>
   <h2 class="mat-h2">{{ title }}</h2>
-  <h4 class="mat-h4">basic table</h4>
+  <h4 class="mat-h4">{{ subtitle }}</h4>
   <div class="warning-info">{{ dataSource.errorInfo }}</div>
 
   <div fxLayout="row" fxLayoutAlign="space-between center" class="table-menu">
@@ -39,23 +39,25 @@
       [matColumnDef]="c.propName"
       [sticky]="i == 0"
     >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ c.caption }}</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ c.caption }}
+      </th>
       <td mat-cell *matCellDef="let row" [ngSwitch]="c.type">
         <span *ngSwitchCase="'number'">{{ row[c.propName] | number }}</span>
         <span *ngSwitchCase="'date'">{{ row[c.propName] | date }}</span>
-        <span *ngSwitchCase="'dateMedium'"
-          >{{ row[c.propName] | date: "medium" }}</span
-        >
+        <span *ngSwitchCase="'dateMedium'">{{
+          row[c.propName] | date: "medium"
+        }}</span>
         <span *ngSwitchCase="'string'">{{ row[c.propName] }}</span>
         <span *ngSwitchCase="'www'"
-          ><a [attr.href]="row[c.propName]" target="_blank"
-            >{{ row[c.propName] }}</a
-          ></span
+          ><a [attr.href]="row[c.propName]" target="_blank">{{
+            row[c.propName]
+          }}</a></span
         >
         <span *ngSwitchCase="'email'"
-          ><a [attr.href]="'mailto:' + row[c.propName]" target="_blank"
-            >{{ row[c.propName] }}</a
-          ></span
+          ><a [attr.href]="'mailto:' + row[c.propName]" target="_blank">{{
+            row[c.propName]
+          }}</a></span
         >
       </td>
     </ng-container>

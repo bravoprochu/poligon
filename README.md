@@ -5,6 +5,7 @@
 - auto sort
 - auto format
 - force refresh/observable..
+- errorInfo
 
 # DynamicComponent
 

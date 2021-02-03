@@ -11,13 +11,11 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { ICoinApiExchanges } from './interfaces/i-coin-api-exchanges';
-import {
-  ITableColumn,
-  TableColumnFieldType,
-} from '../../material-table/interfaces/i-table-column';
+import { ITableColumn } from '../../material-table/interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
-import { MaterialTableGenericDataSource } from '../../material-table/material-table-generic-data-source';
+import { BasicTableDataSource } from '../../material-table/basic-table-data-source';
 import { environment } from 'src/environments/environment';
+import { TableColumnFieldType } from '../../material-table/interfaces/table-column-field-type-enum';
 
 @Component({
   selector: 'app-coin-api-exchanges',
@@ -29,7 +27,7 @@ export class CoinApiExchangesComponent
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ICoinApiExchanges>;
-  dataSource: MaterialTableGenericDataSource<ICoinApiExchanges> = new MaterialTableGenericDataSource();
+  dataSource: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource();
   /**
    *
    */

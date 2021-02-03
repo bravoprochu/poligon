@@ -21,11 +21,9 @@ import { MatRow, MatTable } from '@angular/material/table';
 import { of, Subject } from 'rxjs';
 import { delay, filter, switchMap, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {
-  ITableColumn,
-  TableColumnFieldType,
-} from '../../material-table/interfaces/i-table-column';
-import { MaterialTableGenericDataSource } from '../../material-table/material-table-generic-data-source';
+import { ITableColumn } from '../../material-table/interfaces/i-table-column';
+import { TableColumnFieldType } from '../../material-table/interfaces/table-column-field-type-enum';
+import { BasicTableDataSource } from '../../material-table/basic-table-data-source';
 import { COIN_API_QUOUTES_CURRENT } from '../mock-data/coin-api-quotes-current';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiQuotesCurrent } from './interfaces/i-coin-api-quotes-current';
@@ -55,7 +53,10 @@ export class CoinApiQuotesComponent
     // this.expandedElement = COIN_API_QUOUTES_CURRENT[0].last_trade!;
   }
 
-  dataSource: MaterialTableGenericDataSource<ICoinApiQuotesCurrent> = new MaterialTableGenericDataSource();
+  dataSource: BasicTableDataSource<ICoinApiQuotesCurrent> = new BasicTableDataSource(
+    this.prepTableColumnsDefinition(),
+    this.coinService.getExchangesMocked$()
+  );
   /**
    *
    */
@@ -84,9 +85,9 @@ export class CoinApiQuotesComponent
      * setting data stream for data source
      *
      */
-    this.dataSource.dataFromcoinApiService$ = environment.isRealServerData
-      ? this.coinService.getQuotes$()
-      : this.coinService.getQuotesMocked$();
+    // this.dataSource.dataFromcoinApiService$ = environment.isRealServerData
+    //   ? this.coinService.getQuotes$()
+    //   : this.coinService.getQuotesMocked$();
 
     /**
      * open expandad data for first detail data

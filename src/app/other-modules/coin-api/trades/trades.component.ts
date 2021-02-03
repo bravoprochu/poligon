@@ -10,15 +10,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
-import { MaterialTableGenericDataSource } from '../../material-table/material-table-generic-data-source';
-import {
-  ITableColumn,
-  TableColumnFieldType,
-} from '../../material-table/interfaces/i-table-column';
+import { BasicTableDataSource } from '../../material-table/basic-table-data-source';
+import { ITableColumn } from '../../material-table/interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiTradesLatest } from './interfaces/i-coin-api-trades-latest';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { TableColumnFieldType } from '../../material-table/interfaces/table-column-field-type-enum';
 
 @Component({
   selector: 'app-trades',
@@ -31,7 +29,7 @@ export class TradesComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatTable) table!: MatTable<ICoinApiTradesLatest>;
   constructor(private coinService: CoinApiService) {}
 
-  dataSource: MaterialTableGenericDataSource<ICoinApiTradesLatest> = new MaterialTableGenericDataSource();
+  dataSource: BasicTableDataSource<ICoinApiTradesLatest> = new BasicTableDataSource();
   /**
    *
    */

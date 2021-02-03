@@ -9,25 +9,26 @@ import {
   tap,
 } from 'rxjs/operators';
 import { Observable, merge, Subject, BehaviorSubject, of } from 'rxjs';
-import {
-  ITableColumn,
-  TableColumnFieldType,
-} from './interfaces/i-table-column';
+import { ITableColumn } from './interfaces/i-table-column';
 import { FormControl } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TableColumnFieldType } from './interfaces/table-column-field-type-enum';
 
 /**
  * Data source for the Exchanges view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class MaterialTableGenericDataSource<T> extends DataSource<T> {
-  constructor() {
+export class BasicTableDataSource<T> extends DataSource<T> {
+  constructor(
+    public tableColumnsDefinition: ITableColumn[] = [],
+    public dataFromcoinApiService$: Observable<T[]> = of([])
+  ) {
     super();
   }
 
   data: T[] = [];
-  dataFromcoinApiService$: Observable<T[]> = of([]);
+
   errorInfo!: string;
   filteredData: T[] = [];
   filterSearchString: string = '';
@@ -38,10 +39,8 @@ export class MaterialTableGenericDataSource<T> extends DataSource<T> {
     <number[]>[]
   );
   paginator!: MatPaginator;
-
   refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
-  tableColumnsDefinition: ITableColumn[] = [];
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -110,12 +109,10 @@ export class MaterialTableGenericDataSource<T> extends DataSource<T> {
     if (!search || data.length == 0) {
       return data;
     }
-
     /**
      *  only string props are filtered
      *
      */
-
     const stringPropNames = this.tableColumnsDefinition.filter(
       (f: ITableColumn) => f.type == TableColumnFieldType.string
     );

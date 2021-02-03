@@ -4,17 +4,18 @@
 }
 
 .mat-column-created {
-  max-width: 150px;
+  max-width: 175px;
 }
 
 .progress-container {
   height: 10px;
 }
 
-table {
-  width: 1500px;
-}
-
 .table-container {
   overflow: auto;
+}
+
+.warning-info {
+  color: red;
+  padding: 1em;
 }

@@ -3,7 +3,26 @@
 <a routerLink="/home">go Home</a>
 
 <div fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="space-between">
-  <app-coin-api-quotes></app-coin-api-quotes>
-  <app-trades></app-trades>
+  <app-basic-table
+    title="Coin API - Quotees"
+    subtitle="Awesome table"
+    [dataSource]="dataSourceQuotes"
+  ></app-basic-table>
+
+  <app-basic-table
+    title="Coin API - Exchanges"
+    subtitle="Awesome table"
+    [dataSource]="dataSourceExchanges"
+  ></app-basic-table>
+
+  <app-basic-table
+    title="Coin API - Trades /latest"
+    subtitle="Awesome table"
+    [dataSource]="dataSourceTrades"
+  ></app-basic-table>
+
+  <hr />
+  <!-- <app-coin-api-quotes></app-coin-api-quotes>
   <app-coin-api-exchanges></app-coin-api-exchanges>
+  <app-trades></app-trades> -->
 </div>
