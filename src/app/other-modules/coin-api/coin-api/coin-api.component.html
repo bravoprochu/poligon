@@ -4,10 +4,54 @@
 
 <div fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="space-between">
   <app-basic-table
-    title="Coin API - Quotees"
+    title="Coin API - Quotes"
     subtitle="Awesome table"
     [dataSource]="dataSourceQuotes"
-  ></app-basic-table>
+  >
+    <ng-template #expandedRow let-element>
+      <div
+        *ngIf="element.last_trade"
+        fxLayout
+        fxLayoutGap="10px"
+        fxLayoutAlign="space-around center"
+      >
+        <div class="border">
+          <div class="mat-display-4">
+            <span class="mat-small">prize: </span>
+            {{ element.last_trade.price }}
+          </div>
+          <div class="mat-display-3">
+            <span class="mat-small">size: </span>{{ element.last_trade.size }}
+          </div>
+        </div>
+        <div fxFlex="1 1 450px">
+          <div fxLayout="column">
+            <div class="mat-caption">
+              uuid:
+              <strong>{{ element.last_trade.uuid }}</strong>
+            </div>
+            <div>
+              <span
+                >trade time:
+                <strong>{{
+                  element.last_trade.time_exchange | date: "medium"
+                }}</strong>
+              </span>
+            </div>
+            <span
+              >coinAPI time:
+              <strong>{{
+                element.last_trade.time_coinapi | date: "medium"
+              }}</strong>
+            </span>
+          </div>
+        </div>
+        <div>
+          <pre>{{ element | json }}</pre>
+        </div>
+      </div>
+    </ng-template>
+  </app-basic-table>
 
   <app-basic-table
     title="Coin API - Exchanges"

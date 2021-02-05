@@ -1,9 +1,18 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   AfterViewInit,
   Component,
+  ContentChild,
   Input,
   OnDestroy,
   OnInit,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,6 +25,16 @@ import { BasicTableDataSource } from '../basic-table-data-source';
   selector: 'app-basic-table',
   templateUrl: './basic-table.component.html',
   styleUrls: ['./basic-table.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class BasicTableComponent<T>
   implements AfterViewInit, OnInit, OnDestroy {
@@ -26,13 +45,17 @@ export class BasicTableComponent<T>
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<T>;
+  @ContentChild('expandedRow', { static: false })
+  expandedRowRef?: TemplateRef<any>;
 
   /**
    *
    */
   constructor() {}
 
+  expandedElement?: T | null;
   isDestroyed$: Subject<boolean> = new Subject();
+  isExpandable: boolean = false;
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ITableColumn } from '../../material-table/interfaces/i-table-column';
 import { TableColumnFieldType } from '../../material-table/interfaces/table-column-field-type-enum';
 import { BasicTableDataSource } from '../../material-table/basic-table-data-source';
-import { ICoinApiExchanges } from '../exchanges/interfaces/i-coin-api-exchanges';
+import { ICoinApiExchanges } from '../interfaces/interfaces/i-coin-api-exchanges';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiTradesLatest } from '../trades/interfaces/i-coin-api-trades-latest';
 import { ICoinApiQuotesCurrent } from '../quotes/interfaces/i-coin-api-quotes-current';
@@ -13,7 +13,10 @@ import { ICoinApiQuotesCurrent } from '../quotes/interfaces/i-coin-api-quotes-cu
   styleUrls: ['./coin-api.component.scss'],
 })
 export class CoinApiComponent implements OnInit {
-  constructor(private coinService: CoinApiService) {}
+  constructor(
+    private changeDetection: ChangeDetectorRef,
+    private coinService: CoinApiService
+  ) {}
 
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionExchanges(),
@@ -29,6 +32,9 @@ export class CoinApiComponent implements OnInit {
     this.prepTableColumnsDefinitionQuotes(),
     this.coinService.getQuotesMocked$()
   );
+
+  selectedQuotes?: ICoinApiQuotesCurrent;
+
   ngOnInit(): void {}
 
   getData(): void {
@@ -39,6 +45,12 @@ export class CoinApiComponent implements OnInit {
       (error) => console.log('exchanges error', error),
       () => console.log('exchanges completed..')
     );
+  }
+
+  getSelectedQoutes(ev: ICoinApiQuotesCurrent) {
+    console.log(ev);
+    this.selectedQuotes = ev;
+    this.changeDetection.detectChanges();
   }
 
   prepTableColumnsDefinitionExchanges(): ITableColumn[] {

@@ -10,7 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
-import { ICoinApiExchanges } from './interfaces/i-coin-api-exchanges';
+import { ICoinApiExchanges } from '../interfaces/interfaces/i-coin-api-exchanges';
 import { ITableColumn } from '../../material-table/interfaces/i-table-column';
 import { CoinApiService } from '../services/coin-api.service';
 import { BasicTableDataSource } from '../../material-table/basic-table-data-source';

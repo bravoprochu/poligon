@@ -27,7 +27,7 @@
 <div class="table-container mat-elevation-z8">
   <table
     mat-table
-    class="full-width-table"
+    multiTemplateDataRows
     matSort
     aria-label="Elements"
     [style.width.px]="dataSource.displayedColumns.length * 175"
@@ -35,35 +35,72 @@
     <!-- dynamic columns -->
 
     <ng-container
-      *ngFor="let c of dataSource.tableColumnsDefinition; index as i"
-      [matColumnDef]="c.propName"
+      *ngFor="let element of dataSource.tableColumnsDefinition; index as i"
+      [matColumnDef]="element.propName"
       [sticky]="i == 0"
     >
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ c.caption }}
+        {{ element.caption }}
       </th>
-      <td mat-cell *matCellDef="let row" [ngSwitch]="c.type">
-        <span *ngSwitchCase="'number'">{{ row[c.propName] | number }}</span>
-        <span *ngSwitchCase="'date'">{{ row[c.propName] | date }}</span>
-        <span *ngSwitchCase="'dateMedium'">{{
-          row[c.propName] | date: "medium"
+      <td mat-cell *matCellDef="let row" [ngSwitch]="element.type">
+        <span *ngSwitchCase="'number'">{{
+          row[element.propName] | number
         }}</span>
-        <span *ngSwitchCase="'string'">{{ row[c.propName] }}</span>
+        <span *ngSwitchCase="'date'">{{ row[element.propName] | date }}</span>
+        <span *ngSwitchCase="'dateMedium'">{{
+          row[element.propName] | date: "medium"
+        }}</span>
+        <span *ngSwitchCase="'string'">{{ row[element.propName] }}</span>
         <span *ngSwitchCase="'www'"
-          ><a [attr.href]="row[c.propName]" target="_blank">{{
-            row[c.propName]
+          ><a [attr.href]="row[element.propName]" target="_blank">{{
+            row[element.propName]
           }}</a></span
         >
         <span *ngSwitchCase="'email'"
-          ><a [attr.href]="'mailto:' + row[c.propName]" target="_blank">{{
-            row[c.propName]
+          ><a [attr.href]="'mailto:' + row[element.propName]" target="_blank">{{
+            row[element.propName]
           }}</a></span
         >
       </td>
     </ng-container>
 
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="dataSource.displayedColumns.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <!-- Expanded ROW on PARENT projection tamplete -->
+          <ng-container
+            *ngIf="expandedRowRef"
+            [ngTemplateOutlet]="expandedRowRef"
+            [ngTemplateOutletContext]="{ $implicit: element }"
+          >
+          </ng-container>
+        </div>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="dataSource.displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: dataSource.displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: dataSource.displayedColumns"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
   </table>
 
   <mat-paginator
