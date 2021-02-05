@@ -1,6 +1,6 @@
 <section>
   <h2 class="mat-h2">{{ title }}</h2>
-  <h4 class="mat-h4">basic table</h4>
+  <h4 class="mat-h4">{{ subtitle }}</h4>
   <div class="warning-info">{{ dataSource.errorInfo }}</div>
 
   <div fxLayout="row" fxLayoutAlign="space-between center" class="table-menu">
@@ -30,7 +30,7 @@
     multiTemplateDataRows
     matSort
     aria-label="Elements"
-    [style.width.px]="dataSource.displayedColumns.length * 175"
+    [style.width.px]="dataSource.displayedColumns.length * columnWidthDefault"
   >
     <!-- dynamic columns -->
 
@@ -77,48 +77,13 @@
             element == expandedElement ? 'expanded' : 'collapsed'
           "
         >
-          <div
-            *ngIf="element.last_trade"
-            fxLayout
-            fxLayoutGap="10px"
-            fxLayoutAlign="space-around center"
+          <!-- Expanded ROW on PARENT projection tamplete -->
+          <ng-container
+            *ngIf="expandedRowRef"
+            [ngTemplateOutlet]="expandedRowRef"
+            [ngTemplateOutletContext]="{ $implicit: element }"
           >
-            <div class="border">
-              <div class="mat-display-4">
-                <span class="mat-small">prize: </span>
-                {{ element.last_trade.price }}
-              </div>
-              <div class="mat-display-3">
-                <span class="mat-small">size: </span
-                >{{ element.last_trade.size }}
-              </div>
-            </div>
-            <div fxFlex="1 1 450px">
-              <div fxLayout="column">
-                <div class="mat-caption">
-                  uuid:
-                  <strong>{{ element.last_trade.uuid }}</strong>
-                </div>
-                <div>
-                  <span
-                    >trade time:
-                    <strong>{{
-                      element.last_trade.time_exchange | date: "medium"
-                    }}</strong>
-                  </span>
-                </div>
-                <span
-                  >coinAPI time:
-                  <strong>{{
-                    element.last_trade.time_coinapi | date: "medium"
-                  }}</strong>
-                </span>
-              </div>
-            </div>
-            <div>
-              <pre>{{ element | json }}</pre>
-            </div>
-          </div>
+          </ng-container>
         </div>
       </td>
     </ng-container>

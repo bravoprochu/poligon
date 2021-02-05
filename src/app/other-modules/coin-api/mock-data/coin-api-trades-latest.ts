@@ -1,4 +1,4 @@
-import { ICoinApiTradesLatest } from '../trades/interfaces/i-coin-api-trades-latest';
+import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
 
 export const COIN_API_TRADES_LATEST: ICoinApiTradesLatest[] = [
   {

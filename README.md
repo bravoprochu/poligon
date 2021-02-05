@@ -2,12 +2,41 @@
 
 ## coin API - table template (data source)
 
+1. data table module
+   a) basic table
+
 - dataSource RxJS-way
 - one object based describing table data
 - auto sort
 - auto format
 - force refresh/observable..
 - filter data (client-side)
+
+```
+  <app-basic-table
+    title="Coin API - Trades /latest"
+    subtitle="Awesome table"
+    [dataSource]="dataSourceTrades"
+  ></app-basic-table>
+```
+
+    b) expanded row ()
+
+- custom template for expanded data
+
+```
+<app-basic-table
+    title="Coin API - Quotes"
+    subtitle="Awesome table"
+    [dataSource]="dataSourceQuotes"
+  >
+    <ng-template #expandedRow let-element>
+      <div>
+        <h4>{{element?.propName}} !</h4>
+        </div>
+    </ng-template>
+</app-basic-table>
+```
 
 # DynamicComponent
 

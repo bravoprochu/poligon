@@ -1,4 +1,4 @@
-import { ICoinApiExchanges } from '../exchanges/interfaces/i-coin-api-exchanges';
+import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 
 export const COIN_API_EXCHANGES: ICoinApiExchanges[] = [
   {
