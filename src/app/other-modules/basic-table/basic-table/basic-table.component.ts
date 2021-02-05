@@ -40,8 +40,8 @@ export class BasicTableComponent<T>
   implements AfterViewInit, OnInit, OnDestroy {
   @Input('dataSource')
   dataSource: BasicTableDataSource<T> = new BasicTableDataSource<T>();
-  @Input('title') title: string = 'Material table';
-  @Input('subtitle') subtitle: string = 'basic table';
+  @Input('title') title = 'Material table';
+  @Input('subtitle') subtitle = 'basic table';
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<T>;
@@ -53,10 +53,10 @@ export class BasicTableComponent<T>
    */
   constructor() {}
 
-  columnWidthDefault: number = 55;
+  columnWidthDefault = 175;
   expandedElement?: T | null;
   isDestroyed$: Subject<boolean> = new Subject();
-  isExpandable: boolean = false;
+  isExpandable = false;
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

@@ -31,12 +31,12 @@ export class BasicTableDataSource<T> extends DataSource<T> {
 
   errorInfo!: string;
   filteredData: T[] = [];
-  filterSearchString: string = '';
+  filterSearchString = '';
   filterSearch$: FormControl = new FormControl('');
   isGettingData$ = new BehaviorSubject<boolean>(true);
   pageSizeOptions: number[] = [];
   pageSizeOptions$: BehaviorSubject<number[]> = new BehaviorSubject(
-    <number[]>[]
+    [] as number[]
   );
   paginator!: MatPaginator;
   refreshHit$: Subject<boolean> = new Subject();
@@ -106,7 +106,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
   }
 
   filterTableClientSide(data: T[], search: string): T[] {
-    if (!search || data.length == 0) {
+    if (!search || data.length === 0) {
       return data;
     }
     /**
@@ -114,12 +114,12 @@ export class BasicTableDataSource<T> extends DataSource<T> {
      *
      */
     const stringPropNames = this.tableColumnsDefinition.filter(
-      (f: ITableColumn) => f.type == TableColumnFieldType.string
+      (f: ITableColumn) => f.type === TableColumnFieldType.string
     );
 
     const coinApiExchangeObj = data[0];
-    let fullString: string = '';
-    let res = data.filter((f) => {
+    let fullString = '';
+    const res = data.filter((f) => {
       /**
        * concat string values into one 'fullString'
        *
@@ -200,7 +200,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
    *
    */
   private prepPageSizeOptions(data: T[]): number[] {
-    let res: number[] = [];
+    const res: number[] = [];
     if (data.length > 10) {
       res.push(10);
     }
@@ -235,6 +235,8 @@ export class BasicTableDataSource<T> extends DataSource<T> {
   }
 }
 
+type TableDataTypes = number | string | Date | undefined;
+
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare<TableDataTypes>(
   a: TableDataTypes,
@@ -246,5 +248,3 @@ function compare<TableDataTypes>(
   }
   return (a! < b! ? -1 : 1) * (isAsc ? 1 : -1);
 }
-
-type TableDataTypes = number | string | Date | undefined;

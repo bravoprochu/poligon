@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ITableColumn } from '../../material-table/interfaces/i-table-column';
-import { TableColumnFieldType } from '../../material-table/interfaces/table-column-field-type-enum';
-import { BasicTableDataSource } from '../../material-table/basic-table-data-source';
-import { ICoinApiExchanges } from '../interfaces/interfaces/i-coin-api-exchanges';
+import { ITableColumn } from '../../basic-table/interfaces/i-table-column';
+import { TableColumnFieldType } from '../../basic-table/interfaces/table-column-field-type-enum';
+import { BasicTableDataSource } from '../../basic-table/basic-table-data-source';
+import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import { CoinApiService } from '../services/coin-api.service';
-import { ICoinApiTradesLatest } from '../trades/interfaces/i-coin-api-trades-latest';
-import { ICoinApiQuotesCurrent } from '../quotes/interfaces/i-coin-api-quotes-current';
+import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
+import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
 
 @Component({
   selector: 'app-coin-api',
@@ -45,12 +45,6 @@ export class CoinApiComponent implements OnInit {
       (error) => console.log('exchanges error', error),
       () => console.log('exchanges completed..')
     );
-  }
-
-  getSelectedQoutes(ev: ICoinApiQuotesCurrent) {
-    console.log(ev);
-    this.selectedQuotes = ev;
-    this.changeDetection.detectChanges();
   }
 
   prepTableColumnsDefinitionExchanges(): ITableColumn[] {

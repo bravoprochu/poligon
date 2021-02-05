@@ -1,4 +1,4 @@
-import { ICoinApiQuotesCurrent } from '../quotes/interfaces/i-coin-api-quotes-current';
+import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
 
 export const COIN_API_QUOUTES_CURRENT: ICoinApiQuotesCurrent[] = [
   {
