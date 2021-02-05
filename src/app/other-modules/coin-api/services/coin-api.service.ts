@@ -4,11 +4,11 @@ import { Observable, of, Subject } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
+import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
+import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
 import { COIN_API_EXCHANGES } from '../mock-data/coin-api-exchange';
 import { COIN_API_QUOUTES_CURRENT } from '../mock-data/coin-api-quotes-current';
 import { COIN_API_TRADES_LATEST } from '../mock-data/coin-api-trades-latest';
-import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
-import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
 
 @Injectable({
   providedIn: 'root',
