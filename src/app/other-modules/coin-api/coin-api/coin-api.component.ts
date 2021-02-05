@@ -6,6 +6,7 @@ import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
 import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
+import { ICoinApiOrderBook } from '../interfaces/i-coin-api-order-book';
 
 @Component({
   selector: 'app-coin-api',
@@ -21,6 +22,11 @@ export class CoinApiComponent implements OnInit {
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionExchanges(),
     this.coinService.getExchangesMocked$()
+  );
+
+  dataSourceOrderBook: BasicTableDataSource<ICoinApiOrderBook> = new BasicTableDataSource(
+    this.prepTableColumnsDefinitionOrderBook(),
+    this.coinService.getOrderBookMocked$()
   );
 
   dataSourceTrades: BasicTableDataSource<ICoinApiTradesLatest> = new BasicTableDataSource(
@@ -99,6 +105,26 @@ export class CoinApiComponent implements OnInit {
         caption: 'www',
         propName: 'website',
         type: TableColumnFieldType.www,
+      },
+    ];
+  }
+
+  prepTableColumnsDefinitionOrderBook(): ITableColumn[] {
+    return [
+      {
+        caption: 'Id',
+        propName: 'symbol_id',
+        type: TableColumnFieldType.string,
+      },
+      {
+        caption: 'exchange time',
+        propName: 'time_exchange',
+        type: TableColumnFieldType.dateMedium,
+      },
+      {
+        caption: 'exchange time (coin API)',
+        propName: 'time_coinapi',
+        type: TableColumnFieldType.dateMedium,
       },
     ];
   }

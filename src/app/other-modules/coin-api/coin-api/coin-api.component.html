@@ -4,6 +4,26 @@
 
 <div fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="space-between">
   <app-basic-table
+    title="Coin API Order Book"
+    subtitle="Current - expandable"
+    [dataSource]="dataSourceOrderBook"
+    [columnWidthDefault]="350"
+  >
+    <ng-template #expandedRow let-element>
+      <div fxLayout fxLayoutGap="15px">
+        <div>
+          <h4 class="mat-h4">Asks</h4>
+          {{ element.asks.length }}
+        </div>
+        <div>
+          <h4 class="mat-h4">Bids</h4>
+          {{ element.bids.length }}
+        </div>
+      </div>
+    </ng-template>
+  </app-basic-table>
+
+  <app-basic-table
     title="Coin API - Quotes"
     subtitle="Awesome table"
     [dataSource]="dataSourceQuotes"

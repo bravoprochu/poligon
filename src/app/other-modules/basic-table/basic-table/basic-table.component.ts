@@ -38,6 +38,7 @@ import { BasicTableDataSource } from '../basic-table-data-source';
 })
 export class BasicTableComponent<T>
   implements AfterViewInit, OnInit, OnDestroy {
+  @Input('columnWidthDefault') columnWidthDefault = 175;
   @Input('dataSource')
   dataSource: BasicTableDataSource<T> = new BasicTableDataSource<T>();
   @Input('title') title = 'Material table';
@@ -53,7 +54,6 @@ export class BasicTableComponent<T>
    */
   constructor() {}
 
-  columnWidthDefault = 175;
   expandedElement?: T | null;
   isDestroyed$: Subject<boolean> = new Subject();
   isExpandable = false;
