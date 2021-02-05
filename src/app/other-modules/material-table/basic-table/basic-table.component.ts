@@ -53,6 +53,7 @@ export class BasicTableComponent<T>
    */
   constructor() {}
 
+  columnWidthDefault: number = 55;
   expandedElement?: T | null;
   isDestroyed$: Subject<boolean> = new Subject();
   isExpandable: boolean = false;
