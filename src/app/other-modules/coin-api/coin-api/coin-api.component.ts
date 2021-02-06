@@ -23,22 +23,22 @@ export class CoinApiComponent implements OnInit {
 
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionExchanges(),
-    this.coinService.getExchangesMocked$()
+    this.coinService.getExchanges$()
   );
 
   dataSourceOrderBook: BasicTableDataSource<ICoinApiOrderBook> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionOrderBook(),
-    this.coinService.getOrderBookMocked$()
+    this.coinService.getOrderBook$()
   );
 
   dataSourceTrades: BasicTableDataSource<ICoinApiTradesLatest> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionTrades(),
-    this.coinService.getTradesMocked$()
+    this.coinService.getTrades$()
   );
 
   dataSourceQuotes: BasicTableDataSource<ICoinApiQuotesCurrent> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionQuotes(),
-    this.coinService.getQuotesMocked$()
+    this.coinService.getQuotes$()
   );
 
   selectedQuotes?: ICoinApiQuotesCurrent;
