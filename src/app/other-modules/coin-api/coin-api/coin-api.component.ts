@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ITableColumn } from '../../basic-table/interfaces/i-table-column';
 import { TableColumnFieldType } from '../../basic-table/interfaces/table-column-field-type-enum';
 import { BasicTableDataSource } from '../../basic-table/basic-table-data-source';
@@ -7,6 +7,7 @@ import { CoinApiService } from '../services/coin-api.service';
 import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
 import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
 import { ICoinApiOrderBook } from '../interfaces/i-coin-api-order-book';
+import { BasicTableComponent } from '../../basic-table/basic-table/basic-table.component';
 
 @Component({
   selector: 'app-coin-api',
@@ -14,6 +15,10 @@ import { ICoinApiOrderBook } from '../interfaces/i-coin-api-order-book';
   styleUrls: ['./coin-api.component.scss'],
 })
 export class CoinApiComponent implements OnInit {
+  @ViewChild('orderBook', { static: true })
+  orderBook!: BasicTableComponent<ICoinApiOrderBook>;
+  @ViewChild('quotes', { static: true })
+  quotes!: BasicTableComponent<ICoinApiQuotesCurrent>;
   constructor(private coinService: CoinApiService) {}
 
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
@@ -38,16 +43,22 @@ export class CoinApiComponent implements OnInit {
 
   selectedQuotes?: ICoinApiQuotesCurrent;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initExpandedRows();
+  }
 
-  getData(): void {
-    this.coinService.getExchanges$().subscribe(
-      (exchanges: any) => {
-        console.log('exchanges subs:', exchanges);
-      },
-      (error) => console.log('exchanges error', error),
-      () => console.log('exchanges completed..')
-    );
+  initExpandedRows(): void {
+    setTimeout(() => {
+      const orderBookWithAsks = this.dataSourceOrderBook.filteredData.find(
+        (f) => f.asks
+      );
+      const quotesWithLastTrade = this.dataSourceQuotes.filteredData.find(
+        (f) => f.last_trade
+      );
+
+      this.orderBook.expandedElement = orderBookWithAsks;
+      this.quotes.expandedElement = quotesWithLastTrade;
+    }, 2500);
   }
 
   prepTableColumnsDefinitionExchanges(): ITableColumn[] {

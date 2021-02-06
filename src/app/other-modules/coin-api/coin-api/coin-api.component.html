@@ -4,6 +4,7 @@
 
 <div fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="space-between">
   <app-basic-table
+    #orderBook
     title="Coin API Order Book"
     subtitle="Current - expandable"
     [dataSource]="dataSourceOrderBook"
@@ -65,6 +66,7 @@
   </app-basic-table>
 
   <app-basic-table
+    #quotes
     title="Coin API - Quotes"
     subtitle="Awesome table"
     [dataSource]="dataSourceQuotes"
