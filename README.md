@@ -21,6 +21,41 @@ a) basic table
   ></app-basic-table>
 ```
 
+### basicTableDataSource:
+
+table data source (generic class; gets 2 params: columns definitions, observable table data [from service] )
+
+```
+ dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
+    this.prepTableColumnsDefinitionOrderBook(),
+    this.coinService.getOrderBook$()
+  );
+```
+
+column definition (field types [enum] determines if column is sorted - string, number, date.. custom if set)
+
+```
+  prepTableColumnsDefinitionOrderBook(): ITableColumn[] {
+    return [
+      {
+        caption: 'Id',
+        propName: 'symbol_id',
+        type: TableColumnFieldType.string,
+      },
+      {
+        caption: 'exchange time',
+        propName: 'time_exchange',
+        type: TableColumnFieldType.dateMedium,
+      },
+      {
+        caption: 'exchange time (coin API)',
+        propName: 'time_coinapi',
+        type: TableColumnFieldType.dateMedium,
+      },
+    ];
+  }
+```
+
 b) expanded row ()
 
 - custom template for expanded data
@@ -41,7 +76,7 @@ b) expanded row ()
 
 ```
 
-# DynamicComponent
+#
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 

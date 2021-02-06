@@ -10,14 +10,55 @@
     [columnWidthDefault]="350"
   >
     <ng-template #expandedRow let-element>
-      <div fxLayout fxLayoutGap="15px">
+      <div fxLayout fxLayoutGap="20px">
+        <ng-container
+          *ngTemplateOutlet="
+            asksOrBids;
+            context: { name: 'Asks', data: element.asks }
+          "
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            asksOrBids;
+            context: { name: 'Bids', data: element.bids }
+          "
+        ></ng-container>
+      </div>
+    </ng-template>
+
+    <ng-template #asksOrBids let-data="data" let-name="name">
+      <div fxLayout="column">
         <div>
-          <h4 class="mat-h4">Asks</h4>
-          {{ element.asks.length }}
+          <h3 class="mat-h3">
+            <strong>{{ name }}</strong> ({{ data.length }})
+          </h3>
         </div>
         <div>
-          <h4 class="mat-h4">Bids</h4>
-          {{ element.bids.length }}
+          <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <div
+              *cdkVirtualFor="let item of data; index as i"
+              class="example-item"
+            >
+              <div fxLayout fxLayoutAlign="start center">
+                <div fxFlex="15">{{ i + 1 }}.</div>
+                <div fxFlex="85" fxLayout fxLayoutAlign="space-between">
+                  <div fxLayout="column" fxLayoutAlign="start start">
+                    <div>Price:</div>
+                    <div>Size:</div>
+                  </div>
+                  <div fxLayout="column" fxLayoutAlign="start end">
+                    <div>
+                      <strong>{{ item.price }}</strong>
+                    </div>
+                    <div>
+                      <strong>{{ item.size }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </div>
+          </cdk-virtual-scroll-viewport>
         </div>
       </div>
     </ng-template>

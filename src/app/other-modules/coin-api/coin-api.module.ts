@@ -7,11 +7,13 @@ import { CoinApiComponent } from './coin-api/coin-api.component';
 import { CoinApiService } from './services/coin-api.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BasicTableModule } from '../basic-table/basic-table.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
+  ScrollingModule,
 ];
 
 @NgModule({

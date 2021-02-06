@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ITableColumn } from '../../basic-table/interfaces/i-table-column';
 import { TableColumnFieldType } from '../../basic-table/interfaces/table-column-field-type-enum';
 import { BasicTableDataSource } from '../../basic-table/basic-table-data-source';
@@ -14,10 +14,7 @@ import { ICoinApiOrderBook } from '../interfaces/i-coin-api-order-book';
   styleUrls: ['./coin-api.component.scss'],
 })
 export class CoinApiComponent implements OnInit {
-  constructor(
-    private changeDetection: ChangeDetectorRef,
-    private coinService: CoinApiService
-  ) {}
+  constructor(private coinService: CoinApiService) {}
 
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionExchanges(),
