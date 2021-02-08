@@ -7,10 +7,7 @@ import { ICoinApiExchanges } from '../interfaces/i-coin-api-exchanges';
 import { ICoinApiOrderBook } from '../interfaces/i-coin-api-order-book';
 import { ICoinApiQuotesCurrent } from '../interfaces/i-coin-api-quotes-current';
 import { ICoinApiTradesLatest } from '../interfaces/i-coin-api-trades-latest';
-import { COIN_API_ORDER_BOOK } from '../mock-data/coin-api-order-book';
-import { COIN_API_EXCHANGES } from '../mock-data/coin-api-exchange';
-import { COIN_API_QUOUTES_CURRENT } from '../mock-data/coin-api-quotes-current';
-import { COIN_API_TRADES_LATEST } from '../mock-data/coin-api-trades-latest';
+import { ICoinApiWebsocketHello } from '../interfaces/i-coin-api-websocket-hello';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +17,9 @@ export class CoinApiService {
 
   private coinApiIoUrl: string =
     environment.coinApiIoUrl || 'https://rest.coinapi.io/';
+  private coinApiAssetsUrl = '../../../../assets/mocked-data/coin-api/';
+  private coinApiIoWebsocketUrl: string =
+    environment.coinApiIoWebsocketUrl || 'wss://ws-sandbox.coinapi.io/v1/';
   private coinApiIoKey: string =
     environment.coinApiIoKey || 'CB32E10F-F1F4-44B8-889D-0EE0ABBF6959';
   private coinApiHeader: HttpHeaders = new HttpHeaders().append(
@@ -30,8 +30,9 @@ export class CoinApiService {
   private coinApiUrlOrderBooks = 'v1/orderbooks/current';
   private coinApiUrlQuotes = 'v1/quotes/current';
   private coinApiUrlTrades = 'v1/trades/latest';
-
-  mockedExchangeData$: Subject<any> = new Subject();
+  isWebsocketConnected: Subject<boolean> = new Subject();
+  private coinApiWebsocketConnection?: WebSocket;
+  coinApiIoPayload$: Subject<any> = new Subject();
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
     return this.httpClient
@@ -46,7 +47,15 @@ export class CoinApiService {
   }
 
   getExchangesMocked$(): Observable<ICoinApiExchanges[]> {
-    return of(COIN_API_EXCHANGES).pipe(delay(850));
+    const exchanges = 'exchanges.json';
+    return this.httpClient
+      .get<ICoinApiExchanges[]>(this.coinApiAssetsUrl + exchanges)
+      .pipe(
+        delay(750),
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getOrderBook$(): Observable<ICoinApiOrderBook[]> {
@@ -62,7 +71,15 @@ export class CoinApiService {
   }
 
   getOrderBookMocked$(): Observable<ICoinApiOrderBook[]> {
-    return of(COIN_API_ORDER_BOOK).pipe(delay(540));
+    const orderBook = 'orderBook.json';
+    return this.httpClient
+      .get<ICoinApiOrderBook[]>(this.coinApiAssetsUrl + orderBook)
+      .pipe(
+        delay(750),
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getQuotes$(): Observable<ICoinApiQuotesCurrent[]> {
@@ -78,7 +95,15 @@ export class CoinApiService {
   }
 
   getQuotesMocked$(): Observable<ICoinApiQuotesCurrent[]> {
-    return of(COIN_API_QUOUTES_CURRENT).pipe(delay(540));
+    const quotes = 'quotes.json';
+    return this.httpClient
+      .get<ICoinApiQuotesCurrent[]>(this.coinApiAssetsUrl + quotes)
+      .pipe(
+        delay(750),
+        catchError((err) => {
+          return of(err);
+        })
+      );
   }
 
   getTrades$(): Observable<ICoinApiTradesLatest[]> {
@@ -94,6 +119,43 @@ export class CoinApiService {
   }
 
   getTradesMocked$(): Observable<ICoinApiTradesLatest[]> {
-    return of(COIN_API_TRADES_LATEST).pipe(delay(650));
+    const trades = 'trades.json';
+    return this.httpClient
+      .get<ICoinApiTradesLatest[]>(this.coinApiAssetsUrl + trades)
+      .pipe(
+        delay(750),
+        catchError((err) => {
+          return of(err);
+        })
+      );
+  }
+
+  wsInit() {
+    this.coinApiWebsocketConnection = new WebSocket(this.coinApiIoWebsocketUrl);
+    this.coinApiWebsocketConnection.onopen = this.wsOnOpen;
+  }
+
+  wsClose() {
+    this.coinApiWebsocketConnection!.close();
+    this.isWebsocketConnected.next(false);
+  }
+
+  wsOnMessage(ev: any) {
+    console.log(ev);
+    //this.coinApiIoPayload$.unsubscribe(ev);
+  }
+
+  wsSend(dataToSend: ICoinApiWebsocketHello) {
+    this.coinApiWebsocketConnection!.send(JSON.stringify(dataToSend));
+  }
+
+  wsOnOpen(ev: any) {
+    console.log('opening websocket', ev);
+    this.isWebsocketConnected.next(true);
+  }
+
+  wsOnClose(ev: any) {
+    console.log('closing websocket', ev);
+    this.coinApiWebsocketConnection?.close();
   }
 }

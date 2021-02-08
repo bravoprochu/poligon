@@ -1,0 +1,92 @@
+[
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1981070Z",
+    "time_coinapi": "2021-02-08T15:07:10.2565624Z",
+    "uuid": "4e0a905e-1dad-463b-8ee0-70f5f7e030d2",
+    "price": 43722.49,
+    "size": 0.05178236,
+    "taker_side": "SELL"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_EUR",
+    "time_exchange": "2021-02-08T15:07:10.1718670Z",
+    "time_coinapi": "2021-02-08T15:07:10.2344317Z",
+    "uuid": "6493f366-0cef-4c53-afc4-bdeb992e95b8",
+    "price": 2.77429,
+    "size": 128.79,
+    "taker_side": "SELL"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_EUR",
+    "time_exchange": "2021-02-08T15:07:10.1718670Z",
+    "time_coinapi": "2021-02-08T15:07:10.2327241Z",
+    "uuid": "4ac4928e-6ac5-45fe-9eaa-b37f1dd05c37",
+    "price": 2.7743,
+    "size": 100,
+    "taker_side": "SELL"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_EUR",
+    "time_exchange": "2021-02-08T15:07:10.1718670Z",
+    "time_coinapi": "2021-02-08T15:07:10.2313107Z",
+    "uuid": "c67d108b-f4ba-4168-8001-1256451ac6b3",
+    "price": 2.77579,
+    "size": 55.01,
+    "taker_side": "SELL"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.2134272Z",
+    "uuid": "c378596c-a459-425e-b3b8-6c2457d23dbe",
+    "price": 43739.36,
+    "size": 1.10293833,
+    "taker_side": "BUY"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.2130652Z",
+    "uuid": "99478644-b2cb-4eba-97d5-a604b5b3899b",
+    "price": 43736.99,
+    "size": 0.1,
+    "taker_side": "BUY"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.2084684Z",
+    "uuid": "6d649940-94ce-4489-a013-5ac9976346a0",
+    "price": 43736.98,
+    "size": 0.08927804,
+    "taker_side": "BUY"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.2084575Z",
+    "uuid": "3b59531f-da7f-4a5e-9736-2dc4fda73167",
+    "price": 43733.52,
+    "size": 0.01908566,
+    "taker_side": "BUY"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.2035927Z",
+    "uuid": "27200b20-a174-4f40-8eca-3e83ce791f61",
+    "price": 43733.27,
+    "size": 0.45791776,
+    "taker_side": "BUY"
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:07:10.1228400Z",
+    "time_coinapi": "2021-02-08T15:07:10.1980979Z",
+    "uuid": "25a0a742-2dd0-4979-a91b-31223838152b",
+    "price": 43728.01,
+    "size": 0.45796517,
+    "taker_side": "BUY"
+  }
+]

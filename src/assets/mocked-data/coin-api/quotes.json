@@ -1,0 +1,3549 @@
+[
+  {
+    "symbol_id": "ECB_SPOT_EUR_PHP",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006756Z",
+    "ask_price": 57.843,
+    "ask_size": 0,
+    "bid_price": 57.843,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZRX_EUR",
+    "time_exchange": "2021-02-08T15:08:58.7871330Z",
+    "time_coinapi": "2021-02-08T15:08:58.8441229Z",
+    "ask_price": 1.258887,
+    "ask_size": 573.489,
+    "bid_price": 1.255409,
+    "bid_size": 5000,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:49.1131870Z",
+      "time_coinapi": "2021-02-08T15:08:49.1742175Z",
+      "uuid": "d772be95-7f76-4765-a35c-88e4fb5bfb3d",
+      "price": 1.259229,
+      "size": 1.00495,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_MANA_USD",
+    "time_exchange": "2021-02-08T15:08:53.3420000Z",
+    "time_coinapi": "2021-02-08T15:08:53.4477672Z",
+    "ask_price": 0.24254,
+    "ask_size": 19.214116,
+    "bid_price": 0.24141,
+    "bid_size": 4159,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:17.0570000Z",
+      "time_coinapi": "2021-02-08T15:06:17.1101651Z",
+      "uuid": "9fc1a604-7ae3-4fb6-8cb2-da2c30319fee",
+      "price": 0.24253,
+      "size": 1,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LRC_BTC",
+    "time_exchange": "2021-02-08T15:08:53.1595400Z",
+    "time_coinapi": "2021-02-08T15:08:53.2179474Z",
+    "ask_price": 0.00001514,
+    "ask_size": 4641,
+    "bid_price": 0.00001513,
+    "bid_size": 655,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.1595400Z",
+      "time_coinapi": "2021-02-08T15:08:53.2179474Z",
+      "uuid": "86909cc5-b9db-4b66-836c-fd6de9134151",
+      "price": 0.00001514,
+      "size": 206,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_HKD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006744Z",
+    "ask_price": 9.3219,
+    "ask_size": 0,
+    "bid_price": 9.3219,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LTC_BCH",
+    "time_exchange": "2021-02-08T14:43:35.2760000Z",
+    "time_coinapi": "2021-02-08T14:43:35.3507671Z",
+    "ask_price": 0.3479,
+    "ask_size": 1.27143,
+    "bid_price": 0.2885,
+    "bid_size": 1.50144
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LINK_GBP",
+    "time_exchange": "2021-02-08T15:08:58.8440040Z",
+    "time_coinapi": "2021-02-08T15:08:58.8995103Z",
+    "ask_price": 18.48484,
+    "ask_size": 162.28,
+    "bid_price": 18.45675,
+    "bid_size": 90.56,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.5469160Z",
+      "time_coinapi": "2021-02-08T15:08:58.6078964Z",
+      "uuid": "ff036a02-1838-4e70-97f0-e8de61e916df",
+      "price": 18.48485,
+      "size": 10.62,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_GBP",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006686Z",
+    "ask_price": 0.87833,
+    "ask_size": 0,
+    "bid_price": 0.87833,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_HRK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006730Z",
+    "ask_price": 7.5583,
+    "ask_size": 0,
+    "bid_price": 7.5583,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BAT_ETH",
+    "time_exchange": "2021-02-08T14:45:10.3440000Z",
+    "time_coinapi": "2021-02-08T14:45:10.4378896Z",
+    "ask_price": 0.000302,
+    "ask_size": 354.298546,
+    "bid_price": 0.000032,
+    "bid_size": 6064.58805,
+    "last_trade": {
+      "time_exchange": "2021-02-08T11:23:08.5270000Z",
+      "time_coinapi": "2021-02-08T11:23:08.5832867Z",
+      "uuid": "66f93fa7-c267-42e1-84d5-4f5186872d2d",
+      "price": 0.0002576,
+      "size": 115.338529,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_PAXG_USD",
+    "time_exchange": "2021-02-08T15:08:54.6850000Z",
+    "time_coinapi": "2021-02-08T15:08:54.7359015Z",
+    "ask_price": 1848.02,
+    "ask_size": 0.753,
+    "bid_price": 1847.72,
+    "bid_size": 1.451,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:43.3760000Z",
+      "time_coinapi": "2021-02-08T15:07:43.4417567Z",
+      "uuid": "b734f7fe-09f3-4efc-8584-8ef7a8f32c9f",
+      "price": 1843.32,
+      "size": 0.36753954,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UMA_GBP",
+    "time_exchange": "2021-02-08T15:08:58.9039270Z",
+    "time_coinapi": "2021-02-08T15:08:58.9595294Z",
+    "ask_price": 21.304,
+    "ask_size": 20.411,
+    "bid_price": 21.192,
+    "bid_size": 20.616,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:34.9878290Z",
+      "time_coinapi": "2021-02-08T15:08:35.0430452Z",
+      "uuid": "0bd75428-92ef-4331-b186-232a3b614385",
+      "price": 21.274,
+      "size": 1.1,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_KNC_BTC",
+    "time_exchange": "2021-02-08T15:08:52.2964850Z",
+    "time_coinapi": "2021-02-08T15:08:52.3523104Z",
+    "ask_price": 0.00004293,
+    "ask_size": 762.3,
+    "bid_price": 0.00004277,
+    "bid_size": 770,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:29.8144290Z",
+      "time_coinapi": "2021-02-08T15:08:29.8876528Z",
+      "uuid": "b2c70c6c-cfcc-498b-b138-2400a6e5249f",
+      "price": 0.00004279,
+      "size": 1,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BCH_BTC",
+    "time_exchange": "2021-02-08T15:08:58.7179350Z",
+    "time_coinapi": "2021-02-08T15:08:58.7761775Z",
+    "ask_price": 0.01079,
+    "ask_size": 25.63403702,
+    "bid_price": 0.01078,
+    "bid_size": 2.24148918,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.5539410Z",
+      "time_coinapi": "2021-02-08T15:08:53.6106443Z",
+      "uuid": "93bdeb1e-12e8-476f-8a73-2ab9bda64719",
+      "price": 0.01078,
+      "size": 0.02275483,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UMA_BTC",
+    "time_exchange": "2021-02-08T15:08:56.5256170Z",
+    "time_coinapi": "2021-02-08T15:08:56.5832309Z",
+    "ask_price": 0.00066631,
+    "ask_size": 32.318,
+    "bid_price": 0.00066506,
+    "bid_size": 13.769,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.6272770Z",
+      "time_coinapi": "2021-02-08T15:08:54.6848494Z",
+      "uuid": "36db16d6-814a-4c6e-b237-43a59e236e8d",
+      "price": 0.00066506,
+      "size": 1.501,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ALGO_GBP",
+    "time_exchange": "2021-02-08T15:08:58.1415910Z",
+    "time_coinapi": "2021-02-08T15:08:58.1993036Z",
+    "ask_price": 0.6671,
+    "ask_size": 828,
+    "bid_price": 0.6653,
+    "bid_size": 4625,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:23.9062580Z",
+      "time_coinapi": "2021-02-08T15:08:23.9647209Z",
+      "uuid": "6b04e771-3714-490d-90ce-52d7c560c45d",
+      "price": 0.6668,
+      "size": 5,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_OXT_ETH",
+    "time_exchange": "2021-02-08T15:08:54.1800000Z",
+    "time_coinapi": "2021-02-08T15:08:54.2306578Z",
+    "ask_price": 0.0002424,
+    "ask_size": 551.14608,
+    "bid_price": 0.0002394,
+    "bid_size": 2557.74048,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:22:03.2130000Z",
+      "time_coinapi": "2021-02-08T13:22:03.2727930Z",
+      "uuid": "9891267f-63e0-43c2-acea-f5f257625f3b",
+      "price": 0.0002448,
+      "size": 24.079082,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_GBP",
+    "time_exchange": "2021-02-08T15:08:57.8955600Z",
+    "time_coinapi": "2021-02-08T15:08:57.9527581Z",
+    "ask_price": 2.44706,
+    "ask_size": 292.08,
+    "bid_price": 2.44171,
+    "bid_size": 577.13,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:29.7640890Z",
+      "time_coinapi": "2021-02-08T15:08:29.8273351Z",
+      "uuid": "bc4b6ba9-b1be-49ad-ac3c-8d723bea6b8c",
+      "price": 2.44172,
+      "size": 62.67,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ETH_GBP",
+    "time_exchange": "2021-02-08T15:08:49.1320000Z",
+    "time_coinapi": "2021-02-08T15:08:49.1833710Z",
+    "ask_price": 1255.59,
+    "ask_size": 2.2,
+    "bid_price": 1253.75,
+    "bid_size": 2.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:23.2150000Z",
+      "time_coinapi": "2021-02-08T15:06:23.2733532Z",
+      "uuid": "476479dc-6f7f-4d8a-92c6-b5dec5f94a40",
+      "price": 1254.69,
+      "size": 0.03809,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETC_EUR",
+    "time_exchange": "2021-02-08T15:08:56.5484110Z",
+    "time_coinapi": "2021-02-08T15:08:56.6104171Z",
+    "ask_price": 7.137,
+    "ask_size": 127.38724441,
+    "bid_price": 7.128,
+    "bid_size": 235.04973135,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:55.9864790Z",
+      "time_coinapi": "2021-02-08T15:08:56.0704231Z",
+      "uuid": "1789dd47-998c-4618-9280-942531bbe321",
+      "price": 7.137,
+      "size": 32.61275559,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSCUAT_FTS_ETH_USD_210326",
+    "time_exchange": "2021-02-08T15:08:58.5590000Z",
+    "time_coinapi": "2021-02-08T15:08:58.6803341Z",
+    "ask_price": 1760.09,
+    "ask_size": 8,
+    "bid_price": 1760.03,
+    "bid_size": 43,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.4590000Z",
+      "time_coinapi": "2021-02-08T15:08:54.7414121Z",
+      "uuid": "6851727e-5bde-47cd-bb6f-13361f393155",
+      "price": 1760.23,
+      "size": 2,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ATOM_BTC",
+    "time_exchange": "2021-02-08T15:08:58.8395770Z",
+    "time_coinapi": "2021-02-08T15:08:58.8968663Z",
+    "ask_price": 0.000321,
+    "ask_size": 634.1,
+    "bid_price": 0.00032,
+    "bid_size": 3381.8,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:51.8234420Z",
+      "time_coinapi": "2021-02-08T15:08:51.8882954Z",
+      "uuid": "195c3cda-2e87-42ec-88b7-145ead463380",
+      "price": 0.000321,
+      "size": 10.5,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BCH_EUR",
+    "time_exchange": "2021-02-08T15:08:53.5382060Z",
+    "time_coinapi": "2021-02-08T15:08:53.5964687Z",
+    "ask_price": 391.93,
+    "ask_size": 4.688,
+    "bid_price": 391.27,
+    "bid_size": 0.11110702,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:37.3596510Z",
+      "time_coinapi": "2021-02-08T15:08:37.4253032Z",
+      "uuid": "2578a07d-09b7-49cb-92c6-a998c5ae28c6",
+      "price": 391.95,
+      "size": 1.35056323,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_CGLD_USD",
+    "time_exchange": "2021-02-08T15:08:58.8062140Z",
+    "time_coinapi": "2021-02-08T15:08:58.8717181Z",
+    "ask_price": 3.4214,
+    "ask_size": 212.61,
+    "bid_price": 3.4113,
+    "bid_size": 150.93,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.7068120Z",
+      "time_coinapi": "2021-02-08T15:08:57.7618905Z",
+      "uuid": "be136531-af1c-45d6-a3ac-997992805a58",
+      "price": 3.4221,
+      "size": 3.93,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BTC_DAI",
+    "time_exchange": "2021-02-08T15:08:54.7220000Z",
+    "time_coinapi": "2021-02-08T15:08:54.7752943Z",
+    "ask_price": 43963.31,
+    "ask_size": 0.03,
+    "bid_price": 43481.5,
+    "bid_size": 0.00735,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:54:24.4950000Z",
+      "time_coinapi": "2021-02-08T14:54:24.5489662Z",
+      "uuid": "cb18cdff-2502-4e04-9f1a-1a348873cd47",
+      "price": 43425.99,
+      "size": 0.00347613,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_FIL_GBP",
+    "time_exchange": "2021-02-08T15:08:54.2679790Z",
+    "time_coinapi": "2021-02-08T15:08:54.3252616Z",
+    "ask_price": 18.0207,
+    "ask_size": 11.583,
+    "bid_price": 17.9803,
+    "bid_size": 11.57,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:38.3877310Z",
+      "time_coinapi": "2021-02-08T15:08:38.4525198Z",
+      "uuid": "8f49d402-7501-4ade-b4ad-0913cc330eb5",
+      "price": 18.0271,
+      "size": 2.804,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_ISK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006727Z",
+    "ask_price": 154.7,
+    "ask_size": 0,
+    "bid_price": 154.7,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_STORJ_USD",
+    "time_exchange": "2021-02-08T15:08:53.2860000Z",
+    "time_coinapi": "2021-02-08T15:08:53.4056733Z",
+    "ask_price": 0.52615,
+    "ask_size": 86.121928,
+    "bid_price": 0.52208,
+    "bid_size": 2000,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:56.3450000Z",
+      "time_coinapi": "2021-02-08T15:07:56.4049987Z",
+      "uuid": "4d80ecce-3a9d-4398-a1ec-acf56509397e",
+      "price": 0.5249,
+      "size": 598.894217,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_RUB",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006732Z",
+    "ask_price": 89.4049,
+    "ask_size": 0,
+    "bid_price": 89.4049,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_BNB_USDT",
+    "time_exchange": "2021-02-08T15:08:58.1740000Z",
+    "time_coinapi": "2021-02-08T15:08:58.2993816Z",
+    "ask_price": 74.924,
+    "ask_size": 11.01,
+    "bid_price": 74.923,
+    "bid_size": 33.93,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:56.3940000Z",
+      "time_coinapi": "2021-02-08T15:08:56.6740599Z",
+      "uuid": "fe155cf2-8d3a-4a32-9b03-0460c49f458b",
+      "price": 74.924,
+      "size": 7.38,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_CGLD_GBP",
+    "time_exchange": "2021-02-08T15:08:57.9834090Z",
+    "time_coinapi": "2021-02-08T15:08:58.0406514Z",
+    "ask_price": 2.4975,
+    "ask_size": 151.03,
+    "bid_price": 2.4837,
+    "bid_size": 149.01,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.9834090Z",
+      "time_coinapi": "2021-02-08T15:08:58.0406514Z",
+      "uuid": "61e8a1c5-24c9-44ab-9571-ca6adcdf70c2",
+      "price": 2.4837,
+      "size": 1.76,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_YFI_USD",
+    "time_exchange": "2021-02-08T15:08:53.2570000Z",
+    "time_coinapi": "2021-02-08T15:08:53.3182879Z",
+    "ask_price": 31614.01,
+    "ask_size": 0.031701,
+    "bid_price": 31518.2,
+    "bid_size": 0.031701,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:58:53.2200000Z",
+      "time_coinapi": "2021-02-08T14:58:53.2725271Z",
+      "uuid": "5db68571-016b-426b-8122-07e7c7e33cab",
+      "price": 31640.59,
+      "size": 0.026468,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UMA_EUR",
+    "time_exchange": "2021-02-08T15:08:58.5274950Z",
+    "time_coinapi": "2021-02-08T15:08:58.5826571Z",
+    "ask_price": 24.191,
+    "ask_size": 40.411,
+    "bid_price": 24.17,
+    "bid_size": 4.15,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:24.3317900Z",
+      "time_coinapi": "2021-02-08T15:08:24.3877483Z",
+      "uuid": "e6ecd28f-57f5-45ec-b001-7296f8a0ed5f",
+      "price": 24.218,
+      "size": 1.548,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ATOM_USD",
+    "time_exchange": "2021-02-08T15:08:57.8334400Z",
+    "time_coinapi": "2021-02-08T15:08:57.8890022Z",
+    "ask_price": 14.034,
+    "ask_size": 33.3,
+    "bid_price": 14.021,
+    "bid_size": 79,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.3375390Z",
+      "time_coinapi": "2021-02-08T15:08:57.4208267Z",
+      "uuid": "b2b0af56-e4a1-460a-be73-b8981dfb5f15",
+      "price": 14.054,
+      "size": 244.5,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAND_USD",
+    "time_exchange": "2021-02-08T15:08:58.7098380Z",
+    "time_coinapi": "2021-02-08T15:08:58.7661057Z",
+    "ask_price": 11.9821,
+    "ask_size": 164.26,
+    "bid_price": 11.9631,
+    "bid_size": 81.16,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.7098380Z",
+      "time_coinapi": "2021-02-08T15:08:58.7661057Z",
+      "uuid": "bf163677-0fb5-4750-aeca-87e527d7ef6f",
+      "price": 11.9631,
+      "size": 0.84,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_DASH_BTC",
+    "time_exchange": "2021-02-08T15:08:56.4671180Z",
+    "time_coinapi": "2021-02-08T15:08:56.5226344Z",
+    "ask_price": 0.00277078,
+    "ask_size": 3.974,
+    "bid_price": 0.00276817,
+    "bid_size": 0.748,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:45.9131480Z",
+      "time_coinapi": "2021-02-08T15:08:45.9710782Z",
+      "uuid": "2be8775b-5cc9-427c-ad22-0c8a52229824",
+      "price": 0.00276981,
+      "size": 0.168,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_KRW",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006750Z",
+    "ask_price": 1347.77,
+    "ask_size": 0,
+    "bid_price": 1347.77,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LTC_GBP",
+    "time_exchange": "2021-02-08T15:08:58.6727540Z",
+    "time_coinapi": "2021-02-08T15:08:58.7386312Z",
+    "ask_price": 117.15,
+    "ask_size": 9.10199779,
+    "bid_price": 116.95,
+    "bid_size": 11.207,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.0556450Z",
+      "time_coinapi": "2021-02-08T15:08:58.1137643Z",
+      "uuid": "7b2bed7a-9b5c-4f30-8ab3-c9e447ca1c7b",
+      "price": 117.13,
+      "size": 0.1147387,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_FIL_USDT",
+    "time_exchange": "2021-02-08T12:08:47.8320000Z",
+    "time_coinapi": "2021-02-08T12:08:47.9618704Z",
+    "ask_price": 23.8,
+    "ask_size": 9708.7,
+    "bid_price": 23.665,
+    "bid_size": 9901.6,
+    "last_trade": {
+      "time_exchange": "2021-02-08T11:35:07.0210000Z",
+      "time_coinapi": "2021-02-08T11:35:07.3049374Z",
+      "uuid": "30e3a46f-bc5a-4be9-b67f-2cbf49fd6483",
+      "price": 23.665,
+      "size": 1,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_FIL_USD",
+    "time_exchange": "2021-02-08T15:08:50.7395570Z",
+    "time_coinapi": "2021-02-08T15:08:50.7933794Z",
+    "ask_price": 24.7081,
+    "ask_size": 33.597,
+    "bid_price": 24.6845,
+    "bid_size": 196,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:25.9413100Z",
+      "time_coinapi": "2021-02-08T15:08:25.9981893Z",
+      "uuid": "575ee7e5-32f3-49b9-8f1f-47d08b73ecfd",
+      "price": 24.6881,
+      "size": 153.28,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_GRT_USD",
+    "time_exchange": "2021-02-08T15:08:59.0494650Z",
+    "time_coinapi": "2021-02-08T15:08:59.1098042Z",
+    "ask_price": 0.9848,
+    "ask_size": 45.38,
+    "bid_price": 0.9843,
+    "bid_size": 3200,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:59.0291860Z",
+      "time_coinapi": "2021-02-08T15:08:59.0989390Z",
+      "uuid": "3e87bb0b-ffe6-4bf7-a402-30d2d8d558cb",
+      "price": 0.9848,
+      "size": 4.62,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BTC_GBP",
+    "time_exchange": "2021-02-08T15:08:54.9860000Z",
+    "time_coinapi": "2021-02-08T15:08:55.0375828Z",
+    "ask_price": 31963.37,
+    "ask_size": 0.2,
+    "bid_price": 31925.33,
+    "bid_size": 0.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:24.5010000Z",
+      "time_coinapi": "2021-02-08T15:08:24.5524794Z",
+      "uuid": "180825b7-ba26-42ee-a659-00e99f7856a8",
+      "price": 31925.31,
+      "size": 0.01481876,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_FIL_BTC",
+    "time_exchange": "2021-02-08T15:08:57.6574130Z",
+    "time_coinapi": "2021-02-08T15:08:57.7156923Z",
+    "ask_price": 0.00056454,
+    "ask_size": 12.163,
+    "bid_price": 0.00056328,
+    "bid_size": 12.181,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:28.8129460Z",
+      "time_coinapi": "2021-02-08T15:08:28.8721523Z",
+      "uuid": "8649cc8c-af20-4471-b0b4-bfa174a27fd2",
+      "price": 0.00056389,
+      "size": 29.259,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_ZAR",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006761Z",
+    "ask_price": 17.9701,
+    "ask_size": 0,
+    "bid_price": 17.9701,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_XMR_USDT",
+    "time_exchange": "2021-02-08T13:45:49.2600000Z",
+    "time_coinapi": "2021-02-08T13:45:49.3928107Z",
+    "ask_price": 166,
+    "ask_size": 149.987,
+    "bid_price": 138.83,
+    "bid_size": 1,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:45:49.1560000Z",
+      "time_coinapi": "2021-02-08T13:45:49.4428114Z",
+      "uuid": "63175e56-8620-4c7b-b403-63426f76c592",
+      "price": 166,
+      "size": 0.24,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_GBP",
+    "time_exchange": "2021-02-08T15:08:54.2507230Z",
+    "time_coinapi": "2021-02-08T15:08:54.3055036Z",
+    "ask_price": 1254.04,
+    "ask_size": 15,
+    "bid_price": 1253.12,
+    "bid_size": 1.553,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:52.6333180Z",
+      "time_coinapi": "2021-02-08T15:08:52.6933593Z",
+      "uuid": "ef439054-f504-4d21-bf08-2e6485cca719",
+      "price": 1253.75,
+      "size": 0.75,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_AAVE_EUR",
+    "time_exchange": "2021-02-08T15:08:57.5593170Z",
+    "time_coinapi": "2021-02-08T15:08:57.6146127Z",
+    "ask_price": 419.858,
+    "ask_size": 1.062,
+    "bid_price": 418.605,
+    "bid_size": 1.08,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:49.3315900Z",
+      "time_coinapi": "2021-02-08T15:08:49.3901837Z",
+      "uuid": "c6f774d6-29d4-4bf9-846d-10e85cb7c14c",
+      "price": 420.078,
+      "size": 0.114,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:08:34.1913531Z",
+    "time_coinapi": "2021-02-08T15:08:34.2446086Z",
+    "ask_price": 43777.81,
+    "ask_size": 0.1,
+    "bid_price": 43756.09,
+    "bid_size": 0.00028849,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:04:33.2880000Z",
+      "time_coinapi": "2021-02-08T15:04:34.3396845Z",
+      "uuid": "e5866950-76cb-4947-8d16-1ed4c4df98fd",
+      "price": 43761.33,
+      "size": 0.01119486,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_KNC_USD",
+    "time_exchange": "2021-02-08T15:08:58.7530000Z",
+    "time_coinapi": "2021-02-08T15:08:58.8036900Z",
+    "ask_price": 1.8792,
+    "ask_size": 292.972322,
+    "bid_price": 1.87528,
+    "bid_size": 1669.708238,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.7530000Z",
+      "time_coinapi": "2021-02-08T15:08:58.8037547Z",
+      "uuid": "ce10e225-4223-4b67-ba36-c2fbefab6b3c",
+      "price": 1.87528,
+      "size": 41.317762,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSCUAT_FTS_BTC_USD_201225",
+    "time_exchange": "2021-02-08T14:44:09.1980000Z",
+    "time_coinapi": "2021-02-08T14:44:09.3225755Z",
+    "ask_price": 40000,
+    "ask_size": 7656,
+    "bid_price": 30800,
+    "bid_size": 18070,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:44:09.0870000Z",
+      "time_coinapi": "2021-02-08T14:44:09.3740787Z",
+      "uuid": "0e18b003-ef7a-4e48-97f2-cc7759a344bd",
+      "price": 30800,
+      "size": 100,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_XRP_USDT",
+    "time_exchange": "2021-02-08T13:24:28.8510000Z",
+    "time_coinapi": "2021-02-08T13:24:28.9827251Z",
+    "ask_price": 0.433,
+    "ask_size": 8120,
+    "bid_price": 0.42,
+    "bid_size": 8044.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:09:35.0100000Z",
+      "time_coinapi": "2021-02-08T14:09:35.2972237Z",
+      "uuid": "9253bc91-96a6-4abd-9f02-bace44772424",
+      "price": 0.4546,
+      "size": 90,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BCH_ETH",
+    "time_exchange": "2021-02-08T15:08:29.9860000Z",
+    "time_coinapi": "2021-02-08T15:08:30.0401151Z",
+    "ask_price": 0.4979,
+    "ask_size": 41.644308,
+    "bid_price": 0.2731,
+    "bid_size": 0.49013
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LTC_USD",
+    "time_exchange": "2021-02-08T15:08:58.6563950Z",
+    "time_coinapi": "2021-02-08T15:08:58.7145542Z",
+    "ask_price": 160.54,
+    "ask_size": 2.77100992,
+    "bid_price": 160.5,
+    "bid_size": 1.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.5011280Z",
+      "time_coinapi": "2021-02-08T15:08:57.5576687Z",
+      "uuid": "9a73c96d-f328-4f64-b964-ed6cb77cce70",
+      "price": 160.53,
+      "size": 0.5958871,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_MYR",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006753Z",
+    "ask_price": 4.8888,
+    "ask_size": 0,
+    "bid_price": 4.8888,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XLM_USD",
+    "time_exchange": "2021-02-08T15:08:58.9379450Z",
+    "time_coinapi": "2021-02-08T15:08:58.9968989Z",
+    "ask_price": 0.397863,
+    "ask_size": 7292,
+    "bid_price": 0.397615,
+    "bid_size": 4975,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.9379450Z",
+      "time_coinapi": "2021-02-08T15:08:58.9968989Z",
+      "uuid": "d81b222f-e26f-41bc-ba4d-134696c998c8",
+      "price": 0.397615,
+      "size": 25,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_EUR",
+    "time_exchange": "2021-02-08T15:08:58.8143280Z",
+    "time_coinapi": "2021-02-08T15:08:58.8701859Z",
+    "ask_price": 36298.89,
+    "ask_size": 0.82234689,
+    "bid_price": 36274.7,
+    "bid_size": 0.22856735,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.4431130Z",
+      "time_coinapi": "2021-02-08T15:08:57.5017727Z",
+      "uuid": "ef4dcf98-275f-4797-8af7-f41f9e26e5bb",
+      "price": 36298.89,
+      "size": 0.03574228,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_SGD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006758Z",
+    "ask_price": 1.6067,
+    "ask_size": 0,
+    "bid_price": 1.6067,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_DAI_USDC",
+    "time_exchange": "2021-02-08T15:08:58.7482310Z",
+    "time_coinapi": "2021-02-08T15:08:58.8084196Z",
+    "ask_price": 1.001389,
+    "ask_size": 1620,
+    "bid_price": 1.000723,
+    "bid_size": 109,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:52.7693110Z",
+      "time_coinapi": "2021-02-08T15:08:52.8448747Z",
+      "uuid": "785010fb-bbcc-47dd-b357-302021078d8a",
+      "price": 1.001397,
+      "size": 6.04759,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZRX_BTC",
+    "time_exchange": "2021-02-08T15:08:58.8844310Z",
+    "time_coinapi": "2021-02-08T15:08:58.9390758Z",
+    "ask_price": 0.00003469,
+    "ask_size": 914.49111,
+    "bid_price": 0.0000346,
+    "bid_size": 712.92666,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.0044580Z",
+      "time_coinapi": "2021-02-08T15:08:54.0611313Z",
+      "uuid": "2c3cc33d-96af-47d3-b9b8-c11a10c0c166",
+      "price": 0.00003458,
+      "size": 22.07071,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LINK_ETH",
+    "time_exchange": "2021-02-08T15:08:45.1040000Z",
+    "time_coinapi": "2021-02-08T15:08:45.1554193Z",
+    "ask_price": 0.0147682,
+    "ask_size": 13.03593,
+    "bid_price": 0.0146612,
+    "bid_size": 12.93611,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:48:38.4610000Z",
+      "time_coinapi": "2021-02-08T14:48:38.5149156Z",
+      "uuid": "a5ec5c24-707b-45f6-be6b-5770d9d159c7",
+      "price": 0.0148103,
+      "size": 4.572616,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_JPY",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006662Z",
+    "ask_price": 126.97,
+    "ask_size": 0,
+    "bid_price": 126.97,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_BTC",
+    "time_exchange": "2021-02-08T15:08:59.0375250Z",
+    "time_coinapi": "2021-02-08T15:08:59.1055699Z",
+    "ask_price": 0.00007664,
+    "ask_size": 100,
+    "bid_price": 0.00007651,
+    "bid_size": 412.18,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:06.8334840Z",
+      "time_coinapi": "2021-02-08T15:08:06.8914595Z",
+      "uuid": "29bdc354-17c8-4e36-b328-5a7608ac4099",
+      "price": 0.00007661,
+      "size": 26.32,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NMR_BTC",
+    "time_exchange": "2021-02-08T15:08:57.4652810Z",
+    "time_coinapi": "2021-02-08T15:08:57.5197044Z",
+    "ask_price": 0.00082241,
+    "ask_size": 13.942,
+    "bid_price": 0.00081917,
+    "bid_size": 15.077,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:45.9049040Z",
+      "time_coinapi": "2021-02-08T15:06:45.9640508Z",
+      "uuid": "3e1c3f85-4756-4e9e-8249-8168a1ac68a2",
+      "price": 0.00082035,
+      "size": 0.026,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_REP_BTC",
+    "time_exchange": "2021-02-08T15:08:04.8455760Z",
+    "time_coinapi": "2021-02-08T15:08:04.9010914Z",
+    "ask_price": 0.000538,
+    "ask_size": 1.067206,
+    "bid_price": 0.000531,
+    "bid_size": 93.885035,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:36.1808980Z",
+      "time_coinapi": "2021-02-08T15:07:36.2415526Z",
+      "uuid": "03ece8f6-8e8a-434c-9a11-5b45c32ae6c3",
+      "price": 0.000539,
+      "size": 8.890315,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_AAVE_BTC",
+    "time_exchange": "2021-02-08T15:08:58.8752060Z",
+    "time_coinapi": "2021-02-08T15:08:58.9318642Z",
+    "ask_price": 0.01156286,
+    "ask_size": 1.168,
+    "bid_price": 0.01153606,
+    "bid_size": 1.189,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:52.3430110Z",
+      "time_coinapi": "2021-02-08T15:08:52.4008826Z",
+      "uuid": "02e27a96-7a67-43a7-82c8-9fe1cc0e7cb9",
+      "price": 0.01154432,
+      "size": 0.85,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_EUR",
+    "time_exchange": "2021-02-08T15:08:59.0113630Z",
+    "time_coinapi": "2021-02-08T15:08:59.0662353Z",
+    "ask_price": 2.78161,
+    "ask_size": 292.08,
+    "bid_price": 2.77631,
+    "bid_size": 1184.65,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:03.3787750Z",
+      "time_coinapi": "2021-02-08T15:08:03.4392185Z",
+      "uuid": "ae9fc7b7-5313-4359-ac57-0469425b3e63",
+      "price": 2.77871,
+      "size": 10.03,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ALGO_USD",
+    "time_exchange": "2021-02-08T15:08:59.0414430Z",
+    "time_coinapi": "2021-02-08T15:08:59.1028841Z",
+    "ask_price": 0.915,
+    "ask_size": 8155,
+    "bid_price": 0.9147,
+    "bid_size": 409,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:59.0414430Z",
+      "time_coinapi": "2021-02-08T15:08:59.1028841Z",
+      "uuid": "60972be9-292d-488c-80a1-5ab1ac4fa877",
+      "price": 0.915,
+      "size": 20,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LTC_ETH",
+    "time_exchange": "2021-02-08T15:08:46.3270000Z",
+    "time_coinapi": "2021-02-08T15:08:46.6227098Z",
+    "ask_price": 0.094,
+    "ask_size": 8.06327,
+    "bid_price": 0.0929,
+    "bid_size": 8.08105,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:08:07.7520000Z",
+      "time_coinapi": "2021-02-08T13:08:07.8135963Z",
+      "uuid": "28fbf725-3093-4d9b-baae-3f09fa4c7a5b",
+      "price": 0.0929,
+      "size": 2.09574,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_UMA_USD",
+    "time_exchange": "2021-02-08T15:08:57.7910000Z",
+    "time_coinapi": "2021-02-08T15:08:57.8439763Z",
+    "ask_price": 29.171,
+    "ask_size": 16.193,
+    "bid_price": 29.0287,
+    "bid_size": 23.806,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:23.7020000Z",
+      "time_coinapi": "2021-02-08T15:08:23.7579112Z",
+      "uuid": "963d41f0-a28d-4b2d-abc7-65b82fdc50f3",
+      "price": 28.9635,
+      "size": 48.977781,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_EOS_BTC",
+    "time_exchange": "2021-02-08T15:08:56.5343510Z",
+    "time_coinapi": "2021-02-08T15:08:56.5892780Z",
+    "ask_price": 0.000081,
+    "ask_size": 10288.1,
+    "bid_price": 0.00008,
+    "bid_size": 7852.4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:34.0350500Z",
+      "time_coinapi": "2021-02-08T15:08:34.0963929Z",
+      "uuid": "b19e8c6c-6478-4a9e-b39a-0802e3ff603f",
+      "price": 0.00008,
+      "size": 2.2,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_OMG_BTC",
+    "time_exchange": "2021-02-08T15:08:57.5901050Z",
+    "time_coinapi": "2021-02-08T15:08:57.6464938Z",
+    "ask_price": 0.00010959,
+    "ask_size": 705.2,
+    "bid_price": 0.00010938,
+    "bid_size": 71.6,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:06.9140720Z",
+      "time_coinapi": "2021-02-08T15:08:06.9772847Z",
+      "uuid": "4c8a2db6-9854-446a-a9d2-c7c057965716",
+      "price": 0.00010946,
+      "size": 4.5,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LINK_BTC",
+    "time_exchange": "2021-02-08T15:08:58.3542170Z",
+    "time_coinapi": "2021-02-08T15:08:58.5631616Z",
+    "ask_price": 0.00057923,
+    "ask_size": 70.77,
+    "bid_price": 0.00057832,
+    "bid_size": 86.3,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.5471260Z",
+      "time_coinapi": "2021-02-08T15:08:57.6107775Z",
+      "uuid": "dce820c4-8006-43fb-8d17-f955d5636025",
+      "price": 0.00057862,
+      "size": 0.64,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_DAI_USD",
+    "time_exchange": "2021-02-08T15:06:38.1890000Z",
+    "time_coinapi": "2021-02-08T15:06:38.5156172Z",
+    "ask_price": 1.00242,
+    "ask_size": 998.536566,
+    "bid_price": 1.00039,
+    "bid_size": 998.576181,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:07.8090000Z",
+      "time_coinapi": "2021-02-08T15:06:07.8661587Z",
+      "uuid": "9a2a1a94-fcd4-46f9-8c82-396ba4c8d3cf",
+      "price": 1.00243,
+      "size": 63.536651,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_SEK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006723Z",
+    "ask_price": 10.1148,
+    "ask_size": 0,
+    "bid_price": 10.1148,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UMA_USD",
+    "time_exchange": "2021-02-08T15:08:58.5142340Z",
+    "time_coinapi": "2021-02-08T15:08:58.8374936Z",
+    "ask_price": 29.164,
+    "ask_size": 21.837,
+    "bid_price": 29.119,
+    "bid_size": 33.389,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.5142340Z",
+      "time_coinapi": "2021-02-08T15:08:58.8374936Z",
+      "uuid": "9bad172c-acb0-45a7-ba3e-1f76abae3423",
+      "price": 29.164,
+      "size": 2.479,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BCH_GBP",
+    "time_exchange": "2021-02-08T15:08:55.4224460Z",
+    "time_coinapi": "2021-02-08T15:08:55.4818260Z",
+    "ask_price": 344.9,
+    "ask_size": 2.085,
+    "bid_price": 344.14,
+    "bid_size": 9.20585643,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:23.4794440Z",
+      "time_coinapi": "2021-02-08T15:07:23.5442889Z",
+      "uuid": "6c091e1a-bce2-4915-be2e-c3ee47d46212",
+      "price": 344.19,
+      "size": 1.96080028,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_GRT_EUR",
+    "time_exchange": "2021-02-08T15:08:58.8126910Z",
+    "time_coinapi": "2021-02-08T15:08:58.8772918Z",
+    "ask_price": 0.8177,
+    "ask_size": 437.81,
+    "bid_price": 0.8156,
+    "bid_size": 10554.54,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:52.0728280Z",
+      "time_coinapi": "2021-02-08T15:08:52.1321186Z",
+      "uuid": "b112939d-203f-4a9c-abec-644355b95efa",
+      "price": 0.8177,
+      "size": 118.18,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_MXN",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006752Z",
+    "ask_price": 24.305,
+    "ask_size": 0,
+    "bid_price": 24.305,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_WBTC_USD",
+    "time_exchange": "2021-02-08T15:08:58.0124080Z",
+    "time_coinapi": "2021-02-08T15:08:58.0663037Z",
+    "ask_price": 43830.88,
+    "ask_size": 0.061,
+    "bid_price": 43687.27,
+    "bid_size": 0.107,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:31.5927620Z",
+      "time_coinapi": "2021-02-08T15:08:31.6540601Z",
+      "uuid": "ed3ce506-1a0b-4368-92f4-2cfeadaed922",
+      "price": 43681.21,
+      "size": 0.03218761,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_USD",
+    "time_exchange": "2021-02-08T15:08:58.9041690Z",
+    "time_coinapi": "2021-02-08T15:08:58.9602653Z",
+    "ask_price": 1719.84,
+    "ask_size": 2.06988267,
+    "bid_price": 1719.7,
+    "bid_size": 0.4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.9041690Z",
+      "time_coinapi": "2021-02-08T15:08:58.9602653Z",
+      "uuid": "6ebc3276-a3e0-4eee-b8e6-57c0a746f88d",
+      "price": 1719.84,
+      "size": 0.11399337,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_USD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006598Z",
+    "ask_price": 1.2025,
+    "ask_size": 0,
+    "bid_price": 1.2025,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_DOT_USDT",
+    "time_exchange": "2021-02-08T12:18:26.4770000Z",
+    "time_coinapi": "2021-02-08T12:18:26.6062589Z",
+    "ask_price": 21.311,
+    "ask_size": 0.5,
+    "bid_price": 21.1,
+    "bid_size": 27.4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:23:32.8560000Z",
+      "time_coinapi": "2021-02-08T13:23:33.1446892Z",
+      "uuid": "8c144825-ea06-4506-b085-04df5a9ec80e",
+      "price": 20.89,
+      "size": 110,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BAL_USD",
+    "time_exchange": "2021-02-08T15:08:59.0510000Z",
+    "time_coinapi": "2021-02-08T15:08:59.1026705Z",
+    "ask_price": 37.9073,
+    "ask_size": 6.435,
+    "bid_price": 37.6364,
+    "bid_size": 8.999,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:24.8040000Z",
+      "time_coinapi": "2021-02-08T15:08:24.8624054Z",
+      "uuid": "4421c9e2-209b-4d78-af68-9157d6f5d420",
+      "price": 37.7022,
+      "size": 1.674765,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_SNX_USD",
+    "time_exchange": "2021-02-08T15:08:53.2790000Z",
+    "time_coinapi": "2021-02-08T15:08:53.4028975Z",
+    "ask_price": 20.5418,
+    "ask_size": 353.9,
+    "bid_price": 20.4733,
+    "bid_size": 97.491115,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:48.9510000Z",
+      "time_coinapi": "2021-02-08T15:07:49.0037854Z",
+      "uuid": "78630e15-a54f-40c4-8927-3e615b002bb6",
+      "price": 20.5299,
+      "size": 1.139458,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BAT_BTC",
+    "time_exchange": "2021-02-08T15:05:57.5620000Z",
+    "time_coinapi": "2021-02-08T15:05:57.6136920Z",
+    "ask_price": 0.00001103,
+    "ask_size": 47768.275803,
+    "bid_price": 0.00000971,
+    "bid_size": 24.11729,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:31:04.5530000Z",
+      "time_coinapi": "2021-02-08T13:31:04.6106156Z",
+      "uuid": "15a012df-143c-47f8-8096-fcb41b03b4a3",
+      "price": 0.00001004,
+      "size": 4.051506,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAND_EUR",
+    "time_exchange": "2021-02-08T15:08:48.8036530Z",
+    "time_coinapi": "2021-02-08T15:08:48.8621760Z",
+    "ask_price": 9.9325,
+    "ask_size": 82.08,
+    "bid_price": 9.9056,
+    "bid_size": 98.25,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:46.5559770Z",
+      "time_coinapi": "2021-02-08T15:08:46.6184584Z",
+      "uuid": "405500ab-a5bd-4c49-8de5-a133003283ca",
+      "price": 9.904,
+      "size": 0.34,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETC_GBP",
+    "time_exchange": "2021-02-08T15:08:55.0532420Z",
+    "time_coinapi": "2021-02-08T15:08:55.1088166Z",
+    "ask_price": 6.287,
+    "ask_size": 89.5,
+    "bid_price": 6.267,
+    "bid_size": 50,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:33.2577070Z",
+      "time_coinapi": "2021-02-08T15:07:33.3243496Z",
+      "uuid": "3f1f6dcf-b19d-4e64-af0f-d9ff063eaa02",
+      "price": 6.262,
+      "size": 3.81573652,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LTC_BTC",
+    "time_exchange": "2021-02-08T15:08:58.7570000Z",
+    "time_coinapi": "2021-02-08T15:08:58.8078710Z",
+    "ask_price": 0.00368,
+    "ask_size": 164.56035,
+    "bid_price": 0.00366,
+    "bid_size": 50.30748,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:39.5610000Z",
+      "time_coinapi": "2021-02-08T15:07:39.6203207Z",
+      "uuid": "fb7343bf-51f3-4f02-93e4-424d362e01f7",
+      "price": 0.00367,
+      "size": 0.01375,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NU_USD",
+    "time_exchange": "2021-02-08T15:08:59.0464250Z",
+    "time_coinapi": "2021-02-08T15:08:59.1007430Z",
+    "ask_price": 0.5225,
+    "ask_size": 1766.967894,
+    "bid_price": 0.521,
+    "bid_size": 1278.912313,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.6695100Z",
+      "time_coinapi": "2021-02-08T15:08:58.7371731Z",
+      "uuid": "4e7dec06-002d-4daf-946d-0f95402b13e1",
+      "price": 0.5225,
+      "size": 522.39689,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ETH_DAI",
+    "time_exchange": "2021-02-08T15:08:48.7310000Z",
+    "time_coinapi": "2021-02-08T15:08:48.8149865Z",
+    "ask_price": 1728.34,
+    "ask_size": 0.6,
+    "bid_price": 1690.03,
+    "bid_size": 0.011834,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:25:11.2410000Z",
+      "time_coinapi": "2021-02-08T13:25:11.3022723Z",
+      "uuid": "d6d9f0a0-43d6-425d-8e7f-9eced3989050",
+      "price": 1692.03,
+      "size": 1.545426,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ALGO_EUR",
+    "time_exchange": "2021-02-08T15:08:56.2871340Z",
+    "time_coinapi": "2021-02-08T15:08:56.3421088Z",
+    "ask_price": 0.7585,
+    "ask_size": 828,
+    "bid_price": 0.757,
+    "bid_size": 308,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:41.7789200Z",
+      "time_coinapi": "2021-02-08T15:08:41.8363906Z",
+      "uuid": "1ebcef28-3e50-405b-8d33-1c932976a841",
+      "price": 0.7568,
+      "size": 825,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ETH_USD",
+    "time_exchange": "2021-02-08T15:08:58.1920000Z",
+    "time_coinapi": "2021-02-08T15:08:58.2448772Z",
+    "ask_price": 1721.27,
+    "ask_size": 21.363611,
+    "bid_price": 1720.12,
+    "bid_size": 0.739255,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.0740000Z",
+      "time_coinapi": "2021-02-08T15:08:57.1320993Z",
+      "uuid": "6b6c1403-a8ad-4227-8055-893f9abef425",
+      "price": 1721.27,
+      "size": 8.636389,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BTC_EUR",
+    "time_exchange": "2021-02-08T15:08:57.7960000Z",
+    "time_coinapi": "2021-02-08T15:08:57.8465226Z",
+    "ask_price": 36349.03,
+    "ask_size": 0.11429489,
+    "bid_price": 36266.52,
+    "bid_size": 0.301,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:01:47.4650000Z",
+      "time_coinapi": "2021-02-08T15:01:47.5168612Z",
+      "uuid": "b41cad54-57b4-43a1-9470-fb6afedc031c",
+      "price": 36320.77,
+      "size": 0.00519985,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UNI_BTC",
+    "time_exchange": "2021-02-08T15:08:55.5627360Z",
+    "time_coinapi": "2021-02-08T15:08:55.6174613Z",
+    "ask_price": 0.00044304,
+    "ask_size": 89.3,
+    "bid_price": 0.00044221,
+    "bid_size": 15,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:11.4072720Z",
+      "time_coinapi": "2021-02-08T15:08:11.4651273Z",
+      "uuid": "86357bb8-80af-4c6a-825b-e657394bcf41",
+      "price": 0.00044366,
+      "size": 0.2,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_SNX_EUR",
+    "time_exchange": "2021-02-08T15:08:50.8079760Z",
+    "time_coinapi": "2021-02-08T15:08:50.9003573Z",
+    "ask_price": 17.044,
+    "ask_size": 13.947,
+    "bid_price": 17.0015,
+    "bid_size": 13.934,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:28.6613240Z",
+      "time_coinapi": "2021-02-08T15:08:28.7307231Z",
+      "uuid": "f4aab2ab-197b-4975-9427-9d397e4d6868",
+      "price": 17.0437,
+      "size": 5.663,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BNT_GBP",
+    "time_exchange": "2021-02-08T15:08:45.3008930Z",
+    "time_coinapi": "2021-02-08T15:08:45.3573466Z",
+    "ask_price": 1.8668,
+    "ask_size": 86.766565,
+    "bid_price": 1.8575,
+    "bid_size": 86.363565,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:39.2564250Z",
+      "time_coinapi": "2021-02-08T15:07:39.3164727Z",
+      "uuid": "5dd958b9-8d07-46a3-96af-0af9a7e9e893",
+      "price": 1.8576,
+      "size": 25.610435,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_CGLD_EUR",
+    "time_exchange": "2021-02-08T15:08:35.9109090Z",
+    "time_coinapi": "2021-02-08T15:08:35.9682625Z",
+    "ask_price": 2.841,
+    "ask_size": 145.07,
+    "bid_price": 2.8305,
+    "bid_size": 240,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:21.9878550Z",
+      "time_coinapi": "2021-02-08T15:08:22.0514980Z",
+      "uuid": "570dbab5-7298-4e0d-bdb2-c1c645e857d7",
+      "price": 2.8305,
+      "size": 0.99,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_REP_USD",
+    "time_exchange": "2021-02-08T15:08:40.0737670Z",
+    "time_coinapi": "2021-02-08T15:08:40.1309574Z",
+    "ask_price": 23.62,
+    "ask_size": 13,
+    "bid_price": 23.51,
+    "bid_size": 46.236976,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:26.3344810Z",
+      "time_coinapi": "2021-02-08T15:08:26.4264334Z",
+      "uuid": "d7a4e121-57a4-4ea5-bb79-ab4a05743ee5",
+      "price": 23.51,
+      "size": 5.710871,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_ILS",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006747Z",
+    "ask_price": 3.9487,
+    "ask_size": 0,
+    "bid_price": 3.9487,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAT_ETH",
+    "time_exchange": "2021-02-08T15:08:58.3087350Z",
+    "time_coinapi": "2021-02-08T15:08:58.3650890Z",
+    "ask_price": 0.0002386,
+    "ask_size": 4032,
+    "bid_price": 0.00023772,
+    "bid_size": 1793,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.4207290Z",
+      "time_coinapi": "2021-02-08T15:08:57.4841971Z",
+      "uuid": "9a577349-f01b-41cb-bba7-97542718bca3",
+      "price": 0.00023857,
+      "size": 28,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZEC_USD",
+    "time_exchange": "2021-02-08T15:08:07.9570000Z",
+    "time_coinapi": "2021-02-08T15:08:08.0144789Z",
+    "ask_price": 96.65,
+    "ask_size": 1.404751,
+    "bid_price": 95.41,
+    "bid_size": 1047.553773,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:07.9570000Z",
+      "time_coinapi": "2021-02-08T15:08:08.0145455Z",
+      "uuid": "822de11c-c5e3-4aad-8764-e2339a9792e5",
+      "price": 96.65,
+      "size": 4.056413,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LTC_USD",
+    "time_exchange": "2021-02-08T15:08:57.5890000Z",
+    "time_coinapi": "2021-02-08T15:08:57.6561054Z",
+    "ask_price": 160.66,
+    "ask_size": 60,
+    "bid_price": 160.54,
+    "bid_size": 1.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:56.1430000Z",
+      "time_coinapi": "2021-02-08T15:08:56.1961169Z",
+      "uuid": "1475e1a1-8239-4088-a128-c3e498d1ced4",
+      "price": 160.68,
+      "size": 3.04965,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_UNI_USD",
+    "time_exchange": "2021-02-08T15:08:58.0080000Z",
+    "time_coinapi": "2021-02-08T15:08:58.0592407Z",
+    "ask_price": 19.4213,
+    "ask_size": 51.624357,
+    "bid_price": 19.3537,
+    "bid_size": 1,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:53.9590000Z",
+      "time_coinapi": "2021-02-08T15:06:54.0108839Z",
+      "uuid": "9d788655-c294-46f8-ac48-70ad24c9c672",
+      "price": 19.4343,
+      "size": 4.966848,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_ATOM_USDT",
+    "time_exchange": "2021-02-08T14:14:45.5755337Z",
+    "time_coinapi": "2021-02-08T14:14:45.5755337Z",
+    "ask_price": 14.49,
+    "ask_size": 100.01,
+    "bid_price": 13.529,
+    "bid_size": 8.47,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:14:44.5510000Z",
+      "time_coinapi": "2021-02-08T14:14:44.8375624Z",
+      "uuid": "008c36b5-80e8-42d7-a50a-d30928770756",
+      "price": 13.529,
+      "size": 8.47,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_TRY",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006733Z",
+    "ask_price": 8.5308,
+    "ask_size": 0,
+    "bid_price": 8.5308,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_OMG_USD",
+    "time_exchange": "2021-02-08T15:08:59.0416140Z",
+    "time_coinapi": "2021-02-08T15:08:59.1068960Z",
+    "ask_price": 4.7958,
+    "ask_size": 150,
+    "bid_price": 4.7915,
+    "bid_size": 19.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:51.4026340Z",
+      "time_coinapi": "2021-02-08T15:08:51.4646660Z",
+      "uuid": "167e1127-ce21-41da-91f8-be3aa8f2a331",
+      "price": 4.7945,
+      "size": 0.2,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_MKR_BTC",
+    "time_exchange": "2021-02-08T15:08:58.7625690Z",
+    "time_coinapi": "2021-02-08T15:08:58.8180994Z",
+    "ask_price": 0.05923,
+    "ask_size": 1.736188,
+    "bid_price": 0.05909,
+    "bid_size": 0.386193,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.6992040Z",
+      "time_coinapi": "2021-02-08T15:08:58.7589007Z",
+      "uuid": "f11ebfc6-3001-460a-b309-c9bca22b2b2c",
+      "price": 0.05923,
+      "size": 0.000302,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_EOS_USDT",
+    "time_exchange": "2021-02-08T14:03:43.1090000Z",
+    "time_coinapi": "2021-02-08T14:03:43.2521728Z",
+    "ask_price": 3.4,
+    "ask_size": 7132.1,
+    "bid_price": 2.65,
+    "bid_size": 108590.8,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:03:43.0070000Z",
+      "time_coinapi": "2021-02-08T14:03:43.3272288Z",
+      "uuid": "f94fe67c-85f5-45f9-bc2b-d72fc60b972d",
+      "price": 2.65,
+      "size": 147,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_DAI_USD",
+    "time_exchange": "2021-02-08T15:08:58.7469980Z",
+    "time_coinapi": "2021-02-08T15:08:58.8083309Z",
+    "ask_price": 1.001764,
+    "ask_size": 26.38078,
+    "bid_price": 1.001274,
+    "bid_size": 109.86,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.7276550Z",
+      "time_coinapi": "2021-02-08T15:08:58.7829374Z",
+      "uuid": "77ce548b-ce04-4751-8c0f-c49211503b86",
+      "price": 1.001764,
+      "size": 9.77454,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETC_USD",
+    "time_exchange": "2021-02-08T15:08:58.5547470Z",
+    "time_coinapi": "2021-02-08T15:08:58.6110454Z",
+    "ask_price": 8.604,
+    "ask_size": 47,
+    "bid_price": 8.598,
+    "bid_size": 25,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.9117350Z",
+      "time_coinapi": "2021-02-08T15:08:57.9703125Z",
+      "uuid": "fe5d48ee-423a-4a49-a70c-cf893f8a1bc5",
+      "price": 8.604,
+      "size": 1,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NMR_USD",
+    "time_exchange": "2021-02-08T15:08:56.5598400Z",
+    "time_coinapi": "2021-02-08T15:08:56.6206730Z",
+    "ask_price": 35.957,
+    "ask_size": 90.532,
+    "bid_price": 35.8676,
+    "bid_size": 14.355,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:58.9117920Z",
+      "time_coinapi": "2021-02-08T15:07:58.9696044Z",
+      "uuid": "508ec5b4-436a-488e-ac85-129976060685",
+      "price": 35.8437,
+      "size": 0.086,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NU_EUR",
+    "time_exchange": "2021-02-08T15:08:57.9490310Z",
+    "time_coinapi": "2021-02-08T15:08:58.0068628Z",
+    "ask_price": 0.4333,
+    "ask_size": 958.951758,
+    "bid_price": 0.4319,
+    "bid_size": 215.954566,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:41.3754280Z",
+      "time_coinapi": "2021-02-08T15:08:41.4368695Z",
+      "uuid": "436a70ec-c7df-4983-8e87-188069d4db4c",
+      "price": 0.433,
+      "size": 40.812106,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_MKR_USD",
+    "time_exchange": "2021-02-08T15:08:58.2705920Z",
+    "time_coinapi": "2021-02-08T15:08:58.3298572Z",
+    "ask_price": 2591.7775,
+    "ask_size": 0.001543,
+    "bid_price": 2590.0478,
+    "bid_size": 1.083475,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.2705920Z",
+      "time_coinapi": "2021-02-08T15:08:58.3298572Z",
+      "uuid": "a8de379a-f047-4105-93d7-d0fa60bd79e8",
+      "price": 2590.0478,
+      "size": 0.016525,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_MATIC_USDT",
+    "time_exchange": "2021-02-08T11:46:20.2720000Z",
+    "time_coinapi": "2021-02-08T11:46:20.4025606Z",
+    "ask_price": 0.02178,
+    "ask_size": 9443530,
+    "bid_price": 0.01474,
+    "bid_size": 8277529
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USDC",
+    "time_exchange": "2021-02-08T15:08:59.0417820Z",
+    "time_coinapi": "2021-02-08T15:08:59.0992500Z",
+    "ask_price": 43796.85,
+    "ask_size": 0.11993392,
+    "bid_price": 43756.1,
+    "bid_size": 0.02,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:48.0383460Z",
+      "time_coinapi": "2021-02-08T15:08:48.1058096Z",
+      "uuid": "620ead9e-abee-41b9-9d07-9f321be6675a",
+      "price": 43776.21,
+      "size": 0.01091734,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_REN_USD",
+    "time_exchange": "2021-02-08T15:08:58.9949900Z",
+    "time_coinapi": "2021-02-08T15:08:59.0490897Z",
+    "ask_price": 0.7939,
+    "ask_size": 1400,
+    "bid_price": 0.7929,
+    "bid_size": 3070,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.0620180Z",
+      "time_coinapi": "2021-02-08T15:08:54.1200295Z",
+      "uuid": "d8070ddc-3d33-43b3-ae99-60439a6afdb2",
+      "price": 0.794,
+      "size": 246.920079,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NU_BTC",
+    "time_exchange": "2021-02-08T15:08:58.6995740Z",
+    "time_coinapi": "2021-02-08T15:08:58.8770059Z",
+    "ask_price": 0.00001193,
+    "ask_size": 516,
+    "bid_price": 0.00001188,
+    "bid_size": 826,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.2456970Z",
+      "time_coinapi": "2021-02-08T15:08:57.3049616Z",
+      "uuid": "09f26351-fc18-4cb6-bf17-6e20239d79aa",
+      "price": 0.00001188,
+      "size": 46,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LRC_USD",
+    "time_exchange": "2021-02-08T15:08:57.4613710Z",
+    "time_coinapi": "2021-02-08T15:08:57.5200487Z",
+    "ask_price": 0.6636,
+    "ask_size": 21196,
+    "bid_price": 0.6626,
+    "bid_size": 3970.273713,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:50.8243500Z",
+      "time_coinapi": "2021-02-08T15:08:50.8947420Z",
+      "uuid": "eb2b3a23-a57d-4bda-af9d-897db7afdacc",
+      "price": 0.6636,
+      "size": 77.866879,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LTC_BTC",
+    "time_exchange": "2021-02-08T15:08:58.8144170Z",
+    "time_coinapi": "2021-02-08T15:08:58.8711694Z",
+    "ask_price": 0.003668,
+    "ask_size": 57.92263313,
+    "bid_price": 0.003666,
+    "bid_size": 7.5,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:44.9562690Z",
+      "time_coinapi": "2021-02-08T15:08:45.0132376Z",
+      "uuid": "c8d19847-fb4d-4383-801d-9af5e859a0bc",
+      "price": 0.003664,
+      "size": 0.67595614,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_SNX_BTC",
+    "time_exchange": "2021-02-08T15:08:56.2378810Z",
+    "time_coinapi": "2021-02-08T15:08:56.2939083Z",
+    "ask_price": 0.00046958,
+    "ask_size": 14.64,
+    "bid_price": 0.00046857,
+    "bid_size": 14.64,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:43.6309100Z",
+      "time_coinapi": "2021-02-08T15:08:43.6919363Z",
+      "uuid": "6036a576-08b3-44c2-93f4-b7b3cbb14c26",
+      "price": 0.0004689,
+      "size": 0.03,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_BTC_BUSD_5A6847",
+    "time_exchange": "2021-02-08T15:08:57.6380000Z",
+    "time_coinapi": "2021-02-08T15:08:57.7640005Z",
+    "ask_price": 44301.7,
+    "ask_size": 0.316,
+    "bid_price": 43726.4,
+    "bid_size": 6.677,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.5350000Z",
+      "time_coinapi": "2021-02-08T15:08:57.8175619Z",
+      "uuid": "daddc72d-e9d6-4aa6-8a38-f0f4d3cb305a",
+      "price": 44301.7,
+      "size": 2.684,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_WBTC_BTC",
+    "time_exchange": "2021-02-08T15:08:36.2836830Z",
+    "time_coinapi": "2021-02-08T15:08:36.3401472Z",
+    "ask_price": 1,
+    "ask_size": 0.02059584,
+    "bid_price": 0.9999,
+    "bid_size": 0.67360707,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:02.3302420Z",
+      "time_coinapi": "2021-02-08T15:08:02.4124427Z",
+      "uuid": "51da5b80-3a32-4ea6-9999-614bb8db6ff2",
+      "price": 1,
+      "size": 0.00128416,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_BRL",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006737Z",
+    "ask_price": 6.4955,
+    "ask_size": 0,
+    "bid_price": 6.4955,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAND_BTC",
+    "time_exchange": "2021-02-08T15:08:57.0771210Z",
+    "time_coinapi": "2021-02-08T15:08:57.1318396Z",
+    "ask_price": 0.00027379,
+    "ask_size": 155.28,
+    "bid_price": 0.00027311,
+    "bid_size": 5,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:43.0461000Z",
+      "time_coinapi": "2021-02-08T15:08:43.1091158Z",
+      "uuid": "82059952-7a0e-45c4-bf5f-b6246a0e1e9a",
+      "price": 0.00027324,
+      "size": 0.33,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_EOS_EUR",
+    "time_exchange": "2021-02-08T15:08:58.8712530Z",
+    "time_coinapi": "2021-02-08T15:08:58.9311218Z",
+    "ask_price": 2.916,
+    "ask_size": 75,
+    "bid_price": 2.914,
+    "bid_size": 118.5,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.8766050Z",
+      "time_coinapi": "2021-02-08T15:08:53.9356961Z",
+      "uuid": "208c1b5c-d712-4296-83d9-b421a3ca5e82",
+      "price": 2.921,
+      "size": 34.1,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_EUR",
+    "time_exchange": "2021-02-08T15:08:58.6173070Z",
+    "time_coinapi": "2021-02-08T15:08:58.6739815Z",
+    "ask_price": 1425.67,
+    "ask_size": 0.17311888,
+    "bid_price": 1425.01,
+    "bid_size": 13.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.2948230Z",
+      "time_coinapi": "2021-02-08T15:08:58.3523391Z",
+      "uuid": "be90eb58-0817-448b-97d7-81b345d16e47",
+      "price": 1425.02,
+      "size": 1.14635515,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_FTS_BTC_USDT_210326",
+    "time_exchange": "2021-02-08T12:44:30.1320000Z",
+    "time_coinapi": "2021-02-08T12:44:30.2663427Z",
+    "ask_price": 39200,
+    "ask_size": 1.058,
+    "bid_price": 38330,
+    "bid_size": 0.674,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:26:37.0190000Z",
+      "time_coinapi": "2021-02-08T13:26:37.3074548Z",
+      "uuid": "e23bf77d-5601-4666-b6c0-bcc693057198",
+      "price": 34896,
+      "size": 0.001,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ETH_EUR",
+    "time_exchange": "2021-02-08T15:08:57.7740000Z",
+    "time_coinapi": "2021-02-08T15:08:57.8284925Z",
+    "ask_price": 1427.8,
+    "ask_size": 2.909397,
+    "bid_price": 1424.45,
+    "bid_size": 0.25401,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:04:02.4290000Z",
+      "time_coinapi": "2021-02-08T15:04:02.4877609Z",
+      "uuid": "e780bf5a-2ef6-4ab8-b325-9e41e13afe9a",
+      "price": 1425.11,
+      "size": 0.25393,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ETH_BTC",
+    "time_exchange": "2021-02-08T15:08:57.8140000Z",
+    "time_coinapi": "2021-02-08T15:08:57.8650730Z",
+    "ask_price": 0.0393,
+    "ask_size": 0.4,
+    "bid_price": 0.03924,
+    "bid_size": 11.149397,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:48.3700000Z",
+      "time_coinapi": "2021-02-08T15:06:48.4328198Z",
+      "uuid": "995ee3b5-01bf-474a-916d-792f7b49423c",
+      "price": 0.03927,
+      "size": 0.4,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZEC_BTC",
+    "time_exchange": "2021-02-08T15:08:58.9000810Z",
+    "time_coinapi": "2021-02-08T15:08:58.9759073Z",
+    "ask_price": 0.002203,
+    "ask_size": 12.515,
+    "bid_price": 0.002201,
+    "bid_size": 0.2944,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:06.3846830Z",
+      "time_coinapi": "2021-02-08T15:08:06.4450185Z",
+      "uuid": "1baecfc6-82ef-4753-bc9d-8fc9e4cf2d5f",
+      "price": 0.002204,
+      "size": 0.0102,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LINK_ETH",
+    "time_exchange": "2021-02-08T15:08:59.0172270Z",
+    "time_coinapi": "2021-02-08T15:08:59.0729989Z",
+    "ask_price": 0.01474748,
+    "ask_size": 77.54,
+    "bid_price": 0.0147236,
+    "bid_size": 234.14,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.3821720Z",
+      "time_coinapi": "2021-02-08T15:08:53.4624614Z",
+      "uuid": "09859d09-1e42-4e95-8ff2-acdb5f82a8e1",
+      "price": 0.01470944,
+      "size": 54.87,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_OMG_GBP",
+    "time_exchange": "2021-02-08T15:08:55.5895120Z",
+    "time_coinapi": "2021-02-08T15:08:55.6469591Z",
+    "ask_price": 3.4966,
+    "ask_size": 3176.4,
+    "bid_price": 3.4916,
+    "bid_size": 519.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:36.6773290Z",
+      "time_coinapi": "2021-02-08T15:08:36.7355929Z",
+      "uuid": "cd2cebfe-5878-4268-8a6c-d5393c94e3aa",
+      "price": 3.4966,
+      "size": 2.8,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_UNI_USD",
+    "time_exchange": "2021-02-08T15:08:58.7246980Z",
+    "time_coinapi": "2021-02-08T15:08:58.7812369Z",
+    "ask_price": 19.4034,
+    "ask_size": 20,
+    "bid_price": 19.3904,
+    "bid_size": 1,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.8185080Z",
+      "time_coinapi": "2021-02-08T15:08:53.8742809Z",
+      "uuid": "ce22ef02-ff2d-4156-aa66-c75d90989ba5",
+      "price": 19.4004,
+      "size": 15.227347,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_EOS_USD",
+    "time_exchange": "2021-02-08T15:08:58.9045340Z",
+    "time_coinapi": "2021-02-08T15:08:58.9601693Z",
+    "ask_price": 3.519,
+    "ask_size": 1053.8,
+    "bid_price": 3.518,
+    "bid_size": 7400,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.2656250Z",
+      "time_coinapi": "2021-02-08T15:08:57.3574844Z",
+      "uuid": "8de2ca61-f086-4e11-857b-62bd4d60e2e5",
+      "price": 3.519,
+      "size": 7,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_DASH_USD",
+    "time_exchange": "2021-02-08T15:08:58.1497070Z",
+    "time_coinapi": "2021-02-08T15:08:58.2058240Z",
+    "ask_price": 121.284,
+    "ask_size": 1.146,
+    "bid_price": 121.121,
+    "bid_size": 7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:51.9563160Z",
+      "time_coinapi": "2021-02-08T15:08:52.0154340Z",
+      "uuid": "99e8dab8-f110-4110-9a53-6be416a9bfea",
+      "price": 121.286,
+      "size": 0.254,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NMR_GBP",
+    "time_exchange": "2021-02-08T15:08:57.5576000Z",
+    "time_coinapi": "2021-02-08T15:08:57.6156390Z",
+    "ask_price": 26.2491,
+    "ask_size": 13.942,
+    "bid_price": 26.1337,
+    "bid_size": 14.329,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:05:17.5706580Z",
+      "time_coinapi": "2021-02-08T15:05:17.6355111Z",
+      "uuid": "56a00caf-6059-458b-8677-da25d9d70b52",
+      "price": 26.3712,
+      "size": 5.021,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZRX_USD",
+    "time_exchange": "2021-02-08T15:08:53.9590000Z",
+    "time_coinapi": "2021-02-08T15:08:54.0107693Z",
+    "ask_price": 1.51964,
+    "ask_size": 1526,
+    "bid_price": 1.5063,
+    "bid_size": 800,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:41.5000000Z",
+      "time_coinapi": "2021-02-08T15:07:41.5522725Z",
+      "uuid": "73ed4bc8-c61f-437f-b888-5b7351ce0474",
+      "price": 1.51409,
+      "size": 194.173417,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LTC_EUR",
+    "time_exchange": "2021-02-08T15:08:57.6607440Z",
+    "time_coinapi": "2021-02-08T15:08:57.7175559Z",
+    "ask_price": 133.16,
+    "ask_size": 1,
+    "bid_price": 132.99,
+    "bid_size": 0.67522374,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.6046240Z",
+      "time_coinapi": "2021-02-08T15:08:57.6729896Z",
+      "uuid": "580e81be-b958-4b15-8d35-b56a34081738",
+      "price": 133.17,
+      "size": 1.48049543,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_BGN",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006665Z",
+    "ask_price": 1.9558,
+    "ask_size": 0,
+    "bid_price": 1.9558,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_COMP_BTC",
+    "time_exchange": "2021-02-08T15:08:57.1331190Z",
+    "time_coinapi": "2021-02-08T15:08:57.1954568Z",
+    "ask_price": 0.010662,
+    "ask_size": 1.48,
+    "bid_price": 0.010645,
+    "bid_size": 4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:55.0264150Z",
+      "time_coinapi": "2021-02-08T15:08:55.0871768Z",
+      "uuid": "c16a0e76-5dc6-44eb-83b4-a23bee5c6a1a",
+      "price": 0.010637,
+      "size": 0.105,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_OXT_USD",
+    "time_exchange": "2021-02-08T15:08:58.9997110Z",
+    "time_coinapi": "2021-02-08T15:08:59.0568410Z",
+    "ask_price": 0.4155,
+    "ask_size": 880,
+    "bid_price": 0.4142,
+    "bid_size": 535,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.0954490Z",
+      "time_coinapi": "2021-02-08T15:08:58.1578116Z",
+      "uuid": "cff8efb4-1207-473b-b6d3-f40edf155c1c",
+      "price": 0.4155,
+      "size": 3,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_OXT_USD",
+    "time_exchange": "2021-02-08T15:08:53.9570000Z",
+    "time_coinapi": "2021-02-08T15:08:54.0094695Z",
+    "ask_price": 0.41673,
+    "ask_size": 17,
+    "bid_price": 0.41477,
+    "bid_size": 2403.213187,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:59.7290000Z",
+      "time_coinapi": "2021-02-08T15:06:59.7946581Z",
+      "uuid": "9be3f1f8-e160-48d7-83d1-0276aebf65dc",
+      "price": 0.41698,
+      "size": 231.488772,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZEC_USD",
+    "time_exchange": "2021-02-08T15:08:57.9466670Z",
+    "time_coinapi": "2021-02-08T15:08:58.0027962Z",
+    "ask_price": 96.3,
+    "ask_size": 2.39847,
+    "bid_price": 96.24,
+    "bid_size": 7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.7139870Z",
+      "time_coinapi": "2021-02-08T15:08:54.7736770Z",
+      "uuid": "21e522b2-3c6f-485e-a695-a837cc77f56a",
+      "price": 96.24,
+      "size": 0.35167,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_AUD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006735Z",
+    "ask_price": 1.5693,
+    "ask_size": 0,
+    "bid_price": 1.5693,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_CAD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006741Z",
+    "ask_price": 1.5363,
+    "ask_size": 0,
+    "bid_price": 1.5363,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_NZD",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006754Z",
+    "ask_price": 1.674,
+    "ask_size": 0,
+    "bid_price": 1.674,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_SNX_GBP",
+    "time_exchange": "2021-02-08T15:08:58.8060820Z",
+    "time_coinapi": "2021-02-08T15:08:58.8660993Z",
+    "ask_price": 15.0006,
+    "ask_size": 13.947,
+    "bid_price": 14.9596,
+    "bid_size": 141.66,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:00.0848760Z",
+      "time_coinapi": "2021-02-08T15:06:00.1468475Z",
+      "uuid": "604ce481-6bed-4090-b8b4-55adf063d8fc",
+      "price": 14.9869,
+      "size": 4.183,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_AAVE_USDT",
+    "time_exchange": "2021-02-08T11:50:10.4250000Z",
+    "time_coinapi": "2021-02-08T11:50:10.5598660Z",
+    "ask_price": 522.061,
+    "ask_size": 1.8,
+    "bid_price": 288.432,
+    "bid_size": 2511.7,
+    "last_trade": {
+      "time_exchange": "2021-02-08T12:03:41.0120000Z",
+      "time_coinapi": "2021-02-08T12:03:41.3063203Z",
+      "uuid": "4dbff315-acd8-4444-b104-668a846671b1",
+      "price": 288.432,
+      "size": 0.2,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_PLN",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006716Z",
+    "ask_price": 4.4824,
+    "ask_size": 0,
+    "bid_price": 4.4824,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_BCH_USDT",
+    "time_exchange": "2021-02-08T15:08:58.9150000Z",
+    "time_coinapi": "2021-02-08T15:08:59.0431793Z",
+    "ask_price": 469.99,
+    "ask_size": 7.75,
+    "bid_price": 469.83,
+    "bid_size": 4.01,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:53.2800000Z",
+      "time_coinapi": "2021-02-08T15:08:53.5598234Z",
+      "uuid": "100b968f-116a-4ffd-b683-791d442995c7",
+      "price": 469.67,
+      "size": 7.58,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LINK_BTC",
+    "time_exchange": "2021-02-08T15:08:48.9530000Z",
+    "time_coinapi": "2021-02-08T15:08:49.0046905Z",
+    "ask_price": 0.00057973,
+    "ask_size": 39.488504,
+    "bid_price": 0.00057773,
+    "bid_size": 39.427997,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:43:07.5740000Z",
+      "time_coinapi": "2021-02-08T14:43:07.6282572Z",
+      "uuid": "7ca87ce3-fc84-4f85-9f8b-26f449929e99",
+      "price": 0.00057871,
+      "size": 68.048672,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BNT_EUR",
+    "time_exchange": "2021-02-08T15:08:50.8232810Z",
+    "time_coinapi": "2021-02-08T15:08:50.8878584Z",
+    "ask_price": 2.1214,
+    "ask_size": 112.377,
+    "bid_price": 2.1113,
+    "bid_size": 112.21,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:04:31.7209170Z",
+      "time_coinapi": "2021-02-08T15:04:31.7829938Z",
+      "uuid": "2507a251-8ad4-47d1-bea0-9f0b61c380e4",
+      "price": 2.1123,
+      "size": 258.12368,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_LTC_USDT",
+    "time_exchange": "2021-02-08T15:08:56.9840000Z",
+    "time_coinapi": "2021-02-08T15:08:57.1151676Z",
+    "ask_price": 160.04,
+    "ask_size": 11.988,
+    "bid_price": 159.97,
+    "bid_size": 183.499,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.7560000Z",
+      "time_coinapi": "2021-02-08T15:08:55.0371551Z",
+      "uuid": "a63b1680-fe5d-438b-8594-09d13365d41d",
+      "price": 160.01,
+      "size": 110.877,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_HUF",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006687Z",
+    "ask_price": 358.33,
+    "ask_size": 0,
+    "bid_price": 358.33,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LINK_EUR",
+    "time_exchange": "2021-02-08T15:08:58.8477680Z",
+    "time_coinapi": "2021-02-08T15:08:58.9030274Z",
+    "ask_price": 21.02319,
+    "ask_size": 98,
+    "bid_price": 21,
+    "bid_size": 2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:56.3831400Z",
+      "time_coinapi": "2021-02-08T15:08:56.4413329Z",
+      "uuid": "43d5cfd2-d218-4eb4-8d3e-8bce3c53fd3d",
+      "price": 21.02812,
+      "size": 2.36,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZEC_BTC",
+    "time_exchange": "2021-02-08T15:08:49.0670000Z",
+    "time_coinapi": "2021-02-08T15:08:49.1197807Z",
+    "ask_price": 0.00221,
+    "ask_size": 8.30506,
+    "bid_price": 0.00218,
+    "bid_size": 239.336705,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:30:01.3450000Z",
+      "time_coinapi": "2021-02-08T13:30:01.4133915Z",
+      "uuid": "3cfc234c-c94a-42ee-ad32-703d6cf66aa4",
+      "price": 0.00219,
+      "size": 0.010447,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NU_GBP",
+    "time_exchange": "2021-02-08T15:08:58.7110810Z",
+    "time_coinapi": "2021-02-08T15:08:58.7661018Z",
+    "ask_price": 0.3814,
+    "ask_size": 908.779959,
+    "bid_price": 0.3797,
+    "bid_size": 1160.944257,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:12.0730340Z",
+      "time_coinapi": "2021-02-08T15:08:12.1317446Z",
+      "uuid": "214fa486-522b-402d-aef6-3800a0990faf",
+      "price": 0.3814,
+      "size": 50.10335,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_GBP",
+    "time_exchange": "2021-02-08T15:08:58.8185180Z",
+    "time_coinapi": "2021-02-08T15:08:58.8814994Z",
+    "ask_price": 31934.14,
+    "ask_size": 0.22856735,
+    "bid_price": 31905.46,
+    "bid_size": 0.1617107,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.8185180Z",
+      "time_coinapi": "2021-02-08T15:08:58.8814994Z",
+      "uuid": "900fb65d-c817-4716-8302-1cf56176be07",
+      "price": 31905.46,
+      "size": 0.02439457,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSCUAT_FTS_BTC_USD_210326",
+    "time_exchange": "2021-02-08T15:08:58.5780000Z",
+    "time_coinapi": "2021-02-08T15:08:58.7004529Z",
+    "ask_price": 43966.6,
+    "ask_size": 4,
+    "bid_price": 43966.4,
+    "bid_size": 4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.5490000Z",
+      "time_coinapi": "2021-02-08T15:08:58.8319245Z",
+      "uuid": "060f0431-3163-4ffb-8edf-a858583700f6",
+      "price": 43965.7,
+      "size": 11,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_MKR_USD",
+    "time_exchange": "2021-02-08T15:08:58.0750000Z",
+    "time_coinapi": "2021-02-08T15:08:58.1270387Z",
+    "ask_price": 2594.08,
+    "ask_size": 1,
+    "bid_price": 2587.08,
+    "bid_size": 0.386187,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:48.6050000Z",
+      "time_coinapi": "2021-02-08T15:08:48.7870427Z",
+      "uuid": "d091373f-37fa-4865-9241-69d8921a5333",
+      "price": 2586.57,
+      "size": 0.07,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_GRT_BTC",
+    "time_exchange": "2021-02-08T15:08:57.4328630Z",
+    "time_coinapi": "2021-02-08T15:08:57.4883244Z",
+    "ask_price": 0.00002249,
+    "ask_size": 510,
+    "bid_price": 0.00002247,
+    "bid_size": 4610.75,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:51.8546570Z",
+      "time_coinapi": "2021-02-08T15:08:51.9252095Z",
+      "uuid": "f7282e10-8ba1-4cdd-b67c-624819154fae",
+      "price": 0.00002247,
+      "size": 333.01,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_INR",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006749Z",
+    "ask_price": 87.724,
+    "ask_size": 0,
+    "bid_price": 87.724,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_CRV_USD",
+    "time_exchange": "2021-02-08T15:08:57.6990000Z",
+    "time_coinapi": "2021-02-08T15:08:57.7574909Z",
+    "ask_price": 3.0718,
+    "ask_size": 400,
+    "bid_price": 3.0404,
+    "bid_size": 32730,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:34.0080000Z",
+      "time_coinapi": "2021-02-08T15:08:34.0600942Z",
+      "uuid": "a64b6534-3b04-4cde-8830-592a5c49033b",
+      "price": 3.068,
+      "size": 12.002983,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAL_BTC",
+    "time_exchange": "2021-02-08T15:08:58.8023750Z",
+    "time_coinapi": "2021-02-08T15:08:58.8602449Z",
+    "ask_price": 0.00086098,
+    "ask_size": 12.66,
+    "bid_price": 0.00085895,
+    "bid_size": 14.89,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:14.8612300Z",
+      "time_coinapi": "2021-02-08T15:07:14.9223052Z",
+      "uuid": "9c645d98-d53d-4f13-9535-4e9798ffc252",
+      "price": 0.00085932,
+      "size": 3.01,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_ETH_USDT",
+    "time_exchange": "2021-02-08T15:08:58.9580000Z",
+    "time_coinapi": "2021-02-08T15:08:59.0832135Z",
+    "ask_price": 1713.07,
+    "ask_size": 12.945,
+    "bid_price": 1712.97,
+    "bid_size": 40.741,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.1630000Z",
+      "time_coinapi": "2021-02-08T15:08:57.4476765Z",
+      "uuid": "663756c6-055a-404b-b532-dc7e8b44895f",
+      "price": 1713.48,
+      "size": 1.717,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSCUAT_PERP_BTC_USD",
+    "time_exchange": "2021-02-08T15:08:58.6200000Z",
+    "time_coinapi": "2021-02-08T15:08:58.7424740Z",
+    "ask_price": 43825.4,
+    "ask_size": 7,
+    "bid_price": 43824,
+    "bid_size": 1,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.1400000Z",
+      "time_coinapi": "2021-02-08T15:08:58.4235467Z",
+      "uuid": "6191ac6e-b267-4f94-acd4-e7d69dd7c1d5",
+      "price": 43824,
+      "size": 4,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_OMG_EUR",
+    "time_exchange": "2021-02-08T15:08:57.5724750Z",
+    "time_coinapi": "2021-02-08T15:08:57.6317668Z",
+    "ask_price": 3.9768,
+    "ask_size": 200,
+    "bid_price": 3.9692,
+    "bid_size": 610.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:39.6612670Z",
+      "time_coinapi": "2021-02-08T15:08:39.7199473Z",
+      "uuid": "022349ec-8b46-4fb9-ad44-5f21ea183140",
+      "price": 3.98,
+      "size": 338.6,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_CGLD_BTC",
+    "time_exchange": "2021-02-08T15:08:58.7642460Z",
+    "time_coinapi": "2021-02-08T15:08:58.8265053Z",
+    "ask_price": 0.00007813,
+    "ask_size": 148.31,
+    "bid_price": 0.00007791,
+    "bid_size": 141.09,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.7642460Z",
+      "time_coinapi": "2021-02-08T15:08:58.8265053Z",
+      "uuid": "9667c758-0f10-4d55-b400-052d88f5d3ca",
+      "price": 0.00007813,
+      "size": 1.84,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_COMP_USD",
+    "time_exchange": "2021-02-08T15:08:55.7360000Z",
+    "time_coinapi": "2021-02-08T15:08:55.7894316Z",
+    "ask_price": 467.06,
+    "ask_size": 2.146151,
+    "bid_price": 466.12,
+    "bid_size": 0.000002,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:43.7610000Z",
+      "time_coinapi": "2021-02-08T15:08:44.1603782Z",
+      "uuid": "e95b5d08-6489-4ad6-9648-289d3d633b84",
+      "price": 466.98,
+      "size": 0.098994,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BAT_USD",
+    "time_exchange": "2021-02-08T15:08:59.0330000Z",
+    "time_coinapi": "2021-02-08T15:08:59.0847517Z",
+    "ask_price": 0.4119,
+    "ask_size": 4000,
+    "bid_price": 0.40752,
+    "bid_size": 6151,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:12.1930000Z",
+      "time_coinapi": "2021-02-08T15:07:12.2467162Z",
+      "uuid": "79b87b0a-c3d7-4587-988a-ec83d7307e59",
+      "price": 0.4118,
+      "size": 112.625347,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LINK_USD",
+    "time_exchange": "2021-02-08T15:08:58.7087420Z",
+    "time_coinapi": "2021-02-08T15:08:58.8770186Z",
+    "ask_price": 25.36522,
+    "ask_size": 30,
+    "bid_price": 25.36395,
+    "bid_size": 6.64,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:56.0767560Z",
+      "time_coinapi": "2021-02-08T15:08:56.1379805Z",
+      "uuid": "4e121400-b809-45e0-aba2-50cdbbd5c312",
+      "price": 25.36681,
+      "size": 0.7,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_CZK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006667Z",
+    "ask_price": 25.739,
+    "ask_size": 0,
+    "bid_price": 25.739,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_FIL_EUR",
+    "time_exchange": "2021-02-08T15:08:58.8998550Z",
+    "time_coinapi": "2021-02-08T15:08:58.9563603Z",
+    "ask_price": 20.4856,
+    "ask_size": 10.593,
+    "bid_price": 20.4486,
+    "bid_size": 25.824,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:58.8388570Z",
+      "time_coinapi": "2021-02-08T15:07:58.9081805Z",
+      "uuid": "2d338075-3aab-43fb-8b88-0bb2c2705b7b",
+      "price": 20.4856,
+      "size": 0.99,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_OXT_BTC",
+    "time_exchange": "2021-02-08T15:08:59.0040000Z",
+    "time_coinapi": "2021-02-08T15:08:59.0578397Z",
+    "ask_price": 0.00000953,
+    "ask_size": 2771.60451,
+    "bid_price": 0.00000941,
+    "bid_size": 777.82196,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:31:22.6820000Z",
+      "time_coinapi": "2021-02-08T14:31:22.7416351Z",
+      "uuid": "ed4926b2-96b1-45a3-851a-4ac2989ed318",
+      "price": 0.00000942,
+      "size": 110.914054,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_AAVE_USD",
+    "time_exchange": "2021-02-08T15:08:58.8916010Z",
+    "time_coinapi": "2021-02-08T15:08:58.9672810Z",
+    "ask_price": 505.973,
+    "ask_size": 4.2,
+    "bid_price": 505.362,
+    "bid_size": 4.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.2996620Z",
+      "time_coinapi": "2021-02-08T15:08:58.3659714Z",
+      "uuid": "e1ee87b7-cf08-4e33-80d7-c4a9e35f6064",
+      "price": 505.3,
+      "size": 3.758,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XLM_EUR",
+    "time_exchange": "2021-02-08T15:08:58.6481960Z",
+    "time_coinapi": "2021-02-08T15:08:58.8377595Z",
+    "ask_price": 0.329924,
+    "ask_size": 2472,
+    "bid_price": 0.329343,
+    "bid_size": 1478,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.3459460Z",
+      "time_coinapi": "2021-02-08T15:08:58.5620645Z",
+      "uuid": "90289934-81f2-4a11-a16d-4c470b781b5a",
+      "price": 0.329927,
+      "size": 5137,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_YFI_USD",
+    "time_exchange": "2021-02-08T15:08:57.7073130Z",
+    "time_coinapi": "2021-02-08T15:08:57.7621865Z",
+    "ask_price": 31572.37,
+    "ask_size": 0.0142,
+    "bid_price": 31540.56,
+    "bid_size": 0.059,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:42.6691770Z",
+      "time_coinapi": "2021-02-08T15:08:42.7256561Z",
+      "uuid": "832062cc-4a64-4da7-8d75-6dc109557671",
+      "price": 31552.52,
+      "size": 0.000584,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_NMR_EUR",
+    "time_exchange": "2021-02-08T15:08:53.8245450Z",
+    "time_coinapi": "2021-02-08T15:08:53.8784168Z",
+    "ask_price": 29.8351,
+    "ask_size": 39.761,
+    "bid_price": 29.7245,
+    "bid_size": 14.346,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:42.5316440Z",
+      "time_coinapi": "2021-02-08T15:08:42.5913752Z",
+      "uuid": "17f1fb7d-3ba8-4b56-af4f-9e48386c0c6f",
+      "price": 29.8269,
+      "size": 0.998,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZEC_ETH",
+    "time_exchange": "2021-02-08T15:07:22.6350000Z",
+    "time_coinapi": "2021-02-08T15:07:22.6885613Z",
+    "ask_price": 0.0563,
+    "ask_size": 4.17601,
+    "bid_price": 0.0556,
+    "bid_size": 4.2131
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_BTC_USDT",
+    "time_exchange": "2021-02-08T15:08:57.5370000Z",
+    "time_coinapi": "2021-02-08T15:08:57.6628433Z",
+    "ask_price": 43620,
+    "ask_size": 0.01,
+    "bid_price": 43617.68,
+    "bid_size": 57.379,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.0500000Z",
+      "time_coinapi": "2021-02-08T15:08:57.3359786Z",
+      "uuid": "2d626447-d771-4ae5-b298-4eebfc8f5ece",
+      "price": 43618.48,
+      "size": 0.091,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_DKK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006683Z",
+    "ask_price": 7.4365,
+    "ask_size": 0,
+    "bid_price": 7.4365,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZEC_USDC",
+    "time_exchange": "2021-02-08T15:08:56.2442690Z",
+    "time_coinapi": "2021-02-08T15:08:56.2990487Z",
+    "ask_price": 96.41,
+    "ask_size": 18.63791706,
+    "bid_price": 96.24,
+    "bid_size": 16.06837499,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:46.9821900Z",
+      "time_coinapi": "2021-02-08T15:08:47.0484747Z",
+      "uuid": "b4a78c36-a614-4c59-8ae8-cb4882f91b5d",
+      "price": 96.4,
+      "size": 0.24,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BTC_USD",
+    "time_exchange": "2021-02-08T15:08:59.0215330Z",
+    "time_coinapi": "2021-02-08T15:08:59.0821685Z",
+    "ask_price": 43791.36,
+    "ask_size": 0.0208,
+    "bid_price": 43786.51,
+    "bid_size": 0.37741715,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:59.0215330Z",
+      "time_coinapi": "2021-02-08T15:08:59.0821685Z",
+      "uuid": "dd8a8262-9bdb-4fac-8321-6645afc7265a",
+      "price": 43786.51,
+      "size": 0.01258285,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ALGO_BTC",
+    "time_exchange": "2021-02-08T15:08:58.4936720Z",
+    "time_coinapi": "2021-02-08T15:08:58.5486984Z",
+    "ask_price": 0.00002089,
+    "ask_size": 1995,
+    "bid_price": 0.00002085,
+    "bid_size": 7969,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:55.3914370Z",
+      "time_coinapi": "2021-02-08T15:08:55.4686116Z",
+      "uuid": "0663e9d0-fab0-45ff-9e21-60b516e624b4",
+      "price": 0.00002083,
+      "size": 382,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BCH_USD",
+    "time_exchange": "2021-02-08T15:08:58.0190000Z",
+    "time_coinapi": "2021-02-08T15:08:58.0723779Z",
+    "ask_price": 471.74,
+    "ask_size": 18,
+    "bid_price": 471.31,
+    "bid_size": 18,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:55.7560000Z",
+      "time_coinapi": "2021-02-08T15:08:55.8086766Z",
+      "uuid": "f4ecd712-b70a-46c9-b984-f33007fc42a7",
+      "price": 471.88,
+      "size": 0.101224,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAND_GBP",
+    "time_exchange": "2021-02-08T15:08:58.8244100Z",
+    "time_coinapi": "2021-02-08T15:08:58.8816048Z",
+    "ask_price": 8.738,
+    "ask_size": 82.08,
+    "bid_price": 8.7143,
+    "bid_size": 29.84,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:10.3933170Z",
+      "time_coinapi": "2021-02-08T15:08:10.4530080Z",
+      "uuid": "2a58b900-1a35-4d07-91c8-e77191508034",
+      "price": 8.7234,
+      "size": 0.33,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_BCH_BTC",
+    "time_exchange": "2021-02-08T15:07:57.0910000Z",
+    "time_coinapi": "2021-02-08T15:07:57.1547478Z",
+    "ask_price": 0.01081,
+    "ask_size": 8.138711,
+    "bid_price": 0.01075,
+    "bid_size": 4.921578,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:02:03.5010000Z",
+      "time_coinapi": "2021-02-08T14:02:03.5594860Z",
+      "uuid": "635a0bd3-a93d-40d3-b2c2-41186637dd5f",
+      "price": 0.01085,
+      "size": 0.006318,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_IDR",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006746Z",
+    "ask_price": 16876.31,
+    "ask_size": 0,
+    "bid_price": 16876.31,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BNT_USD",
+    "time_exchange": "2021-02-08T15:08:57.6492430Z",
+    "time_coinapi": "2021-02-08T15:08:57.7070272Z",
+    "ask_price": 2.5538,
+    "ask_size": 74.665174,
+    "bid_price": 2.5507,
+    "bid_size": 220,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:42.8773910Z",
+      "time_coinapi": "2021-02-08T15:08:42.9356795Z",
+      "uuid": "31ad51ac-6cfb-450f-897c-45646f01301c",
+      "price": 2.5538,
+      "size": 37.493071,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BNT_BTC",
+    "time_exchange": "2021-02-08T15:08:57.1205290Z",
+    "time_coinapi": "2021-02-08T15:08:57.1755009Z",
+    "ask_price": 0.00005841,
+    "ask_size": 2,
+    "bid_price": 0.00005823,
+    "bid_size": 117,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:06:20.9595860Z",
+      "time_coinapi": "2021-02-08T15:06:21.0194825Z",
+      "uuid": "224eaf62-1b72-4943-a602-6c2f0102b303",
+      "price": 0.00005839,
+      "size": 44,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_THB",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006759Z",
+    "ask_price": 36.098,
+    "ask_size": 0,
+    "bid_price": 36.098,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_REN_USD",
+    "time_exchange": "2021-02-08T15:08:53.2700000Z",
+    "time_coinapi": "2021-02-08T15:08:53.3538663Z",
+    "ask_price": 0.79595,
+    "ask_size": 1366,
+    "bid_price": 0.79001,
+    "bid_size": 1500,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:25.8550000Z",
+      "time_coinapi": "2021-02-08T15:08:25.9072409Z",
+      "uuid": "443cb3d5-bb86-4646-b4b1-73d9d0a14031",
+      "price": 0.79315,
+      "size": 142.960601,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_NOK",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006728Z",
+    "ask_price": 10.2725,
+    "ask_size": 0,
+    "bid_price": 10.2725,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_BTC",
+    "time_exchange": "2021-02-08T15:08:58.3297180Z",
+    "time_coinapi": "2021-02-08T15:08:58.3872090Z",
+    "ask_price": 0.03928,
+    "ask_size": 6.51084932,
+    "bid_price": 0.03924,
+    "bid_size": 105.89613295,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:59.0533240Z",
+      "time_coinapi": "2021-02-08T15:08:59.1125927Z",
+      "uuid": "b011d5c8-d683-4888-950b-96d7893396de",
+      "price": 0.03928,
+      "size": 0.01845058,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BCH_USD",
+    "time_exchange": "2021-02-08T15:08:58.2201590Z",
+    "time_coinapi": "2021-02-08T15:08:58.2749094Z",
+    "ask_price": 472.57,
+    "ask_size": 4.5,
+    "bid_price": 472.38,
+    "bid_size": 9,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.0888530Z",
+      "time_coinapi": "2021-02-08T15:08:57.1453913Z",
+      "uuid": "f6cb6143-3270-4ff3-878e-bad890c8e918",
+      "price": 472.55,
+      "size": 0.04129485,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_CNY",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006742Z",
+    "ask_price": 7.7618,
+    "ask_size": 0,
+    "bid_price": 7.7618,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XLM_BTC",
+    "time_exchange": "2021-02-08T15:08:58.6809850Z",
+    "time_coinapi": "2021-02-08T15:08:58.7574718Z",
+    "ask_price": 0.0000091,
+    "ask_size": 46003,
+    "bid_price": 0.00000907,
+    "bid_size": 137109,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.7448390Z",
+      "time_coinapi": "2021-02-08T15:08:57.8060253Z",
+      "uuid": "cd3fec55-e125-40ff-a1d4-290fc7be2480",
+      "price": 0.00000907,
+      "size": 9,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_GRT_GBP",
+    "time_exchange": "2021-02-08T15:08:56.6268390Z",
+    "time_coinapi": "2021-02-08T15:08:56.6888960Z",
+    "ask_price": 0.7175,
+    "ask_size": 12.71,
+    "bid_price": 0.717,
+    "bid_size": 553.95,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:17.9712610Z",
+      "time_coinapi": "2021-02-08T15:08:18.0338731Z",
+      "uuid": "04e90956-ed52-4d28-83c4-e6c7c8b39fa0",
+      "price": 0.718,
+      "size": 35.39,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_COMP_USD",
+    "time_exchange": "2021-02-08T15:08:58.9837020Z",
+    "time_coinapi": "2021-02-08T15:08:59.0388723Z",
+    "ask_price": 466.66,
+    "ask_size": 2.2,
+    "bid_price": 466.06,
+    "bid_size": 2.2,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.7438330Z",
+      "time_coinapi": "2021-02-08T15:08:58.8023572Z",
+      "uuid": "1b8bf123-8ffb-4e52-b1ac-8bab3bcc0d0c",
+      "price": 466.04,
+      "size": 0.317,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_AAVE_USD",
+    "time_exchange": "2021-02-08T15:08:58.5810000Z",
+    "time_coinapi": "2021-02-08T15:08:58.6383451Z",
+    "ask_price": 506.5973,
+    "ask_size": 30.32,
+    "bid_price": 503.4925,
+    "bid_size": 1.890638,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:33.9510000Z",
+      "time_coinapi": "2021-02-08T15:08:34.0026741Z",
+      "uuid": "5e3b7bad-889f-4f70-aee9-f6e4b878ca00",
+      "price": 503.4925,
+      "size": 0.085346,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_FIL_USD",
+    "time_exchange": "2021-02-08T15:08:45.2360000Z",
+    "time_coinapi": "2021-02-08T15:08:45.2879572Z",
+    "ask_price": 24.6995,
+    "ask_size": 166.935702,
+    "bid_price": 24.6806,
+    "bid_size": 112.173,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:55.7550000Z",
+      "time_coinapi": "2021-02-08T15:07:55.8210846Z",
+      "uuid": "3dcfb4a0-6954-4cae-ab9f-1de318bfa15a",
+      "price": 24.7282,
+      "size": 156.127,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_AMP_USD",
+    "time_exchange": "2021-02-08T15:08:58.0380000Z",
+    "time_coinapi": "2021-02-08T15:08:58.0901429Z",
+    "ask_price": 0.01231,
+    "ask_size": 4541.533392,
+    "bid_price": 0.01222,
+    "bid_size": 20.486254,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:28.1830000Z",
+      "time_coinapi": "2021-02-08T15:08:28.2394110Z",
+      "uuid": "b295f582-47b7-4095-af1d-3b9608817e7b",
+      "price": 0.01231,
+      "size": 1405.862468,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAT_USDC",
+    "time_exchange": "2021-02-08T15:08:59.0493450Z",
+    "time_coinapi": "2021-02-08T15:08:59.1063416Z",
+    "ask_price": 0.409622,
+    "ask_size": 1000,
+    "bid_price": 0.409351,
+    "bid_size": 1700,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.3779200Z",
+      "time_coinapi": "2021-02-08T15:08:54.4345682Z",
+      "uuid": "2de8274d-a542-4280-bd51-41fa65414e70",
+      "price": 0.409353,
+      "size": 245,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_LOOM_USDC",
+    "time_exchange": "2021-02-08T15:08:58.0915690Z",
+    "time_coinapi": "2021-02-08T15:08:58.1516391Z",
+    "ask_price": 0.07,
+    "ask_size": 11805,
+    "bid_price": 0.069791,
+    "bid_size": 100,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.0915690Z",
+      "time_coinapi": "2021-02-08T15:08:58.1516391Z",
+      "uuid": "4e95dd6b-fbe0-4efc-ab9a-26cf5c0d91d0",
+      "price": 0.07,
+      "size": 27988,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_MKR_USDT",
+    "time_exchange": "2021-02-08T12:12:25.4050000Z",
+    "time_coinapi": "2021-02-08T12:12:25.5434176Z",
+    "ask_price": 496.32,
+    "ask_size": 337.754,
+    "bid_price": 496.29,
+    "bid_size": 11.856
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_CHF",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006725Z",
+    "ask_price": 1.0842,
+    "ask_size": 0,
+    "bid_price": 1.0842,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_CVC_USDC",
+    "time_exchange": "2021-02-08T15:08:58.9355720Z",
+    "time_coinapi": "2021-02-08T15:08:58.9887314Z",
+    "ask_price": 0.242978,
+    "ask_size": 7501,
+    "bid_price": 0.242121,
+    "bid_size": 2073,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.9713560Z",
+      "time_coinapi": "2021-02-08T15:08:55.0324746Z",
+      "uuid": "8eb592ec-a0ee-4f3c-9f7d-aab44d697376",
+      "price": 0.243034,
+      "size": 204,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "ECB_SPOT_EUR_RON",
+    "time_exchange": "2021-02-08T14:00:00.0000000Z",
+    "time_coinapi": "2021-02-08T15:08:19.5006720Z",
+    "ask_price": 4.8748,
+    "ask_size": 0,
+    "bid_price": 4.8748,
+    "bid_size": 0
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_AAVE_GBP",
+    "time_exchange": "2021-02-08T15:08:57.6124570Z",
+    "time_coinapi": "2021-02-08T15:08:57.6744559Z",
+    "ask_price": 369.316,
+    "ask_size": 1.062,
+    "bid_price": 368.163,
+    "bid_size": 1.078,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:47.6215010Z",
+      "time_coinapi": "2021-02-08T15:08:47.6784719Z",
+      "uuid": "194dae68-9f89-497b-960d-ee90247f0f51",
+      "price": 369.345,
+      "size": 0.05,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_ADA_USDT",
+    "time_exchange": "2021-02-08T14:17:30.0250000Z",
+    "time_coinapi": "2021-02-08T14:17:30.1643137Z",
+    "ask_price": 0.69592,
+    "ask_size": 100,
+    "bid_price": 0.47656,
+    "bid_size": 14861,
+    "last_trade": {
+      "time_exchange": "2021-02-08T13:21:50.1090000Z",
+      "time_coinapi": "2021-02-08T13:21:50.3933595Z",
+      "uuid": "06cb5406-4853-466e-abf3-9dd2d6cd2474",
+      "price": 0.47656,
+      "size": 48605,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_KNC_USD",
+    "time_exchange": "2021-02-08T15:08:58.8149070Z",
+    "time_coinapi": "2021-02-08T15:08:58.8731675Z",
+    "ask_price": 1.8776,
+    "ask_size": 7.8,
+    "bid_price": 1.8768,
+    "bid_size": 330.6,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.8149070Z",
+      "time_coinapi": "2021-02-08T15:08:58.8731675Z",
+      "uuid": "0ec3d40f-7229-4eb5-a9ba-6e6aa9e58590",
+      "price": 1.8768,
+      "size": 83.6,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_MANA_USDC",
+    "time_exchange": "2021-02-08T15:08:54.7820520Z",
+    "time_coinapi": "2021-02-08T15:08:54.8455759Z",
+    "ask_price": 0.242709,
+    "ask_size": 11992,
+    "bid_price": 0.242236,
+    "bid_size": 28977,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:54.7820520Z",
+      "time_coinapi": "2021-02-08T15:08:54.8455759Z",
+      "uuid": "4925d356-c136-4551-9731-2631c238c18d",
+      "price": 0.242709,
+      "size": 8,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_SNX_USD",
+    "time_exchange": "2021-02-08T15:08:58.0362190Z",
+    "time_coinapi": "2021-02-08T15:08:58.0925421Z",
+    "ask_price": 20.5537,
+    "ask_size": 13.963,
+    "bid_price": 20.5203,
+    "bid_size": 86,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:56.2147470Z",
+      "time_coinapi": "2021-02-08T15:08:56.2803173Z",
+      "uuid": "6ee9ce68-c6c2-42a0-a188-9e2a179d68c2",
+      "price": 20.5165,
+      "size": 16.133,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_XTZ_USD",
+    "time_exchange": "2021-02-08T15:08:59.0328880Z",
+    "time_coinapi": "2021-02-08T15:08:59.0984938Z",
+    "ask_price": 3.3561,
+    "ask_size": 500,
+    "bid_price": 3.3528,
+    "bid_size": 256,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:57.2181000Z",
+      "time_coinapi": "2021-02-08T15:08:57.2767880Z",
+      "uuid": "2a6ddf70-ef0d-4901-b89b-4dcafba16405",
+      "price": 3.3528,
+      "size": 4,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZEC_BCH",
+    "time_exchange": "2021-02-08T13:44:09.4800000Z",
+    "time_coinapi": "2021-02-08T13:44:09.5382582Z",
+    "ask_price": 0.245,
+    "ask_size": 2.40558,
+    "bid_price": 0.1145,
+    "bid_size": 1.04361
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_DNT_USDC",
+    "time_exchange": "2021-02-08T15:08:59.0362710Z",
+    "time_coinapi": "2021-02-08T15:08:59.0984789Z",
+    "ask_price": 0.206791,
+    "ask_size": 5100,
+    "bid_price": 0.204655,
+    "bid_size": 5100,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:59.0217600Z",
+      "time_coinapi": "2021-02-08T15:08:59.0820677Z",
+      "uuid": "4e3921b5-77a4-4b35-a90f-58f803d305a9",
+      "price": 0.204656,
+      "size": 2530,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_DAI",
+    "time_exchange": "2021-02-08T15:08:57.3950810Z",
+    "time_coinapi": "2021-02-08T15:08:57.4548537Z",
+    "ask_price": 1718.07,
+    "ask_size": 0.8731,
+    "bid_price": 1715.82,
+    "bid_size": 0.0787,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:49.1283130Z",
+      "time_coinapi": "2021-02-08T15:08:49.1920254Z",
+      "uuid": "f93478ee-083d-4503-bfc7-2df0afac95d4",
+      "price": 1718.82,
+      "size": 0.0105,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_GNT_USDC",
+    "time_exchange": "2021-02-08T15:08:24.9259650Z",
+    "time_coinapi": "2021-02-08T15:08:24.9837556Z",
+    "ask_price": 0.25562,
+    "ask_size": 168,
+    "bid_price": 0.255384,
+    "bid_size": 333,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:26.6153420Z",
+      "time_coinapi": "2021-02-08T15:07:26.8423090Z",
+      "uuid": "377dbfa1-c2dd-4fa8-8906-94d2f4bc3a7f",
+      "price": 0.255385,
+      "size": 130,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_BAL_USD",
+    "time_exchange": "2021-02-08T15:08:48.3839630Z",
+    "time_coinapi": "2021-02-08T15:08:48.4396964Z",
+    "ask_price": 37.69246,
+    "ask_size": 21,
+    "bid_price": 37.63723,
+    "bid_size": 21,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:45.9721890Z",
+      "time_coinapi": "2021-02-08T15:08:46.0297013Z",
+      "uuid": "ebfa874e-fb3e-4b42-8afa-8233f20b21ea",
+      "price": 37.67738,
+      "size": 4.878,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_ZEC_LTC",
+    "time_exchange": "2021-02-08T13:43:35.9105065Z",
+    "time_coinapi": "2021-02-08T13:43:35.9108178Z",
+    "ask_price": 0.852,
+    "ask_size": 3.46687,
+    "bid_price": 0.525,
+    "bid_size": 3.90363
+  },
+  {
+    "symbol_id": "GEMINI_SPOT_LINK_USD",
+    "time_exchange": "2021-02-08T15:08:55.9140000Z",
+    "time_coinapi": "2021-02-08T15:08:55.9662444Z",
+    "ask_price": 25.3908,
+    "ask_size": 5.860128,
+    "bid_price": 25.34939,
+    "bid_size": 2.12,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:50.2350000Z",
+      "time_coinapi": "2021-02-08T15:08:50.2864788Z",
+      "uuid": "0450ce76-b874-4bc2-a551-bf3b476c8bfd",
+      "price": 25.3908,
+      "size": 25.557,
+      "taker_side": "BUY"
+    }
+  },
+  {
+    "symbol_id": "BINANCEFTSUAT_PERP_DOGE_USDT",
+    "time_exchange": "2021-02-08T11:52:09.6480000Z",
+    "time_coinapi": "2021-02-08T11:52:09.7792636Z",
+    "ask_price": 0.074656,
+    "ask_size": 63625,
+    "bid_price": 0.0728,
+    "bid_size": 206538,
+    "last_trade": {
+      "time_exchange": "2021-02-08T14:56:37.1870000Z",
+      "time_coinapi": "2021-02-08T14:56:37.4682188Z",
+      "uuid": "6bc65d98-070f-45d3-b4d0-5d0e850cc166",
+      "price": 0.078,
+      "size": 10000,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETC_BTC",
+    "time_exchange": "2021-02-08T15:08:56.0989800Z",
+    "time_coinapi": "2021-02-08T15:08:56.1603088Z",
+    "ask_price": 0.000196,
+    "ask_size": 140,
+    "bid_price": 0.000195,
+    "bid_size": 1415.34645064,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:55.3709400Z",
+      "time_coinapi": "2021-02-08T15:08:55.4357094Z",
+      "uuid": "fe80a0d0-ec87-4714-807d-64250a231ffd",
+      "price": 0.000195,
+      "size": 40.27513063,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ETH_USDC",
+    "time_exchange": "2021-02-08T15:08:53.1928400Z",
+    "time_coinapi": "2021-02-08T15:08:53.2516270Z",
+    "ask_price": 1720,
+    "ask_size": 2.34820767,
+    "bid_price": 1719.71,
+    "bid_size": 0.4,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:50.6084590Z",
+      "time_coinapi": "2021-02-08T15:08:50.6716436Z",
+      "uuid": "586fd9d6-a0fb-431b-ad3a-ddc4fa75fb62",
+      "price": 1719.7,
+      "size": 7.84,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_ZRX_USD",
+    "time_exchange": "2021-02-08T15:08:59.0496840Z",
+    "time_coinapi": "2021-02-08T15:08:59.1069045Z",
+    "ask_price": 1.516838,
+    "ask_size": 6868.08956,
+    "bid_price": 1.514789,
+    "bid_size": 1600,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:58.3160790Z",
+      "time_coinapi": "2021-02-08T15:08:58.3766705Z",
+      "uuid": "dae6d9a6-fab9-47e3-a603-8604a4e77353",
+      "price": 1.514752,
+      "size": 135.03155,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_YFI_BTC",
+    "time_exchange": "2021-02-08T15:08:58.6067730Z",
+    "time_coinapi": "2021-02-08T15:08:58.6624350Z",
+    "ask_price": 0.72157,
+    "ask_size": 0.019,
+    "bid_price": 0.72,
+    "bid_size": 0.019,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:07:58.7922830Z",
+      "time_coinapi": "2021-02-08T15:07:58.8490324Z",
+      "uuid": "cab409b6-6de7-4664-a71a-a12d732a0c92",
+      "price": 0.72082,
+      "size": 0.000131,
+      "taker_side": "SELL"
+    }
+  },
+  {
+    "symbol_id": "COINBASE_SPOT_REN_BTC",
+    "time_exchange": "2021-02-08T15:08:54.1804040Z",
+    "time_coinapi": "2021-02-08T15:08:54.2376818Z",
+    "ask_price": 0.00001809,
+    "ask_size": 123,
+    "bid_price": 0.00001807,
+    "bid_size": 1215,
+    "last_trade": {
+      "time_exchange": "2021-02-08T15:08:45.0925370Z",
+      "time_coinapi": "2021-02-08T15:08:45.1517031Z",
+      "uuid": "abfcc373-e041-47ad-a010-dbf32c1acf9f",
+      "price": 0.00001809,
+      "size": 497,
+      "taker_side": "BUY"
+    }
+  }
+]
