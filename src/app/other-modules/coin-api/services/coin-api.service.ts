@@ -30,9 +30,9 @@ export class CoinApiService {
   private coinApiUrlOrderBooks = 'v1/orderbooks/current';
   private coinApiUrlQuotes = 'v1/quotes/current';
   private coinApiUrlTrades = 'v1/trades/latest';
-  isWebsocketConnected: Subject<boolean> = new Subject();
+  isWebsocketConnected$: Subject<boolean> = new Subject();
   private coinApiWebsocketConnection?: WebSocket;
-  coinApiIoPayload$: Subject<any> = new Subject();
+  coinApiIoWebsocketPayload$: Subject<any> = new Subject();
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
     return this.httpClient
@@ -132,30 +132,51 @@ export class CoinApiService {
 
   wsInit() {
     this.coinApiWebsocketConnection = new WebSocket(this.coinApiIoWebsocketUrl);
-    this.coinApiWebsocketConnection.onopen = this.wsOnOpen;
+    this.isWebsocketConnected$.next(true);
+    this.coinApiWebsocketConnection.onclose = (ev) => {
+      return this.wsOnClose(ev);
+    };
+    this.coinApiWebsocketConnection.onerror = (ev) => {
+      console.log('error', ev);
+    };
+    this.coinApiWebsocketConnection.onopen = (ev) => {
+      return this.wsOnOpen(ev);
+    };
+    this.coinApiWebsocketConnection.onmessage = (ev) => {
+      this.wsOnMessage(ev);
+    };
   }
 
   wsClose() {
     this.coinApiWebsocketConnection!.close();
-    this.isWebsocketConnected.next(false);
   }
 
-  wsOnMessage(ev: any) {
-    console.log(ev);
-    //this.coinApiIoPayload$.unsubscribe(ev);
+  wsInitQuotes() {
+    const quotesReq = {
+      apikey: this.coinApiIoKey,
+      heartbeat: false,
+      subscribe_data_type: ['trade'],
+    } as ICoinApiWebsocketHello;
+
+    this.wsSend(quotesReq);
   }
 
-  wsSend(dataToSend: ICoinApiWebsocketHello) {
-    this.coinApiWebsocketConnection!.send(JSON.stringify(dataToSend));
+  wsOnMessage(ev: MessageEvent) {
+    this.coinApiIoWebsocketPayload$.next(JSON.parse(ev.data));
   }
 
   wsOnOpen(ev: any) {
+    this.isWebsocketConnected$.next(true);
+
     console.log('opening websocket', ev);
-    this.isWebsocketConnected.next(true);
   }
 
   wsOnClose(ev: any) {
     console.log('closing websocket', ev);
-    this.coinApiWebsocketConnection?.close();
+    this.isWebsocketConnected$.next(false);
+  }
+
+  wsSend(dataToSend: ICoinApiWebsocketHello) {
+    this.coinApiWebsocketConnection!.send(JSON.stringify(dataToSend));
   }
 }

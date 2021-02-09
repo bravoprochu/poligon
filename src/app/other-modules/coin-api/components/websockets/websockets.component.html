@@ -1,0 +1,105 @@
+<p>websockets works!</p>
+
+<button mat-raised-button color="primary" (click)="open()">connect</button>
+<button mat-raised-button color="warn" (click)="close()">
+  close connection
+</button>
+<h3 class="mat-h3" *ngIf="coinApiService.isWebsocketConnected$ | async">
+  Is connected !
+</h3>
+<section class="container">
+  <button mat-raised-button color="accent" (click)="initQuotes()">
+    getQuotes
+  </button>
+  {{ trades.length }}
+
+  <section class="color-config-container">
+    <h4 class="mat-h4">Price color scale</h4>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="colorGradeMinValue$"
+        placeholder="min"
+        type="number"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="colorGradeMaxValue$"
+        placeholder="max"
+        type="number"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #colorInput matInput [formControl]="colorGrade$" type="color" />
+    </mat-form-field>
+
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+      <button
+        mat-fab
+        *ngFor="let c of colors; index as i"
+        class="color-box"
+        [style.backgroundColor]="c"
+      ></button>
+      <button mat-fab (click)="colorAdd()">Add</button>
+    </div>
+
+    <input type="color" style="display: hidden" />
+  </section>
+
+  <cdk-virtual-scroll-viewport [itemSize]="150" class="example-viewport">
+    <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
+      <ng-container
+        *ngTemplateOutlet="
+          trade2;
+          context: { $implicit: t, color: setBgColor(t.price) }
+        "
+      ></ng-container>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</section>
+
+<ng-template #trade let-item let-color="color">
+  <div class="price-container" [style.borderColor]="color">
+    <div fxLayout fxLayoutAlign="space-between center">
+      <div fxLayout="column">
+        <h4 class="mat-h4">
+          {{ item.time_exchange | date: "medium" }}
+        </h4>
+        <div class="mat-small" fxFlex="40">
+          {{ item.uuid }}
+        </div>
+        <div class="mat-small">
+          {{ item.size }}
+        </div>
+      </div>
+      <div fxFlex="40" class="mat-display-2">
+        {{ item.price }}
+      </div>
+    </div>
+    <div class="price-fiszka" [style.backgroundColor]="color">&nbsp;</div>
+  </div>
+</ng-template>
+
+<ng-template #trade2 let-item let-color="color">
+  <div>
+    <h3 class="mat-h3">
+      <span class="mat-caption">exchange time: </span>
+      {{ item.time_exchange | date: "medium" }}
+    </h3>
+    <div class="mat-small">
+      <span class="mat-caption">uuuid: </span>{{ item.uuid }}
+    </div>
+    <h4 class="mat-h4">
+      <span class="mat-caption">size: </span>{{ item.size }}
+    </h4>
+  </div>
+  <div class="mat-display-2">
+    <span class="mat-caption">price: </span>
+    {{ item.price }}
+  </div>
+  <div class="price-fiszka" [style.backgroundColor]="color">&nbsp;</div>
+</ng-template>

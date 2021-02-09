@@ -1,0 +1,38 @@
+.color-box {
+  width: 50px;
+  height: 50px;
+}
+
+.color-config-container {
+  padding: 2em;
+}
+.container {
+  max-width: 960px;
+}
+
+.color-border {
+  border: 1px solid;
+}
+.example-viewport {
+  width: 400px;
+  height: 600px;
+}
+
+.example-item {
+  position: relative;
+  height: 150px;
+  border-bottom: 2px solid rgba($color: rgb(61, 59, 57), $alpha: 0.2);
+}
+
+.price-container {
+  position: relative;
+  border-bottom: 2px solid;
+}
+
+.price-fiszka {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 15px;
+  height: 100%;
+}

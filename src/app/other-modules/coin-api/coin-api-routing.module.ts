@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoinApiComponent } from './coin-api/coin-api.component';
+import { CoinApiComponent } from './components/coin-api/coin-api.component';
+import { WebsocketsComponent } from './components/websockets/websockets.component';
 
 const routes: Routes = [
   { path: 'list', component: CoinApiComponent },
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: '**', redirectTo: 'list' },
+  { path: 'websockets', component: WebsocketsComponent },
+  { path: '', redirectTo: 'websockets', pathMatch: 'full' },
+  { path: '**', redirectTo: 'websockets' },
 ];
 
 @NgModule({
