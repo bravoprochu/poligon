@@ -49,9 +49,15 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
     this.coinApiService.wsClose();
   }
 
-  colorAdd() {
-    const input = this.colorInput.nativeElement;
-    console.log(input);
+  colorAdd(index: number) {
+    const input = this.colorInput.nativeElement as HTMLInputElement;
+    input.value = this.colors[index];
+
+    input.click();
+    input.onchange = (ev) => {
+      console.log(ev, input.value);
+      this.colors[index] = input.value;
+    };
   }
 
   initColors() {

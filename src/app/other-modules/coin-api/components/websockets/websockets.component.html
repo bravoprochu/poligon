@@ -1,19 +1,33 @@
 <p>websockets works!</p>
 
+<app-color-range></app-color-range>
+
+<hr />
+<hr />
+
 <button mat-raised-button color="primary" (click)="open()">connect</button>
 <button mat-raised-button color="warn" (click)="close()">
   close connection
 </button>
-<h3 class="mat-h3" *ngIf="coinApiService.isWebsocketConnected$ | async">
-  Is connected !
-</h3>
-<section class="container">
+<div
+  fxLayout
+  fxLayoutGap="10px"
+  *ngIf="coinApiService.isWebsocketConnected$ | async"
+>
+  <h3 class="mat-h3">Is connected !</h3>
   <button mat-raised-button color="accent" (click)="initQuotes()">
     getQuotes
   </button>
-  {{ trades.length }}
 
+  <div>
+    {{ trades.length }}
+  </div>
+</div>
+
+<p>color-range works!</p>
+<section class="container">
   <section class="color-config-container">
+    <input #colorInput type="color" style="display: none" />
     <h4 class="mat-h4">Price color scale</h4>
     <mat-form-field>
       <input
@@ -33,21 +47,15 @@
       />
     </mat-form-field>
 
-    <mat-form-field>
-      <input #colorInput matInput [formControl]="colorGrade$" type="color" />
-    </mat-form-field>
-
     <div fxLayout="row wrap" fxLayoutGap="5px">
       <button
         mat-fab
         *ngFor="let c of colors; index as i"
         class="color-box"
         [style.backgroundColor]="c"
+        (click)="colorAdd(i)"
       ></button>
-      <button mat-fab (click)="colorAdd()">Add</button>
     </div>
-
-    <input type="color" style="display: hidden" />
   </section>
 
   <cdk-virtual-scroll-viewport [itemSize]="150" class="example-viewport">
