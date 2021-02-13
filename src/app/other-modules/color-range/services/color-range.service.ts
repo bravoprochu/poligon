@@ -28,7 +28,7 @@ export class ColorRangeService {
 
   removeFromRange(color: IColorRangeItem) {
     const idx = this.colorRanges.indexOf(color);
-    if (idx > -1) {
+    if (this.colorRanges.length > 1 && idx > -1) {
       this.colorRanges.splice(idx, 1);
     }
     this.fixRightContinuity();
