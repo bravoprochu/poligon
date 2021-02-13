@@ -1,0 +1,56 @@
+<h1 class="mat-dialog-title">Color range update</h1>
+<div class="mat-dialog-content">
+  <div fxLayout="column" [formGroup]="rForm">
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="min" placeholder="min" type="number" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="max" placeholder="max" type="number" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field fxFill>
+        <input matInput formControlName="color" type="color" />
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div class="mat-dialog-actions" fxLayout fxLayoutAlign="space-between">
+  <div>
+    <button
+      [disabled]="rForm.invalid || rForm.pristine"
+      mat-mini-fab
+      (click)="updateColor()"
+      matTooltip="update color range"
+      color="primary"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+    <button
+      [disabled]="rForm.pristine"
+      mat-mini-fab
+      (click)="resetData()"
+      matTooltip="reset data"
+      color="primary"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <button
+      mat-mini-fab
+      (click)="removeColor()"
+      color="warn"
+      matTooltip="remove this range"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-mini-fab mat-dialog-close color="primary" matTooltip="close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
