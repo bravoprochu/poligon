@@ -25,20 +25,19 @@ export class ColorRangeComponent implements OnInit {
     this.isDestroyed$.unsubscribe();
   }
 
-  colorSelected?: IColorRangeItem;
-
   isDestroyed$: Subject<boolean> = new Subject();
-  isEditMode: boolean = false;
   newColorRange?: IColorRangeItem;
 
   ngOnInit(): void {
     this.initColors();
   }
 
-  changeColor(color: IColorRangeItem) {
-    this.colorSelected = color;
-    this.isEditMode = true;
+  add() {
+    this.colorService.addNewColorRange();
+    this.changeColor(this.colorService.getLastColorRange());
+  }
 
+  changeColor(color: IColorRangeItem) {
     const colorChangeDialog = this.dialog.open(ColorChangeDialogComponent, {
       data: {
         selectedColorRange: color,

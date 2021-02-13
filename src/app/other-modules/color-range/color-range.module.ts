@@ -12,12 +12,14 @@ import { MatInputModule } from '@angular/material/input';
 import { ColorChangeDialogComponent } from './components/color-change-dialog/color-change-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonDialogsModule } from '../dialogs/common-dialogs.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   MatFormFieldModule,
   MatButtonModule,
   MatDialogModule,
+  MatDividerModule,
   MatIconModule,
   MatInputModule,
   MatTooltipModule,

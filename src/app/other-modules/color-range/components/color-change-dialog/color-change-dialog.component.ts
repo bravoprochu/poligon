@@ -69,12 +69,6 @@ export class ColorChangeDialogComponent implements OnInit {
         (error) => console.log('takNieClosed error', error),
         () => console.log('takNieClosed completed..')
       );
-
-    // if (this.colorSelected) {
-    //   this.colorService.removeFromRange(this.colorSelected!);
-    // }
-    // this.colorSelected = undefined;
-    // this.isEditMode = false;
   }
 
   updateColor() {

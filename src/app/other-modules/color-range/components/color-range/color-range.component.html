@@ -2,7 +2,7 @@
   <section class="color-config-container">
     <h4 class="mat-h4">Price color scale</h4>
 
-    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="start center">
       <button
         mat-fab
         *ngFor="let c of colors; index as i"
@@ -11,6 +11,11 @@
         (click)="changeColor(c)"
         matTooltip="{{ c.min }} - {{ c.max }}"
       ></button>
+      <div class="vertical-space">&nbsp;</div>
+
+      <button mat-fab (click)="add()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </section>
 </section>

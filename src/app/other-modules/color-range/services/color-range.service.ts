@@ -10,6 +10,11 @@ export class ColorRangeService {
 
   colorRanges = [] as IColorRangeItem[];
 
+  addNewColorRange() {
+    const last = this.getLastColorRange();
+    this.addToRange(last.color, last.max + 200);
+  }
+
   addToRange(color: string, max: number) {
     const lastMax =
       this.colorRanges.length > 0
@@ -40,6 +45,10 @@ export class ColorRangeService {
       min: [null, Validators.required],
       color: [null, Validators.required],
     });
+  }
+
+  getLastColorRange(): IColorRangeItem {
+    return this.colorRanges[this.colorRanges.length - 1];
   }
 
   fixRightContinuity() {
