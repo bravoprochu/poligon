@@ -54,17 +54,25 @@ export class ColorRangeComponent implements OnInit {
   }
 
   initColors() {
-    this.colorService.addToColorRange('#E72DFC', 200);
-    this.colorService.addToColorRange('#D9279F', 400);
-    this.colorService.addToColorRange('#F03756', 500);
-    this.colorService.addToColorRange('#D95C4E', 600);
-    this.colorService.addToColorRange('#FC8B65', 1500);
-    this.colorService.addToColorRange('#cB8B65', 2000);
-    this.colorService.addToColorRange('#DB8B65', 2400);
+    this.colorService.addToRange('#E72DFC', 200);
+    this.colorService.addToRange('#D9279F', 400);
+    this.colorService.addToRange('#F03756', 500);
+    this.colorService.addToRange('#D95C4E', 600);
+    this.colorService.addToRange('#FC8B65', 1500);
+    this.colorService.addToRange('#cB8B65', 2000);
+    this.colorService.addToRange('#DB8B65', 2400);
   }
 
   initForms() {
     this.rForm = this.colorService.getColorForm$(this.fb);
+  }
+
+  removeColor() {
+    if (this.colorSelected) {
+      this.colorService.removeFromRange(this.colorSelected!);
+    }
+    this.colorSelected = undefined;
+    this.isEditMode = false;
   }
 
   updateColor() {

@@ -10,7 +10,7 @@ export class ColorRangeService {
 
   colorRanges = [] as IColorRangeItem[];
 
-  addToColorRange(color: string, max: number) {
+  addToRange(color: string, max: number) {
     const lastMax =
       this.colorRanges.length > 0
         ? this.colorRanges[this.colorRanges.length - 1].max
@@ -26,12 +26,36 @@ export class ColorRangeService {
     } as IColorRangeItem);
   }
 
+  removeFromRange(color: IColorRangeItem) {
+    const idx = this.colorRanges.indexOf(color);
+    if (idx > -1) {
+      this.colorRanges.splice(idx, 1);
+    }
+    this.fixRightContinuity();
+  }
+
   getColorForm$(fb: FormBuilder): FormGroup {
     return fb.group({
       max: [null, Validators.required],
       min: [null, Validators.required],
       color: [null, Validators.required],
     });
+  }
+
+  fixRightContinuity() {
+    /**
+     * to keep continuity
+     * current max is next min..
+     *
+     */
+    for (let index = 0; index < this.colorRanges.length; index++) {
+      const color = this.colorRanges[index];
+
+      const idxNext = index + 1;
+      if (idxNext < this.colorRanges.length) {
+        color.max = this.colorRanges[idxNext].min;
+      }
+    }
   }
 
   fixColorRanges(selected: IColorRangeItem, range: IColorRangeItem) {
