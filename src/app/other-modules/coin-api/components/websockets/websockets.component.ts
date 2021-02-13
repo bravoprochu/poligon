@@ -6,10 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  MatFormField,
-  MatFormFieldControl,
-} from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ICoinApiTradesLatest } from '../../interfaces/i-coin-api-trades-latest';

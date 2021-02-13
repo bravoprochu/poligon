@@ -24,40 +24,7 @@
   </div>
 </div>
 
-<p>color-range works!</p>
 <section class="container">
-  <section class="color-config-container">
-    <input #colorInput type="color" style="display: none" />
-    <h4 class="mat-h4">Price color scale</h4>
-    <mat-form-field>
-      <input
-        matInput
-        [formControl]="colorGradeMinValue$"
-        placeholder="min"
-        type="number"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        matInput
-        [formControl]="colorGradeMaxValue$"
-        placeholder="max"
-        type="number"
-      />
-    </mat-form-field>
-
-    <div fxLayout="row wrap" fxLayoutGap="5px">
-      <button
-        mat-fab
-        *ngFor="let c of colors; index as i"
-        class="color-box"
-        [style.backgroundColor]="c"
-        (click)="colorAdd(i)"
-      ></button>
-    </div>
-  </section>
-
   <cdk-virtual-scroll-viewport [itemSize]="150" class="example-viewport">
     <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
       <ng-container

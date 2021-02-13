@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { IColorRangeItem } from '../interfaces/i-color-range-item';
-import { ColorRangeService } from './color-range.service';
+import { ColorRangeService } from '../services/color-range.service';
 
 @Component({
   selector: 'app-color-range',

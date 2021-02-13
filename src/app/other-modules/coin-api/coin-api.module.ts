@@ -11,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { WebsocketsComponent } from './components/websockets/websockets.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ColorRangeComponent } from './components/websockets/color-range/color-range.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ColorRangeModule } from '../color-range/color-range.module';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -22,10 +22,11 @@ const IMPORT_EXPORT_MODULES = [
   MatIconModule,
   MatTooltipModule,
   ScrollingModule,
+  ColorRangeModule,
 ];
 
 @NgModule({
-  declarations: [CoinApiComponent, WebsocketsComponent, ColorRangeComponent],
+  declarations: [CoinApiComponent, WebsocketsComponent],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],
   providers: [CoinApiService],
