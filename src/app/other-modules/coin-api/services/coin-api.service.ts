@@ -156,6 +156,7 @@ export class CoinApiService {
       apikey: this.coinApiIoKey,
       heartbeat: false,
       subscribe_data_type: ['trade'],
+      subscribe_filter_symbol_id: ['COINBASE_'] as string[],
     } as ICoinApiWebsocketHello;
 
     this.wsSend(quotesReq);

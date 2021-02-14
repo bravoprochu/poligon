@@ -33,6 +33,8 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
 
   isDestroyed$: Subject<boolean> = new Subject();
   isConnected = false;
+  isGettingTrades = false;
+  isTradeExpanded = false;
   colorGrade$: FormControl = new FormControl();
   colorGradeMaxValue$: FormControl = new FormControl(2000);
   colorGradeMinValue$: FormControl = new FormControl(0);
@@ -42,10 +44,12 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.coinApiService.wsInit();
     this.initObservable();
+    this.initTradeExpanded();
   }
 
   close() {
     this.coinApiService.wsClose();
+    this.isGettingTrades = false;
   }
 
   initObservable() {
@@ -74,6 +78,12 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
 
   initTrades() {
     this.coinApiService.wsInitQuotes();
+    this.isGettingTrades = false;
+  }
+  initTradeExpanded() {
+    setInterval(() => {
+      this.isTradeExpanded = true;
+    }, 3000);
   }
 
   open() {

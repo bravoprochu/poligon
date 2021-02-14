@@ -16,12 +16,12 @@
   </div>
 </mat-expansion-panel>
 
-<mat-expansion-panel hideToggle>
+<mat-expansion-panel hideToggle [expanded]="isTradeExpanded">
   <mat-expansion-panel-header>
     <mat-panel-title> Trades </mat-panel-title>
     <mat-panel-description>
       Get Trades from websocket Coin API service
-      <span *ngIf="trades.length > 0">&nbsp;{{ trades.length }}</span>
+      <span *ngIf="trades.length > 0">&nbsp;{{ trades.length }} items</span>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <div fxLayout="column" fxLayoutAlign="space-between" class="trades-container">
@@ -40,9 +40,10 @@
     <div fxLayout fxLayoutGap="5px">
       <button
         *ngIf="isConnected"
+        [disabled]="isGettingTrades"
         mat-raised-button
         color="accent"
-        (click)="initTrades()"
+        (click)="initTrades(); isGettingTrades = true"
       >
         getTrades
       </button>
