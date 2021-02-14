@@ -6,8 +6,18 @@
 .color-config-container {
   padding: 2em;
 }
-.container {
-  max-width: 960px;
+.config-container {
+  min-height: 200px;
+}
+
+.percentage-container {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 10px;
+}
+.percentage-container > div {
+  cursor: pointer;
 }
 
 .vertical-space {

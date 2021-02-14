@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ColorChangeDialogComponent } from './components/color-change-dialog/color-change-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonDialogsModule } from '../dialogs/common-dialogs.module';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -20,6 +21,7 @@ const IMPORT_EXPORT_MODULES = [
   MatButtonModule,
   MatDialogModule,
   MatDividerModule,
+  MatExpansionModule,
   MatIconModule,
   MatInputModule,
   MatTooltipModule,

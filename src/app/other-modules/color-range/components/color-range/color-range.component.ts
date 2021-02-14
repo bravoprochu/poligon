@@ -4,7 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { IColorRangeDialogData } from '../../interfaces/i-color-range-dialog-data';
 import { IColorRangeItem } from '../../interfaces/i-color-range-item';
+import { IColorRangePercantage } from '../../interfaces/i-color-range-percentaga';
 import { ColorRangeService } from '../../services/color-range.service';
+import { IColorRangeInfo } from '../../services/i-color-range-info';
 import { ColorChangeDialogComponent } from '../color-change-dialog/color-change-dialog.component';
 
 @Component({
@@ -25,11 +27,13 @@ export class ColorRangeComponent implements OnInit {
     this.isDestroyed$.unsubscribe();
   }
 
+  isExpanded = true;
   isDestroyed$: Subject<boolean> = new Subject();
   newColorRange?: IColorRangeItem;
 
   ngOnInit(): void {
     this.initColors();
+    this.initExpandedPanel();
   }
 
   add() {
@@ -64,13 +68,24 @@ export class ColorRangeComponent implements OnInit {
     this.colorService.addToRange('#E72DFC', 200);
     this.colorService.addToRange('#D9279F', 400);
     this.colorService.addToRange('#F03756', 500);
-    this.colorService.addToRange('#D95C4E', 600);
     this.colorService.addToRange('#FC8B65', 1500);
-    this.colorService.addToRange('#cB8B65', 2000);
-    this.colorService.addToRange('#DB8B65', 2400);
+  }
+
+  initExpandedPanel() {
+    setTimeout(() => {
+      this.isExpanded = false;
+    }, 2500);
   }
 
   get colors(): IColorRangeItem[] {
     return this.colorService.colorRanges;
+  }
+
+  get percentageRange(): IColorRangePercantage[] {
+    return this.colorService.getPercentageRange();
+  }
+
+  get rangeInfo(): IColorRangeInfo {
+    return this.colorService.getRangeInfo();
   }
 }

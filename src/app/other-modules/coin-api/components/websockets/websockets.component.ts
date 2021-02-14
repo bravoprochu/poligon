@@ -8,6 +8,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ColorRangeService } from 'src/app/other-modules/color-range/services/color-range.service';
 import { ICoinApiTradesLatest } from '../../interfaces/i-coin-api-trades-latest';
 import { CoinApiService } from '../../services/coin-api.service';
 
@@ -18,7 +19,10 @@ import { CoinApiService } from '../../services/coin-api.service';
 })
 export class WebsocketsComponent implements OnInit, OnDestroy {
   @ViewChild('colorInput') colorInput!: ElementRef;
-  constructor(public coinApiService: CoinApiService) {}
+  constructor(
+    public coinApiService: CoinApiService,
+    private colorRangeService: ColorRangeService
+  ) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -82,13 +86,6 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   }
 
   setBgColor(price: number): string {
-    if (price >= this.colorGradeMaxValue$.value) {
-      return this.colors[this.colors.length - 1];
-    } else if (price <= this.colorGradeMinValue$.value) {
-      return this.colors[0];
-    }
-    const priceRatio = price / this.colorGradeMaxValue$.value;
-    const idx = Math.floor(this.colors.length * priceRatio);
-    return this.colors[idx];
+    return this.colorRangeService.getColorByValue(price, 'green');
   }
 }

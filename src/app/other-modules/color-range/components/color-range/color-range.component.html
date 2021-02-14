@@ -1,21 +1,44 @@
-<section class="container">
-  <section class="color-config-container">
-    <h4 class="mat-h4">Price color scale</h4>
+<mat-expansion-panel hideToggle [expanded]="isExpanded">
+  <mat-expansion-panel-header>
+    <mat-panel-title> ColorRange </mat-panel-title>
+    <mat-panel-description>
+      Config colors for Your data range
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div fxLayout="column" fxLayoutAlign="space-between" class="config-container">
+    <div fxLayout fxLayoutAlign="space-between">
+      <div
+        fxFlex.gt-sm="60"
+        fxLayout="row wrap"
+        fxLayoutGap="5px"
+        fxLayoutAlign="start center"
+      >
+        <button
+          mat-fab
+          *ngFor="let c of colors; index as i"
+          class="color-box"
+          [style.backgroundColor]="c.color"
+          (click)="changeColor(c)"
+          matTooltip="{{ c.min }} - {{ c.max }}"
+        ></button>
+        <div class="vertical-space">&nbsp;</div>
 
-    <div fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="start center">
-      <button
-        mat-fab
-        *ngFor="let c of colors; index as i"
-        class="color-box"
-        [style.backgroundColor]="c.color"
-        (click)="changeColor(c)"
-        matTooltip="{{ c.min }} - {{ c.max }}"
-      ></button>
-      <div class="vertical-space">&nbsp;</div>
-
-      <button mat-fab (click)="add()">
-        <mat-icon>add</mat-icon>
-      </button>
+        <button mat-mini-fab color="primary" (click)="add()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div>
+        <h4 class="mat-h4">{{ rangeInfo.info }}</h4>
+      </div>
     </div>
-  </section>
-</section>
+
+    <div fxLayout class="percentage-container">
+      <div
+        *ngFor="let percentage of percentageRange"
+        [fxFlex]="percentage.percentage * 100"
+        [style.backgroundColor]="percentage.color"
+        (click)="changeColor(percentage)"
+      ></div>
+    </div>
+  </div>
+</mat-expansion-panel>

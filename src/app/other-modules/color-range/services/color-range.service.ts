@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IColorRangeItem } from '../interfaces/i-color-range-item';
 import { IColorRangePercantage } from '../interfaces/i-color-range-percentaga';
+import { IColorRangeInfo } from './i-color-range-info';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +65,19 @@ export class ColorRangeService {
       }
     }
     return res;
+  }
+
+  getRangeInfo(): IColorRangeInfo {
+    const min = this.colorRanges[0].min;
+    const max = this.getLastColorRange().max;
+    const itemCount = this.colorRanges.length;
+
+    return {
+      max: max,
+      min: min,
+      itemsCount: this.colorRanges.length,
+      info: `Range from ${min} to ${max}, has: ${itemCount} items.`,
+    } as IColorRangeInfo;
   }
 
   getPercentageRange(): IColorRangePercantage[] {
