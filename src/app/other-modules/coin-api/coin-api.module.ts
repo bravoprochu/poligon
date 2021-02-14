@@ -13,11 +13,13 @@ import { WebsocketsComponent } from './components/websockets/websockets.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ColorRangeModule } from '../color-range/color-range.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatTooltipModule,

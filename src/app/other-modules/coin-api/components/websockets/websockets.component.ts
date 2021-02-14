@@ -31,8 +31,8 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
     this.close();
   }
 
-  colors: string[] = [];
   isDestroyed$: Subject<boolean> = new Subject();
+  isConnected = false;
   colorGrade$: FormControl = new FormControl();
   colorGradeMaxValue$: FormControl = new FormControl(2000);
   colorGradeMinValue$: FormControl = new FormControl(0);
@@ -42,26 +42,10 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.coinApiService.wsInit();
     this.initObservable();
-    this.initColors();
   }
 
   close() {
     this.coinApiService.wsClose();
-  }
-
-  colorAdd(index: number) {
-    const input = this.colorInput.nativeElement as HTMLInputElement;
-    input.value = this.colors[index];
-
-    input.click();
-    input.onchange = (ev) => {
-      console.log(ev, input.value);
-      this.colors[index] = input.value;
-    };
-  }
-
-  initColors() {
-    this.colors = ['#E72DFC', '#D9279F', '#F03756', '#D95C4E', '#FC8B65'];
   }
 
   initObservable() {
@@ -75,9 +59,20 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
         (error) => console.log('trades error', error),
         () => console.log('trades completed..')
       );
+
+    this.coinApiService.isWebsocketConnected$
+      .pipe(takeUntil(this.isDestroyed$))
+      .subscribe(
+        (isConnected: any) => {
+          console.log('isConnected subs:', isConnected);
+          this.isConnected = isConnected;
+        },
+        (error) => console.log('isConnected error', error),
+        () => console.log('isConnected completed..')
+      );
   }
 
-  initQuotes() {
+  initTrades() {
     this.coinApiService.wsInitQuotes();
   }
 

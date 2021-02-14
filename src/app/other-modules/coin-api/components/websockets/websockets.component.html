@@ -1,80 +1,118 @@
-<p>websockets works!</p>
-
 <app-color-range></app-color-range>
 
-<hr />
-<hr />
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Connection settings </mat-panel-title>
+    <mat-panel-description>
+      Active status:&nbsp;
+      <span *ngIf="isConnected"><strong>is connected</strong></span>
+      <span *ngIf="!isConnected">disconnected</span>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
 
-<button mat-raised-button color="primary" (click)="open()">connect</button>
-<button mat-raised-button color="warn" (click)="close()">
-  close connection
-</button>
-<div
-  fxLayout
-  fxLayoutGap="10px"
-  *ngIf="coinApiService.isWebsocketConnected$ | async"
->
-  <h3 class="mat-h3">Is connected !</h3>
-  <button mat-raised-button color="accent" (click)="initQuotes()">
-    getQuotes
-  </button>
-
-  <div>
-    {{ trades.length }}
+  <div fxLayout>
+    <ng-container *ngTemplateOutlet="buttonConnect"></ng-container>
+    <ng-container *ngTemplateOutlet="buttonDisconnect"></ng-container>
   </div>
-</div>
+</mat-expansion-panel>
 
-<section class="container">
-  <cdk-virtual-scroll-viewport [itemSize]="150" class="example-viewport">
-    <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
-      <ng-container
-        *ngTemplateOutlet="
-          trade2;
-          context: { $implicit: t, color: setBgColor(t.price) }
-        "
-      ></ng-container>
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Trades </mat-panel-title>
+    <mat-panel-description>
+      Get Trades from websocket Coin API service
+      <span *ngIf="trades.length > 0">&nbsp;{{ trades.length }}</span>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div fxLayout="column" fxLayoutAlign="space-between" class="trades-container">
+    <div>
+      <cdk-virtual-scroll-viewport [itemSize]="150" class="example-viewport">
+        <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
+          <ng-container
+            *ngTemplateOutlet="
+              trade2;
+              context: { $implicit: t, color: setBgColor(t.price) }
+            "
+          ></ng-container>
+        </div>
+      </cdk-virtual-scroll-viewport>
     </div>
-  </cdk-virtual-scroll-viewport>
-</section>
+    <div fxLayout fxLayoutGap="5px">
+      <button
+        *ngIf="isConnected"
+        mat-raised-button
+        color="accent"
+        (click)="initTrades()"
+      >
+        getTrades
+      </button>
+      <ng-container *ngTemplateOutlet="buttonConnect"></ng-container>
+      <ng-container *ngTemplateOutlet="buttonDisconnect"></ng-container>
+    </div>
+  </div>
 
-<ng-template #trade let-item let-color="color">
-  <div class="price-container" [style.borderColor]="color">
-    <div fxLayout fxLayoutAlign="space-between center">
-      <div fxLayout="column">
-        <h4 class="mat-h4">
-          {{ item.time_exchange | date: "medium" }}
-        </h4>
-        <div class="mat-small" fxFlex="40">
-          {{ item.uuid }}
+  <ng-template #trade let-item let-color="color">
+    <div class="price-container" [style.borderColor]="color">
+      <div fxLayout fxLayoutAlign="space-between center">
+        <div fxLayout="column">
+          <h4 class="mat-h4">
+            {{ item.time_exchange | date: "medium" }}
+          </h4>
+          <div class="mat-small" fxFlex="40">
+            {{ item.uuid }}
+          </div>
+          <div class="mat-small">
+            {{ item.size }}
+          </div>
         </div>
-        <div class="mat-small">
-          {{ item.size }}
+        <div fxFlex="40" class="mat-display-2">
+          {{ item.price }}
         </div>
       </div>
-      <div fxFlex="40" class="mat-display-2">
-        {{ item.price }}
+      <div class="price-fiszka" [style.backgroundColor]="color">&nbsp;</div>
+    </div>
+  </ng-template>
+
+  <ng-template #trade2 let-item let-color="color">
+    <div>
+      <h3 class="mat-h3">
+        <span class="mat-caption">exchange time: </span>
+        {{ item.time_exchange | date: "medium" }}
+      </h3>
+      <div class="mat-small">
+        <span class="mat-caption">uuuid: </span>{{ item.uuid }}
       </div>
+      <h4 class="mat-h4">
+        <span class="mat-caption">size: </span>{{ item.size }}
+      </h4>
+    </div>
+    <div class="mat-display-2">
+      <span class="mat-caption">price: </span>
+      {{ item.price }}
     </div>
     <div class="price-fiszka" [style.backgroundColor]="color">&nbsp;</div>
-  </div>
+  </ng-template>
+</mat-expansion-panel>
+
+<ng-template #buttonDisconnect>
+  <button
+    #buttonDisconnect
+    *ngIf="isConnected"
+    mat-raised-button
+    color="warn"
+    (click)="close()"
+  >
+    close connection
+  </button>
 </ng-template>
 
-<ng-template #trade2 let-item let-color="color">
-  <div>
-    <h3 class="mat-h3">
-      <span class="mat-caption">exchange time: </span>
-      {{ item.time_exchange | date: "medium" }}
-    </h3>
-    <div class="mat-small">
-      <span class="mat-caption">uuuid: </span>{{ item.uuid }}
-    </div>
-    <h4 class="mat-h4">
-      <span class="mat-caption">size: </span>{{ item.size }}
-    </h4>
-  </div>
-  <div class="mat-display-2">
-    <span class="mat-caption">price: </span>
-    {{ item.price }}
-  </div>
-  <div class="price-fiszka" [style.backgroundColor]="color">&nbsp;</div>
+<ng-template #buttonConnect>
+  <button
+    *ngIf="!isConnected"
+    mat-raised-button
+    color="primary"
+    (click)="open()"
+  >
+    connect to COIN API websocket server
+  </button>
 </ng-template>
