@@ -1,135 +1,14 @@
-<p>coin-api works!</p>
-
 <a routerLink="/home">go Home</a>
 
-<div fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="space-between">
-  <app-basic-table
-    #orderBook
-    title="Coin API Order Book"
-    subtitle="Current - expandable"
-    [dataSource]="dataSourceOrderBook"
-    [columnWidthDefault]="350"
-  >
-    <ng-template #expandedRow let-element>
-      <div fxLayout fxLayoutGap="20px">
-        <ng-container
-          *ngTemplateOutlet="
-            asksOrBids;
-            context: { name: 'Asks', data: element.asks }
-          "
-        ></ng-container>
-        <ng-container
-          *ngTemplateOutlet="
-            asksOrBids;
-            context: { name: 'Bids', data: element.bids }
-          "
-        ></ng-container>
-      </div>
-    </ng-template>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="../tables">Tables</a>
+    </li>
+    <li>
+      <a routerLink="../websockets">Websockets</a>
+    </li>
+  </ul>
+</nav>
 
-    <ng-template #asksOrBids let-data="data" let-name="name">
-      <div fxLayout="column">
-        <div>
-          <h3 class="mat-h3">
-            <strong>{{ name }}</strong> ({{ data.length }})
-          </h3>
-        </div>
-        <div>
-          <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-            <div
-              *cdkVirtualFor="let item of data; index as i"
-              class="example-item"
-            >
-              <div fxLayout fxLayoutAlign="start center">
-                <div fxFlex="15">{{ i + 1 }}.</div>
-                <div fxFlex="85" fxLayout fxLayoutAlign="space-between">
-                  <div fxLayout="column" fxLayoutAlign="start start">
-                    <div>Price:</div>
-                    <div>Size:</div>
-                  </div>
-                  <div fxLayout="column" fxLayoutAlign="start end">
-                    <div>
-                      <strong>{{ item.price }}</strong>
-                    </div>
-                    <div>
-                      <strong>{{ item.size }}</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr />
-            </div>
-          </cdk-virtual-scroll-viewport>
-        </div>
-      </div>
-    </ng-template>
-  </app-basic-table>
-
-  <app-basic-table
-    #quotes
-    title="Coin API - Quotes"
-    subtitle="Awesome table"
-    [dataSource]="dataSourceQuotes"
-  >
-    <ng-template #expandedRow let-element>
-      <div
-        *ngIf="element.last_trade"
-        fxLayout
-        fxLayoutGap="10px"
-        fxLayoutAlign="space-around center"
-      >
-        <div class="border">
-          <div class="mat-display-4">
-            <span class="mat-small">prize: </span>
-            {{ element.last_trade.price }}
-          </div>
-          <div class="mat-display-3">
-            <span class="mat-small">size: </span>{{ element.last_trade.size }}
-          </div>
-        </div>
-        <div fxFlex="1 1 450px">
-          <div fxLayout="column">
-            <div class="mat-caption">
-              uuid:
-              <strong>{{ element.last_trade.uuid }}</strong>
-            </div>
-            <div>
-              <span
-                >trade time:
-                <strong>{{
-                  element.last_trade.time_exchange | date: "medium"
-                }}</strong>
-              </span>
-            </div>
-            <span
-              >coinAPI time:
-              <strong>{{
-                element.last_trade.time_coinapi | date: "medium"
-              }}</strong>
-            </span>
-          </div>
-        </div>
-        <div>
-          <pre>{{ element | json }}</pre>
-        </div>
-      </div>
-    </ng-template>
-  </app-basic-table>
-
-  <app-basic-table
-    title="Coin API - Exchanges"
-    subtitle="Awesome table"
-    [dataSource]="dataSourceExchanges"
-  ></app-basic-table>
-
-  <app-basic-table
-    title="Coin API - Trades /latest"
-    subtitle="Awesome table"
-    [dataSource]="dataSourceTrades"
-  ></app-basic-table>
-
-  <hr />
-  <!-- <app-coin-api-quotes></app-coin-api-quotes>
-  <app-coin-api-exchanges></app-coin-api-exchanges>
-  <app-trades></app-trades> -->
-</div>
+<router-outlet name="coinApi"></router-outlet>

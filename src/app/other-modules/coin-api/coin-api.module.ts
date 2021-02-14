@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ColorRangeModule } from '../color-range/color-range.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TablesComponent } from './components/tables/tables.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -28,7 +29,7 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [CoinApiComponent, WebsocketsComponent],
+  declarations: [CoinApiComponent, WebsocketsComponent, TablesComponent],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],
   providers: [CoinApiService],
