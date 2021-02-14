@@ -47,6 +47,19 @@ export class ColorRangeService {
     });
   }
 
+  getRangeBasedOnValue(value: number): IColorRangeItem {
+    let res = {} as IColorRangeItem;
+    for (let index = 0; index < this.colorRanges.length; index++) {
+      const color = this.colorRanges[index];
+
+      if (value >= color.min && value <= color.max) {
+        res = color;
+        break;
+      }
+    }
+    return res;
+  }
+
   getLastColorRange(): IColorRangeItem {
     return this.colorRanges[this.colorRanges.length - 1];
   }
