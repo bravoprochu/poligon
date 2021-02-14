@@ -47,6 +47,11 @@ export class ColorRangeService {
     });
   }
 
+  getColorByValue(value: number, defaultColor = 'white'): string {
+    const color = this.getRangeBasedOnValue(value);
+    return color.color ? color.color : defaultColor;
+  }
+
   getRangeBasedOnValue(value: number): IColorRangeItem {
     let res = {} as IColorRangeItem;
     for (let index = 0; index < this.colorRanges.length; index++) {
