@@ -1,7 +1,7 @@
 <div
   class="menu-container"
   fxLayout="column"
-  fxLayoutAlign="space-between center"
+  fxLayoutAlign="space-between start"
 >
   <section *ngIf="bookmarked.length > 0" class="bookmark">
     <h4 class="mat-h4">bookmark</h4>
@@ -28,47 +28,44 @@
     />
   </mat-form-field>
 
-  <nav>
-    <ul fxFill>
-      <ng-container *ngFor="let item of menu">
-        <ng-container *ngIf="!item.isBookmarked">
-          <ng-container
-            *ngTemplateOutlet="menuItem; context: { data: item, other: 'whaa' }"
-          ></ng-container>
-        </ng-container>
+  <nav fxFill>
+    <ng-container *ngFor="let item of menu">
+      <ng-container *ngIf="!item.isBookmarked">
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { data: item, other: 'whaa' }"
+        ></ng-container>
       </ng-container>
-    </ul>
+    </ng-container>
   </nav>
 </div>
 
 <ng-template #menuItem let-item="data">
-  <li>
-    <div
-      *ngIf="!item.isBookmarked"
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
-    >
-      <a [routerLink]="item.route">
-        <div fxLayout fxLayoutGap="5px" fxLayoutAlign="start center">
-          <div>
-            <mat-icon color="primary">{{ item.icon }}</mat-icon>
-          </div>
+  <div
+    class="menu-item"
+    *ngIf="!item.isBookmarked"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <a [routerLink]="item.route">
+      <div fxLayout fxLayoutGap="5px" fxLayoutAlign="start center">
+        <div>
+          <mat-icon color="primary">{{ item.icon }}</mat-icon>
+        </div>
 
-          <div fxLayout="column" fxLayoutAlign="center start">
-            <div class="mat-h3">
-              {{ item.caption | uppercase }}
-            </div>
-            <div class="mat-small">
-              {{ item.group }}
-            </div>
+        <div fxLayout="column" fxLayoutAlign="center start">
+          <div class="mat-h3">
+            {{ item.caption | uppercase }}
+          </div>
+          <div class="mat-small">
+            {{ item.group }}
           </div>
         </div>
-      </a>
-      <div>
-        <mat-icon (click)="bookmark(item)" mat-mini-fab color="primary"
-          >favorite</mat-icon
-        >
       </div>
+    </a>
+    <div>
+      <mat-icon (click)="bookmark(item)" mat-mini-fab color="primary"
+        >favorite</mat-icon
+      >
     </div>
-  </li>
+  </div>
 </ng-template>

@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
   distinctUntilChanged,
-  map,
   startWith,
   takeUntil,
   throttleTime,
