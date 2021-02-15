@@ -1,0 +1,74 @@
+<div
+  class="menu-container"
+  fxLayout="column"
+  fxLayoutAlign="space-between center"
+>
+  <section *ngIf="bookmarked.length > 0" class="bookmark">
+    <h4 class="mat-h4">bookmark</h4>
+    <mat-chip-list>
+      <ng-container *ngFor="let booked of bookmarked">
+        <div>
+          &nbsp;
+          <mat-chip [routerLink]="booked.route"
+            >{{ booked.caption }}
+            <mat-icon (click)="remove(booked)" matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </div>
+      </ng-container>
+    </mat-chip-list>
+  </section>
+
+  <mat-form-field appearance="outline" fxFill>
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      [formControl]="search$"
+      type="search"
+      placeholder="search"
+    />
+  </mat-form-field>
+
+  <nav>
+    <ul fxFill>
+      <ng-container *ngFor="let item of menu">
+        <ng-container *ngIf="!item.isBookmarked">
+          <ng-container
+            *ngTemplateOutlet="menuItem; context: { data: item, other: 'whaa' }"
+          ></ng-container>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </nav>
+</div>
+
+<ng-template #menuItem let-item="data">
+  <li>
+    <div
+      *ngIf="!item.isBookmarked"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <a [routerLink]="item.route">
+        <div fxLayout fxLayoutGap="5px" fxLayoutAlign="start center">
+          <div>
+            <mat-icon color="primary">{{ item.icon }}</mat-icon>
+          </div>
+
+          <div fxLayout="column" fxLayoutAlign="center start">
+            <div class="mat-h3">
+              {{ item.caption | uppercase }}
+            </div>
+            <div class="mat-small">
+              {{ item.group }}
+            </div>
+          </div>
+        </div>
+      </a>
+      <div>
+        <mat-icon (click)="bookmark(item)" mat-mini-fab color="primary"
+          >favorite</mat-icon
+        >
+      </div>
+    </div>
+  </li>
+</ng-template>

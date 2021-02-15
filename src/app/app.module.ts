@@ -9,8 +9,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HomeComponent } from './sites/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MenuModule } from './other-modules/menu/menu.module';
 
-const IMPORT_EXPORT_MODULES = [FlexLayoutModule];
+const IMPORT_EXPORT_MODULES = [FlexLayoutModule, MenuModule];
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],

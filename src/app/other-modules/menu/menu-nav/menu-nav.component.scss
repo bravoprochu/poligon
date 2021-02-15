@@ -1,0 +1,32 @@
+$minWidth: 200px;
+
+.bookmark {
+  padding: 5px;
+}
+
+.menu-container {
+  padding: 5px;
+  min-width: $minWidth;
+}
+
+nav {
+  min-width: $minWidth;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 2px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+
+.mat-h3 {
+  padding: 0;
+  margin: 0;
+}
