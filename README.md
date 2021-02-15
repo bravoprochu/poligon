@@ -1,5 +1,28 @@
 # Poligon
 
+## color range module
+
+1. Color labels that can be used to color style any element
+
+a) setting - adding/removing/modifying value ranges e.g.
+0 - 100 ("red")
+100 - 150.5 ("blue")
+150.5 - 300 ("green")
+
+b) can be used by getting color by value (second value is default color if out of range) and setting it to visualise data (numbers)
+
+```
+  setBgColor(price: number): string {
+    return this.colorRangeService.getColorByValue(price, 'green');
+  }
+```
+
+c) angular material modals dialogs to update/delete
+
+## coin API websockets
+
+1.
+
 ## coin API - table template (data source)
 
 1. data table module
