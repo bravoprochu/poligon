@@ -168,12 +168,9 @@ export class CoinApiService {
 
   wsOnOpen(ev: any) {
     this.isWebsocketConnected$.next(true);
-
-    console.log('opening websocket', ev);
   }
 
   wsOnClose(ev: any) {
-    console.log('closing websocket', ev);
     this.isWebsocketConnected$.next(false);
   }
 
