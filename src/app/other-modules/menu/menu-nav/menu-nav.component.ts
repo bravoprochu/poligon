@@ -38,6 +38,10 @@ export class MenuNavComponent implements OnInit {
   }
 
   initObservables() {
+    /**
+     * menu search$
+     *
+     */
     this.search$.valueChanges
       .pipe(
         takeUntil(this.isDestroyed$),
@@ -47,7 +51,6 @@ export class MenuNavComponent implements OnInit {
       )
       .subscribe(
         (search$: any) => {
-          console.log('search$ subs:', search$);
           this.menuService.filterMenu(search$);
         },
         (error) => console.log('search$ error', error),

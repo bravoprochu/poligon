@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSortModule } from '@angular/material/sort';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -24,6 +25,7 @@ const IMPORT_EXPORT_MODULES = [
   MatIconModule,
   MatTooltipModule,
   RouterModule,
+  MatSortModule,
 ];
 
 @NgModule({

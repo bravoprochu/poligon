@@ -7,6 +7,7 @@ import { IMenuItem } from './interfaces/i-menu-item';
 export class MenuService {
   constructor() {}
 
+  activatedRoute = 'home';
   menu = [] as IMenuItem[];
   menuItemId = 0;
   menuOriginal = [] as IMenuItem[];

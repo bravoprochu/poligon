@@ -18,8 +18,9 @@ ul {
 }
 
 .menu-item {
+  min-height: 60px;
   padding: 2px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #e0e0e0;
   cursor: pointer;
 }
 a {
@@ -29,4 +30,21 @@ a {
 .mat-h3 {
   padding: 0;
   margin: 0;
+}
+
+.active-link {
+  border-bottom: 2px solid darkgoldenrod;
+  position: relative;
+}
+
+.active-link::before {
+  position: absolute;
+  content: "";
+  bottom: -10px;
+  left: -2.5%;
+  width: 105%;
+  height: 120%;
+  background-color: #3f51b5;
+  z-index: -1;
+  opacity: 0.1;
 }

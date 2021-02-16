@@ -1,9 +1,16 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
-import { map, shareReplay, takeUntil } from 'rxjs/operators';
+import { filter, map, shareReplay, takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/other-modules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  RouterEvent,
+} from '@angular/router';
+import { MenuService } from './other-modules/menu/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +26,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private menuService: MenuService
+  ) {}
 
   copyrights = 'bravoprochu 2021';
   menuItems = [] as IMenuItem[];
@@ -38,13 +48,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.drawer.openedChange.pipe(takeUntil(this.isDestroyed$)).subscribe(
-      (sideNavOpened: boolean) => {
-        this.isOpened = sideNavOpened;
-      },
-      (error) => console.log('sideNavOpened error', error),
-      () => console.log('sideNavOpened completed..')
-    );
+    this.initObservables();
   }
 
   initMenu() {
@@ -57,7 +61,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       {
         caption: 'coin api service',
         group: 'coin API ',
-        route: ['/coin-api/list'],
+        route: ['/coin-api/home'],
       },
       {
         caption: 'tables',
@@ -72,5 +76,19 @@ export class AppComponent implements OnInit, AfterViewInit {
         route: ['/coin-api/websockets'],
       },
     ] as IMenuItem[];
+  }
+
+  initObservables() {
+    /**
+     * sidenav drawer open
+     *
+     */
+    this.drawer.openedChange.pipe(takeUntil(this.isDestroyed$)).subscribe(
+      (sideNavOpened: boolean) => {
+        this.isOpened = sideNavOpened;
+      },
+      (error) => console.log('sideNavOpened error', error),
+      () => console.log('sideNavOpened completed..')
+    );
   }
 }
