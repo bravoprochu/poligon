@@ -10,7 +10,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { HomeComponent } from './sites/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuModule } from './other-modules/menu/menu.module';
-import { MainComponent } from './sites/main/main.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +20,7 @@ import { MatListModule } from '@angular/material/list';
 const IMPORT_EXPORT_MODULES = [FlexLayoutModule, MenuModule];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MainComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
