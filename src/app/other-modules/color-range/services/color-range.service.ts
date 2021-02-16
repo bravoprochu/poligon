@@ -117,11 +117,21 @@ export class ColorRangeService {
   fixColorRanges(selected: IColorRangeItem, range: IColorRangeItem) {
     let min = range.min;
     const oldRangeMin = this.colorRanges[0].min;
-    const max = range.max;
+    let max = range.max;
     const oldRangeMax = this.colorRanges[this.colorRanges.length - 1].max;
     const newColor = selected!.color;
 
     let newColors = [] as IColorRangeItem[];
+
+    /**
+     * PRE
+     * reverse range if needed
+     *
+     */
+    if (min > max) {
+      min = range.max;
+      max = range.min;
+    }
 
     /**
      * PRE
