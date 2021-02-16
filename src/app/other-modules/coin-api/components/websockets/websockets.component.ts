@@ -68,7 +68,6 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.isDestroyed$))
       .subscribe(
         (isConnected: any) => {
-          console.log('isConnected subs:', isConnected);
           this.isConnected = isConnected;
         },
         (error) => console.log('isConnected error', error),
