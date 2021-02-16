@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
+  debounceTime,
   distinctUntilChanged,
   startWith,
   takeUntil,
-  throttleTime,
 } from 'rxjs/operators';
 import { IMenuItem } from '../interfaces/i-menu-item';
 import { MenuService } from '../menu.service';
@@ -42,7 +42,7 @@ export class MenuNavComponent implements OnInit {
       .pipe(
         takeUntil(this.isDestroyed$),
         startWith(null),
-        throttleTime(750),
+        debounceTime(750),
         distinctUntilChanged()
       )
       .subscribe(
