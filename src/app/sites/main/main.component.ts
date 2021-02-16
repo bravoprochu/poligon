@@ -27,9 +27,11 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  copyrights = 'bravoprochu 2021';
   menuItems = [] as IMenuItem[];
   isDestroyed$: Subject<boolean> = new Subject();
   isOpened = false;
+  title = 'poligon';
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
