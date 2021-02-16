@@ -56,11 +56,11 @@ export class MenuNavComponent implements OnInit {
   }
 
   bookmark(item: IMenuItem) {
-    item.isBookmarked = true;
+    this.menuService.addToBookmark(item);
   }
 
   remove(item: IMenuItem) {
-    item.isBookmarked = false;
+    this.menuService.removeFromBookmark(item);
   }
 
   get menu(): IMenuItem[] {
@@ -68,6 +68,6 @@ export class MenuNavComponent implements OnInit {
   }
 
   get bookmarked(): IMenuItem[] {
-    return this.menuService.menu.filter((f) => f.isBookmarked);
+    return this.menuService.bookmark;
   }
 }
