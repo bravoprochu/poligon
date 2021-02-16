@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.initMenu();
+    this.initExtraMenu();
   }
 
   ngAfterViewInit(): void {
@@ -76,6 +77,26 @@ export class AppComponent implements OnInit, AfterViewInit {
         route: ['/coin-api/websockets'],
       },
     ] as IMenuItem[];
+  }
+
+  initExtraMenu() {
+    this.menuItems = [
+      ...this.menuItems,
+      ...this.menuItems.map((m) => {
+        let newItem = { ...m };
+        newItem.caption = newItem.caption + 'and ' + 1;
+        return newItem;
+      }),
+    ];
+
+    this.menuItems = [
+      ...this.menuItems,
+      ...this.menuItems.map((m) => {
+        let newItem = { ...m };
+        newItem.caption = newItem.caption + 'and ' + 2;
+        return newItem;
+      }),
+    ];
   }
 
   initObservables() {

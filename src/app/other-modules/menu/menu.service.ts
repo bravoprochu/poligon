@@ -20,7 +20,6 @@ export class MenuService {
   }
 
   addToBookmark(item: IMenuItem) {
-    item.isBookmarked = true;
     this.bookmark.push({ ...item } as IMenuItem);
   }
 
@@ -43,7 +42,6 @@ export class MenuService {
     const menuItem = this.menu.find((f) => f.id == item.id);
     if (bookIdx > -1 && menuItem) {
       this.bookmark.splice(bookIdx, 1);
-      menuItem.isBookmarked = false;
     }
   }
 }

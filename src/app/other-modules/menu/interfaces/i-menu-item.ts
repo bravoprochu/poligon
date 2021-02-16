@@ -4,6 +4,5 @@ export interface IMenuItem {
   group: string;
   icon: string;
   info: string;
-  isBookmarked: boolean;
   route: string[];
 }

@@ -1,7 +1,18 @@
-$minWidth: 200px;
+$minWidth: 250px;
+$itemHeight: 60px;
 
 .bookmark {
   padding: 5px;
+}
+
+.example-viewport {
+  width: 100%;
+  height: 240px;
+}
+
+.example-item {
+  position: relative;
+  height: $itemHeight;
 }
 
 .menu-container {
@@ -18,7 +29,7 @@ ul {
 }
 
 .menu-item {
-  min-height: 60px;
+  min-height: $itemHeight;
   padding: 2px;
   border-bottom: 2px solid #e0e0e0;
   cursor: pointer;
