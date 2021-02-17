@@ -14,7 +14,10 @@
       </button>
     </mat-toolbar>
 
-    <app-menu-nav [menuItems]="menuItems"></app-menu-nav>
+    <app-menu-nav
+      (menuSelected)="menuSelected($event)"
+      [menuItems]="menuItems"
+    ></app-menu-nav>
     <div class="copyrights">{{ copyrights }}</div>
   </mat-sidenav>
   <mat-sidenav-content>

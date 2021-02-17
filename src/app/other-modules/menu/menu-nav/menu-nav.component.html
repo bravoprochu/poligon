@@ -52,7 +52,7 @@
     fxLayout="row"
     fxLayoutAlign="space-between center"
   >
-    <a [routerLink]="item.route">
+    <a [routerLink]="item.route" (click)="menuSelected(item)">
       <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start center">
         <div>
           <mat-icon color="primary">&nbsp;{{ item.icon }}</mat-icon>

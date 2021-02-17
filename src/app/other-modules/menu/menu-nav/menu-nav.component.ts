@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
@@ -17,6 +24,7 @@ import { MenuService } from '../menu.service';
 })
 export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
+  @Output('menuSelected') menuChanged = new EventEmitter();
   constructor(private menuService: MenuService) {}
 
   isDestroyed$: Subject<boolean> = new Subject();
@@ -60,6 +68,10 @@ export class MenuNavComponent implements OnInit, OnDestroy {
 
   bookmark(item: IMenuItem): void {
     this.menuService.addToBookmark(item);
+  }
+
+  menuSelected(menuItem: IMenuItem): void {
+    this.menuChanged.emit(menuItem);
   }
 
   remove(item: IMenuItem): void {

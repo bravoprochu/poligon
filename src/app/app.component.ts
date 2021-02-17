@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, shareReplay, takeUntil } from 'rxjs/operators';
+import { filter, map, shareReplay, take, takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/other-modules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
 import { IS_HANDSET as IS_HANDSET } from './common-functions/is-handset';
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   menuItems = [] as IMenuItem[];
   isDestroyed$: Subject<boolean> = new Subject();
   isHandset$ = IS_HANDSET(this.breakpointObserver);
+  isHandset = false;
   isOpened = false;
   title = 'poligon';
 
@@ -103,5 +104,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       (error) => console.log('sideNavOpened error', error),
       () => console.log('sideNavOpened completed..')
     );
+
+    /**
+     * isHandset
+     *
+     */
+    this.isHandset$.pipe(takeUntil(this.isDestroyed$)).subscribe(
+      (isHandset: any) => {
+        this.isHandset = isHandset;
+      },
+      (error) => console.log('isHandset error', error),
+      () => console.log('isHandset completed..')
+    );
+  }
+
+  menuSelected(ev: IMenuItem) {
+    if (this.isHandset === true) {
+      this.drawer.close();
+    }
   }
 }
