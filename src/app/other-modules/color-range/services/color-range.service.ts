@@ -12,12 +12,12 @@ export class ColorRangeService {
 
   colorRanges = [] as IColorRangeItem[];
 
-  addNewColorRange() {
+  addNewColorRange(): void {
     const last = this.getLastColorRange();
     this.addToRange(last.color, last.max + 200);
   }
 
-  addToRange(color: string, max: number) {
+  addToRange(color: string, max: number): void {
     const lastMax =
       this.colorRanges.length > 0
         ? this.colorRanges[this.colorRanges.length - 1].max
@@ -33,7 +33,7 @@ export class ColorRangeService {
     } as IColorRangeItem);
   }
 
-  removeFromRange(color: IColorRangeItem) {
+  removeFromRange(color: IColorRangeItem): void {
     const idx = this.colorRanges.indexOf(color);
     if (this.colorRanges.length > 1 && idx > -1) {
       this.colorRanges.splice(idx, 1);
@@ -98,7 +98,7 @@ export class ColorRangeService {
     return this.colorRanges[this.colorRanges.length - 1];
   }
 
-  fixRightContinuity() {
+  fixRightContinuity(): void {
     /**
      * to keep continuity
      * current max is next min..
@@ -114,14 +114,14 @@ export class ColorRangeService {
     }
   }
 
-  fixColorRanges(selected: IColorRangeItem, range: IColorRangeItem) {
+  fixColorRanges(selected: IColorRangeItem, range: IColorRangeItem): void {
     let min = range.min;
     const oldRangeMin = this.colorRanges[0].min;
     let max = range.max;
     const oldRangeMax = this.colorRanges[this.colorRanges.length - 1].max;
     const newColor = selected!.color;
 
-    let newColors = [] as IColorRangeItem[];
+    const newColors = [] as IColorRangeItem[];
 
     /**
      * PRE

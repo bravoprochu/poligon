@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { HomeComponent } from './sites/home/home.component';
 
 const routes: Routes = [
@@ -13,8 +12,8 @@ const routes: Routes = [
       ),
   },
 
-  { path: '', redirectTo: 'coin-api', pathMatch: 'full' },
-  { path: '**', redirectTo: 'coin-api' },
+  { path: '', redirectTo: 'coin-api/websockets', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

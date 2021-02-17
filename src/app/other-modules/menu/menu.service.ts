@@ -13,17 +13,17 @@ export class MenuService {
   menuOriginal = [] as IMenuItem[];
   bookmark = [] as IMenuItem[];
 
-  addToMenu(menuItem: IMenuItem) {
+  addToMenu(menuItem: IMenuItem): void {
     menuItem.id = this.menuItemId;
     this.menuItemId++;
     this.menuOriginal.push(menuItem);
   }
 
-  addToBookmark(item: IMenuItem) {
+  addToBookmark(item: IMenuItem): void {
     this.bookmark.push({ ...item } as IMenuItem);
   }
 
-  filterMenu(searchPhrase: string) {
+  filterMenu(searchPhrase: string): void {
     if (!searchPhrase || searchPhrase.length == 0) {
       this.menu = [...this.menuOriginal];
       return;
@@ -37,7 +37,7 @@ export class MenuService {
     });
   }
 
-  removeFromBookmark(item: IMenuItem) {
+  removeFromBookmark(item: IMenuItem): void {
     const bookIdx = this.bookmark.indexOf(item);
     const menuItem = this.menu.find((f) => f.id == item.id);
     if (bookIdx > -1 && menuItem) {

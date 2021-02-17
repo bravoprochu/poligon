@@ -7,7 +7,13 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center"
+      ><span>Menu</span>
+      <button (click)="drawer.toggle()" color="primary" mat-mini-fab>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+
     <app-menu-nav [menuItems]="menuItems"></app-menu-nav>
     <div class="copyrights">{{ copyrights }}</div>
   </mat-sidenav>

@@ -1,39 +1,31 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
 import { filter, map, shareReplay, takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/other-modules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
-import {
-  NavigationEnd,
-  NavigationStart,
-  Router,
-  RouterEvent,
-} from '@angular/router';
-import { MenuService } from './other-modules/menu/menu.service';
+import { IS_HANDSET as IS_HANDSET } from './common-functions/is-handset';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('drawer', { static: false }) drawer!: MatSidenav;
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private menuService: MenuService
-  ) {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   copyrights = 'bravoprochu 2021';
   menuItems = [] as IMenuItem[];
   isDestroyed$: Subject<boolean> = new Subject();
+  isHandset$ = IS_HANDSET(this.breakpointObserver);
   isOpened = false;
   title = 'poligon';
 
@@ -45,14 +37,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.initMenu();
-    this.initExtraMenu();
+    // this.initExtraMenu();
   }
 
   ngAfterViewInit(): void {
     this.initObservables();
   }
 
-  initMenu() {
+  initMenu(): void {
     this.menuItems = [
       {
         caption: 'home',
@@ -79,7 +71,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     ] as IMenuItem[];
   }
 
-  initExtraMenu() {
+  initExtraMenu(): void {
     this.menuItems = [
       ...this.menuItems,
       ...this.menuItems.map((m) => {
@@ -99,7 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  initObservables() {
+  initObservables(): void {
     /**
      * sidenav drawer open
      *
