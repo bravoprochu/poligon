@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
@@ -15,7 +15,7 @@ import { MenuService } from '../menu.service';
   templateUrl: './menu-nav.component.html',
   styleUrls: ['./menu-nav.component.scss'],
 })
-export class MenuNavComponent implements OnInit {
+export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
   constructor(private menuService: MenuService) {}
 
@@ -33,11 +33,11 @@ export class MenuNavComponent implements OnInit {
     this.initObservables();
   }
 
-  initMenuRoutes() {
+  initMenuRoutes(): void {
     this.menuItems.forEach((f) => this.menuService.addToMenu(f));
   }
 
-  initObservables() {
+  initObservables(): void {
     /**
      * menu search$
      *
@@ -58,11 +58,11 @@ export class MenuNavComponent implements OnInit {
       );
   }
 
-  bookmark(item: IMenuItem) {
+  bookmark(item: IMenuItem): void {
     this.menuService.addToBookmark(item);
   }
 
-  remove(item: IMenuItem) {
+  remove(item: IMenuItem): void {
     this.menuService.removeFromBookmark(item);
   }
 
