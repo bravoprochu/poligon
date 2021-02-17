@@ -12,17 +12,30 @@
       <div
         fxFlex.gt-sm="60"
         fxLayout="row wrap"
-        fxLayoutGap="5px"
+        fxLayoutGap="10px"
         fxLayoutAlign="start center"
       >
-        <button
-          mat-fab
-          *ngFor="let c of colors; index as i"
-          class="color-box"
-          [style.backgroundColor]="c.color"
-          (click)="changeColor(c)"
-          matTooltip="{{ c.min }} - {{ c.max }}"
-        ></button>
+        <ng-container *ngIf="isHandset$ | async">
+          <button
+            mat-mini-fab
+            *ngFor="let c of colors; index as i"
+            [style.backgroundColor]="c.color"
+            (click)="changeColor(c)"
+            matTooltip="{{ c.min }} - {{ c.max }}"
+          ></button>
+        </ng-container>
+
+        <ng-container *ngIf="!(isHandset$ | async)">
+          <button
+            mat-fab
+            *ngFor="let c of colors; index as i"
+            class="color-box"
+            [style.backgroundColor]="c.color"
+            (click)="changeColor(c)"
+            matTooltip="{{ c.min }} - {{ c.max }}"
+          ></button>
+        </ng-container>
+
         <div class="vertical-space">&nbsp;</div>
 
         <button mat-mini-fab color="primary" (click)="add()">
