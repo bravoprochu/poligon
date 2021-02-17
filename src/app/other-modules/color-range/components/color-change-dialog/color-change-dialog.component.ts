@@ -34,19 +34,19 @@ export class ColorChangeDialogComponent implements OnInit {
     this.initForm();
   }
 
-  resetData() {
+  resetData(): void {
     this.rForm.setValue(this.data.selectedColorRange);
     this.rForm.markAsPristine();
   }
 
-  initForm() {
+  initForm(): void {
     this.rForm = this.colorService.getColorForm$(this.fb);
     this.temporaryColor = { ...this.data.selectedColorRange };
     this.rForm.setValue(this.temporaryColor);
     this.rForm.markAsPristine();
   }
 
-  removeColor() {
+  removeColor(): void {
     const takNieDialog = this.yesNoDialog.open(YesNoDialogComponent, {
       data: {
         title: 'Color range',
@@ -71,7 +71,7 @@ export class ColorChangeDialogComponent implements OnInit {
       );
   }
 
-  updateColor() {
+  updateColor(): void {
     this.dialogRef.close(this.rForm.value);
   }
 }

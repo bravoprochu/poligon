@@ -2,7 +2,9 @@
   <mat-expansion-panel-header>
     <mat-panel-title> ColorRange </mat-panel-title>
     <mat-panel-description>
-      Config colors for Your data range
+      <span *ngIf="!(isHandset$ | async)"
+        >Config colors for Your data range</span
+      >
     </mat-panel-description>
   </mat-expansion-panel-header>
   <div fxLayout="column" fxLayoutAlign="space-between" class="config-container">

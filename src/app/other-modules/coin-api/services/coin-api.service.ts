@@ -31,7 +31,7 @@ export class CoinApiService {
   private coinApiUrlQuotes = 'v1/quotes/current';
   private coinApiUrlTrades = 'v1/trades/latest';
   isWebsocketConnected$: Subject<boolean> = new Subject();
-  private coinApiWebsocketConnection?: WebSocket;
+  private coinApiWebsocketConnection = {} as WebSocket;
   coinApiIoWebsocketPayload$: Subject<any> = new Subject();
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
@@ -130,7 +130,7 @@ export class CoinApiService {
       );
   }
 
-  wsInit() {
+  wsInit(): void {
     this.coinApiWebsocketConnection = new WebSocket(this.coinApiIoWebsocketUrl);
     this.isWebsocketConnected$.next(true);
     this.coinApiWebsocketConnection.onclose = (ev) => {
@@ -147,11 +147,11 @@ export class CoinApiService {
     };
   }
 
-  wsClose() {
+  wsClose(): void {
     this.coinApiWebsocketConnection!.close();
   }
 
-  wsInitQuotes() {
+  wsInitTrades(): void {
     const quotesReq = {
       apikey: this.coinApiIoKey,
       heartbeat: false,
@@ -162,19 +162,19 @@ export class CoinApiService {
     this.wsSend(quotesReq);
   }
 
-  wsOnMessage(ev: MessageEvent) {
+  wsOnMessage(ev: MessageEvent): void {
     this.coinApiIoWebsocketPayload$.next(JSON.parse(ev.data));
   }
 
-  wsOnOpen(ev: any) {
+  wsOnOpen(ev: any): void {
     this.isWebsocketConnected$.next(true);
   }
 
-  wsOnClose(ev: any) {
+  wsOnClose(ev: any): void {
     this.isWebsocketConnected$.next(false);
   }
 
-  wsSend(dataToSend: ICoinApiWebsocketHello) {
-    this.coinApiWebsocketConnection!.send(JSON.stringify(dataToSend));
+  wsSend(dataToSend: ICoinApiWebsocketHello): void {
+    this.coinApiWebsocketConnection.send(JSON.stringify(dataToSend));
   }
 }
