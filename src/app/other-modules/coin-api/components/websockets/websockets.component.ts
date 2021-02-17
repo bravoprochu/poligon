@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   ElementRef,
@@ -6,8 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { delay, startWith, takeUntil, tap } from 'rxjs/operators';
+import { IS_HANDSET } from 'src/app/common-functions/is-handset';
 import { ColorRangeService } from 'src/app/other-modules/color-range/services/color-range.service';
 import { ICoinApiTradesLatest } from '../../interfaces/i-coin-api-trades-latest';
 import { CoinApiService } from '../../services/coin-api.service';
@@ -21,8 +23,21 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   @ViewChild('colorInput') colorInput!: ElementRef;
   constructor(
     public coinApiService: CoinApiService,
+    private breakpointObserver: BreakpointObserver,
     private colorRangeService: ColorRangeService
   ) {}
+
+  isDestroyed$: Subject<boolean> = new Subject();
+  isConnected = false;
+  isColorExpanded = false;
+  isGettingTrades = false;
+  isHandset$ = IS_HANDSET(this.breakpointObserver);
+  isTradeExpanded = false;
+  colorGrade$: FormControl = new FormControl();
+  colorGradeMaxValue$: FormControl = new FormControl(2000);
+  colorGradeMinValue$: FormControl = new FormControl(0);
+
+  trades: ICoinApiTradesLatest[] = [];
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -31,28 +46,18 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
     this.close();
   }
 
-  isDestroyed$: Subject<boolean> = new Subject();
-  isConnected = false;
-  isGettingTrades = false;
-  isTradeExpanded = false;
-  colorGrade$: FormControl = new FormControl();
-  colorGradeMaxValue$: FormControl = new FormControl(2000);
-  colorGradeMinValue$: FormControl = new FormControl(0);
-
-  trades: ICoinApiTradesLatest[] = [];
-
   ngOnInit(): void {
     this.coinApiService.wsInit();
     this.initObservable();
     this.initTradeExpanded();
   }
 
-  close() {
+  close(): void {
     this.coinApiService.wsClose();
     this.isGettingTrades = false;
   }
 
-  initObservable() {
+  initObservable(): void {
     this.coinApiService.coinApiIoWebsocketPayload$
       .pipe(takeUntil(this.isDestroyed$))
       .subscribe(
@@ -75,14 +80,31 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
       );
   }
 
-  initTrades() {
-    this.coinApiService.wsInitQuotes();
+  initTrades(): void {
+    this.coinApiService.wsInitTrades();
     this.isGettingTrades = false;
   }
-  initTradeExpanded() {
-    setInterval(() => {
-      this.isTradeExpanded = true;
-    }, 3000);
+  initTradeExpanded(): void {
+    of()
+      .pipe(
+        startWith(null),
+        delay(1500),
+        tap(() => (this.isTradeExpanded = true)),
+        delay(1500),
+        tap(() => {
+          this.initTrades();
+          this.isGettingTrades = true;
+        }),
+        delay(2500),
+        tap(() => (this.isColorExpanded = true))
+      )
+      .subscribe(
+        (dataFlow: any) => {
+          console.log('dataFlow subs:', dataFlow);
+        },
+        (error) => console.log('dataFlow error', error),
+        () => console.log('dataFlow completed..')
+      );
   }
 
   open() {
@@ -90,6 +112,6 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   }
 
   setBgColor(price: number): string {
-    return this.colorRangeService.getColorByValue(price, 'green');
+    return this.colorRangeService.getColorByValue(price, 'white');
   }
 }

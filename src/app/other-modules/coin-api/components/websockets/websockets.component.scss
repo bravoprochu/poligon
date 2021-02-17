@@ -2,14 +2,19 @@
   border: 1px solid;
 }
 .example-viewport {
-  width: 400px;
+  width: 100%;
   height: 600px;
 }
 
 .example-item {
   position: relative;
-  height: 150px;
-  border-bottom: 2px solid rgba($color: rgb(61, 59, 57), $alpha: 0.2);
+  width: 100%;
+  height: 125px;
+  // border-bottom: 2px solid rgba($color: rgb(61, 59, 57), $alpha: 0.2);
+}
+.example-item-data {
+  overflow-x: auto;
+  width: 100%;
 }
 
 .price-container {
@@ -17,6 +22,9 @@
   border-bottom: 2px solid;
 }
 
+.price-big {
+  margin-right: 20px;
+}
 .price-fiszka {
   position: absolute;
   right: 0;
