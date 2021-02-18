@@ -9,6 +9,8 @@ export const environment = {
   coinApiIoWebsocketUrl: 'wss://ws-sandbox.coinapi.io/v1/',
   coinApiIoKey: 'CB32E10F-F1F4-44B8-889D-0EE0ABBF6959',
   isRealServerData: false,
+  identTokenUrl: 'http://localhost:5200/token',
+  identRegisterUserUrl: 'http://localhost:5200/registerUser',
 };
 
 /*

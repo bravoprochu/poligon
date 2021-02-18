@@ -53,6 +53,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         route: ['/home'],
       },
       {
+        caption: 'login',
+        icon: 'login',
+        group: 'Ident/Auth',
+        route: ['/identAuth'],
+      },
+      {
         caption: 'coin api service',
         group: 'coin API ',
         route: ['/coin-api/home'],

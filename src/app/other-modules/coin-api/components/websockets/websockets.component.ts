@@ -96,7 +96,8 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
           this.isGettingTrades = true;
         }),
         delay(2500),
-        tap(() => (this.isColorExpanded = true))
+        tap(() => (this.isColorExpanded = true)),
+        takeUntil(this.isDestroyed$)
       )
       .subscribe(
         (dataFlow: any) => {
