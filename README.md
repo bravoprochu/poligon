@@ -1,5 +1,9 @@
 # Poligon
 
+## Ident/Auth module
+
+## Indicator service = (progress bar component)
+
 ## color range module
 
 1. Color labels that can be used to color style any element
