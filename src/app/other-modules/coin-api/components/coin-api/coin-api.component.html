@@ -1,14 +1,122 @@
-<a routerLink="/home">go Home</a>
+<section>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Color Range</mat-card-title>
+      <mat-card-subtitle>Color data visualisation</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      Color labels that can be used to color style any element
+    </mat-card-content>
+  </mat-card>
+</section>
 
-<nav>
-  <ul>
-    <li>
-      <a routerLink="../tables">Tables</a>
-    </li>
-    <li>
-      <a routerLink="../websockets">Websockets</a>
-    </li>
-  </ul>
-</nav>
+<section>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Good performance </mat-card-title>
+      <mat-card-subtitle>
+        Agnular material Scrolling module, virtual scrolling
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <figure>
+        <blockquote cite="https://material.angular.io/cdk/scrolling/overview">
+          <p>
+            The scrolling package provides helpers for directives that react to
+            scroll events.
+          </p>
+          <p>
+            The <code>cdk-virtual-scroll-viewport</code> displays large lists of
+            elements performantly by only rendering the items that fit
+            on-screen. Loading hundreds of elements can be slow in any browser;
+            virtual scrolling enables a performant way to simulate all items
+            being rendered by making the height of the container element the
+            same as the height of total number of elements to be rendered, and
+            then only rendering the items in view. Virtual scrolling is
+            different from strategies like infinite scroll where it renders a
+            set amount of elements and then when you hit the end renders the
+            rest.
+          </p>
+        </blockquote>
+        <figcaption>—Angular Material</figcaption>
+      </figure>
+    </mat-card-content>
+  </mat-card>
+</section>
 
-<router-outlet name="coinApi"></router-outlet>
+<section>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> CoinApi.Io </mat-card-title>
+      <mat-card-subtitle> Service used to get data </mat-card-subtitle>
+    </mat-card-header>
+
+    <a href="https://coinapi.io">
+      <img
+        mat-card-image
+        src="../../../../../assets/images/coin-api/coinApiio_01.png"
+        alt="coin api realtime data"
+      />
+    </a>
+
+    <mat-card-content>
+      <figure>
+        <blockquote cite="https://material.angular.io/cdk/scrolling/overview">
+          <p>
+            all cryptocurrency exchanges integrated under a single API CoinAPI
+            is a platform which provides fast, reliable and unified data APIs to
+            cryptocurrency markets.
+          </p>
+        </blockquote>
+        <figcaption>—CoinApi.Io</figcaption>
+
+        <a href="https://www.coinapi.io/pricing?apikey">Get a free API key</a>
+      </figure>
+
+      <h3 class="mat-h3">Products</h3>
+      <p>
+        <code>data delivery</code> Our data is delivered to you on-demand using
+        well-documented and simple HTTP RESTful API in JSON, XML or CSV formats.
+      </p>
+      <p>
+        For more demanding integrations requiring real-time market data
+        streaming, we have access through WebSocket and FIX protocols.
+      </p>
+
+      <h3 class="mat-h3">SDK in your <code>language</code> on GitHub</h3>
+      <p>
+        We provide helper libraries for the most popular programming languages,
+        so you can focus on the most important aspects instead of wasting time
+        connecting the pieces together.
+      </p>
+
+      <h3 class="mat-h3">real time and history data</h3>
+      <p>
+        In addition to a real-time data streaming service, we provide access to
+        a database of historical market data.
+      </p>
+      <p>
+        The CoinAPI database currently holds more than 20 TB of raw and
+        preprocessed market data available through the RESTful protocol.
+        <strong
+          ><a href="https://www.coinapi.io/integration"
+            >check our data availability listing</a
+          ></strong
+        >
+      </p>
+
+      <h3 class="mat-h3">high available global CDN</h3>
+      <p>
+        Our infrastructure is located in the US, the EU, and Asia, and is
+        designed to transfer data between exchanges and CoinAPI customers in a
+        highly reliable way without introducing any signifiant additional
+        latency.
+      </p>
+      <p>
+        CoinAPI customers are automatically connected to the API server closest
+        to them geographically, and re-routed to backup infrastructure in case
+        of any performance issues or malfunctions.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>

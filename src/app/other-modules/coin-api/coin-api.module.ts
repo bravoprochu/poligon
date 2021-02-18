@@ -10,6 +10,7 @@ import { BasicTableModule } from '../basic-table/basic-table.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { WebsocketsComponent } from './components/websockets/websockets.component';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ColorRangeModule } from '../color-range/color-range.module';
@@ -20,6 +21,7 @@ const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
+  MatCardModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
