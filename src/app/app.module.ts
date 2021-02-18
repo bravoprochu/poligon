@@ -9,10 +9,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuModule } from './other-modules/menu/menu.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   MenuModule,
+  MatCardModule,
   MatSidenavModule,
   MatToolbarModule,
 ];

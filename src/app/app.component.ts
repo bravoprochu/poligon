@@ -5,9 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subject } from 'rxjs';
-import { filter, map, shareReplay, take, takeUntil } from 'rxjs/operators';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/other-modules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
 import { IS_HANDSET as IS_HANDSET } from './common-functions/is-handset';
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isHandset$ = IS_HANDSET(this.breakpointObserver);
   isHandset = false;
   isOpened = false;
-  title = 'poligon';
+  title = 'Training - poligon';
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
