@@ -19,12 +19,12 @@ export class IdentDataFactoryService {
         return res;
       }),
       catchError((err) => {
-        const _errorPayload: IServerResponsePayload = {
+        const errorPayload: IServerResponsePayload = {
           isError: true,
           info: 'problem serwerowy',
           payload: null,
         };
-        return of(_errorPayload);
+        return of(errorPayload);
       })
     );
   }
@@ -34,12 +34,12 @@ export class IdentDataFactoryService {
       .post(environment.identRegisterUserUrl, identRegisterUser, {})
       .pipe(
         catchError((err) => {
-          const _errorPayload: IServerResponsePayload = {
+          const errorPayload: IServerResponsePayload = {
             isError: true,
             info: 'problem serwerowy',
             payload: null,
           };
-          return of(_errorPayload);
+          return of(errorPayload);
         })
       );
   }

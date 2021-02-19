@@ -1,0 +1,55 @@
+<form [formGroup]="rFormRegister" fxLayout="column" class="login-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Wprowadź login</mat-label>
+    <input matInput [formControl]="registerEmail" />
+    <mat-error *ngIf="registerEmail.invalid">Błędny adres email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Wprowadź hasło</mat-label>
+    <input
+      matInput
+      [type]="hideRegisterPassword ? 'password' : 'text'"
+      formControlName="password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideRegisterPassword = !hideRegisterPassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hideRegisterPassword"
+    >
+      <mat-icon>{{
+        hideRegisterPassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Wprowadź hasło</mat-label>
+    <input
+      matInput
+      [type]="hideRegisterRePassword ? 'password' : 'text'"
+      formControlName="rePassword"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideRegisterRePassword = !hideRegisterRePassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hideRegisterRePassword"
+    >
+      <mat-icon>{{
+        hideRegisterRePassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="register()"
+    [disabled]="rFormRegister.invalid || (isInProgress$ | async)"
+  >
+    Zarejestruj
+  </button>
+</form>

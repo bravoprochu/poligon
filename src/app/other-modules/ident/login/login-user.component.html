@@ -1,0 +1,35 @@
+<form [formGroup]="rFormLogin" fxLayout="column">
+  <mat-form-field appearance="outline">
+    <mat-label>Wprowadź login</mat-label>
+    <input matInput [formControl]="loginEmail" />
+    <mat-error *ngIf="loginEmail.invalid">Błędny adres email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Wprowadź hasło</mat-label>
+    <input
+      matInput
+      [type]="hideLoginPassword ? 'password' : 'text'"
+      [formControl]="loginPassword"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideLoginPassword = !hideLoginPassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hideLoginPassword"
+    >
+      <mat-icon>{{
+        hideLoginPassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="login()"
+    [disabled]="rFormLogin.invalid || (isInProgress$ | async)"
+  >
+    Zaloguj
+  </button>
+</form>

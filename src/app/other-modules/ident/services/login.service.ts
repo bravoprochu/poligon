@@ -69,12 +69,12 @@ export class LoginService {
       .loginUser(userForm$.value)
       .pipe(take(1))
       .subscribe(
-        (_loginResponse: IServerResponsePayload) => {
-          console.log('_loginResponse subs:', _loginResponse);
+        (loginResponse: IServerResponsePayload) => {
+          console.log('loginResponse subs:', loginResponse);
           this.indicatorsSrv.isInProgress$.next(false);
           this.indicatorsSrv.message(
-            `Logowanie - ${_loginResponse.isError ? 'Błąd !' : 'OK !'}`,
-            _loginResponse.info,
+            `Logowanie - ${loginResponse.isError ? 'Błąd !' : 'OK !'}`,
+            loginResponse.info,
             5000
           );
           userForm$.enable();
@@ -98,12 +98,12 @@ export class LoginService {
       .registerUser(registerUser$.value)
       .pipe(take(1))
       .subscribe(
-        (_registerResponse: IServerResponsePayload) => {
-          console.log('_registerResponse subs:', _registerResponse);
+        (registerResponse: IServerResponsePayload) => {
+          console.log('registerResponse subs:', registerResponse);
           this.indicatorsSrv.isInProgress$.next(false);
           this.indicatorsSrv.message(
-            `Rejestracja - ${_registerResponse.isError ? 'Błąd !' : 'OK !'}`,
-            _registerResponse.info,
+            `Rejestracja - ${registerResponse.isError ? 'Błąd !' : 'OK !'}`,
+            registerResponse.info,
             5000
           );
           registerUser$.enable();

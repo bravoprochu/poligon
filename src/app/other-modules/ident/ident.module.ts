@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login-user.component';
 import { IndicatorsModule } from '../indicators/indicators.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './services/login.service';
 import { IdentDataFactoryService } from './services/ident-data-factory.service';
+import { RegisterUserComponent } from './register/register-user.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -27,9 +28,9 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterUserComponent],
   imports: [CommonModule, IMPORT_EXPORT_MODULES],
-  exports: [LoginComponent, IMPORT_EXPORT_MODULES],
+  exports: [LoginComponent, RegisterUserComponent, IMPORT_EXPORT_MODULES],
   providers: [IdentDataFactoryService, LoginService],
 })
 export class IdentModule {}

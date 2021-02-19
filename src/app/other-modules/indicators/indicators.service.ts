@@ -11,7 +11,7 @@ export class IndicatorsService {
   isInProgress$: Subject<boolean> = new Subject();
   progressColor$: BehaviorSubject<string> = new BehaviorSubject('primary');
 
-  message(title: string, text: string, duration: number = 2500) {
+  message(title: string, text: string, duration: number = 2500): void {
     this.snackBar.open(text, title, {
       duration: duration,
     });

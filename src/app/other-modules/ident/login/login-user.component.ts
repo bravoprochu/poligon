@@ -5,9 +5,9 @@ import { IndicatorsService } from '../../indicators/indicators.service';
 import { LoginService } from '../services/login.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-user',
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.scss'],
 })
 export class LoginComponent implements OnInit {
   constructor(
@@ -16,11 +16,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  hideLoginPassword: boolean = true;
-  hideRegisterPassword: boolean = true;
-  hideRegisterRePassword: boolean = true;
+  hideLoginPassword = true;
   rFormLogin = {} as FormGroup;
-  rFormRegister = {} as FormGroup;
 
   ngOnInit(): void {
     this.initForm();
@@ -29,24 +26,15 @@ export class LoginComponent implements OnInit {
 
   initForm(): void {
     this.rFormLogin = this.loginService.getLoginForm$(this.fb);
-    this.rFormRegister = this.loginService.getRegisterForm$(this.fb);
   }
 
   initMockData(): void {
-    const _REGISTER_DATA = this.loginService.getMockedRegisgerData();
-    this.rFormRegister.setValue(_REGISTER_DATA);
-
     const _LOGINDATA = this.loginService.getMockedLoginData();
     this.rFormLogin.setValue(_LOGINDATA);
   }
 
   login(): void {
     this.loginService.login(this.rFormLogin);
-  }
-
-  register(): void {
-    console.log('register', this.rFormRegister.value);
-    this.loginService.register(this.rFormRegister);
   }
 
   get isInProgress$(): Subject<boolean> {
@@ -59,17 +47,5 @@ export class LoginComponent implements OnInit {
 
   get loginPassword(): FormControl {
     return this.rFormLogin.get('password') as FormControl;
-  }
-
-  get registerEmail(): FormControl {
-    return this.rFormRegister.get('userName') as FormControl;
-  }
-
-  get registerPassword(): FormControl {
-    return this.rFormRegister.get('password') as FormControl;
-  }
-
-  get registerRePassword(): FormControl {
-    return this.rFormRegister.get('rePassword') as FormControl;
   }
 }
