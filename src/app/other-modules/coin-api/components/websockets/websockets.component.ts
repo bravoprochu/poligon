@@ -108,7 +108,7 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
       );
   }
 
-  open() {
+  open(): void {
     this.coinApiService.wsInit();
   }
 
