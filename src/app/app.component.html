@@ -15,7 +15,7 @@
     </mat-toolbar>
 
     <app-menu-nav
-      (menuSelected)="menuSelected($event)"
+      (menuChanged)="menuSelected($event)"
       [menuItems]="menuItems"
     ></app-menu-nav>
     <div class="copyrights">{{ copyrights }}</div>

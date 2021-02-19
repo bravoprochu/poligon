@@ -24,7 +24,7 @@ export class MenuService {
   }
 
   filterMenu(searchPhrase: string): void {
-    if (!searchPhrase || searchPhrase.length == 0) {
+    if (!searchPhrase || searchPhrase.length === 0) {
       this.menu = [...this.menuOriginal];
       return;
     }
@@ -39,7 +39,7 @@ export class MenuService {
 
   removeFromBookmark(item: IMenuItem): void {
     const bookIdx = this.bookmark.indexOf(item);
-    const menuItem = this.menu.find((f) => f.id == item.id);
+    const menuItem = this.menu.find((f) => f.id === item.id);
     if (bookIdx > -1 && menuItem) {
       this.bookmark.splice(bookIdx, 1);
     }

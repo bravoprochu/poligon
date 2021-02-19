@@ -24,7 +24,7 @@ import { MenuService } from '../menu.service';
 })
 export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
-  @Output('menuSelected') menuChanged = new EventEmitter();
+  @Output() menuChanged = new EventEmitter();
   constructor(private menuService: MenuService) {}
 
   isDestroyed$: Subject<boolean> = new Subject();
