@@ -38,7 +38,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.initMenu();
-    // this.initExtraMenu();
   }
 
   ngAfterViewInit(): void {
@@ -78,26 +77,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     ] as IMenuItem[];
   }
 
-  initExtraMenu(): void {
-    this.menuItems = [
-      ...this.menuItems,
-      ...this.menuItems.map((m) => {
-        let newItem = { ...m };
-        newItem.caption = newItem.caption + 'and ' + 1;
-        return newItem;
-      }),
-    ];
-
-    this.menuItems = [
-      ...this.menuItems,
-      ...this.menuItems.map((m) => {
-        let newItem = { ...m };
-        newItem.caption = newItem.caption + 'and ' + 2;
-        return newItem;
-      }),
-    ];
-  }
-
   initObservables(): void {
     /**
      * sidenav drawer open
@@ -124,7 +103,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  menuSelected(ev: IMenuItem) {
+  menuSelected(ev: IMenuItem): void {
     if (this.isHandset === true) {
       this.drawer.close();
     }
