@@ -148,7 +148,7 @@ export class CoinApiService {
   }
 
   wsClose(): void {
-    this.coinApiWebsocketConnection!.close();
+    this.coinApiWebsocketConnection.close();
   }
 
   wsInitTrades(): void {

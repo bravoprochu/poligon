@@ -2,7 +2,7 @@
   <mat-expansion-panel-header>
     <mat-panel-title> ColorRange </mat-panel-title>
     <mat-panel-description>
-      <span *ngIf="!(isHandset$ | async)"
+      <span *ngIf="(isHandset$ | async) === false"
         >Config colors for Your data range</span
       >
     </mat-panel-description>
@@ -25,7 +25,7 @@
           ></button>
         </ng-container>
 
-        <ng-container *ngIf="!(isHandset$ | async)">
+        <ng-container *ngIf="(isHandset$ | async) === false">
           <button
             mat-fab
             *ngFor="let c of colors; index as i"

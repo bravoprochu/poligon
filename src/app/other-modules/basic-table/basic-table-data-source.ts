@@ -166,7 +166,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
       const isAsc = this.sort.direction === 'asc';
 
       const definition = this.tableColumnsDefinition.find(
-        (f) => f.propName == this.sort.active
+        (f) => f.propName === this.sort.active
       )?.propName;
 
       const aKey = definition as keyof typeof a;
@@ -239,12 +239,12 @@ type TableDataTypes = number | string | Date | undefined;
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare<TableDataTypes>(
-  a: TableDataTypes,
-  b: TableDataTypes,
+  a = {} as TableDataTypes,
+  b = {} as TableDataTypes,
   isAsc: boolean
 ): number {
-  if (!a || !b) {
+  if (a || b) {
     return 0;
   }
-  return (a! < b! ? -1 : 1) * (isAsc ? 1 : -1);
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
