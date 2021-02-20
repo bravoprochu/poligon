@@ -1,11 +1,9 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title
-      >Ident
-      <span *ngIf="isLoggedIn$ | async">&nbsp;is loggedIn !</span>
-    </mat-card-title>
+    <mat-card-title>Ident </mat-card-title>
     <mat-card-subtitle>Login/register panel</mat-card-subtitle>
   </mat-card-header>
+  <app-user-status></app-user-status>
   <mat-card-content>
     <mat-tab-group>
       <mat-tab label="Logowanie" [disabled]="isInProgress$ | async">

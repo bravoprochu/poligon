@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
-import { IndicatorsService } from '../../indicators/indicators.service';
-import { LoginService } from '../services/login.service';
+import { IndicatorsService } from '../../../indicators/indicators.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-user',

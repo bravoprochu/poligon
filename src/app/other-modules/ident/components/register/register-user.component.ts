@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { IndicatorsService } from '../../indicators/indicators.service';
-import { LoginService } from '../services/login.service';
+import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-register-user',

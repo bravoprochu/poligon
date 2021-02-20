@@ -16,10 +16,6 @@ export class IdentAuthComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get isLoggedIn$(): Subject<boolean> {
-    return this.loginService.isLoggedIn$;
-  }
-
   get isInProgress$(): Subject<boolean> {
     return this.indicatorsSrv.isInProgress$;
   }

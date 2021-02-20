@@ -13,6 +13,7 @@ import { IIdentUser } from '../interfaces/i-ident-user';
 import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
 import { Observable, of, Subject } from 'rxjs';
+import { UserClaimsEnums } from '../enums/user-claims-enums';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class LoginService {
   ) {}
 
   isLoggedIn$ = new Subject<boolean>();
+  loggedInUser = {} as IUserToken;
 
   getLoginForm$(fb: FormBuilder): FormGroup {
     const res = fb.group({
@@ -77,6 +79,22 @@ export class LoginService {
     return this.identDataFactory.registerUser(registerUser);
   }
 
+  private mapUserToken(userToken: IUserToken): IUserToken {
+    return {
+      claims: userToken.claims.map((c) => {
+        return {
+          type: c.type,
+          value: c.value,
+        };
+      }),
+      expirationTime: userToken.expirationTime,
+      roles: userToken.roles,
+      token: userToken.token,
+      userName: userToken.claims.find((f) => f.type === UserClaimsEnums.sub)
+        ?.value,
+    } as IUserToken;
+  }
+
   private tokenCheck(userToken: IUserToken): void {
     if (!userToken.token) {
       return;
@@ -86,8 +104,10 @@ export class LoginService {
 
     if (tokenTime >= now) {
       this.isLoggedIn$.next(true);
+      this.loggedInUser = this.mapUserToken(userToken);
     } else {
       this.isLoggedIn$.next(false);
+      this.loggedInUser = {} as IUserToken;
     }
   }
 }
