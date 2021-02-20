@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { LoginService } from 'src/app/other-modules/ident/services/login.service';
 import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.service';
 
 @Component({
@@ -8,9 +9,16 @@ import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.s
   styleUrls: ['./ident-auth.component.scss'],
 })
 export class IdentAuthComponent implements OnInit {
-  constructor(private indicatorsSrv: IndicatorsService) {}
+  constructor(
+    private loginService: LoginService,
+    private indicatorsSrv: IndicatorsService
+  ) {}
 
   ngOnInit(): void {}
+
+  get isLoggedIn$(): Subject<boolean> {
+    return this.loginService.isLoggedIn$;
+  }
 
   get isInProgress$(): Subject<boolean> {
     return this.indicatorsSrv.isInProgress$;

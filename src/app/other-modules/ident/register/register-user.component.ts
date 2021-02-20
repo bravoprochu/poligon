@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { LoginService } from '../services/login.service';
 
@@ -35,8 +36,17 @@ export class RegisterUserComponent implements OnInit {
   }
 
   register(): void {
-    console.log('register', this.rFormRegister.value);
-    this.loginService.register(this.rFormRegister);
+    if (this.rFormRegister.invalid) {
+      return;
+    }
+
+    this.rFormRegister.disable();
+    this.loginService
+      .register(this.rFormRegister.value)
+      .pipe(finalize(() => this.rFormRegister.enable))
+      .subscribe((loginResponse: any) => {
+        console.log('loginResponse subs:', loginResponse);
+      });
   }
 
   get isInProgress$(): Subject<boolean> {

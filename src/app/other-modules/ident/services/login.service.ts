@@ -5,13 +5,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,8 @@ export class LoginService {
     private identDataFactory: IdentDataFactoryService,
     private indicatorsSrv: IndicatorsService
   ) {}
+
+  isLoggedIn$ = new Subject<boolean>();
 
   getLoginForm$(fb: FormBuilder): FormGroup {
     const res = fb.group({
@@ -54,44 +57,37 @@ export class LoginService {
 
   getMockedLoginData(): IIdentUser {
     return {
-      userName: 'testowo@gmail.com',
-      password: '123456',
+      userName: 'bravoprochu@gmail.com',
+      password: 'Qq123456!',
     } as IIdentUser;
   }
 
-  login(loginForm$: FormGroup): void {
-    if (loginForm$.invalid) {
-      return;
-    }
+  login(identUser: IIdentUser): Observable<IUserToken> {
     this.indicatorsSrv.isInProgress$.next(true);
-    loginForm$.disable();
-    this.identDataFactory
-      .loginUser(loginForm$.value)
-      .pipe(
-        finalize(() => {
-          loginForm$.enable();
-        })
-      )
-      .subscribe((loginResponse: IUserToken) => {
-        console.log('loginResponse subs:', loginResponse.token);
-      });
+    return this.identDataFactory.loginUser(identUser).pipe(
+      tap((userToken) => {
+        console.log('data retrived', userToken);
+        this.tokenCheck(userToken);
+      })
+    );
   }
 
-  register(registerForm$: FormGroup): void {
-    if (!registerForm$.valid) {
+  register(registerUser: IIdentRegisterUser): Observable<any> {
+    this.indicatorsSrv.isInProgress$.next(true);
+    return this.identDataFactory.registerUser(registerUser);
+  }
+
+  private tokenCheck(userToken: IUserToken): void {
+    if (!userToken.token) {
       return;
     }
-    this.indicatorsSrv.isInProgress$.next(true);
-    registerForm$.disable();
-    this.identDataFactory
-      .registerUser(registerForm$.value)
-      .pipe(
-        finalize(() => {
-          registerForm$.enable();
-        })
-      )
-      .subscribe((loginResponse: IUserToken) => {
-        console.log('loginResponse subs:', loginResponse.token);
-      });
+    const now = new Date();
+    const tokenTime = new Date(userToken.expirationTime);
+
+    if (tokenTime >= now) {
+      this.isLoggedIn$.next(true);
+    } else {
+      this.isLoggedIn$.next(false);
+    }
   }
 }
