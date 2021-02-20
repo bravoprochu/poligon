@@ -25,7 +25,7 @@ import { IndicatorsService } from '../../indicators/indicators.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 
-export const RETRYWHEN_AND_FINALIZE_PIPE$ = (
+const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
   repeats = 3,
   delayTime = 2000

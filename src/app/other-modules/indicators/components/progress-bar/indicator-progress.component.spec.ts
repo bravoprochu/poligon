@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgressBarComponent } from './progress-bar.component';
+import { IndicatorProgressComponent } from './indicator-progress.component';
 
 describe('ProgressBarComponent', () => {
-  let component: ProgressBarComponent;
-  let fixture: ComponentFixture<ProgressBarComponent>;
+  let component: IndicatorProgressComponent;
+  let fixture: ComponentFixture<IndicatorProgressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgressBarComponent],
+      declarations: [IndicatorProgressComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgressBarComponent);
+    fixture = TestBed.createComponent(IndicatorProgressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
