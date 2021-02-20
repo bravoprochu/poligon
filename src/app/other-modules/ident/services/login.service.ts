@@ -5,13 +5,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { take } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
-import { IServerResponsePayload } from '../interfaces/i-server-response-payload';
 import { RegisterFormValidator } from '../validators/register-form-validator';
+import { IUserToken } from '../interfaces/i-user-token';
 
 @Injectable({
   providedIn: 'root',
@@ -59,61 +59,39 @@ export class LoginService {
     } as IIdentUser;
   }
 
-  login(userForm$: FormGroup): void {
-    if (userForm$.invalid) {
+  login(loginForm$: FormGroup): void {
+    if (loginForm$.invalid) {
       return;
     }
     this.indicatorsSrv.isInProgress$.next(true);
-    userForm$.disable();
+    loginForm$.disable();
     this.identDataFactory
-      .loginUser(userForm$.value)
-      .pipe(take(1))
-      .subscribe(
-        (loginResponse: IServerResponsePayload) => {
-          console.log('loginResponse subs:', loginResponse);
-          this.indicatorsSrv.isInProgress$.next(false);
-          this.indicatorsSrv.message(
-            `Logowanie - ${loginResponse.isError ? 'Błąd !' : 'OK !'}`,
-            loginResponse.info,
-            5000
-          );
-          userForm$.enable();
-        },
-        (error) => {
-          this.indicatorsSrv.isInProgress$.next(false);
-          console.log('_registerResponse error', error);
-          userForm$.enable();
-        },
-        () => console.log('_registerResponse completed..')
-      );
+      .loginUser(loginForm$.value)
+      .pipe(
+        finalize(() => {
+          loginForm$.enable();
+        })
+      )
+      .subscribe((loginResponse: IUserToken) => {
+        console.log('loginResponse subs:', loginResponse.token);
+      });
   }
 
-  register(registerUser$: FormGroup): void {
-    if (!registerUser$.valid) {
+  register(registerForm$: FormGroup): void {
+    if (!registerForm$.valid) {
       return;
     }
     this.indicatorsSrv.isInProgress$.next(true);
-    registerUser$.disable();
+    registerForm$.disable();
     this.identDataFactory
-      .registerUser(registerUser$.value)
-      .pipe(take(1))
-      .subscribe(
-        (registerResponse: IServerResponsePayload) => {
-          console.log('registerResponse subs:', registerResponse);
-          this.indicatorsSrv.isInProgress$.next(false);
-          this.indicatorsSrv.message(
-            `Rejestracja - ${registerResponse.isError ? 'Błąd !' : 'OK !'}`,
-            registerResponse.info,
-            5000
-          );
-          registerUser$.enable();
-        },
-        (error) => {
-          this.indicatorsSrv.isInProgress$.next(false);
-          console.log('_registerResponse error', error);
-          registerUser$.enable();
-        },
-        () => console.log('_registerResponse completed..')
-      );
+      .registerUser(registerForm$.value)
+      .pipe(
+        finalize(() => {
+          registerForm$.enable();
+        })
+      )
+      .subscribe((loginResponse: IUserToken) => {
+        console.log('loginResponse subs:', loginResponse.token);
+      });
   }
 }
