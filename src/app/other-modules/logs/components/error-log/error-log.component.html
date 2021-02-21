@@ -1,1 +1,52 @@
-<p>error-log works!</p>
+<!-- <div class="error-container">
+  <ul>
+    <li *ngFor="let err of errors">{{ err }}</li>
+  </ul>
+</div> -->
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Logs/errors </mat-panel-title>
+    <mat-panel-description>
+      <mat-icon>warning</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <cdk-virtual-scroll-viewport
+    [itemSize]="itemHeight"
+    [style.height.px]="itemHeight * itemOnView"
+  >
+    <div
+      [ngClass]="{ 'odd-item': odd, 'even-item': even }"
+      [style.height.px]="itemHeight"
+      class="viewport-item"
+      *cdkVirtualFor="
+        let err of errors$;
+        let index = index;
+        let count = count;
+        let first = first;
+        let last = last;
+        let even = even;
+        let odd = odd
+      "
+    >
+      <div
+        fxLayout
+        fxLayoutAlign="space-between"
+        [style.height.px]="itemHeight * 0.2"
+      >
+        <div>
+          <strong>{{ err.type | uppercase }}</strong>
+        </div>
+        <div>
+          <em>{{ err.date | date: "medium" }}</em>
+        </div>
+      </div>
+      <div class="errors-list" [style.height.px]="itemHeight * 0.8">
+        <div *ngFor="let item of err.errors; index as i">
+          {{ i + 1 }}) {{ item }}
+        </div>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</mat-expansion-panel>
