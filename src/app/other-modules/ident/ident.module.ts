@@ -15,6 +15,7 @@ import { LoginService } from './services/login.service';
 import { IdentDataFactoryService } from './services/ident-data-factory.service';
 import { RegisterUserComponent } from './components/register/register-user.component';
 import { UserStatusComponent } from './components/user-status/user-status.component';
+import { LogsModule } from '../logs/logs.module';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -26,6 +27,7 @@ const IMPORT_EXPORT_MODULES = [
   MatIconModule,
   MatInputModule,
   MatTabsModule,
+  LogsModule,
 ];
 
 @NgModule({

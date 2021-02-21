@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { IndicatorsService } from '../../../indicators/indicators.service';
 import { LoginService } from '../../services/login.service';
 
@@ -42,9 +43,15 @@ export class LoginComponent implements OnInit {
     this.loginService
       .login(this.rFormLogin.value)
       .pipe(finalize(() => this.rFormLogin.enable()))
-      .subscribe((loginResponse: any) => {
-        console.log('loginResponse subs:', loginResponse.token);
-      });
+      .subscribe(
+        (loginResponse: any) => {
+          console.log('loginResponse subs:', loginResponse.token);
+        },
+        (error: HttpErrorResponse) => {
+          console.log('login componen on Error...', error);
+          this.loginService.errorTypeHandler(error.error?.payload, 'loginUser');
+        }
+      );
   }
 
   get isInProgress$(): Subject<boolean> {

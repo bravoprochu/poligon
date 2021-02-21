@@ -16,6 +16,7 @@ import { IUserToken } from '../interfaces/i-user-token';
 import { Observable, of, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LogsService } from '../../logs/services/logs.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginService {
   constructor(
     private identDataFactory: IdentDataFactoryService,
-    private indicatorsSrv: IndicatorsService
+    private indicatorsSrv: IndicatorsService,
+    private logService: LogsService
   ) {}
 
-  errors = [] as string[];
-  isErrorKept = true;
   isLoggedIn$ = new Subject<boolean>();
   loggedInUser = {} as IUserToken;
 
@@ -64,26 +64,34 @@ export class LoginService {
   getMockedLoginData(): IIdentUser {
     return {
       userName: 'bravoprochu@gmail.com',
-      password: 'Qq123456!',
+      password: 'Qq123456',
     } as IIdentUser;
   }
 
-  errorTypeHandler(error: HttpErrorResponse): void {
-    if (!this.isErrorKept) {
-      this.errors = [];
+  errorTypeHandler(error: string[] | any, errorType = 'httpError'): void {
+    /**
+     * errors as array of strings
+     * or as key/value pair dictionary
+     * + extra if value is array
+     *
+     */
+    if (Array.isArray(error)) {
+      this.logService.addMultiErrors(error, errorType);
+      return;
     }
-
-    for (const [key, value] of Object.entries(error.error)) {
+    const resArr = [] as string[];
+    for (const [key, value] of Object.entries(error)) {
       const v = value;
 
       if (Array.isArray(value)) {
         value.forEach((v) => {
-          this.errors.unshift(v);
+          resArr.push(v);
         });
       } else {
-        this.errors.unshift(value as string);
+        resArr.push(value as string);
       }
     }
+    this.logService.addMultiErrors(resArr, errorType);
   }
 
   login(identUser: IIdentUser): Observable<IUserToken> {

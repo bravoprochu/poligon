@@ -13,7 +13,7 @@ export class LogsService {
   isErrorKept = true;
   isErrorAdded$ = new Subject() as Subject<boolean>;
 
-  addMultiErrors(errors: string[], errorType: string) {
+  addMultiErrors(errors: string[], errorType: string): void {
     this.checkToClearErrors();
 
     const logErr = {} as ILogError;

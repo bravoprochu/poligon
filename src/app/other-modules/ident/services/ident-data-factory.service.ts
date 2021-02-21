@@ -4,8 +4,14 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pipe } from 'rxjs';
-import { Observable, of, throwError, EmptyError } from 'rxjs';
+import {
+  Observable,
+  onErrorResumeNext,
+  of,
+  throwError,
+  EmptyError,
+  pipe,
+} from 'rxjs';
 import {
   catchError,
   delay,
@@ -27,7 +33,7 @@ import { IIdentUser } from '../interfaces/i-ident-user';
 
 const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
-  repeats = 3,
+  repeats = 0,
   delayTime = 2000
 ) => {
   return pipe(
@@ -45,7 +51,8 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
             return true;
           } else {
             indicatorsService.message('Login ERROR', `Error, ${err.message}`);
-            return false;
+            throw err;
+            // return false;
           }
         })
       )
