@@ -3,9 +3,10 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { finalize, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
@@ -14,6 +15,7 @@ import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
 import { Observable, of, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,8 @@ export class LoginService {
     private indicatorsSrv: IndicatorsService
   ) {}
 
+  errors = [] as string[];
+  isErrorKept = true;
   isLoggedIn$ = new Subject<boolean>();
   loggedInUser = {} as IUserToken;
 
@@ -64,6 +68,24 @@ export class LoginService {
     } as IIdentUser;
   }
 
+  errorTypeHandler(error: HttpErrorResponse): void {
+    if (!this.isErrorKept) {
+      this.errors = [];
+    }
+
+    for (const [key, value] of Object.entries(error.error)) {
+      const v = value;
+
+      if (Array.isArray(value)) {
+        value.forEach((v) => {
+          this.errors.unshift(v);
+        });
+      } else {
+        this.errors.unshift(value as string);
+      }
+    }
+  }
+
   login(identUser: IIdentUser): Observable<IUserToken> {
     this.indicatorsSrv.isInProgress$.next(true);
     return this.identDataFactory.loginUser(identUser).pipe(
@@ -73,6 +95,8 @@ export class LoginService {
       })
     );
   }
+
+  loginErrorHandler(): void {}
 
   register(registerUser: IIdentRegisterUser): Observable<any> {
     this.indicatorsSrv.isInProgress$.next(true);
