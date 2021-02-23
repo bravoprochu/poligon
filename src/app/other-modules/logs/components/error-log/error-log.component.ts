@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ILogError } from '../../interfaces/i-log-error';
 import { LogsService } from '../../services/logs.service';
 
@@ -11,28 +12,28 @@ import { LogsService } from '../../services/logs.service';
 export class ErrorLogComponent implements OnInit {
   constructor(private logService: LogsService) {}
 
-  errors = [] as string[];
+  errors = [] as ILogError[];
+  isDestroyed$: Subject<boolean> = new Subject();
   itemHeight = 150;
   itemOnView = 3;
+
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.initObservable();
   }
 
-  initObservable() {
-    this.logService.errors$.pipe().subscribe(
+  initObservable(): void {
+    this.logService.errors$.pipe(takeUntil(this.isDestroyed$)).subscribe(
       (errors: any) => {
-        console.log('errors subs:', errors);
-        // this.errors = [];
-        // this.errors = [...errors];
-        this.errors = errors;
+        this.errors = [...errors];
       },
       (error) => console.log('errors error', error),
       () => console.log('errors completed..')
     );
-  }
-
-  trackByFn(idx: number, item: ILogError): any {
-    return idx;
   }
 }
