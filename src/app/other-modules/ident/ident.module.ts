@@ -34,10 +34,10 @@ const IMPORT_EXPORT_MODULES = [
   declarations: [LoginComponent, RegisterUserComponent, UserStatusComponent],
   imports: [CommonModule, IMPORT_EXPORT_MODULES],
   exports: [
+    IMPORT_EXPORT_MODULES,
     LoginComponent,
     RegisterUserComponent,
     UserStatusComponent,
-    IMPORT_EXPORT_MODULES,
   ],
   providers: [IdentDataFactoryService, LoginService],
 })

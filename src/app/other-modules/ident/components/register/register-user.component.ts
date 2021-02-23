@@ -1,6 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  ValidationErrors,
+} from '@angular/forms';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.service';
@@ -18,6 +23,7 @@ export class RegisterUserComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
+  formErrors = [] as string[];
   hideRegisterPassword = true;
   hideRegisterRePassword = true;
   rFormRegister = {} as FormGroup;
@@ -40,17 +46,20 @@ export class RegisterUserComponent implements OnInit {
     if (this.rFormRegister.invalid) {
       return;
     }
-
+    this.formErrors = [];
     this.rFormRegister.disable();
     this.loginService
       .register(this.rFormRegister.value)
       .pipe(finalize(() => this.rFormRegister.enable()))
       .subscribe(
         (loginResponse: any) => {
+          this.formErrors = [];
           console.log('loginResponse subs:', loginResponse);
         },
         (error: HttpErrorResponse) => {
-          this.loginService.errorTypeHandler(error.error, 'registerUser');
+          const fixedErrors = this.loginService.getErrorMessage(error);
+          this.formErrors = [...fixedErrors];
+          this.loginService.addToLogs(fixedErrors, 'registerUser');
         }
       );
   }

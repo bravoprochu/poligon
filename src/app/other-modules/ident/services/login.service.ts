@@ -17,7 +17,6 @@ import { Observable, of, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogsService } from '../../logs/services/logs.service';
-import { ILogError } from '../../logs/interfaces/i-log-error';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +31,14 @@ export class LoginService {
   isLoggedIn$ = new Subject<boolean>();
   loggedInUser = {} as IUserToken;
 
+  addToLogs(errors: string | string[], logsTitle: string): void {
+    if (Array.isArray(errors)) {
+      this.logService.addMultiErrors(errors, logsTitle);
+    } else {
+      this.logService.addItemToErrors(errors, logsTitle);
+    }
+  }
+
   getLoginForm$(fb: FormBuilder): FormGroup {
     const res = fb.group({
       userName: [null, [Validators.required, Validators.email]],
@@ -41,17 +48,38 @@ export class LoginService {
     return res;
   }
 
-  getRegisterForm$(fb: FormBuilder): FormGroup {
-    const res = fb.group(
-      {
-        userName: new FormControl('', [Validators.required, Validators.email]),
-        password: [null, [Validators.required]],
-        rePassword: [null, Validators.required],
-      },
-      { validators: RegisterFormValidator }
-    );
+  getErrorMessage(err: HttpErrorResponse): string[] {
+    /**
+     * deffensive:
+     * if has not error object or no server response
+     *
+     */
+    if (!err.error || err.error instanceof ProgressEvent) {
+      return [err.message];
+    }
+    /**
+     * errors as array of strings
+     * or as key/value pair dictionary
+     * + extra if value is array
+     *
+     */
+    if (err.error && Array.isArray(err)) {
+      return err.error;
+    }
 
-    return res;
+    const resArr = [] as string[];
+    for (const [key, value] of Object.entries(err.error)) {
+      const v = value;
+
+      if (Array.isArray(value)) {
+        value.forEach((v) => {
+          resArr.push(v);
+        });
+      } else {
+        resArr.push(value as string);
+      }
+    }
+    return resArr;
   }
 
   getMockedRegisgerData(): IIdentRegisterUser {
@@ -69,43 +97,23 @@ export class LoginService {
     } as IIdentUser;
   }
 
-  errorTypeHandler(error: HttpErrorResponse, errorType = 'httpError'): void {
-    if (error.error instanceof ProgressEvent) {
-      this.logService.addItemToErrors(error.message, errorType);
-      return;
-    }
-    /**
-     * errors as array of strings
-     * or as key/value pair dictionary
-     * + extra if value is array
-     *
-     */
-    console.log(error);
+  getRegisterForm$(fb: FormBuilder): FormGroup {
+    const res = fb.group(
+      {
+        userName: new FormControl('', [Validators.required, Validators.email]),
+        password: [null, [Validators.required]],
+        rePassword: [null, Validators.required],
+      },
+      { validators: RegisterFormValidator }
+    );
 
-    if (Array.isArray(error)) {
-      this.logService.addMultiErrors(error, errorType);
-      return;
-    }
-    const resArr = [] as string[];
-    for (const [key, value] of Object.entries(error)) {
-      const v = value;
-
-      if (Array.isArray(value)) {
-        value.forEach((v) => {
-          resArr.push(v);
-        });
-      } else {
-        resArr.push(value as string);
-      }
-    }
-    this.logService.addMultiErrors(resArr, errorType);
+    return res;
   }
 
   login(identUser: IIdentUser): Observable<IUserToken> {
     this.indicatorsSrv.isInProgress$.next(true);
     return this.identDataFactory.loginUser(identUser).pipe(
       tap((userToken) => {
-        console.log('data retrived', userToken);
         this.tokenCheck(userToken);
       })
     );

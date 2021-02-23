@@ -21,13 +21,9 @@ export class LogsService {
     logErr.date = this.getDate();
     logErr.type = errorType;
 
-    errors.push('what the fuck for start');
     errors.forEach((err) => logErr.errors.push(err));
-    errors.push('what the fuck for end');
     this.errors.unshift(logErr);
     this.errors$.next(this.errors);
-
-    console.log(this.errors);
   }
 
   addItemToErrors(errorItem: string, errorType: string): void {

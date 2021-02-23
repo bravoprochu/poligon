@@ -5,7 +5,9 @@
   <mat-form-field appearance="outline">
     <mat-label>Wprowadź login</mat-label>
     <input matInput [formControl]="registerEmail" />
-    <mat-error *ngIf="registerEmail.invalid">Błędny adres email</mat-error>
+    <mat-error *ngIf="registerEmail.invalid"
+      >Błędny adres email/pole wymagane</mat-error
+    >
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -15,6 +17,7 @@
       [type]="hideRegisterPassword ? 'password' : 'text'"
       formControlName="password"
     />
+    <mat-error *ngIf="registerPassword.invalid">pole wymagane</mat-error>
     <button
       mat-icon-button
       matSuffix
@@ -29,12 +32,13 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Wprowadź hasło</mat-label>
+    <mat-label>Powtórz hasło</mat-label>
     <input
       matInput
       [type]="hideRegisterRePassword ? 'password' : 'text'"
       formControlName="rePassword"
     />
+    <mat-error *ngIf="registerRePassword.invalid">pole wymagane</mat-error>
     <button
       mat-icon-button
       matSuffix
@@ -47,6 +51,9 @@
       }}</mat-icon>
     </button>
   </mat-form-field>
+  <div class="mat-caption mat-error" *ngIf="rFormRegister.errors">
+    {{ rFormRegister.errors.registerForm }}
+  </div>
 
   <button
     mat-raised-button
@@ -57,6 +64,4 @@
   </button>
 </form>
 
-<div class="error-container">
-  <app-error-log></app-error-log>
-</div>
+<app-simple-error [errors]="formErrors"></app-simple-error>

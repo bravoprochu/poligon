@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
+  formErrors = [] as string[];
   hideLoginPassword = true;
   rFormLogin = {} as FormGroup;
 
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
     if (this.rFormLogin.invalid) {
       return;
     }
+    this.formErrors = [];
     this.rFormLogin.disable();
     this.loginService
       .login(this.rFormLogin.value)
@@ -48,8 +50,9 @@ export class LoginComponent implements OnInit {
           console.log('loginResponse subs:', loginResponse.token);
         },
         (error: HttpErrorResponse) => {
-          console.log('login componen on Error...', error);
-          this.loginService.errorTypeHandler(error, 'loginUser');
+          const fixedErrors = this.loginService.getErrorMessage(error);
+          this.formErrors = [...fixedErrors];
+          this.loginService.addToLogs(fixedErrors, 'registerUser');
         }
       );
   }

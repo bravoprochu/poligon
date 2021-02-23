@@ -10,12 +10,13 @@ import { IIdentUser } from '../interfaces/i-ident-user';
 
 const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
-  repeats = 0,
-  delayTime = 1000
+  repeats = 3,
+  delayTime = 2000
 ) => {
   return pipe(
     retryWhen((err) =>
       err.pipe(
+        tap(() => indicatorsService.progressColor$.next('warn')),
         delay(delayTime),
         takeWhile((err: HttpErrorResponse, idx) => {
           if (idx < repeats && isHttpErrorResponseToRetry(err.status)) {
@@ -50,15 +51,21 @@ export class IdentDataFactoryService {
   ) {}
 
   loginUser(identUser: IIdentUser): Observable<any> {
+    this.initIndicator();
     return this.httpClient
       .post(environment.identTokenUrl, identUser)
-      .pipe(tap(() => this.indicatorsService.isInProgress$.next(true)))
       .pipe(RETRYWHEN_AND_FINALIZE_PIPE$(this.indicatorsService));
   }
 
   registerUser(identRegisterUser: IIdentRegisterUser): Observable<any> {
+    this.initIndicator();
     return this.httpClient
       .post(environment.identRegisterUserUrl, identRegisterUser)
       .pipe(RETRYWHEN_AND_FINALIZE_PIPE$(this.indicatorsService));
+  }
+
+  private initIndicator(): void {
+    this.indicatorsService.progressColor$.next('primary');
+    this.indicatorsService.isInProgress$.next(true);
   }
 }
