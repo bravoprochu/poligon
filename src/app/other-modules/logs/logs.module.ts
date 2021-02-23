@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { LogsService } from './services/logs.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SimpleErrorComponent } from './components/simple-error/simple-error.component';
+import { SimpleDebugComponent } from './components/simple-debug/simple-debug.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -17,9 +19,14 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [ErrorLogComponent],
+  declarations: [ErrorLogComponent, SimpleErrorComponent, SimpleDebugComponent],
   imports: [CommonModule, IMPORT_EXPORT_MODULES],
-  exports: [IMPORT_EXPORT_MODULES, ErrorLogComponent],
+  exports: [
+    IMPORT_EXPORT_MODULES,
+    ErrorLogComponent,
+    SimpleErrorComponent,
+    SimpleDebugComponent,
+  ],
   providers: [LogsService],
 })
 export class LogsModule {}

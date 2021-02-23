@@ -1,0 +1,6 @@
+<div class="errors-container" *ngIf="errors.length > 0">
+  <h3 class="errors-title mat-h3 mat-error">Server response:</h3>
+  <div class="errors-item mat-body" *ngFor="let formError of errors">
+    {{ formError }}
+  </div>
+</div>
