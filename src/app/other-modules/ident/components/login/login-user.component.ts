@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         },
         (error: HttpErrorResponse) => {
           console.log('login componen on Error...', error);
-          this.loginService.errorTypeHandler(error.error?.payload, 'loginUser');
+          this.loginService.errorTypeHandler(error, 'loginUser');
         }
       );
   }

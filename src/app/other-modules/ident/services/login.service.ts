@@ -17,6 +17,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogsService } from '../../logs/services/logs.service';
+import { ILogError } from '../../logs/interfaces/i-log-error';
 
 @Injectable({
   providedIn: 'root',
@@ -63,18 +64,24 @@ export class LoginService {
 
   getMockedLoginData(): IIdentUser {
     return {
-      userName: 'bravoprochu@gmail.com',
-      password: 'Qq123456',
+      userName: 'testowo@gmail.com',
+      password: '123456',
     } as IIdentUser;
   }
 
-  errorTypeHandler(error: string[] | any, errorType = 'httpError'): void {
+  errorTypeHandler(error: HttpErrorResponse, errorType = 'httpError'): void {
+    if (error.error instanceof ProgressEvent) {
+      this.logService.addItemToErrors(error.message, errorType);
+      return;
+    }
     /**
      * errors as array of strings
      * or as key/value pair dictionary
      * + extra if value is array
      *
      */
+    console.log(error);
+
     if (Array.isArray(error)) {
       this.logService.addMultiErrors(error, errorType);
       return;

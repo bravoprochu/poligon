@@ -4,7 +4,7 @@
   </ul>
 </div> -->
 
-<mat-expansion-panel>
+<mat-expansion-panel *ngIf="errors.length > 0">
   <mat-expansion-panel-header>
     <mat-panel-title> Logs/errors </mat-panel-title>
     <mat-panel-description>
@@ -21,7 +21,7 @@
       [style.height.px]="itemHeight"
       class="viewport-item"
       *cdkVirtualFor="
-        let err of errors$;
+        let err of errors;
         let index = index;
         let count = count;
         let first = first;

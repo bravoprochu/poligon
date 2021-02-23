@@ -1,30 +1,7 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  onErrorResumeNext,
-  of,
-  throwError,
-  EmptyError,
-  pipe,
-} from 'rxjs';
-import {
-  catchError,
-  delay,
-  delayWhen,
-  finalize,
-  map,
-  repeat,
-  retryWhen,
-  switchMap,
-  take,
-  takeWhile,
-  tap,
-} from 'rxjs/operators';
+import { Observable, pipe } from 'rxjs';
+import { delay, finalize, retryWhen, takeWhile, tap } from 'rxjs/operators';
 import { isHttpErrorResponseToRetry } from 'src/app/common-functions/is-http-error-response-to-retry';
 import { environment } from 'src/environments/environment';
 import { IndicatorsService } from '../../indicators/indicators.service';
@@ -34,7 +11,7 @@ import { IIdentUser } from '../interfaces/i-ident-user';
 const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
   repeats = 0,
-  delayTime = 2000
+  delayTime = 1000
 ) => {
   return pipe(
     retryWhen((err) =>

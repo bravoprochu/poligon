@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { ILogError } from '../interfaces/i-log-error';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class LogsService {
   constructor() {}
 
   private errors = [] as ILogError[];
-  errors$ = new Subject() as Subject<ILogError[]>;
+  errors$ = new Subject() as ReplaySubject<ILogError[]>;
   isErrorKept = true;
   isErrorAdded$ = new Subject() as Subject<boolean>;
 
@@ -18,7 +18,7 @@ export class LogsService {
 
     const logErr = {} as ILogError;
     logErr.errors = [];
-    logErr.date = new Date().toUTCString();
+    logErr.date = this.getDate();
     logErr.type = errorType;
 
     errors.push('what the fuck for start');
@@ -32,10 +32,9 @@ export class LogsService {
 
   addItemToErrors(errorItem: string, errorType: string): void {
     this.checkToClearErrors();
-
     const logErr = {} as ILogError;
-    logErr.errors = [];
-    logErr.date = new Date().toLocaleString();
+    logErr.errors = [errorItem];
+    logErr.date = this.getDate();
     logErr.type = errorType;
 
     this.errors.unshift(logErr);
@@ -46,5 +45,9 @@ export class LogsService {
     if (!this.isErrorKept) {
       this.errors = [];
     }
+  }
+
+  private getDate(): string {
+    return new Date().toUTCString();
   }
 }

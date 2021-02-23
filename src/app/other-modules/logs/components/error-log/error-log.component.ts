@@ -15,9 +15,24 @@ export class ErrorLogComponent implements OnInit {
   itemHeight = 150;
   itemOnView = 3;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initObservable();
+  }
 
-  get errors$(): Subject<ILogError[]> {
-    return this.logService.errors$;
+  initObservable() {
+    this.logService.errors$.pipe().subscribe(
+      (errors: any) => {
+        console.log('errors subs:', errors);
+        // this.errors = [];
+        // this.errors = [...errors];
+        this.errors = errors;
+      },
+      (error) => console.log('errors error', error),
+      () => console.log('errors completed..')
+    );
+  }
+
+  trackByFn(idx: number, item: ILogError): any {
+    return idx;
   }
 }
