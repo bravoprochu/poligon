@@ -1,4 +1,4 @@
-import { Component, OnInit, TrackByFunction } from '@angular/core';
+import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ILogError } from '../../interfaces/i-log-error';
@@ -9,7 +9,7 @@ import { LogsService } from '../../services/logs.service';
   templateUrl: './error-log.component.html',
   styleUrls: ['./error-log.component.scss'],
 })
-export class ErrorLogComponent implements OnInit {
+export class ErrorLogComponent implements OnInit, OnDestroy {
   constructor(private logService: LogsService) {}
 
   errors = [] as ILogError[];

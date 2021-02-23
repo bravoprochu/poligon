@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { IUserToken } from '../../interfaces/i-user-token';
@@ -9,7 +9,7 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './user-status.component.html',
   styleUrls: ['./user-status.component.scss'],
 })
-export class UserStatusComponent implements OnInit {
+export class UserStatusComponent implements OnInit, OnDestroy {
   constructor(private loginService: LoginService) {}
 
   isLoggedIn = false;

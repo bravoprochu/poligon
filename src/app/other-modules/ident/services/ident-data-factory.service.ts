@@ -25,8 +25,8 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
       err.pipe(
         tap(() => indicatorsService.setColorWarn()),
         delay(delayTime),
-        takeWhile((err: HttpErrorResponse, idx) => {
-          if (idx < repeats && isHttpErrorResponseToRetry(err.status)) {
+        takeWhile((resError: HttpErrorResponse, idx) => {
+          if (idx < repeats && isHttpErrorResponseToRetry(resError.status)) {
             indicatorsService.message(
               'Login ERROR',
               `(${idx + 1}) Shit happens. ${
@@ -35,8 +35,11 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
             );
             return true;
           } else {
-            indicatorsService.message('Login ERROR', `Error, ${err.message}`);
-            throw err;
+            indicatorsService.message(
+              'Login ERROR',
+              `Error, ${resError.message}`
+            );
+            throw resError;
             // return false;
           }
         })

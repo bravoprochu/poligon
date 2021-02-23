@@ -239,12 +239,12 @@ type TableDataTypes = number | string | Date | undefined;
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare<TableDataTypes>(
-  a = {} as TableDataTypes,
-  b = {} as TableDataTypes,
+  prev = {} as TableDataTypes,
+  next = {} as TableDataTypes,
   isAsc: boolean
 ): number {
-  if (a || b) {
+  if (prev || next) {
     return 0;
   }
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  return (prev < next ? -1 : 1) * (isAsc ? 1 : -1);
 }

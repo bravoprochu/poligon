@@ -69,14 +69,14 @@ export class LoginService {
 
     const resArr = [] as string[];
     for (const [key, value] of Object.entries(err.error)) {
-      const v = value;
+      const objValue = value;
 
-      if (Array.isArray(value)) {
-        value.forEach((v) => {
+      if (Array.isArray(objValue)) {
+        objValue.forEach((v) => {
           resArr.push(v);
         });
       } else {
-        resArr.push(value as string);
+        resArr.push(objValue as string);
       }
     }
     return resArr;
