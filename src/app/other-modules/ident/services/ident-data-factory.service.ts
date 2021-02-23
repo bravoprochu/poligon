@@ -1,7 +1,14 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, pipe } from 'rxjs';
-import { delay, finalize, retryWhen, takeWhile, tap } from 'rxjs/operators';
+import { Observable, of, pipe } from 'rxjs';
+import {
+  delay,
+  finalize,
+  retryWhen,
+  switchMap,
+  takeWhile,
+  tap,
+} from 'rxjs/operators';
 import { isHttpErrorResponseToRetry } from 'src/app/common-functions/is-http-error-response-to-retry';
 import { environment } from 'src/environments/environment';
 import { IndicatorsService } from '../../indicators/indicators.service';
@@ -16,7 +23,7 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   return pipe(
     retryWhen((err) =>
       err.pipe(
-        tap(() => indicatorsService.progressColor$.next('warn')),
+        tap(() => indicatorsService.setColorWarn()),
         delay(delayTime),
         takeWhile((err: HttpErrorResponse, idx) => {
           if (idx < repeats && isHttpErrorResponseToRetry(err.status)) {
@@ -59,13 +66,14 @@ export class IdentDataFactoryService {
 
   registerUser(identRegisterUser: IIdentRegisterUser): Observable<any> {
     this.initIndicator();
+
     return this.httpClient
       .post(environment.identRegisterUserUrl, identRegisterUser)
       .pipe(RETRYWHEN_AND_FINALIZE_PIPE$(this.indicatorsService));
   }
 
   private initIndicator(): void {
-    this.indicatorsService.progressColor$.next('primary');
+    this.indicatorsService.setColorPrimary();
     this.indicatorsService.isInProgress$.next(true);
   }
 }

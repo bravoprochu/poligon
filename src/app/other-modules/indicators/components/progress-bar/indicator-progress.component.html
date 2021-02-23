@@ -2,6 +2,6 @@
   <mat-progress-bar
     *ngIf="indicatorsSrv.isInProgress$ | async"
     mode="indeterminate"
-    [color]="indicatorsSrv.progressColor$ | async"
+    [color]="indicatorsSrv.progressColor"
   ></mat-progress-bar>
 </div>
