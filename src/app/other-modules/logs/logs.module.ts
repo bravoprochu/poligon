@@ -4,7 +4,6 @@ import { ErrorLogComponent } from './components/error-log/error-log.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { LogsService } from './services/logs.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SimpleErrorComponent } from './components/simple-error/simple-error.component';
@@ -27,6 +26,6 @@ const IMPORT_EXPORT_MODULES = [
     SimpleErrorComponent,
     SimpleDebugComponent,
   ],
-  providers: [LogsService],
+  providers: [],
 })
 export class LogsModule {}
