@@ -20,7 +20,7 @@ const USER_TOKEN_MOCKED = {
   claims: [
     {
       type: 'sub',
-      value: 'bravoprochu@gmail.com',
+      value: 'testowo@gmail.com',
     },
     {
       type: 'jti',
