@@ -16,6 +16,8 @@ import { IdentDataFactoryService } from './services/ident-data-factory.service';
 import { RegisterUserComponent } from './components/register/register-user.component';
 import { UserStatusComponent } from './components/user-status/user-status.component';
 import { LogsModule } from '../logs/logs.module';
+import { IdentifyGuard } from './guards/identify.guard';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -23,6 +25,7 @@ const IMPORT_EXPORT_MODULES = [
   IndicatorsModule,
   ReactiveFormsModule,
   MatButtonModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -39,6 +42,6 @@ const IMPORT_EXPORT_MODULES = [
     RegisterUserComponent,
     UserStatusComponent,
   ],
-  providers: [IdentDataFactoryService, LoginService],
+  providers: [IdentDataFactoryService, LoginService, IdentifyGuard],
 })
 export class IdentModule {}
