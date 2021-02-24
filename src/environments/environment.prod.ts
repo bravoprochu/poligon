@@ -7,4 +7,6 @@ export const environment = {
   isRealServerData: true,
   identTokenUrl: 'https://bp-poligon-api/token',
   identRegisterUserUrl: 'https://bp-poligon-api/registerUser',
+  httpRequestRetry: 3,
+  httpRequestRetryDelay: 2000,
 };

@@ -12,6 +12,8 @@ export const environment = {
   identTokenUrl: 'https://localhost:5001/token',
   identRegisterUserUrl: 'https://localhost:5001/account/register',
   bpApiDataUrl: 'https://localhost:5001/api',
+  httpRequestRetry: 1,
+  httpRequestRetryDelay: 2000,
 };
 
 /*

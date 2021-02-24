@@ -47,8 +47,10 @@ const USER_TOKEN_MOCKED = {
 
 const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
-  repeats = 3,
-  delayTime = 2000
+  repeats = environment.httpRequestRetry ? environment.httpRequestRetry : 3,
+  delayTime = environment.httpRequestRetryDelay
+    ? environment.httpRequestRetryDelay
+    : 2000
 ) => {
   return pipe(
     retryWhen((err) =>
