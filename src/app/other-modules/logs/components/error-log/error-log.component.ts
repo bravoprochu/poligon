@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 import { ILogError } from '../../interfaces/i-log-error';
 import { LogsService } from '../../services/logs.service';
 
@@ -24,13 +24,18 @@ export class ErrorLogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.initData();
     this.initObservable();
   }
 
+  initData(): void {
+    this.errors = [...this.logService.errors];
+  }
+
   initObservable(): void {
-    this.logService.errors$.pipe(takeUntil(this.isDestroyed$)).subscribe(
+    this.logService.isErrorAdded$.pipe(takeUntil(this.isDestroyed$)).subscribe(
       (errors: any) => {
-        this.errors = [...errors];
+        this.initData();
       },
       (error) => console.log('errors error', error),
       () => console.log('errors completed..')

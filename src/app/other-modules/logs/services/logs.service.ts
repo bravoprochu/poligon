@@ -6,10 +6,7 @@ import { ILogError } from '../interfaces/i-log-error';
   providedIn: 'root',
 })
 export class LogsService {
-  constructor() {}
-
-  private errors = [] as ILogError[];
-  errors$ = new Subject() as ReplaySubject<ILogError[]>;
+  errors = [] as ILogError[];
   isErrorKept = true;
   isErrorAdded$ = new Subject() as Subject<boolean>;
 
@@ -23,7 +20,7 @@ export class LogsService {
 
     errors.forEach((err) => logErr.errors.push(err));
     this.errors.unshift(logErr);
-    this.errors$.next(this.errors);
+    this.isErrorAdded$.next(true);
   }
 
   addItemToErrors(errorItem: string, errorType: string): void {
@@ -34,7 +31,7 @@ export class LogsService {
     logErr.type = errorType;
 
     this.errors.unshift(logErr);
-    this.errors$.next(this.errors);
+    this.isErrorAdded$.next(true);
   }
 
   private checkToClearErrors(): void {
