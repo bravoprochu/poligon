@@ -1,8 +1,37 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <h2 class="mat-h2">Training, best practices, tryouts</h2>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content> ...check upcomming </mat-card-content>
-</mat-card>
+<div fxLayout="column wrap" fxLayoutGap="10px">
+  <mat-card fxFlex="100">
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="mat-h2">Training, best practices, tryouts</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content> ...check upcomming </mat-card-content>
+  </mat-card>
+
+  <mat-card fxFlex="100">
+    <mat-card-header>
+      <mat-card-title>Authentication required</mat-card-title>
+      <mat-card-subtitle>LogIn</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h3 class="mat-h3">Angular guards - canLoad</h3>
+      <p>
+        To present <code>authentication</code> and <code>authorization</code> in
+        real world example, some modules are guarded by
+        <code>angular guards</code>.
+      </p>
+      <p>
+        For example <strong>Coin API module</strong> is guarded by
+        <code>identifyGuard</code> (canLoad) guard. <br />
+        To get access, You need to log in and get JWT (json web token) from
+        backend identify/authorisation server. Token is set in every request to
+        server to verify user on server-side. Preventing nonAuthorised access to
+        API resources
+      </p>
+      <ul>
+        <li>userName: <strong>testowo@gmail.com</strong></li>
+        <li>password: <strong>123456</strong></li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>
