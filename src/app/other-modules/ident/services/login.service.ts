@@ -28,7 +28,7 @@ export class LoginService {
     private logService: LogsService
   ) {}
 
-  isLoggedIn$ = new ReplaySubject<boolean>();
+  isLoggingStatusChanged$ = new ReplaySubject<boolean>();
   isLoggedIn = false;
   loggedInUser = {} as IUserToken;
 
@@ -113,7 +113,6 @@ export class LoginService {
 
   login(identUser: IIdentUser): Observable<IUserToken> {
     this.indicatorsSrv.isInProgress$.next(true);
-    this.isLoggedIn = true;
     return this.identDataFactory.loginUser(identUser).pipe(
       tap((userToken) => {
         this.tokenCheck(userToken);
@@ -122,9 +121,9 @@ export class LoginService {
   }
 
   logout(): void {
-    this.isLoggedIn$.next(false);
-    this.isLoggedIn = true;
+    this.isLoggedIn = false;
     this.loggedInUser = {} as IUserToken;
+    this.isLoggingStatusChanged$.next(false);
   }
 
   loginErrorHandler(): void {}
@@ -158,11 +157,13 @@ export class LoginService {
     const tokenTime = new Date(userToken.expirationTime);
 
     if (tokenTime >= now) {
-      this.isLoggedIn$.next(true);
+      this.isLoggedIn = true;
       this.loggedInUser = this.mapUserToken(userToken);
+      this.isLoggingStatusChanged$.next(true);
     } else {
-      this.isLoggedIn$.next(false);
+      this.isLoggedIn = false;
       this.loggedInUser = {} as IUserToken;
+      this.isLoggingStatusChanged$.next(false);
     }
   }
 }
