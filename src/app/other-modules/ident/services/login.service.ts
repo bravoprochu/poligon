@@ -94,7 +94,7 @@ export class LoginService {
   getMockedLoginData(): IIdentUser {
     return {
       userName: 'testowo@gmail.com',
-      password: '123456',
+      password: '',
     } as IIdentUser;
   }
 
