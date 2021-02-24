@@ -9,7 +9,7 @@
       <ng-container *ngFor="let booked of bookmarked">
         <div>
           &nbsp;
-          <mat-chip [routerLink]="booked.route"
+          <mat-chip (click)="navTo(booked.route)"
             >{{ booked.caption }}
             <mat-icon (click)="remove(booked)" matChipRemove>cancel</mat-icon>
           </mat-chip>

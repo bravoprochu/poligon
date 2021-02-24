@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import {
   debounceTime,
@@ -14,6 +15,7 @@ import {
   startWith,
   takeUntil,
 } from 'rxjs/operators';
+import { IS_HANDSET } from 'src/app/common-functions/is-handset';
 import { IMenuItem } from '../interfaces/i-menu-item';
 import { MenuService } from '../menu.service';
 
@@ -25,10 +27,11 @@ import { MenuService } from '../menu.service';
 export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
   @Output() menuChanged = new EventEmitter();
-  constructor(private menuService: MenuService) {}
+  constructor(private router: Router, private menuService: MenuService) {}
 
   isDestroyed$: Subject<boolean> = new Subject();
   search$: FormControl = new FormControl();
+  isHandset$ = IS_HANDSET;
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -67,11 +70,19 @@ export class MenuNavComponent implements OnInit, OnDestroy {
   }
 
   bookmark(item: IMenuItem): void {
+    const found = this.bookmarked.find((f) => f.id === item.id);
+    if (found) {
+      return;
+    }
     this.menuService.addToBookmark(item);
   }
 
   menuSelected(menuItem: IMenuItem): void {
     this.menuChanged.emit(menuItem);
+  }
+
+  navTo(route: string[]): void {
+    this.router.navigate(route);
   }
 
   remove(item: IMenuItem): void {
