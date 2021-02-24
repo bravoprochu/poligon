@@ -14,6 +14,8 @@ import { IdentModule } from './other-modules/ident/ident.module';
 import { IdentAuthComponent } from './sites/ident-auth/ident-auth.component';
 import { LogsModule } from './other-modules/logs/logs.module';
 import { LogsComponent } from './sites/logs/logs.component';
+import { LogsService } from './other-modules/logs/services/logs.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
@@ -21,19 +23,25 @@ const IMPORT_EXPORT_MODULES = [
   LogsModule,
   MenuModule,
   MatCardModule,
+  MatDividerModule,
   MatSidenavModule,
   MatToolbarModule,
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IdentAuthComponent, LogsComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    IdentAuthComponent,
+    LogsComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IMPORT_EXPORT_MODULES,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [LogsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

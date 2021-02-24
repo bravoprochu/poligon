@@ -9,29 +9,41 @@
   >
     <mat-toolbar fxLayout fxLayoutAlign="space-between center"
       ><span>Menu</span>
-      <button (click)="drawer.toggle()" color="primary" mat-mini-fab>
+      <!-- <button (click)="drawer.toggle()" color="primary" mat-mini-fab>
         <mat-icon>close</mat-icon>
-      </button>
+      </button> -->
+      <div *ngIf="(isHandset$ | async) === true">
+        <app-user-status></app-user-status>
+      </div>
     </mat-toolbar>
+    <mat-divider></mat-divider>
 
     <app-menu-nav
       (menuChanged)="menuSelected($event)"
       [menuItems]="menuItems"
     ></app-menu-nav>
+
     <div class="copyrights">{{ copyrights }}</div>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="(isHandset$ | async) || !isOpened"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>{{ title | uppercase }}</span>
+      <div fxLayout fxLayoutAlign="space-between center" fxFill>
+        <div>
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="(isHandset$ | async) || !isOpened"
+          >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <span>{{ title | uppercase }}</span>
+        </div>
+        <div *ngIf="(isHandset$ | async) === false">
+          <app-user-status></app-user-status>
+        </div>
+      </div>
     </mat-toolbar>
 
     <section class="container">
