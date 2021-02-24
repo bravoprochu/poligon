@@ -20,7 +20,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'coin-api/websockets',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 
