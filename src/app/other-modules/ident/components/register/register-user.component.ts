@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -17,7 +17,7 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.scss'],
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent implements OnInit, OnDestroy {
   constructor(
     @Optional() private dialogRef: MatDialogRef<RegisterUserComponent>,
     private fb: FormBuilder,
