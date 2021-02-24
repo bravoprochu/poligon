@@ -1,4 +1,16 @@
-<div class="user-info-container" *ngIf="isLoggedIn">
-  <span>&nbsp;is loggedIn !</span>
-  <div>{{ loggedInUser!.userName }}</div>
+<div
+  class="user-status-container"
+  fxLayout
+  fxLayoutAlign="space-between center"
+  *ngIf="isLoggedIn"
+>
+  <div class="mat-body">
+    <div>{{ loggedInUser!.userName }}</div>
+    <span>&nbsp;is loggedIn !</span>
+  </div>
+  <div>
+    <button (click)="logout()" mat-mini-fab color="accent">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
 </div>
