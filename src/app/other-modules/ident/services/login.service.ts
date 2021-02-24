@@ -13,7 +13,7 @@ import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogsService } from '../../logs/services/logs.service';
@@ -28,7 +28,8 @@ export class LoginService {
     private logService: LogsService
   ) {}
 
-  isLoggedIn$ = new Subject<boolean>();
+  isLoggedIn$ = new ReplaySubject<boolean>();
+  isLoggedIn = false;
   loggedInUser = {} as IUserToken;
 
   addToLogs(errors: string | string[], logsTitle: string): void {
@@ -112,11 +113,18 @@ export class LoginService {
 
   login(identUser: IIdentUser): Observable<IUserToken> {
     this.indicatorsSrv.isInProgress$.next(true);
+    this.isLoggedIn = true;
     return this.identDataFactory.loginUser(identUser).pipe(
       tap((userToken) => {
         this.tokenCheck(userToken);
       })
     );
+  }
+
+  logout(): void {
+    this.isLoggedIn$.next(false);
+    this.isLoggedIn = true;
+    this.loggedInUser = {} as IUserToken;
   }
 
   loginErrorHandler(): void {}
