@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { IndicatorsService } from '../../../indicators/indicators.service';
 import { LoginService } from '../../services/login.service';
 
@@ -11,8 +12,9 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './login-user.component.html',
   styleUrls: ['./login-user.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   constructor(
+    @Optional() private dialogRef: MatDialogRef<LoginComponent>,
     private fb: FormBuilder,
     private indicatorsSrv: IndicatorsService,
     private loginService: LoginService
@@ -21,6 +23,13 @@ export class LoginComponent implements OnInit {
   formErrors = [] as string[];
   hideLoginPassword = true;
   rFormLogin = {} as FormGroup;
+  isDestroyed$: Subject<boolean> = new Subject();
+
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -44,10 +53,16 @@ export class LoginComponent implements OnInit {
     this.rFormLogin.disable();
     this.loginService
       .login(this.rFormLogin.value)
-      .pipe(finalize(() => this.rFormLogin.enable()))
+      .pipe(
+        finalize(() => this.rFormLogin.enable()),
+        takeUntil(this.isDestroyed$)
+      )
       .subscribe(
         (loginResponse: any) => {
           console.log('loginResponse subs:', loginResponse.token);
+          if (this.dialogRef) {
+            this.dialogRef.close(true);
+          }
         },
         (error: HttpErrorResponse) => {
           const fixedErrors = this.loginService.getErrorMessage(error);

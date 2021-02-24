@@ -1,13 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   FormBuilder,
   ValidationErrors,
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.service';
 import { LoginService } from '../../services/login.service';
 
@@ -18,6 +19,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class RegisterUserComponent implements OnInit {
   constructor(
+    @Optional() private dialogRef: MatDialogRef<RegisterUserComponent>,
     private fb: FormBuilder,
     private indicatorsSrv: IndicatorsService,
     private loginService: LoginService
@@ -27,6 +29,13 @@ export class RegisterUserComponent implements OnInit {
   hideRegisterPassword = true;
   hideRegisterRePassword = true;
   rFormRegister = {} as FormGroup;
+  isDestroyed$: Subject<boolean> = new Subject();
+
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -50,7 +59,10 @@ export class RegisterUserComponent implements OnInit {
     this.rFormRegister.disable();
     this.loginService
       .register(this.rFormRegister.value)
-      .pipe(finalize(() => this.rFormRegister.enable()))
+      .pipe(
+        finalize(() => this.rFormRegister.enable()),
+        takeUntil(this.isDestroyed$)
+      )
       .subscribe(
         (loginResponse: any) => {
           this.formErrors = [];
