@@ -13,7 +13,7 @@ export const environment = {
   identRegisterUserUrl: 'https://localhost:5001/account/register',
   bpApiDataUrl: 'https://localhost:5001/api',
   httpRequestRetry: 1,
-  httpRequestRetryDelay: 2000,
+  httpRequestRetryDelay: 200,
 };
 
 /*

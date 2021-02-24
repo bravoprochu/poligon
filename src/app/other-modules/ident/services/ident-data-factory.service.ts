@@ -60,7 +60,7 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
         takeWhile((resError: HttpErrorResponse, idx) => {
           if (idx < repeats && isHttpErrorResponseToRetry(resError.status)) {
             indicatorsService.message(
-              'Login ERROR',
+              'Http request ERROR',
               `(${idx + 1}) Shit happens. ${
                 idx + 1 === repeats ? '...last time!' : '...trying again'
               }`
@@ -68,11 +68,10 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
             return true;
           } else {
             indicatorsService.message(
-              'Login ERROR',
+              'Http request ERROR',
               `Error, ${resError.message}`
             );
             throw resError;
-            // return false;
           }
         })
       )
@@ -118,7 +117,7 @@ export class IdentDataFactoryService {
             'faking getting data from server..'
           )
         ),
-        delay(2500),
+        delay(environment.httpRequestRetryDelay),
         finalize(() => {
           this.indicatorsService.isInProgress$.next(false);
           this.indicatorsService.message('login user', 'You are logged in !!');
