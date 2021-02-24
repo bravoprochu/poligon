@@ -74,6 +74,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         group: 'coin API',
         route: ['/coin-api/websockets'],
       },
+      {
+        caption: 'logs',
+        icon: 'wysiwyg',
+        group: 'System/logs',
+        route: ['/logs'],
+      },
     ] as IMenuItem[];
   }
 

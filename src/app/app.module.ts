@@ -12,10 +12,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { IdentModule } from './other-modules/ident/ident.module';
 import { IdentAuthComponent } from './sites/ident-auth/ident-auth.component';
+import { LogsModule } from './other-modules/logs/logs.module';
+import { LogsComponent } from './sites/logs/logs.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   IdentModule,
+  LogsModule,
   MenuModule,
   MatCardModule,
   MatSidenavModule,
@@ -23,7 +26,7 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IdentAuthComponent],
+  declarations: [AppComponent, HomeComponent, IdentAuthComponent, LogsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

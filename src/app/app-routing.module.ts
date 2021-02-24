@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IdentifyGuard } from './other-modules/ident/guards/identify.guard';
 import { HomeComponent } from './sites/home/home.component';
 import { IdentAuthComponent } from './sites/ident-auth/ident-auth.component';
+import { LogsComponent } from './sites/logs/logs.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,12 +16,14 @@ const routes: Routes = [
     canLoad: [IdentifyGuard],
   },
   { path: 'identAuth', component: IdentAuthComponent },
+  { path: 'logs', component: LogsComponent },
 
   {
     path: '',
     redirectTo: 'coin-api/websockets',
     pathMatch: 'full',
   },
+
   { path: '**', redirectTo: 'home' },
 ];
 
