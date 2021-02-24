@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         (error: HttpErrorResponse) => {
           const fixedErrors = this.loginService.getErrorMessage(error);
           this.formErrors = [...fixedErrors];
-          this.loginService.addToLogs(fixedErrors, 'registerUser');
+          this.loginService.addToLogs(fixedErrors, 'loginUser');
         }
       );
   }
