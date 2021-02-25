@@ -33,12 +33,14 @@ export class ErrorLogComponent implements OnInit, OnDestroy {
   }
 
   initObservable(): void {
-    this.logService.isErrorAdded$.pipe(takeUntil(this.isDestroyed$)).subscribe(
-      (errors: any) => {
-        this.initData();
-      },
-      (error) => console.log('errors error', error),
-      () => console.log('errors completed..')
-    );
+    this.logService.isErrorChanged$
+      .pipe(takeUntil(this.isDestroyed$))
+      .subscribe(
+        (errors: any) => {
+          this.initData();
+        },
+        (error) => console.log('errors error', error),
+        () => console.log('errors completed..')
+      );
   }
 }

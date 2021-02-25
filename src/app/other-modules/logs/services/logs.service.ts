@@ -8,7 +8,7 @@ import { ILogError } from '../interfaces/i-log-error';
 export class LogsService {
   errors = [] as ILogError[];
   isErrorKept = true;
-  isErrorAdded$ = new Subject() as Subject<boolean>;
+  isErrorChanged$ = new Subject() as Subject<boolean>;
 
   addMultiErrors(errors: string[], errorType: string): void {
     this.checkToClearErrors();
@@ -20,7 +20,7 @@ export class LogsService {
 
     errors.forEach((err) => logErr.errors.push(err));
     this.errors.unshift(logErr);
-    this.isErrorAdded$.next(true);
+    this.isErrorChanged$.next(true);
   }
 
   addItemToErrors(errorItem: string, errorType: string): void {
@@ -31,13 +31,18 @@ export class LogsService {
     logErr.type = errorType;
 
     this.errors.unshift(logErr);
-    this.isErrorAdded$.next(true);
+    this.isErrorChanged$.next(true);
   }
 
   private checkToClearErrors(): void {
     if (!this.isErrorKept) {
       this.errors = [];
     }
+  }
+
+  clearLogs(): void {
+    this.errors = [];
+    this.isErrorChanged$.next(true);
   }
 
   private getDate(): string {
