@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  localStorageAppKey: 'PoligonApp',
 
   coinApiIoUrl: 'https://rest-sandbox.coinapi.io/',
   coinApiIoWebsocketUrl: 'wss://ws-sandbox.coinapi.io/v1/',
