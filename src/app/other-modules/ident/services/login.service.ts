@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,14 +6,21 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import {
+  map,
+  startWith,
+  switchMap,
+  takeUntil,
+  takeWhile,
+  tap,
+} from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
-import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { empty, interval, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogsService } from '../../logs/services/logs.service';
@@ -21,16 +28,25 @@ import { LogsService } from '../../logs/services/logs.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class LoginService implements OnDestroy {
   constructor(
     private identDataFactory: IdentDataFactoryService,
     private indicatorsSrv: IndicatorsService,
     private logService: LogsService
-  ) {}
+  ) {
+    this.initObservables();
+  }
 
   isLoggingStatusChanged$ = new ReplaySubject<boolean>();
   isLoggedIn = false;
   loggedInUser = {} as IUserToken;
+  isDestroyed$: Subject<boolean> = new Subject();
+
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+  }
 
   addToLogs(errors: string | string[], logsTitle: string): void {
     if (Array.isArray(errors)) {
@@ -94,7 +110,7 @@ export class LoginService {
   getMockedLoginData(): IIdentUser {
     return {
       userName: 'testowo@gmail.com',
-      password: '',
+      password: '123456',
     } as IIdentUser;
   }
 
@@ -109,6 +125,37 @@ export class LoginService {
     );
 
     return res;
+  }
+
+  initObservables(): void {
+    this.isLoggingStatusChanged$
+      .pipe(
+        //startWith(false),
+        switchMap((isLoggedin: boolean) => {
+          if (isLoggedin) {
+            return interval(1000).pipe(
+              tap(() => {
+                this.tokenCheck(this.loggedInUser);
+              })
+            );
+          } else {
+            this.indicatorsSrv.message(
+              'Identity session',
+              'Current session has timed out. Need to log in',
+              3000
+            );
+            return of('not loggedIn');
+          }
+        }),
+        takeUntil(this.isDestroyed$)
+      )
+      .subscribe(
+        (tokenIntervalCheck: any) => {
+          console.log('tokenIntervalCheck subs:', tokenIntervalCheck);
+        },
+        (error) => console.log('tokenIntervalCheck error', error),
+        () => console.log('tokenIntervalCheck completed..')
+      );
   }
 
   login(identUser: IIdentUser): Observable<IUserToken> {
@@ -151,6 +198,8 @@ export class LoginService {
 
   private tokenCheck(userToken: IUserToken): void {
     if (!userToken.token) {
+      this.isLoggedIn = false;
+      this.isLoggingStatusChanged$.next(false);
       return;
     }
     const now = new Date();
