@@ -1,19 +1,36 @@
-# Poligon
+# Poligon - TRAINING
 
-## Ident/Auth module
+# Logs module
 
-## Indicator service = (progress bar component)
+- singleton, can be injected on dataFactory services
+- can store system info logs; http response errors..
 
-## color range module
+# Ident/Auth module
 
-1. Color labels that can be used to color style any element
+## Login/register modal component
 
-a) setting - adding/removing/modifying value ranges e.g.
-0 - 100 ("red")
-100 - 150.5 ("blue")
-150.5 - 300 ("green")
+- canLoad for lazy loaded modules ,
+- canActivate for routes identity requred
 
-b) can be used by getting color by value (second value is default color if out of range) and setting it to visualise data (numbers)
+isLoggedIn checks. Force login dialog if not..
+
+## JWT (json web token) based authentication/authorisation
+
+- every 1s checks token's expiration_date (auto logout if invalid)
+- creates basic user-status component
+
+# Indicator service = (progress bar component)
+
+# color range module
+
+## Color labels that can be used to color style any element
+
+1. setting - adding/removing/modifying value ranges e.g.
+   0 - 100 ("red")
+   100 - 150.5 ("blue")
+   150.5 - 300 ("green")
+
+2. can be used by getting color by value (second value is default color if out of range) and setting it to visualise data (numbers)
 
 ```
   setBgColor(price: number): string {
@@ -21,15 +38,17 @@ b) can be used by getting color by value (second value is default color if out o
   }
 ```
 
-c) angular material modals dialogs to update/delete
+3. angular material modals dialogs to update/delete
 
-## coin API websockets
+# coin API websockets
 
-1.
+## realtime data transfer
 
-## coin API - table template (data source)
+- colors indicates price values (using color range module)
 
-1. data table module
+# coin API - table template (data source)
+
+## data table module
 
 a) basic table
 
@@ -48,7 +67,7 @@ a) basic table
   ></app-basic-table>
 ```
 
-### basicTableDataSource:
+## basicTableDataSource:
 
 table data source (generic class; gets 2 params: columns definitions, observable table data [from service] )
 
@@ -102,6 +121,10 @@ b) expanded row ()
 </app-basic-table>
 
 ```
+
+#
+
+#
 
 #
 
