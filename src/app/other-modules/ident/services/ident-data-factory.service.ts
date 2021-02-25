@@ -107,7 +107,7 @@ export class IdentDataFactoryService {
        *
        */
       mockedUser.expirationTime = new Date(
-        new Date().getTime() + 60 * 60000
+        new Date().getTime() + 2 * 60000
       ).toUTCString();
 
       return of(mockedUser).pipe(
