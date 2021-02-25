@@ -13,6 +13,7 @@
 - canActivate for routes identity requred
 
 isLoggedIn checks. Force login dialog if not..
+Token also saved to localStorage, as a part of entire App settings key.
 
 ## JWT (json web token) based authentication/authorisation
 
