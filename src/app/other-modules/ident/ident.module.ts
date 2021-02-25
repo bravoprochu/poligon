@@ -18,11 +18,13 @@ import { UserStatusComponent } from './components/user-status/user-status.compon
 import { LogsModule } from '../logs/logs.module';
 import { IdentifyGuard } from './guards/identify.guard';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LocalStorageModule } from '../local-storage/local-storage.module';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   HttpClientModule,
   IndicatorsModule,
+  LocalStorageModule,
   ReactiveFormsModule,
   MatButtonModule,
   MatDialogModule,

@@ -3,27 +3,20 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
-import {
-  map,
-  startWith,
-  switchMap,
-  takeUntil,
-  takeWhile,
-  tap,
-} from 'rxjs/operators';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 import { RegisterFormValidator } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
-import { empty, interval, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { interval, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogsService } from '../../logs/services/logs.service';
+import { LocalStorageService } from '../../local-storage/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +25,10 @@ export class LoginService implements OnDestroy {
   constructor(
     private identDataFactory: IdentDataFactoryService,
     private indicatorsSrv: IndicatorsService,
-    private logService: LogsService
+    private logService: LogsService,
+    private storageService: LocalStorageService
   ) {
+    this.initStorageToken();
     this.initObservables();
   }
 
@@ -130,8 +125,12 @@ export class LoginService implements OnDestroy {
   initObservables(): void {
     this.isLoggingStatusChanged$
       .pipe(
-        //startWith(false),
         switchMap((isLoggedin: boolean) => {
+          /**
+           * update or remove token saved to storage
+           *
+           */
+          this.tokenToStorage();
           if (isLoggedin) {
             return interval(1000).pipe(
               tap(() => {
@@ -156,6 +155,13 @@ export class LoginService implements OnDestroy {
         (error) => console.log('tokenIntervalCheck error', error),
         () => console.log('tokenIntervalCheck completed..')
       );
+  }
+
+  initStorageToken(): void {
+    const token = this.storageService.get('userInfo');
+    if (token) {
+      this.tokenCheck(token);
+    }
   }
 
   login(identUser: IIdentUser): Observable<IUserToken> {
@@ -213,6 +219,18 @@ export class LoginService implements OnDestroy {
       this.isLoggedIn = false;
       this.loggedInUser = {} as IUserToken;
       this.isLoggingStatusChanged$.next(false);
+    }
+  }
+
+  private tokenToStorage(): void {
+    /**
+     * save to localstorage or remove if not logged in
+     *
+     */
+    if (this.isLoggedIn) {
+      this.storageService.set('userInfo', this.loggedInUser);
+    } else {
+      this.storageService.remove('userInfo');
     }
   }
 }
