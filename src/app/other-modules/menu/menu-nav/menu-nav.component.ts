@@ -83,6 +83,7 @@ export class MenuNavComponent implements OnInit, OnDestroy {
 
   navTo(route: string[]): void {
     this.router.navigate(route);
+    this.menuChanged.emit(true);
   }
 
   remove(item: IMenuItem): void {

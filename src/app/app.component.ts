@@ -109,7 +109,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  menuSelected(ev: IMenuItem): void {
+  menuSelected(ev: IMenuItem | boolean): void {
     if (this.isHandset === true) {
       this.drawer.close();
     }
