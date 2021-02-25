@@ -66,7 +66,6 @@ export class RegisterUserComponent implements OnInit, OnDestroy {
       .subscribe(
         (loginResponse: any) => {
           this.formErrors = [];
-          console.log('loginResponse subs:', loginResponse);
         },
         (error: HttpErrorResponse) => {
           const fixedErrors = this.loginService.getErrorMessage(error);

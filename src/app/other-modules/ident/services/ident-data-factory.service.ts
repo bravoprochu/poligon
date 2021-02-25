@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, pipe } from 'rxjs';
+import { Observable, of, pipe, throwError } from 'rxjs';
 import {
+  catchError,
   delay,
   finalize,
   retryWhen,
@@ -15,6 +16,18 @@ import { IndicatorsService } from '../../indicators/indicators.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
 import { IUserToken } from '../interfaces/i-user-token';
+
+const USER_REGISTER_RESPNSE = {
+  PasswordRequiresLower: [
+    "Passwords must have at least one lowercase ('a'-'z').",
+  ],
+  PasswordRequiresUpper: [
+    "Passwords must have at least one uppercase ('A'-'Z').",
+  ],
+  PasswordRequiresNonAlphanumeric: [
+    'Passwords must have at least one non alphanumeric character.',
+  ],
+};
 
 const USER_TOKEN_MOCKED = {
   claims: [
@@ -114,7 +127,7 @@ export class IdentDataFactoryService {
         tap(() =>
           this.indicatorsService.message(
             'login user',
-            'faking getting data from server..'
+            'getting FAKED data from server..'
           )
         ),
         delay(environment.httpRequestRetryDelay),
@@ -136,6 +149,32 @@ export class IdentDataFactoryService {
 
   registerUser(identRegisterUser: IIdentRegisterUser): Observable<any> {
     this.initIndicator();
+
+    if (
+      identRegisterUser.userName === 'test@gmail.com' &&
+      identRegisterUser.password === '123456'
+    ) {
+      return throwError(USER_REGISTER_RESPNSE).pipe(
+        retryWhen((err) =>
+          err.pipe(
+            delay(2500),
+            takeWhile((resError, idx) => {
+              this.indicatorsService.message(
+                'Http request ERROR',
+                `Error, Error responed by server => invalid model `
+              );
+              const errorResp = new HttpErrorResponse({
+                error: resError,
+              });
+              throw errorResp;
+            })
+          )
+        ),
+        finalize(() => {
+          this.indicatorsService.isInProgress$.next(false);
+        })
+      );
+    }
 
     return this.httpClient
       .post(environment.identRegisterUserUrl, identRegisterUser)
