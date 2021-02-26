@@ -82,7 +82,7 @@ export class IdentifyGuard implements CanLoad, CanActivate {
   private passIfLoggedIn(): Observable<boolean> {
     if (this.loginService.isLoggedIn === false) {
       return this.matDialog
-        .open(LoginComponent)
+        .open(LoginComponent, { ariaDescribedBy: 'User login dialog' })
         .afterClosed()
         .pipe(
           switchMap((islogged: boolean) => {

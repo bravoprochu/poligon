@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IdentifyGuard } from './other-modules/ident/guards/identify.guard';
+import { IdentifyGuard } from 'otherModules/ident/guards/identify.guard';
 import { HomeComponent } from './sites/home/home.component';
 import { IdentAuthComponent } from './sites/ident-auth/ident-auth.component';
 import { LogsComponent } from './sites/logs/logs.component';
@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'coin-api',
     loadChildren: () =>
-      import('./other-modules/coin-api/coin-api.module').then(
+      import('otherModules/coin-api/coin-api.module').then(
         (m) => m.CoinApiModule
       ),
     canLoad: [IdentifyGuard],

@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { YesNoDialogComponent } from 'src/app/other-modules/dialogs/components/yes-no-dialog/yes-no-dialog.component';
-import { IYesNoDialogData } from 'src/app/other-modules/dialogs/interfaces/i-yes-no-dialog-data';
-import { LogsService } from 'src/app/other-modules/logs/services/logs.service';
+import { YesNoDialogComponent } from 'otherModules/dialogs/components/yes-no-dialog/yes-no-dialog.component';
+import { IYesNoDialogData } from 'otherModules/dialogs/interfaces/i-yes-no-dialog-data';
+import { LogsService } from 'otherModules/logs/services/logs.service';
 
 @Component({
   selector: 'app-logs',

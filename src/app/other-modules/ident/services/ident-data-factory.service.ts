@@ -1,16 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, pipe, throwError } from 'rxjs';
-import {
-  catchError,
-  delay,
-  finalize,
-  retryWhen,
-  switchMap,
-  takeWhile,
-  tap,
-} from 'rxjs/operators';
-import { isHttpErrorResponseToRetry } from 'src/app/common-functions/is-http-error-response-to-retry';
+import { delay, finalize, retryWhen, takeWhile, tap } from 'rxjs/operators';
+import { isHttpErrorResponseToRetry } from 'commonFunctions/is-http-error-response-to-retry';
 import { environment } from 'src/environments/environment';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';

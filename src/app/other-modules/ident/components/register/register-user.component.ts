@@ -9,7 +9,7 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
-import { IndicatorsService } from 'src/app/other-modules/indicators/indicators.service';
+import { IndicatorsService } from 'otherModules/indicators/indicators.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({

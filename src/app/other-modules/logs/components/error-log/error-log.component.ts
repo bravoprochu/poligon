@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ILogError } from '../../interfaces/i-log-error';
 import { LogsService } from '../../services/logs.service';
 

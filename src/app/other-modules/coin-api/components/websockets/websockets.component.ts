@@ -9,8 +9,8 @@ import {
 import { FormControl } from '@angular/forms';
 import { of, Subject } from 'rxjs';
 import { delay, startWith, takeUntil, tap } from 'rxjs/operators';
-import { IS_HANDSET } from 'src/app/common-functions/is-handset';
-import { ColorRangeService } from 'src/app/other-modules/color-range/services/color-range.service';
+import { IS_HANDSET } from 'commonFunctions/is-handset';
+import { ColorRangeService } from 'otherModules/color-range/services/color-range.service';
 import { ICoinApiTradesLatest } from '../../interfaces/i-coin-api-trades-latest';
 import { CoinApiService } from '../../services/coin-api.service';
 

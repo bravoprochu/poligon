@@ -8,9 +8,9 @@ import {
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { IMenuItem } from 'src/app/other-modules/menu/interfaces/i-menu-item';
+import { IMenuItem } from 'otherModules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
-import { IS_HANDSET as IS_HANDSET } from './common-functions/is-handset';
+import { IS_HANDSET } from 'commonFunctions/is-handset';
 
 @Component({
   selector: 'app-root',

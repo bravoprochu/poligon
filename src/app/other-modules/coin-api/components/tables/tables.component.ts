@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BasicTableDataSource } from 'src/app/other-modules/basic-table/basic-table-data-source';
-import { BasicTableComponent } from 'src/app/other-modules/basic-table/basic-table/basic-table.component';
-import { ITableColumn } from 'src/app/other-modules/basic-table/interfaces/i-table-column';
-import { TableColumnFieldType } from 'src/app/other-modules/basic-table/interfaces/table-column-field-type-enum';
+import { BasicTableDataSource } from 'otherModules/basic-table/basic-table-data-source';
+import { BasicTableComponent } from 'otherModules/basic-table/basic-table/basic-table.component';
+import { ITableColumn } from 'otherModules/basic-table/interfaces/i-table-column';
+import { TableColumnFieldType } from 'otherModules/basic-table/interfaces/table-column-field-type-enum';
 import { ICoinApiExchanges } from '../../interfaces/i-coin-api-exchanges';
 import { ICoinApiOrderBook } from '../../interfaces/i-coin-api-order-book';
 import { ICoinApiQuotesCurrent } from '../../interfaces/i-coin-api-quotes-current';

@@ -5,8 +5,8 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { YesNoDialogComponent } from 'src/app/other-modules/dialogs/components/yes-no-dialog/yes-no-dialog.component';
-import { IYesNoDialogData } from 'src/app/other-modules/dialogs/interfaces/i-yes-no-dialog-data';
+import { YesNoDialogComponent } from 'otherModules/dialogs/components/yes-no-dialog/yes-no-dialog.component';
+import { IYesNoDialogData } from 'otherModules/dialogs/interfaces/i-yes-no-dialog-data';
 import { IColorRangeDialogData } from '../../interfaces/i-color-range-dialog-data';
 import { IColorRangeItem } from '../../interfaces/i-color-range-item';
 import { ColorRangeService } from '../../services/color-range.service';
