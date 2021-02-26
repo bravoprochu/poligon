@@ -14,19 +14,33 @@ import { FormControl } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TableColumnFieldType } from './interfaces/table-column-field-type-enum';
 
+type TableDataTypes = number | string;
+
+/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
+const COMPARE_FN = (
+  /**
+   * checks values, return 0 if equal
+   * -1 if prev is smaller then next
+   * and 1 if next is greater then prev
+   */
+
+  prev: TableDataTypes,
+  next: TableDataTypes,
+  isAsc: boolean
+): number => {
+  if (prev === next) {
+    return 0;
+  }
+
+  return (prev < next ? -1 : 1) * (isAsc ? 1 : -1);
+};
+
 /**
  * Data source for the Exchanges view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
 export class BasicTableDataSource<T> extends DataSource<T> {
-  constructor(
-    public tableColumnsDefinition: ITableColumn[] = [],
-    public dataFromcoinApiService$: Observable<T[]> = of([])
-  ) {
-    super();
-  }
-
   data: T[] = [];
 
   errorInfo!: string;
@@ -42,11 +56,19 @@ export class BasicTableDataSource<T> extends DataSource<T> {
   refreshHit$: Subject<boolean> = new Subject();
   sort!: MatSort;
 
+  constructor(
+    public tableColumnsDefinition: ITableColumn[] = [],
+    public dataFromcoinApiService$: Observable<T[]> = of([])
+  ) {
+    super();
+  }
+
   /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
+   * returns A stream of the items to be rendered.
    */
+
   connect(): Observable<T[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
@@ -114,7 +136,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
      *
      */
     const stringPropNames = this.tableColumnsDefinition.filter(
-      (f: ITableColumn) => f.type === TableColumnFieldType.string
+      (f: ITableColumn) => f.type === TableColumnFieldType.text
     );
 
     const coinApiExchangeObj = data[0];
@@ -144,6 +166,15 @@ export class BasicTableDataSource<T> extends DataSource<T> {
     return res;
   }
 
+  refresh(): void {
+    this.isGettingData$.next(true);
+    this.refreshHit$.next(true);
+  }
+
+  resetSortGroupSettings(): void {
+    this.paginator.firstPage();
+  }
+
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
@@ -162,17 +193,27 @@ export class BasicTableDataSource<T> extends DataSource<T> {
       return data;
     }
 
-    return data.sort((a, b) => {
+    return data.sort((prev, next) => {
       const isAsc = this.sort.direction === 'asc';
 
       const definition = this.tableColumnsDefinition.find(
-        (f) => f.propName === this.sort.active
+        (columnDescription) => columnDescription.propName === this.sort.active
       )?.propName;
 
-      const aKey = definition as keyof typeof a;
-      const bKey = definition as keyof typeof b;
+      const prevKeys = definition as keyof typeof prev;
+      const nextKeys = definition as keyof typeof next;
 
-      return compare(a[aKey], b[bKey], isAsc);
+      const prevVal = prev[prevKeys];
+      const nextVal = next[nextKeys];
+
+      if (
+        (typeof prevVal === 'string' && typeof nextVal === 'string') ||
+        (typeof prevVal === 'number' && typeof nextVal === 'number')
+      ) {
+        return COMPARE_FN(prevVal, nextVal, isAsc);
+      }
+
+      return 0;
     });
   }
 
@@ -199,6 +240,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
    * generate page size options based on length
    *
    */
+
   private prepPageSizeOptions(data: T[]): number[] {
     const res: number[] = [];
     if (data.length > 10) {
@@ -224,27 +266,4 @@ export class BasicTableDataSource<T> extends DataSource<T> {
 
     return res;
   }
-
-  refresh(): void {
-    this.isGettingData$.next(true);
-    this.refreshHit$.next(true);
-  }
-
-  resetSortGroupSettings(): void {
-    this.paginator.firstPage();
-  }
-}
-
-type TableDataTypes = number | string | Date | undefined;
-
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare<TableDataTypes>(
-  prev = {} as TableDataTypes,
-  next = {} as TableDataTypes,
-  isAsc: boolean
-): number {
-  if (prev || next) {
-    return 0;
-  }
-  return (prev < next ? -1 : 1) * (isAsc ? 1 : -1);
 }

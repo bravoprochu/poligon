@@ -6,10 +6,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class IndicatorsService {
-  constructor(private snackBar: MatSnackBar) {}
-
   isInProgress$: Subject<boolean> = new Subject();
   progressColor = 'primary';
+
+  constructor(private snackBar: MatSnackBar) {}
 
   message(title: string, text: string, duration: number = 2500): void {
     this.snackBar.open(text, title, {

@@ -5,13 +5,13 @@ import { IMenuItem } from './interfaces/i-menu-item';
   providedIn: 'root',
 })
 export class MenuService {
-  constructor() {}
-
   activatedRoute = 'home';
   menu = [] as IMenuItem[];
   menuItemId = 0;
   menuOriginal = [] as IMenuItem[];
   bookmark = [] as IMenuItem[];
+
+  constructor() {}
 
   addToMenu(menuItem: IMenuItem): void {
     menuItem.id = this.menuItemId;

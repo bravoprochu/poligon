@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, pipe, throwError } from 'rxjs';
 import { delay, finalize, retryWhen, takeWhile, tap } from 'rxjs/operators';
-import { isHttpErrorResponseToRetry } from 'commonFunctions/is-http-error-response-to-retry';
+import { IS_HTTP_ERROR_RESPONSE_TO_RETRY } from 'commonFunctions/is-http-error-response-to-retry';
 import { environment } from 'src/environments/environment';
 import { IndicatorsService } from '../../indicators/indicators.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
@@ -52,18 +52,19 @@ const USER_TOKEN_MOCKED = {
 
 const RETRYWHEN_AND_FINALIZE_PIPE$ = (
   indicatorsService: IndicatorsService,
-  repeats = environment.httpRequestRetry ? environment.httpRequestRetry : 3,
-  delayTime = environment.httpRequestRetryDelay
-    ? environment.httpRequestRetryDelay
-    : 2000
-) => {
-  return pipe(
+  repeats = environment.httpRequestRetry ?? 3,
+  delayTime = environment.httpRequestRetryDelay ?? 2000
+) =>
+  pipe(
     retryWhen((err) =>
       err.pipe(
         tap(() => indicatorsService.setColorWarn()),
         delay(delayTime),
         takeWhile((resError: HttpErrorResponse, idx) => {
-          if (idx < repeats && isHttpErrorResponseToRetry(resError.status)) {
+          if (
+            idx < repeats &&
+            IS_HTTP_ERROR_RESPONSE_TO_RETRY(resError.status)
+          ) {
             indicatorsService.message(
               'Http request ERROR',
               `(${idx + 1}) Shit happens. ${
@@ -85,7 +86,6 @@ const RETRYWHEN_AND_FINALIZE_PIPE$ = (
       indicatorsService.isInProgress$.next(false);
     })
   );
-};
 
 @Injectable({
   providedIn: 'root',

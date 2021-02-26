@@ -12,9 +12,9 @@ import { LogsService } from 'otherModules/logs/services/logs.service';
   styleUrls: ['./logs.component.scss'],
 })
 export class LogsComponent implements OnInit, OnDestroy {
-  constructor(private matDialog: MatDialog, private logsService: LogsService) {}
-
   isDestroyed$: Subject<boolean> = new Subject();
+
+  constructor(private matDialog: MatDialog, private logsService: LogsService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

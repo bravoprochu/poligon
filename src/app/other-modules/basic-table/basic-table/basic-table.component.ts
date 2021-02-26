@@ -48,15 +48,13 @@ export class BasicTableComponent<T>
   @ViewChild(MatTable) table!: MatTable<T>;
   @ContentChild('expandedRow', { static: false })
   expandedRowRef?: TemplateRef<any>;
-
+  expandedElement?: T | null;
+  isDestroyed$: Subject<boolean> = new Subject();
+  isExpandable = false;
   /**
    *
    */
   constructor() {}
-
-  expandedElement?: T | null;
-  isDestroyed$: Subject<boolean> = new Subject();
-  isExpandable = false;
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

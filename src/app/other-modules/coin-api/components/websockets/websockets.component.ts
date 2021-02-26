@@ -21,11 +21,6 @@ import { CoinApiService } from '../../services/coin-api.service';
 })
 export class WebsocketsComponent implements OnInit, OnDestroy {
   @ViewChild('colorInput') colorInput!: ElementRef;
-  constructor(
-    public coinApiService: CoinApiService,
-    private breakpointObserver: BreakpointObserver,
-    private colorRangeService: ColorRangeService
-  ) {}
 
   isDestroyed$: Subject<boolean> = new Subject();
   isConnected = false;
@@ -38,6 +33,12 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   colorGradeMinValue$: FormControl = new FormControl(0);
 
   trades: ICoinApiTradesLatest[] = [];
+
+  constructor(
+    public coinApiService: CoinApiService,
+    private breakpointObserver: BreakpointObserver,
+    private colorRangeService: ColorRangeService
+  ) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

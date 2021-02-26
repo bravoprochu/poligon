@@ -10,12 +10,12 @@ import { LogsService } from '../../services/logs.service';
   styleUrls: ['./error-log.component.scss'],
 })
 export class ErrorLogComponent implements OnInit, OnDestroy {
-  constructor(private logService: LogsService) {}
-
   errors = [] as ILogError[];
   isDestroyed$: Subject<boolean> = new Subject();
   itemHeight = 150;
   itemOnView = 3;
+
+  constructor(private logService: LogsService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

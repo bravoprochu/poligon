@@ -13,8 +13,8 @@ import { ICoinApiWebsocketHello } from '../interfaces/i-coin-api-websocket-hello
   providedIn: 'root',
 })
 export class CoinApiService {
-  constructor(private httpClient: HttpClient) {}
-
+  isWebsocketConnected$: Subject<boolean> = new Subject();
+  coinApiIoWebsocketPayload$: Subject<any> = new Subject();
   private coinApiIoUrl: string =
     environment.coinApiIoUrl || 'https://rest.coinapi.io/';
   private coinApiAssetsUrl = '../../../../assets/mocked-data/coin-api/';
@@ -30,20 +30,17 @@ export class CoinApiService {
   private coinApiUrlOrderBooks = 'v1/orderbooks/current';
   private coinApiUrlQuotes = 'v1/quotes/current';
   private coinApiUrlTrades = 'v1/trades/latest';
-  isWebsocketConnected$: Subject<boolean> = new Subject();
+
   private coinApiWebsocketConnection = {} as WebSocket;
-  coinApiIoWebsocketPayload$: Subject<any> = new Subject();
+
+  constructor(private httpClient: HttpClient) {}
 
   getExchanges$(): Observable<ICoinApiExchanges[]> {
     return this.httpClient
       .get<ICoinApiExchanges[]>(this.coinApiIoUrl + this.coinApiUrlExchanges, {
         headers: this.coinApiHeader,
       })
-      .pipe(
-        catchError((err) => {
-          return of(err);
-        })
-      );
+      .pipe(catchError((err) => of(err)));
   }
 
   getExchangesMocked$(): Observable<ICoinApiExchanges[]> {
@@ -52,9 +49,7 @@ export class CoinApiService {
       .get<ICoinApiExchanges[]>(this.coinApiAssetsUrl + exchanges)
       .pipe(
         delay(750),
-        catchError((err) => {
-          return of(err);
-        })
+        catchError((err) => of(err))
       );
   }
 
@@ -63,11 +58,7 @@ export class CoinApiService {
       .get<ICoinApiOrderBook[]>(this.coinApiIoUrl + this.coinApiUrlOrderBooks, {
         headers: this.coinApiHeader,
       })
-      .pipe(
-        catchError((err) => {
-          return of(err);
-        })
-      );
+      .pipe(catchError((err) => of(err)));
   }
 
   getOrderBookMocked$(): Observable<ICoinApiOrderBook[]> {
@@ -76,9 +67,7 @@ export class CoinApiService {
       .get<ICoinApiOrderBook[]>(this.coinApiAssetsUrl + orderBook)
       .pipe(
         delay(750),
-        catchError((err) => {
-          return of(err);
-        })
+        catchError((err) => of(err))
       );
   }
 
@@ -87,11 +76,7 @@ export class CoinApiService {
       .get<ICoinApiQuotesCurrent[]>(this.coinApiIoUrl + this.coinApiUrlQuotes, {
         headers: this.coinApiHeader,
       })
-      .pipe(
-        catchError((err) => {
-          return of(err);
-        })
-      );
+      .pipe(catchError((err) => of(err)));
   }
 
   getQuotesMocked$(): Observable<ICoinApiQuotesCurrent[]> {
@@ -100,9 +85,7 @@ export class CoinApiService {
       .get<ICoinApiQuotesCurrent[]>(this.coinApiAssetsUrl + quotes)
       .pipe(
         delay(750),
-        catchError((err) => {
-          return of(err);
-        })
+        catchError((err) => of(err))
       );
   }
 
@@ -111,11 +94,7 @@ export class CoinApiService {
       .get<ICoinApiTradesLatest[]>(this.coinApiIoUrl + this.coinApiUrlTrades, {
         headers: this.coinApiHeader,
       })
-      .pipe(
-        catchError((err) => {
-          return of(err);
-        })
-      );
+      .pipe(catchError((err) => of(err)));
   }
 
   getTradesMocked$(): Observable<ICoinApiTradesLatest[]> {
@@ -124,27 +103,17 @@ export class CoinApiService {
       .get<ICoinApiTradesLatest[]>(this.coinApiAssetsUrl + trades)
       .pipe(
         delay(750),
-        catchError((err) => {
-          return of(err);
-        })
+        catchError((err) => of(err))
       );
   }
 
   wsInit(): void {
     this.coinApiWebsocketConnection = new WebSocket(this.coinApiIoWebsocketUrl);
     this.isWebsocketConnected$.next(true);
-    this.coinApiWebsocketConnection.onclose = (ev) => {
-      return this.wsOnClose(ev);
-    };
-    this.coinApiWebsocketConnection.onerror = (ev) => {
-      console.log('error', ev);
-    };
-    this.coinApiWebsocketConnection.onopen = (ev) => {
-      return this.wsOnOpen(ev);
-    };
-    this.coinApiWebsocketConnection.onmessage = (ev) => {
-      this.wsOnMessage(ev);
-    };
+    this.coinApiWebsocketConnection.onclose = (ev) => this.wsOnClose(ev);
+    this.coinApiWebsocketConnection.onerror = (ev) => console.log('error', ev);
+    this.coinApiWebsocketConnection.onopen = (ev) => this.wsOnOpen(ev);
+    this.coinApiWebsocketConnection.onmessage = (ev) => this.wsOnMessage(ev);
   }
 
   wsClose(): void {

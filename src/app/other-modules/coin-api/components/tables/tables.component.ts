@@ -19,8 +19,6 @@ export class TablesComponent implements OnInit {
   orderBook!: BasicTableComponent<ICoinApiOrderBook>;
   @ViewChild('quotes', { static: true })
   quotes!: BasicTableComponent<ICoinApiQuotesCurrent>;
-  constructor(private coinService: CoinApiService) {}
-
   dataSourceExchanges: BasicTableDataSource<ICoinApiExchanges> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionExchanges(),
     this.coinService.getExchanges$()
@@ -33,7 +31,7 @@ export class TablesComponent implements OnInit {
 
   dataSourceTrades: BasicTableDataSource<ICoinApiTradesLatest> = new BasicTableDataSource(
     this.prepTableColumnsDefinitionTrades(),
-    this.coinService.getTrades$()
+    this.coinService.getTradesMocked$()
   );
 
   dataSourceQuotes: BasicTableDataSource<ICoinApiQuotesCurrent> = new BasicTableDataSource(
@@ -42,6 +40,8 @@ export class TablesComponent implements OnInit {
   );
 
   selectedQuotes?: ICoinApiQuotesCurrent;
+
+  constructor(private coinService: CoinApiService) {}
 
   ngOnInit(): void {
     this.initExpandedRows();
@@ -66,12 +66,12 @@ export class TablesComponent implements OnInit {
       {
         caption: 'Id',
         propName: 'exchange_id',
-        type: TableColumnFieldType.string,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'Name',
         propName: 'name',
-        type: TableColumnFieldType.string,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'DataStart',
@@ -97,17 +97,17 @@ export class TablesComponent implements OnInit {
       {
         caption: 'Vol 1st hour USD',
         propName: 'volume_1hrs_usd',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'Vol 1st day USD',
         propName: 'volume_1day_usd',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'Vol 1st month USD',
         propName: 'volume_1mth_usd',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'www',
@@ -122,7 +122,7 @@ export class TablesComponent implements OnInit {
       {
         caption: 'Id',
         propName: 'symbol_id',
-        type: TableColumnFieldType.string,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'exchange time',
@@ -142,7 +142,7 @@ export class TablesComponent implements OnInit {
       {
         caption: 'Id',
         propName: 'symbol_id',
-        type: TableColumnFieldType.string,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'exchange time',
@@ -152,12 +152,12 @@ export class TablesComponent implements OnInit {
       {
         caption: 'price',
         propName: 'price',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.amount,
       },
       {
         caption: 'size',
         propName: 'size',
-        type: TableColumnFieldType.date,
+        type: TableColumnFieldType.text,
       },
     ];
   }
@@ -167,7 +167,7 @@ export class TablesComponent implements OnInit {
       {
         caption: 'Id',
         propName: 'symbol_id',
-        type: TableColumnFieldType.string,
+        type: TableColumnFieldType.text,
       },
       {
         caption: 'exchange time',
@@ -177,22 +177,22 @@ export class TablesComponent implements OnInit {
       {
         caption: 'ask price',
         propName: 'ask_price',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.amount,
       },
       {
         caption: 'ask size',
         propName: 'ask_size',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.amount,
       },
       {
         caption: 'bid price',
         propName: 'bid_price',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.amount,
       },
       {
         caption: 'bid size',
         propName: 'bid_size',
-        type: TableColumnFieldType.number,
+        type: TableColumnFieldType.amount,
       },
     ];
   }

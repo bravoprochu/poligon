@@ -43,14 +43,14 @@
         {{ element.caption }}
       </th>
       <td mat-cell *matCellDef="let row" [ngSwitch]="element.type">
-        <span *ngSwitchCase="'number'">{{
+        <span *ngSwitchCase="'amount'">{{
           row[element.propName] | number
         }}</span>
         <span *ngSwitchCase="'date'">{{ row[element.propName] | date }}</span>
         <span *ngSwitchCase="'dateMedium'">{{
           row[element.propName] | date: "medium"
         }}</span>
-        <span *ngSwitchCase="'string'">{{ row[element.propName] }}</span>
+        <span *ngSwitchCase="'text'">{{ row[element.propName] }}</span>
         <span *ngSwitchCase="'www'"
           ><a [attr.href]="row[element.propName]" target="_blank">{{
             row[element.propName]

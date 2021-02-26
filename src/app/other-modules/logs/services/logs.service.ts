@@ -34,15 +34,15 @@ export class LogsService {
     this.isErrorChanged$.next(true);
   }
 
+  clearLogs(): void {
+    this.errors = [];
+    this.isErrorChanged$.next(true);
+  }
+
   private checkToClearErrors(): void {
     if (!this.isErrorKept) {
       this.errors = [];
     }
-  }
-
-  clearLogs(): void {
-    this.errors = [];
-    this.isErrorChanged$.next(true);
   }
 
   private getDate(): string {

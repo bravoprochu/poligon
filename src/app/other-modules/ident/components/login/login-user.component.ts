@@ -13,17 +13,17 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login-user.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  formErrors = [] as string[];
+  hideLoginPassword = true;
+  rFormLogin = {} as FormGroup;
+  isDestroyed$: Subject<boolean> = new Subject();
+
   constructor(
     @Optional() private dialogRef: MatDialogRef<LoginComponent>,
     private fb: FormBuilder,
     private indicatorsSrv: IndicatorsService,
     private loginService: LoginService
   ) {}
-
-  formErrors = [] as string[];
-  hideLoginPassword = true;
-  rFormLogin = {} as FormGroup;
-  isDestroyed$: Subject<boolean> = new Subject();
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   initMockData(): void {
-    const _LOGINDATA = this.loginService.getMockedLoginData();
-    this.rFormLogin.setValue(_LOGINDATA);
+    const LOGINDATA = this.loginService.getMockedLoginData();
+    this.rFormLogin.setValue(LOGINDATA);
   }
 
   login(): void {

@@ -8,9 +8,9 @@ import { IColorRangeInfo } from './i-color-range-info';
   providedIn: 'root',
 })
 export class ColorRangeService {
-  constructor() {}
-
   colorRanges = [] as IColorRangeItem[];
+
+  constructor() {}
 
   addNewColorRange(): void {
     const last = this.getLastColorRange();
@@ -83,12 +83,11 @@ export class ColorRangeService {
   getPercentageRange(): IColorRangePercantage[] {
     const maxValue = this.colorRanges[this.colorRanges.length - 1].max;
     const percetageRange = this.colorRanges.map(
-      (color: IColorRangeItem, idx) => {
-        return {
+      (color: IColorRangeItem, idx) =>
+        ({
           ...color,
           percentage: (color.max - color.min) / maxValue,
-        } as IColorRangePercantage;
-      }
+        } as IColorRangePercantage)
     );
 
     return maxValue > 0 ? percetageRange : [];

@@ -10,10 +10,6 @@ import {
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {
-    this.initStorage();
-  }
-
   appKey = environment.localStorageAppKey
     ? environment.localStorageAppKey
     : 'PoligonApp';
@@ -21,32 +17,43 @@ export class LocalStorageService {
   storageData = {} as IStorageAppSettings;
   storageAppSettings = {} as IStorageAppSettings;
 
+  constructor() {
+    this.initStorage();
+  }
+
+  get(key: StorageAppSettingsKeys): StorageAppSettingsType {
+    // if (this.storageData[key]) {
+    //   return this.storageData[key]!;
+    // }
+    return this.storageData[key] ?? null;
+  }
+
+  set(
+    itemKey: StorageAppSettingsKeys,
+    itemValue: StorageAppSettingsType
+  ): void {
+    if (itemKey in this.storageData) {
+      this.storageData[itemKey] = itemValue;
+      this.saveStorage();
+    }
+  }
+
+  remove(key: StorageAppSettingsKeys): void {
+    if (key in this.storageData) {
+      this.storageData[key] = null;
+      this.saveStorage();
+    }
+  }
+
+  clear(): void {
+    this.storage.removeItem(this.appKey);
+  }
+
   private initStorage(): void {
     const storageData = localStorage.getItem(this.appKey);
     if (storageData) {
       this.storageData = JSON.parse(storageData);
     }
-  }
-
-  get(key: StorageAppSettingsKeys): StorageAppSettingsType {
-    if (this.storageData[key]) {
-      return this.storageData[key]!;
-    }
-    return null;
-  }
-
-  set(key: StorageAppSettingsKeys, value: StorageAppSettingsType) {
-    this.storageData[key] = value!;
-    this.saveStorage();
-  }
-
-  remove(key: StorageAppSettingsKeys): void {
-    this.storageData[key] = null;
-    this.saveStorage();
-  }
-
-  clear(): void {
-    this.storage.removeItem(this.appKey);
   }
 
   private saveStorage(): void {

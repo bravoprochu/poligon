@@ -2,7 +2,7 @@ export enum TableColumnFieldType {
   date = 'date',
   email = 'email',
   dateMedium = 'dateMedium',
-  number = 'number',
-  string = 'string',
+  amount = 'amount',
+  text = 'text',
   www = 'www',
 }

@@ -10,7 +10,7 @@ import { IndicatorsService } from '../../indicators/indicators.service';
 import { IdentDataFactoryService } from './ident-data-factory.service';
 import { IIdentRegisterUser } from '../interfaces/i-ident-register-user';
 import { IIdentUser } from '../interfaces/i-ident-user';
-import { RegisterFormValidator } from '../validators/register-form-validator';
+import { REGISTER_FORM_VALIDATOR } from '../validators/register-form-validator';
 import { IUserToken } from '../interfaces/i-user-token';
 import { interval, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { UserClaimsEnums } from '../enums/user-claims-enums';
@@ -22,6 +22,11 @@ import { LocalStorageService } from '../../local-storage/services/local-storage.
   providedIn: 'root',
 })
 export class LoginService implements OnDestroy {
+  isLoggingStatusChanged$ = new ReplaySubject<boolean>();
+  isLoggedIn = false;
+  loggedInUser = {} as IUserToken;
+  isDestroyed$: Subject<boolean> = new Subject();
+
   constructor(
     private identDataFactory: IdentDataFactoryService,
     private indicatorsSrv: IndicatorsService,
@@ -31,11 +36,6 @@ export class LoginService implements OnDestroy {
     this.initStorageToken();
     this.initObservables();
   }
-
-  isLoggingStatusChanged$ = new ReplaySubject<boolean>();
-  isLoggedIn = false;
-  loggedInUser = {} as IUserToken;
-  isDestroyed$: Subject<boolean> = new Subject();
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -116,7 +116,7 @@ export class LoginService implements OnDestroy {
         password: [null, [Validators.required]],
         rePassword: [null, Validators.required],
       },
-      { validators: RegisterFormValidator }
+      { validators: REGISTER_FORM_VALIDATOR }
     );
 
     return res;
@@ -188,12 +188,10 @@ export class LoginService implements OnDestroy {
 
   private mapUserToken(userToken: IUserToken): IUserToken {
     return {
-      claims: userToken.claims.map((c) => {
-        return {
-          type: c.type,
-          value: c.value,
-        };
-      }),
+      claims: userToken.claims.map((claim) => ({
+        type: claim.type,
+        value: claim.value,
+      })),
       expirationTime: userToken.expirationTime,
       roles: userToken.roles,
       token: userToken.token,

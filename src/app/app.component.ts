@@ -19,9 +19,6 @@ import { IS_HANDSET } from 'commonFunctions/is-handset';
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('drawer', { static: false }) drawer!: MatSidenav;
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
-
   copyrights = 'bravoprochu 2021';
   menuItems = [] as IMenuItem[];
   isDestroyed$: Subject<boolean> = new Subject();
@@ -29,6 +26,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isHandset = false;
   isOpened = false;
   title = 'Training - poligon';
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

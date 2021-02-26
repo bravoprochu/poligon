@@ -27,15 +27,16 @@ import { ColorChangeDialogComponent } from '../color-change-dialog/color-change-
 export class ColorRangeComponent implements OnInit, OnDestroy {
   @ViewChild('colorInput') colorInput!: ElementRef;
   @Input('expanded') isExpanded = true;
+
+  isDestroyed$: Subject<boolean> = new Subject();
+  isHandset$ = IS_HANDSET(this.breakpointObserver);
+  newColorRange?: IColorRangeItem;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private colorService: ColorRangeService,
     private dialog: MatDialog
   ) {}
-
-  isDestroyed$: Subject<boolean> = new Subject();
-  isHandset$ = IS_HANDSET(this.breakpointObserver);
-  newColorRange?: IColorRangeItem;
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

@@ -17,6 +17,11 @@ import { ColorRangeService } from '../../services/color-range.service';
   styleUrls: ['./color-change-dialog.component.scss'],
 })
 export class ColorChangeDialogComponent implements OnInit {
+  colorSelected?: IColorRangeItem;
+  rForm!: FormGroup;
+  isEditMode = false;
+  temporaryColor?: IColorRangeItem;
+
   constructor(
     private colorService: ColorRangeService,
     private fb: FormBuilder,
@@ -24,11 +29,6 @@ export class ColorChangeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: IColorRangeDialogData,
     private yesNoDialog: MatDialog
   ) {}
-
-  colorSelected?: IColorRangeItem;
-  rForm!: FormGroup;
-  isEditMode = false;
-  temporaryColor?: IColorRangeItem;
 
   ngOnInit(): void {
     this.initForm();

@@ -1,11 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -18,18 +13,18 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./register-user.component.scss'],
 })
 export class RegisterUserComponent implements OnInit, OnDestroy {
+  formErrors = [] as string[];
+  hideRegisterPassword = true;
+  hideRegisterRePassword = true;
+  rFormRegister = {} as FormGroup;
+  isDestroyed$: Subject<boolean> = new Subject();
+
   constructor(
     @Optional() private dialogRef: MatDialogRef<RegisterUserComponent>,
     private fb: FormBuilder,
     private indicatorsSrv: IndicatorsService,
     private loginService: LoginService
   ) {}
-
-  formErrors = [] as string[];
-  hideRegisterPassword = true;
-  hideRegisterRePassword = true;
-  rFormRegister = {} as FormGroup;
-  isDestroyed$: Subject<boolean> = new Subject();
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -47,8 +42,8 @@ export class RegisterUserComponent implements OnInit, OnDestroy {
   }
 
   initMockData(): void {
-    const _REGISTER_DATA = this.loginService.getMockedRegisgerData();
-    this.rFormRegister.setValue(_REGISTER_DATA);
+    const REGISTER_DATA = this.loginService.getMockedRegisgerData();
+    this.rFormRegister.setValue(REGISTER_DATA);
   }
 
   register(): void {

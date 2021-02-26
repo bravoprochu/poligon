@@ -1,4 +1,4 @@
-export function isHttpErrorResponseToRetry(status: number): boolean {
+export const IS_HTTP_ERROR_RESPONSE_TO_RETRY = (status: number): boolean => {
   if (status === 0) {
     return true;
   } else if (status >= 300 && status < 400) {
@@ -8,4 +8,4 @@ export function isHttpErrorResponseToRetry(status: number): boolean {
   } else {
     return false;
   }
-}
+};

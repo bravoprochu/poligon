@@ -27,11 +27,11 @@ import { MenuService } from '../menu.service';
 export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
   @Output() menuChanged = new EventEmitter();
-  constructor(private router: Router, private menuService: MenuService) {}
-
   isDestroyed$: Subject<boolean> = new Subject();
   search$: FormControl = new FormControl();
   isHandset$ = IS_HANDSET;
+
+  constructor(private router: Router, private menuService: MenuService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
