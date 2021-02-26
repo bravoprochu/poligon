@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class IndicatorsService {
 
   message(title: string, text: string, duration: number = 2500): void {
     this.snackBar.open(text, title, {
-      duration: duration,
+      duration,
     });
   }
 
