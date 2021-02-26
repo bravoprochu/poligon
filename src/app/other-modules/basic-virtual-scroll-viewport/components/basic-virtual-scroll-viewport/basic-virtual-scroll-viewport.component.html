@@ -1,0 +1,30 @@
+<cdk-virtual-scroll-viewport
+  [itemSize]="itemHeight"
+  [style.height.px]="itemHeight * itemsToDisplay"
+>
+  <div
+    [style.height.px]="itemHeight"
+    *cdkVirtualFor="
+      let item of data;
+      let index = index;
+      let count = count;
+      let first = first;
+      let last = last;
+      let even = even;
+      let odd = odd
+    "
+  >
+    <ng-container
+      [ngTemplateOutlet]="viewportRef"
+      [ngTemplateOutletContext]="{
+        item: item,
+        index: index,
+        count: count,
+        first: first,
+        last: last,
+        even: even,
+        odd: odd
+      }"
+    ></ng-container>
+  </div>
+</cdk-virtual-scroll-viewport>
