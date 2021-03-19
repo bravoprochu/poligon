@@ -74,6 +74,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         route: ['/coin-api/websockets'],
       },
       {
+        caption: 'RJS Websockets',
+        icon: 'analytics',
+        group: 'coin API',
+        route: ['/coin-api/rxjs-websockets'],
+      },
+      {
         caption: 'logs',
         icon: 'wysiwyg',
         group: 'System/logs',

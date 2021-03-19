@@ -31,6 +31,16 @@
     fxLayoutAlign="space-between center"
     class="trades-container"
   >
+    <div>
+      <mat-button-toggle-group
+        [formControl]="takerSide$"
+        aria-label="taker side"
+      >
+        <mat-button-toggle value="BUY">Buy</mat-button-toggle>
+        <mat-button-toggle value="SELL">Sell</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
     <cdk-virtual-scroll-viewport [itemSize]="125" class="example-viewport">
       <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
         <ng-container
@@ -66,6 +76,10 @@
     class="example-item-data"
   >
     <div>
+      <h2 class="mat-h2">
+        <span *ngIf="item.taker_side === 'SELL'">Sell</span>
+        <span *ngIf="item.taker_side === 'BUY'">Buy</span>
+      </h2>
       <h3 class="mat-h3">
         <span class="mat-caption">exchange time: </span>
         {{ item.time_exchange | date: "medium" }}

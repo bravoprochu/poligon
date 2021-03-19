@@ -16,12 +16,23 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ColorRangeModule } from '../color-range/color-range.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TablesComponent } from './components/tables/tables.component';
+import { RxjsWebsocketsComponent } from './components/rxjs-websockets/rxjs-websockets.component';
+import { RxjsWebsocketService } from './services/rxjs-websocket.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { ExchangeRateChartComponent } from './components/exchange-rate-chart/exchange-rate-chart.component';
 
 const IMPORT_EXPORT_MODULES = [
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatBadgeModule,
   MatCardModule,
+  MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
@@ -31,9 +42,15 @@ const IMPORT_EXPORT_MODULES = [
 ];
 
 @NgModule({
-  declarations: [CoinApiComponent, WebsocketsComponent, TablesComponent],
+  declarations: [
+    CoinApiComponent,
+    WebsocketsComponent,
+    TablesComponent,
+    RxjsWebsocketsComponent,
+    ExchangeRateChartComponent,
+  ],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],
-  providers: [CoinApiService],
+  providers: [CoinApiService, RxjsWebsocketService],
 })
 export class CoinApiModule {}

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { of, Subject } from 'rxjs';
-import { delay, startWith, takeUntil, tap } from 'rxjs/operators';
+import { delay, filter, startWith, takeUntil, tap } from 'rxjs/operators';
 import { IS_HANDSET } from 'commonFunctions/is-handset';
 import { ColorRangeService } from 'otherModules/color-range/services/color-range.service';
 import { ICoinApiTradesLatest } from '../../interfaces/i-coin-api-trades-latest';
@@ -31,6 +31,7 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
   colorGrade$: FormControl = new FormControl();
   colorGradeMaxValue$: FormControl = new FormControl(2000);
   colorGradeMinValue$: FormControl = new FormControl(0);
+  takerSide$ = new FormControl('BUY');
 
   trades: ICoinApiTradesLatest[] = [];
 
@@ -60,11 +61,18 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
 
   initObservable(): void {
     this.coinApiService.coinApiIoWebsocketPayload$
-      .pipe(takeUntil(this.isDestroyed$))
+      .pipe(
+        filter(
+          (trade: ICoinApiTradesLatest) =>
+            trade.taker_side === this.takerSide$.value
+        ),
+        takeUntil(this.isDestroyed$)
+      )
       .subscribe(
         (trade: ICoinApiTradesLatest) => {
           this.trades.unshift(trade);
           this.trades = [...this.trades];
+          console.log(trade);
         },
         (error) => console.log('trades error', error),
         () => console.log('trades completed..')
@@ -104,6 +112,7 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
         (dataFlow: any) => {
           console.log('dataFlow subs:', dataFlow);
         },
+
         (error) => console.log('dataFlow error', error),
         () => console.log('dataFlow completed..')
       );

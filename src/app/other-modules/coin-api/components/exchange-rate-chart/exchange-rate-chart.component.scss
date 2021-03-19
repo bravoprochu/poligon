@@ -1,0 +1,20 @@
+svg:first {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.info-container {
+  padding: 8px;
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  // transform: translateX(-50%);
+  background-color: rgba(208, 230, 250, 0.75);
+  border-radius: 5px;
+  
+}
+
+.info-container h4 {
+  border-bottom: 2px solid lightgray
+}

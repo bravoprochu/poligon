@@ -1,0 +1,108 @@
+<p>exchange-rate-chart works!</p>
+<button mat-raised-button [matBadge]="data.length" (click)="test()">
+  show rates
+</button>
+<div
+  *ngIf="isSelected"
+  @appearUpDown
+  class="info-container"
+  [ngStyle]="selectedPosition"
+>
+  <h4 class="mat-h4">
+    {{ selectedRate?.id }}&nbsp;{{ selectedRate?.rate?.time | date: "medium" }}
+  </h4>
+  <h2 class="mat-h2">
+    <strong>{{ selectedRate?.rate?.rate }}</strong>
+  </h2>
+  <div class="body">
+    {{ selectedRate?.valueChangePercentage | percent: "0.2-3" }}
+  </div>
+  <div class="body" [style.color]="selectedRate?.color">
+    {{ selectedRate?.valueChange }}
+  </div>
+</div>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="100%"
+  height="100%"
+  viewBox="0 0 1920 1080"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <text
+    text-anchor="end"
+    x="95%"
+    y="80"
+    font-size="50"
+    font-family="Raleway"
+    font-weight="bold"
+  >
+    {{ valueMax }} (max)
+  </text>
+
+  <text
+    text-anchor="end"
+    x="95%"
+    y="1000"
+    font-size="50"
+    font-family="Raleway"
+    font-weight="bold"
+  >
+    {{ valueMin }} (min)
+  </text>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="10%"
+    y="10%"
+    width="80%"
+    height="80%"
+    viewBox="0 0 2000 500"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <!-- <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      stroke="grey"
+      fill="none"
+    ></rect> -->
+
+    <line
+      *ngFor="let vert of chartVerticalLines; odd as isOdd; even as isEven"
+      [attr.x1]="200 * vert"
+      [attr.x2]="200 * vert"
+      y1="-50"
+      y2="550"
+      stroke="grey"
+      [attr.stroke-width]="isEven ? '2' : '1'"
+    ></line>
+
+    <line
+      *ngFor="
+        let vert of chartHorizontalLines;
+        first as isFirst;
+        last as isLast
+      "
+      [attr.x1]="0"
+      [attr.x2]="2000"
+      [attr.y1]="0 + vert * 250"
+      [attr.y2]="0 + vert * 250"
+      stroke="grey"
+      [attr.stroke-width]="isFirst || isLast ? '2' : '1'"
+    ></line>
+
+    <circle
+      (mouseover)="mouseOver($event, rate)"
+      (mouseleave)="mouseLeave($event)"
+      *ngFor="let rate of chartPoints; index as i"
+      [attr.cx]="rate.timeToMax + '%'"
+      [attr.cy]="rate.valueToMax + '%'"
+      r="10"
+      [attr.stroke]="rate.color"
+      [attr.fill]="rate.valueChangePercentage === 0 ? 'white' : rate.color"
+    ></circle>
+  </svg>
+</svg>
