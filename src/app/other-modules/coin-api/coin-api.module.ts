@@ -22,9 +22,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
-import { ExchangeRateChartComponent } from './components/exchange-rate-chart/exchange-rate-chart.component';
+import { SvgChartsModule } from 'otherModules/svg-charts/svg-charts.module';
+import { ExchangeRateChartComponent } from 'otherModules/coin-api/components/exchange-rate-chart/exchange-rate-chart.component';
 
 const IMPORT_EXPORT_MODULES = [
+  SvgChartsModule,
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
@@ -44,10 +46,10 @@ const IMPORT_EXPORT_MODULES = [
 @NgModule({
   declarations: [
     CoinApiComponent,
+    ExchangeRateChartComponent,
     WebsocketsComponent,
     TablesComponent,
     RxjsWebsocketsComponent,
-    ExchangeRateChartComponent,
   ],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],

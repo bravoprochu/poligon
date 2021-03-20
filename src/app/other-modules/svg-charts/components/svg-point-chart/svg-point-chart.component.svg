@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+    viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="100%"
+        height="100%" [attr.viewBox]="chartViewBox">
+
+        <rect x="0" y="0" width="100%" height="100%" fill="whitesmoke"></rect>
+
+        <line x1="75" x2="1125" y1="50" y2="50" stroke="darkgray" stroke-width="1" />
+        <text text-anchor="end" x="1250" y="40" font-size="15" font-family="Raleway" font-weight="bold">
+            {{ pointChart.axisYMax }} (max)
+        </text>
+
+        <!--
+            horizontal "middle" line with caption
+        -->
+
+        <line x1="75" x2="1125" y1="300" y2="300" stroke="darkgray" stroke-width="2" />
+        <text text-anchor="end" x="1250" y="290" font-size="15" font-family="Raleway" font-weight="bold">
+            {{ pointChart.diffY/2 + pointChart.axisYMin }} (mid)
+        </text>
+
+        <!--
+        vertical lines
+        -->
+
+        <!-- <line x1="100" x2="100" y1="175" y2="425" stroke="grey" />
+        <line x1="150" x2="150" y1="100" y2="500" stroke="grey" /> -->
+        <!-- <line x1="200" x2="200" y1="75" y2="525" stroke="grey" stroke-width="1" /> -->
+        <!-- <line x1="250" x2="250" y1="100" y2="500" stroke="grey" />
+        <line x1="300" x2="300" y1="175" y2="425" stroke="grey" /> -->
+
+        <g>
+            <circle (mouseover)="mouseOver($event, point)" (mouseleave)="mouseLeave($event)"
+                *ngFor="let point of points; index as i" [attr.cx]="point.x" [attr.cy]="point.y" r="5"
+                [attr.fill]="point.color">
+            </circle>
+        </g>
+
+
+        <!--
+        min value caption
+        -->
+        <line x1="75" x2="1125" y1="550" y2="550" stroke="darkgray" stroke-width="1" />
+        <text text-anchor="end" x="1250" y="540" font-size="15" font-family="Raleway" font-weight="bold">
+            {{ pointChart.axisYMin }} (min)
+        </text>
+
+
+
+    </svg>
+</svg>

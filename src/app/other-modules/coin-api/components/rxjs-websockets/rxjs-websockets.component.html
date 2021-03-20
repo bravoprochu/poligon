@@ -1,5 +1,23 @@
 <p>rxjs-websockets works!</p>
 
+<div
+  *ngIf="isSelected"
+  @appearUpDown
+  class="info-container"
+  [ngStyle]="selectedPosition"
+>
+  <h4 class="mat-h4">&nbsp;{{ selected?.time | date: "medium" }}</h4>
+  <h2 class="mat-h2">
+    <strong>{{ selected?.rate }}</strong>
+  </h2>
+  <!-- <div class="body">
+    {{ selected?.valueChangePercentage | percent: "0.2-3" }}
+  </div>
+  <div class="body" [style.color]="selected?.color">
+    {{ selected?.valueChange }}
+  </div> -->
+</div>
+
 <div class="controls-container" fxLayout fxLayoutGap="10px">
   <button mat-raised-button [matBadge]="coinPairs.length" (click)="getTrades()">
     get exchange rates
@@ -16,6 +34,14 @@
   <h4 mat-h4>
     {{ pairIndex }}
   </h4>
+
+  <mat-form-field>
+    <input
+      [formControl]="maxPointsCount$"
+      matInput
+      placeholder="points on chart ({{ maxPointsCount }})"
+    />
+  </mat-form-field>
 </div>
 
 <mat-divider></mat-divider>
@@ -49,7 +75,10 @@
       <mat-card-content>
         <mat-divider></mat-divider>
 
-        <app-exchange-rate-chart [data]="pair.rates"></app-exchange-rate-chart>
+        <app-svg-point-chart
+          (pointSelected)="pointSelected($event)"
+          [pointChart]="pair.pointChart"
+        ></app-svg-point-chart>
 
         <cdk-virtual-scroll-viewport
           [itemSize]="itemHeight"

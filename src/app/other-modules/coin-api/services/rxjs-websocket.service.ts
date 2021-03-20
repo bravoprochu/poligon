@@ -48,7 +48,8 @@ export class RxjsWebsocketService {
   }
 
   getExchangeRatePairMocked(): ICoinApiExchangeRatePair[] {
-    return [...COIN_API_EXCHANGE_RATE_PAIR_MOCKED];
+    return [];
+    //return [...COIN_API_EXCHANGE_RATE_PAIR_MOCKED];
   }
 
   assignIcon(pair: ICoinApiExchangeRatePair): void {

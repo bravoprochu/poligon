@@ -1,5 +1,4 @@
-import { ICoinApiExchangeRate } from '../i-coin-api-exchange-rate';
-import { IChartLine } from './i-chart-line';
+import { ICoinApiExchangeRate } from '../../coin-api/interfaces/i-coin-api-exchange-rate';
 
 export type TrendColor = 'red' | 'green';
 
