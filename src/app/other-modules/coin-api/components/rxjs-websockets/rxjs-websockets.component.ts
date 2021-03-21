@@ -6,6 +6,7 @@ import { RxjsWebsocketService } from 'otherModules/coin-api/services/rxjs-websoc
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
+import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
 import { merge, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
@@ -14,11 +15,9 @@ import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-dow
   selector: 'app-rxjs-websockets',
   templateUrl: './rxjs-websockets.component.html',
   styleUrls: ['./rxjs-websockets.component.scss'],
-  animations: [BP_ANIM_APPEAR_UP_DOWN(350)],
+  animations: [BP_ANIM_APPEAR_UP_DOWN(250, 150)],
 })
 export class RxjsWebsocketsComponent implements OnInit {
-  data2 = {} as IPointChart;
-  payloadData = [] as any[];
   isDestroyed$ = new Subject() as Subject<boolean>;
   isSelected = false;
   itemHeight = 20;
@@ -33,7 +32,7 @@ export class RxjsWebsocketsComponent implements OnInit {
   maxPointsCount$ = new FormControl(10);
   maxPointsCount = 10;
 
-  selected = {} as ICoinApiExchangeRate;
+  selectedPoint = {} as IPointChartSelectedPointInfo;
   selectedPosition = {};
 
   pairIndex = 0;
@@ -88,9 +87,7 @@ export class RxjsWebsocketsComponent implements OnInit {
       )
       .subscribe(
         (maxPointsCount: any) => {
-          console.log('maxPointsCount subs:', maxPointsCount);
           if (!isNaN(maxPointsCount) && maxPointsCount > 4) {
-            console.log('ok, change maxpointCount');
             this.maxPointsCount = maxPointsCount;
           }
         },
@@ -130,8 +127,21 @@ export class RxjsWebsocketsComponent implements OnInit {
       top: `${ev.event.offsetY - 50}px`,
     };
 
-    const rate = RATES[ev.id];
-    this.selected = { ...rate };
+    const CURRENT_RATE = RATES[ev.id];
+    const PREV_RATE = ev.id < RATES.length ? RATES[ev.id + 1] : null;
+    const RATE_CHANGE = PREV_RATE ? CURRENT_RATE.rate - PREV_RATE.rate : null;
+    const IS_INCREASING =
+      PREV_RATE && CURRENT_RATE.rate >= PREV_RATE.rate ? true : false;
+
+    this.selectedPoint.color = IS_INCREASING ? 'green' : 'red';
+    this.selectedPoint.rate = CURRENT_RATE.rate.toString();
+    const date = new Date(CURRENT_RATE.time);
+    this.selectedPoint.date = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    this.selectedPoint.change = RATE_CHANGE ? RATE_CHANGE.toString() : '';
+    this.selectedPoint.changePercentage = RATE_CHANGE
+      ? RATE_CHANGE / CURRENT_RATE.rate
+      : null;
+
     this.isSelected = true;
   }
 

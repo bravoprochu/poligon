@@ -6,7 +6,7 @@ import {
   style,
 } from '@angular/animations';
 
-export function BP_ANIM_APPEAR_UP_DOWN(animTime: number = 250) {
+export function BP_ANIM_APPEAR_UP_DOWN(animTime = 250, animDelay = 250) {
   return trigger('appearUpDown', [
     transition(':enter', [
       style({
@@ -15,7 +15,7 @@ export function BP_ANIM_APPEAR_UP_DOWN(animTime: number = 250) {
         opacity: 0,
       }),
       animate(
-        `${animTime}ms ease-in`,
+        `${animTime}ms ${animDelay}ms ease-in`,
         style({ transform: 'scaleY(1)', opacity: 1 })
       ),
     ]),

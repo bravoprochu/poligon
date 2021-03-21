@@ -6,16 +6,16 @@
   class="info-container"
   [ngStyle]="selectedPosition"
 >
-  <h4 class="mat-h4">&nbsp;{{ selected?.time | date: "medium" }}</h4>
+  <h4 class="mat-h4">&nbsp;{{ selectedPoint.date }}</h4>
   <h2 class="mat-h2">
-    <strong>{{ selected?.rate }}</strong>
+    <strong>{{ selectedPoint.rate }}</strong>
   </h2>
-  <!-- <div class="body">
-    {{ selected?.valueChangePercentage | percent: "0.2-3" }}
+  <div class="body">
+    {{ selectedPoint.changePercentage | percent: "0.2-3" }}
   </div>
-  <div class="body" [style.color]="selected?.color">
-    {{ selected?.valueChange }}
-  </div> -->
+  <div class="body" [ngStyle]="{ color: selectedPoint.color }">
+    {{ selectedPoint.change }}
+  </div>
 </div>
 
 <div class="controls-container" fxLayout fxLayoutGap="10px">

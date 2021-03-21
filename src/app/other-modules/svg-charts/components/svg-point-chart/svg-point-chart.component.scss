@@ -1,0 +1,7 @@
+.circle-point {
+  transition: r 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.circle-point:hover {
+  r: 15px;
+}

@@ -3,12 +3,13 @@ import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-char
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { Subject } from 'rxjs';
-import { startWith, takeLast, takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-svg-point-chart',
   templateUrl: './svg-point-chart.component.svg',
   styleUrls: ['./svg-point-chart.component.scss'],
+  animations: [],
 })
 export class SvgPointChartComponent implements OnInit {
   @Input('pointChart') pointChart = {} as IPointChart;
