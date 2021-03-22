@@ -24,12 +24,19 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { SvgChartsModule } from 'otherModules/svg-charts/svg-charts.module';
 import { ExchangeRateChartComponent } from 'otherModules/coin-api/components/exchange-rate-chart/exchange-rate-chart.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ExchangeRatePanelComponent } from './components/exchange-rate-panel/exchange-rate-panel.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
+import { ExchangeRatePanelItemComponent } from './components/exchange-rate-panel-item/exchange-rate-panel-item.component';
 
 const IMPORT_EXPORT_MODULES = [
   SvgChartsModule,
   FlexLayoutModule,
   HttpClientModule,
   BasicTableModule,
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatBadgeModule,
@@ -38,9 +45,12 @@ const IMPORT_EXPORT_MODULES = [
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
+  MatSelectModule,
+  MatSliderModule,
   MatTooltipModule,
   ScrollingModule,
   ColorRangeModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({
@@ -50,6 +60,8 @@ const IMPORT_EXPORT_MODULES = [
     WebsocketsComponent,
     TablesComponent,
     RxjsWebsocketsComponent,
+    ExchangeRatePanelComponent,
+    ExchangeRatePanelItemComponent,
   ],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],

@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IChartConfig } from 'otherModules/coin-api/interfaces/i-charts-config';
+import { IChartsSelected } from 'otherModules/coin-api/interfaces/i-charts-selected';
 import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
 import { ICoinApiExchangeRatePair } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate-pair';
+import { IKeyValue } from 'otherModules/coin-api/interfaces/i-key-value';
 import { RxjsWebsocketService } from 'otherModules/coin-api/services/rxjs-websocket.service';
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
 import { merge, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  startWith,
+  takeUntil,
+} from 'rxjs/operators';
 import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 
 @Component({
@@ -23,8 +31,13 @@ export class RxjsWebsocketsComponent implements OnInit {
   itemHeight = 20;
   itemOnView = 10;
 
+  coinPairAdded$ = new Subject() as Subject<boolean>;
   coinPairId = 0;
   coinPairs = [] as ICoinApiExchangeRatePair[];
+  coinPairsFiltered = [] as ICoinApiExchangeRatePair[];
+  coinPairs$ = new FormControl();
+  coinPairsSearch$ = new FormControl();
+  coinPairsSearchList = [] as ICoinApiExchangeRatePair[];
 
   lastPointChart = null as IPointChart | null;
   lastRate = null as ICoinApiExchangeRate | null;
@@ -35,7 +48,9 @@ export class RxjsWebsocketsComponent implements OnInit {
   selectedPoint = {} as IPointChartSelectedPointInfo;
   selectedPosition = {};
 
-  pairIndex = 0;
+  selectedCharts = [] as IChartsSelected[];
+
+  ratePairOptions = [] as IKeyValue<number>[];
   stopStream$ = new Subject() as Subject<boolean>;
 
   constructor(private rxjsWebsocketService: RxjsWebsocketService) {}
@@ -53,6 +68,10 @@ export class RxjsWebsocketsComponent implements OnInit {
     // this.prepMockedData();
   }
 
+  coinPairAutoComplete(pair: ICoinApiExchangeRatePair): string {
+    return pair && pair.id ? pair.name : '';
+  }
+
   convertExchangeRateToPointChartData(
     rate: ICoinApiExchangeRate
   ): IPointChartData {
@@ -60,22 +79,6 @@ export class RxjsWebsocketsComponent implements OnInit {
       x: new Date(rate.time).getTime(),
       y: rate.rate,
     } as IPointChartData;
-  }
-
-  indexNext(): void {
-    if (this.pairIndex < this.coinPairs.length) {
-      this.pairIndex++;
-    } else {
-      this.pairIndex = this.coinPairs.length - 1;
-    }
-  }
-
-  indexPrev(): void {
-    if (this.pairIndex > 0) {
-      this.pairIndex--;
-    } else {
-      this.pairIndex = 0;
-    }
   }
 
   initObservables(): void {
@@ -93,6 +96,52 @@ export class RxjsWebsocketsComponent implements OnInit {
         },
         (error) => console.log('maxPointsCount error', error),
         () => console.log('maxPointsCount completed..')
+      );
+
+    this.coinPairs$.valueChanges
+      .pipe(startWith([0]), debounceTime(750), takeUntil(this.isDestroyed$))
+      .subscribe(
+        (pairSelected: number[]) => {
+          console.log('pairSelected subs:', pairSelected);
+          this.coinPairsFiltered = [];
+          this.coinPairsFiltered = this.coinPairs.filter(
+            (f) => f.id === pairSelected.find((p) => p === f.id)
+          );
+        },
+        (error) => console.log('pairSelected error', error),
+        () => console.log('pairSelected completed..')
+      );
+
+    this.coinPairsSearch$.valueChanges
+      .pipe(
+        debounceTime(750),
+        distinctUntilChanged(),
+        takeUntil(this.isDestroyed$)
+      )
+      .subscribe(
+        (coinPairsSearch: string) => {
+          console.log('coinPairsSearch subs:', coinPairsSearch);
+          if (coinPairsSearch && coinPairsSearch.length > 2) {
+            // this.coinPairsSearchList = this.coinPairs.filter((f) =>
+            //   f.name.toLowerCase().includes(coinPairsSearch.toLowerCase())
+            // );
+
+            console.log(this.coinPairsSearchList);
+          }
+        },
+        (error) => console.log('coinPairsSearch error', error),
+        () => console.log('coinPairsSearch completed..')
+      );
+
+    this.coinPairAdded$
+      .pipe(debounceTime(750), takeUntil(this.isDestroyed$))
+      .subscribe(
+        (coinPairAdded: any) => {
+          console.log('coinPairAdded subs:', coinPairAdded);
+          this.prepRatePairAvailableOptions();
+        },
+        (error) => console.log('coinPairAdded error', error),
+        () => console.log('coinPairAdded completed..')
       );
   }
 
@@ -112,19 +161,22 @@ export class RxjsWebsocketsComponent implements OnInit {
     this.rxjsWebsocketService.getExchangeRate();
   }
 
-  pointSelected(ev: IPointChartDataOutput): void {
+  pointSelected(
+    ev: IPointChartDataOutput,
+    selectedChart: IChartsSelected
+  ): void {
     if (ev.id < 0) {
       this.isSelected = false;
       return;
     }
 
-    // const RATES_PAIR_MOCKED_DATA = this.rxjsWebsocketService.getExchangeRatePairMocked();
-    const SELECTED_PAIR = this.coinPairs[this.pairIndex];
-    const RATES = SELECTED_PAIR.rates.slice(0, this.maxPointsCount);
+    console.log(ev.event);
+
+    const RATES = selectedChart.chart.rates.slice(0, this.maxPointsCount);
 
     this.selectedPosition = {
-      left: `${ev.event.offsetX}px`,
-      top: `${ev.event.offsetY - 50}px`,
+      left: `${ev.event.pageX}px`,
+      top: `${ev.event.pageY - 50}px`,
     };
 
     const CURRENT_RATE = RATES[ev.id];
@@ -143,6 +195,102 @@ export class RxjsWebsocketsComponent implements OnInit {
       : null;
 
     this.isSelected = true;
+  }
+
+  prepNewPointChart(): IPointChart {
+    return {
+      isUpdated$: new Subject(),
+      points: [] as IPointChartData[],
+    } as IPointChart;
+  }
+
+  prepPairs(rate: ICoinApiExchangeRate): void {
+    const coinPairFound = this.coinPairs.find(
+      (f) =>
+        f.asset_id_base === rate.asset_id_base &&
+        f.asset_id_quote === rate.asset_id_quote
+    );
+    if (coinPairFound) {
+      /**
+       * update pointChartInfo
+       *
+       */
+      this.updatePointChart(rate, coinPairFound.pointChart);
+
+      const rates = [...coinPairFound.rates];
+      rates.unshift(rate);
+      coinPairFound.rates = [...rates];
+    } else {
+      this.coinPairId++;
+
+      let pair = {
+        asset_id_base: rate.asset_id_base,
+        asset_id_quote: rate.asset_id_quote,
+        id: this.coinPairId,
+        name: `${rate.asset_id_base} - ${rate.asset_id_quote}`,
+        pointChart: this.prepNewPointChart(),
+        rates: [rate],
+      } as ICoinApiExchangeRatePair;
+
+      this.updatePointChart(rate, pair.pointChart);
+
+      this.rxjsWebsocketService.assignIcon(pair);
+
+      this.coinPairs.push(pair);
+      this.coinPairAdded$.next(true);
+    }
+  }
+
+  prepRatePairAvailableOptions(): void {
+    this.ratePairOptions = this.coinPairs.map((pair) => ({
+      key: pair.name,
+      value: pair.id,
+    }));
+  }
+
+  ratesSelected(ev: IChartConfig) {
+    console.log('rates selected: ', ev);
+
+    this.selectedCharts = this.coinPairs
+      .filter(
+        (f) =>
+          f.id ===
+          ev.pointCharts
+            .map((m) => m.chartSelected.value)
+            .find((id) => id === f.id)
+      )
+      .map(
+        (pair: ICoinApiExchangeRatePair, idx: number) =>
+          ({
+            chart: pair,
+            size: ev.pointCharts[idx].width,
+          } as IChartsSelected)
+      );
+  }
+
+  setIdAndTrendToPointChartData(
+    point: IPointChartData,
+    prevPoint?: IPointChartData
+  ): void {
+    if (!prevPoint) {
+      point.id = 0;
+      point.color = 'white';
+      return;
+    }
+    point.id = prevPoint.id + 1;
+    if (prevPoint.y === point.y) {
+      point.color = 'white';
+    } else {
+      point.color = prevPoint && prevPoint.y < point.y ? 'green' : 'red';
+    }
+  }
+
+  stop(): void {
+    this.stopStream$.next(true);
+  }
+
+  test(): void {
+    console.log(this.coinPairs);
   }
 
   updatePointChart(
@@ -196,73 +344,5 @@ export class RxjsWebsocketsComponent implements OnInit {
     lastPointChart.diffY = lastPointChart.axisYMax - lastPointChart.axisYMin;
 
     lastPointChart.isUpdated$.next(true);
-  }
-
-  prepNewPointChart(): IPointChart {
-    return {
-      isUpdated$: new Subject(),
-      points: [] as IPointChartData[],
-    } as IPointChart;
-  }
-
-  prepPairs(rate: ICoinApiExchangeRate): void {
-    const coinPairFound = this.coinPairs.find(
-      (f) =>
-        f.asset_id_base === rate.asset_id_base &&
-        f.asset_id_quote === rate.asset_id_quote
-    );
-    if (coinPairFound) {
-      /**
-       * update pointChartInfo
-       *
-       */
-      this.updatePointChart(rate, coinPairFound.pointChart);
-
-      const rates = [...coinPairFound.rates];
-      rates.unshift(rate);
-      coinPairFound.rates = [...rates];
-    } else {
-      this.coinPairId++;
-
-      let pair = {
-        asset_id_base: rate.asset_id_base,
-        asset_id_quote: rate.asset_id_quote,
-        id: this.coinPairId,
-        name: `${rate.asset_id_base} - ${rate.asset_id_quote}`,
-        pointChart: this.prepNewPointChart(),
-        rates: [rate],
-      } as ICoinApiExchangeRatePair;
-
-      this.updatePointChart(rate, pair.pointChart);
-
-      this.rxjsWebsocketService.assignIcon(pair);
-
-      this.coinPairs.push(pair);
-    }
-  }
-
-  setIdAndTrendToPointChartData(
-    point: IPointChartData,
-    prevPoint?: IPointChartData
-  ): void {
-    if (!prevPoint) {
-      point.id = 0;
-      point.color = 'white';
-      return;
-    }
-    point.id = prevPoint.id + 1;
-    if (prevPoint.y === point.y) {
-      point.color = 'white';
-    } else {
-      point.color = prevPoint && prevPoint.y < point.y ? 'green' : 'red';
-    }
-  }
-
-  stop(): void {
-    this.stopStream$.next(true);
-  }
-
-  test(): void {
-    console.log(this.coinPairs);
   }
 }

@@ -1,0 +1,22 @@
+<div fxLayout="column">
+  <div>
+    <p>charts length: {{ pointCharts$.controls.length }}</p>
+    <button mat-mini-fab [disabled]="pointCharts$.invalid" (click)="addChart()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-raised-button (click)="test()">test</button>
+  </div>
+
+  <ng-container [formGroup]="rForm$">
+    <ng-container *ngFor="let chart of pointCharts$.controls; index as index">
+      <app-exchange-rate-panel-item
+        [rForm$]="getPointChartGroup$(index)"
+        [isDisabled]="pointCharts$.controls.length === 1"
+        [ratePairsOptions]="ratePairsOptions"
+        (delete)="removeChart(index)"
+      ></app-exchange-rate-panel-item>
+    </ng-container>
+  </ng-container>
+</div>
+
+<p>exchange-rate-panel end !</p>

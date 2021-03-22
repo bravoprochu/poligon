@@ -1,0 +1,47 @@
+<div fxLayout fxLayoutAlign="start center">
+  <form [formGroup]="rForm$">
+    <mat-form-field>
+      <mat-label>Rate Pair</mat-label>
+      <input
+        type="text"
+        placeholder="Pick rate pair"
+        aria-label="rate pair"
+        matInput
+        formControlName="chartSelected"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        [displayWith]="rateDisplayFn"
+      >
+        <mat-option
+          *ngFor="let pair of ratePairsOptionsFiltered"
+          [value]="pair"
+        >
+          {{ pair.key }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="chart points"
+        formControlName="pointsCount"
+      />
+    </mat-form-field>
+    <mat-slider
+      class="mat-form-field slider-container"
+      thumbLabel
+      tickInterval="750"
+      step="5"
+      min="10"
+      max="100"
+      formControlName="width"
+    ></mat-slider>
+  </form>
+  <button mat-mini-fab (click)="remove()" [disabled]="isDisabled">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

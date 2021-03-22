@@ -1,5 +1,3 @@
-<p>rxjs-websockets works!</p>
-
 <div
   *ngIf="isSelected"
   @appearUpDown
@@ -18,22 +16,17 @@
   </div>
 </div>
 
-<div class="controls-container" fxLayout fxLayoutGap="10px">
+<app-exchange-rate-panel
+  (ratesSelected)="ratesSelected($event)"
+  [ratePairsOption]="ratePairOptions"
+></app-exchange-rate-panel>
+
+<div class="controls-container">
   <button mat-raised-button [matBadge]="coinPairs.length" (click)="getTrades()">
     get exchange rates
   </button>
   <button mat-mini-fab (click)="stop()"><mat-icon>stop</mat-icon></button>
   <button mat-button (click)="test()">test</button>
-
-  <button mat-mini-fab (click)="indexPrev()">
-    <mat-icon>navigate_before</mat-icon>
-  </button>
-  <button mat-mini-fab (click)="indexNext()">
-    <mat-icon>navigate_next</mat-icon>
-  </button>
-  <h4 mat-h4>
-    {{ pairIndex }}
-  </h4>
 
   <mat-form-field>
     <input
@@ -46,40 +39,40 @@
 
 <mat-divider></mat-divider>
 
-<div fxLayout="row wrap" fxLayoutGap="5px">
-  <ng-container *ngFor="let pair of coinPairs; index as i; first as isFirst">
-    <mat-card
-      *ngIf="i === pairIndex"
-      fxFlex="100"
-      fxFlex.gt-md="calc(50%-5px)"
-      fxFlex.gt-lg="calc(33%-5px)"
-    >
+<div fxLayout="row wrap">
+  <ng-container
+    *ngFor="let selectedChart of selectedCharts; index as i; first as isFirst"
+  >
+    <mat-card [fxFlex]="selectedChart.size">
       <div fxLayout fxLayoutAlign="space-between center">
         <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
           <img
-            [attr.src]="pair.asset_id_base_logo"
+            [attr.src]="selectedChart.chart.asset_id_base_logo"
             mat-card-avatar
             class="example-header-image"
           />
           <div>&nbsp;=>&nbsp;</div>
           <img
-            [attr.src]="pair.asset_id_quote_logo"
+            [attr.src]="selectedChart.chart.asset_id_quote_logo"
             mat-card-avatar
             class="example-header-image"
           />
         </div>
         <div>
-          <h2 class="h2">{{ pair.name }}</h2>
+          <h2 class="h2">{{ selectedChart.chart.name }}</h2>
         </div>
       </div>
       <mat-card-content>
         <mat-divider></mat-divider>
 
         <app-svg-point-chart
-          (pointSelected)="pointSelected($event)"
-          [pointChart]="pair.pointChart"
+          (pointSelected)="pointSelected($event, selectedChart)"
+          [pointChart]="selectedChart.chart.pointChart"
         ></app-svg-point-chart>
 
+        <p class="mat-body" *ngIf="selectedChart.chart.rates.length > 0">
+          Collected points: {{ selectedChart.chart.rates.length }}
+        </p>
         <cdk-virtual-scroll-viewport
           [itemSize]="itemHeight"
           [style.height.px]="itemHeight * itemOnView"
@@ -89,7 +82,7 @@
             [style.height.px]="itemHeight"
             class="viewport-item"
             *cdkVirtualFor="
-              let rate of pair.rates;
+              let rate of selectedChart.chart.rates;
               let index = index;
               let count = count;
               let first = first;
