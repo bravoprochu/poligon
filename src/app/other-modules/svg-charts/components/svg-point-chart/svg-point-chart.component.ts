@@ -1,20 +1,33 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
+import { SVG_MATRIX_TRANSFORMATION } from 'otherModules/svg-charts/const-functions/svg-matrix-transformation';
+import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
+import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
 
 @Component({
   selector: 'app-svg-point-chart',
   templateUrl: './svg-point-chart.component.svg',
   styleUrls: ['./svg-point-chart.component.scss'],
-  animations: [],
+  animations: [BP_ANIM_APPEAR_UP_DOWN(250, 150)],
 })
 export class SvgPointChartComponent implements OnInit {
   @Input('pointChart') pointChart = {} as IPointChart;
+  @Input('selectedPoint') selectedPoint?: IPointChartSelectedPointInfo;
   @Output()
   pointSelected = new EventEmitter() as EventEmitter<IPointChartDataOutput>;
+  @ViewChild('svg') svg?: ElementRef;
   chartHeaderHeight = 50;
   chartFooterHeight = 50;
   chartLeftPanel = 100;
@@ -34,7 +47,9 @@ export class SvgPointChartComponent implements OnInit {
 
   data = {} as IPointChart;
   isDestroyed$ = new Subject() as Subject<boolean>;
+  isSelected = false;
   points = [] as IPointChartData[];
+  selectedPosition = {};
 
   constructor() {}
 
@@ -99,14 +114,12 @@ export class SvgPointChartComponent implements OnInit {
       event,
       id: this.points.indexOf(point),
     } as IPointChartDataOutput);
+
+    this.isSelected = true;
   }
 
   mouseLeave(ev: MouseEvent) {
-    /**
-     * return negative id
-     *
-     */
-    this.pointSelected.emit({ event: ev, id: -1 });
+    this.isSelected = false;
   }
 
   getOffsetY(posY: number): number {

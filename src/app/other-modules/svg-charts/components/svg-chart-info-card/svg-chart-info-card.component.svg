@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="75%" y="55%" width="25%"
+    height="25%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" class="text-color">
+    <rect x="0" y="0" width="100%" height="100%" class="card" fill="white"></rect>
+
+
+    <text text-anchor="start" x="50" y="100" font-size="50" font-weight="bold">{{infoCard?.subtitle}}</text>
+
+    <text text-anchor="middle" x="50%" y="225" font-size="100" font-weight="bold">{{infoCard?.title}}</text>
+
+    <line x1="30" x2="970" y1="115" y2="115" class="underline" />
+
+    <g>
+        <text text-anchor="middle" x="50%" y="330" font-size="50" font-weight="bold"
+            [attr.fill]="infoCard?.color">{{infoCard?.changePercentage}}</text>
+
+        <text text-anchor="middle" x="50%" y="400" font-size="30"
+            [attr.fill]="infoCard?.color">{{infoCard?.change}}</text>
+    </g>
+
+
+
+
+</svg>

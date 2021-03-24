@@ -1,22 +1,5 @@
-<div
-  *ngIf="isSelected"
-  @appearUpDown
-  class="info-container"
-  [ngStyle]="selectedPosition"
->
-  <h4 class="mat-h4">&nbsp;{{ selectedPoint.date }}</h4>
-  <h2 class="mat-h2">
-    <strong>{{ selectedPoint.rate }}</strong>
-  </h2>
-  <div class="body">
-    {{ selectedPoint.changePercentage | percent: "0.2-3" }}
-  </div>
-  <div class="body" [ngStyle]="{ color: selectedPoint.color }">
-    {{ selectedPoint.change }}
-  </div>
-</div>
-
 <app-exchange-rate-panel
+  *ngIf="ratePairOptions.length > 0"
   (ratesSelected)="ratesSelected($event)"
   [ratePairsOption]="ratePairOptions"
 ></app-exchange-rate-panel>

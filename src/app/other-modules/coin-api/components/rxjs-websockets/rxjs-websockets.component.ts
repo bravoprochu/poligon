@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { IChartConfig } from 'otherModules/coin-api/interfaces/i-charts-config';
 import { IChartsSelected } from 'otherModules/coin-api/interfaces/i-charts-selected';
 import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
@@ -10,6 +10,7 @@ import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
+import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
 import { merge, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -17,13 +18,11 @@ import {
   startWith,
   takeUntil,
 } from 'rxjs/operators';
-import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 
 @Component({
   selector: 'app-rxjs-websockets',
   templateUrl: './rxjs-websockets.component.html',
   styleUrls: ['./rxjs-websockets.component.scss'],
-  animations: [BP_ANIM_APPEAR_UP_DOWN(250, 150)],
 })
 export class RxjsWebsocketsComponent implements OnInit {
   isDestroyed$ = new Subject() as Subject<boolean>;
@@ -39,14 +38,13 @@ export class RxjsWebsocketsComponent implements OnInit {
   coinPairsSearch$ = new FormControl();
   coinPairsSearchList = [] as ICoinApiExchangeRatePair[];
 
+  infoCard = {} as ISvgChartInfoCard;
+
   lastPointChart = null as IPointChart | null;
   lastRate = null as ICoinApiExchangeRate | null;
 
   maxPointsCount$ = new FormControl(10);
   maxPointsCount = 10;
-
-  selectedPoint = {} as IPointChartSelectedPointInfo;
-  selectedPosition = {};
 
   selectedCharts = [] as IChartsSelected[];
 
@@ -170,29 +168,26 @@ export class RxjsWebsocketsComponent implements OnInit {
       return;
     }
 
-    console.log(ev.event);
-
     const RATES = selectedChart.chart.rates.slice(0, this.maxPointsCount);
-
-    this.selectedPosition = {
-      left: `${ev.event.pageX}px`,
-      top: `${ev.event.pageY - 50}px`,
-    };
 
     const CURRENT_RATE = RATES[ev.id];
     const PREV_RATE = ev.id < RATES.length ? RATES[ev.id + 1] : null;
     const RATE_CHANGE = PREV_RATE ? CURRENT_RATE.rate - PREV_RATE.rate : null;
+    const CHANGE_PERCENTAGE = PREV_RATE
+      ? ((RATE_CHANGE! / +CURRENT_RATE.rate) * 100).toString() + ' %'
+      : '';
     const IS_INCREASING =
       PREV_RATE && CURRENT_RATE.rate >= PREV_RATE.rate ? true : false;
-
-    this.selectedPoint.color = IS_INCREASING ? 'green' : 'red';
-    this.selectedPoint.rate = CURRENT_RATE.rate.toString();
     const date = new Date(CURRENT_RATE.time);
-    this.selectedPoint.date = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-    this.selectedPoint.change = RATE_CHANGE ? RATE_CHANGE.toString() : '';
-    this.selectedPoint.changePercentage = RATE_CHANGE
-      ? RATE_CHANGE / CURRENT_RATE.rate
-      : null;
+
+    selectedChart.chart.pointChart.infoCard = {
+      change: RATE_CHANGE != 0 ? RATE_CHANGE!.toString() : '',
+      changePercentage: CHANGE_PERCENTAGE != '0 %' ? CHANGE_PERCENTAGE : '',
+      color: IS_INCREASING ? 'green' : 'red',
+      isIncreasing: IS_INCREASING,
+      subtitle: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
+      title: CURRENT_RATE.rate.toString(),
+    } as ISvgChartInfoCard;
 
     this.isSelected = true;
   }
