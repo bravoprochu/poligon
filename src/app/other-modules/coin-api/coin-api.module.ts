@@ -17,7 +17,7 @@ import { ColorRangeModule } from '../color-range/color-range.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TablesComponent } from './components/tables/tables.component';
 import { RxjsWebsocketsComponent } from './components/rxjs-websockets/rxjs-websockets.component';
-import { RxjsWebsocketService } from './services/rxjs-websocket.service';
+import { CoinApiRatePairService } from './services/coin-api-rate-pair.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -29,6 +29,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ExchangeRatePanelComponent } from './components/exchange-rate-panel/exchange-rate-panel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ExchangeRatePanelItemComponent } from './components/exchange-rate-panel-item/exchange-rate-panel-item.component';
 
 const IMPORT_EXPORT_MODULES = [
@@ -46,6 +47,7 @@ const IMPORT_EXPORT_MODULES = [
   MatFormFieldModule,
   MatIconModule,
   MatSelectModule,
+  MatSlideToggleModule,
   MatSliderModule,
   MatTooltipModule,
   ScrollingModule,
@@ -65,6 +67,6 @@ const IMPORT_EXPORT_MODULES = [
   ],
   imports: [CommonModule, CoinApiRoutingModule, IMPORT_EXPORT_MODULES],
   exports: [IMPORT_EXPORT_MODULES],
-  providers: [CoinApiService, RxjsWebsocketService],
+  providers: [CoinApiService, CoinApiRatePairService],
 })
 export class CoinApiModule {}

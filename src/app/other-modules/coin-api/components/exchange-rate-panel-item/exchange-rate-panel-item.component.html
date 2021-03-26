@@ -23,23 +23,6 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="chart points"
-        formControlName="pointsCount"
-      />
-    </mat-form-field>
-    <mat-slider
-      class="mat-form-field slider-container"
-      thumbLabel
-      tickInterval="750"
-      step="5"
-      min="10"
-      max="100"
-      formControlName="width"
-    ></mat-slider>
   </form>
   <button mat-mini-fab (click)="remove()" [disabled]="isDisabled">
     <mat-icon>delete</mat-icon>

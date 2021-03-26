@@ -1,6 +1,6 @@
 <app-exchange-rate-panel
   *ngIf="ratePairOptions.length > 0"
-  (ratesSelected)="ratesSelected($event)"
+  (chartsSelected)="ratesSelected($event)"
   [ratePairsOption]="ratePairOptions"
 ></app-exchange-rate-panel>
 
@@ -26,7 +26,7 @@
   <ng-container
     *ngFor="let selectedChart of selectedCharts; index as i; first as isFirst"
   >
-    <mat-card [fxFlex]="selectedChart.size">
+    <mat-card [fxFlex]="selectedChart.width">
       <div fxLayout fxLayoutAlign="space-between center">
         <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
           <img
@@ -48,44 +48,9 @@
       <mat-card-content>
         <mat-divider></mat-divider>
 
-        <app-svg-point-chart
-          (pointSelected)="pointSelected($event, selectedChart)"
-          [pointChart]="selectedChart.chart.pointChart"
-        ></app-svg-point-chart>
-
-        <p class="mat-body" *ngIf="selectedChart.chart.rates.length > 0">
-          Collected points: {{ selectedChart.chart.rates.length }}
-        </p>
-        <cdk-virtual-scroll-viewport
-          [itemSize]="itemHeight"
-          [style.height.px]="itemHeight * itemOnView"
-        >
-          <div
-            [ngClass]="{ 'odd-item': odd, 'even-item': even }"
-            [style.height.px]="itemHeight"
-            class="viewport-item"
-            *cdkVirtualFor="
-              let rate of selectedChart.chart.rates;
-              let index = index;
-              let count = count;
-              let first = first;
-              let last = last;
-              let even = even;
-              let odd = odd
-            "
-          >
-            <div
-              fxLayout
-              fxLayoutAlign="space-between"
-              [style.height.px]="itemHeight"
-            >
-              <h4 class="mat-h4">
-                {{ index + 1 }} | {{ rate.time | date: "medium" }} |
-                <strong>{{ rate.rate }}</strong>
-              </h4>
-            </div>
-          </div>
-        </cdk-virtual-scroll-viewport>
+        <app-exchange-rate-chart
+          [selectedChart]="selectedChart"
+        ></app-exchange-rate-chart>
       </mat-card-content>
     </mat-card>
   </ng-container>

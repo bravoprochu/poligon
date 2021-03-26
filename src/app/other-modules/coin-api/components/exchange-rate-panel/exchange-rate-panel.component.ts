@@ -7,9 +7,9 @@ import {
   Output,
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { IChartConfig } from 'otherModules/coin-api/interfaces/i-charts-config';
+import { IChartConfigPanel } from 'otherModules/coin-api/interfaces/i-charts-config-panel';
 import { IKeyValue } from 'otherModules/coin-api/interfaces/i-key-value';
-import { RxjsWebsocketService } from 'otherModules/coin-api/services/rxjs-websocket.service';
+import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { Subject } from 'rxjs';
 import { debounceTime, map, takeUntil } from 'rxjs/operators';
 
@@ -20,13 +20,14 @@ import { debounceTime, map, takeUntil } from 'rxjs/operators';
 })
 export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
   @Input('ratePairsOption') ratePairsOptions = [] as IKeyValue<number>[];
-  @Output('ratesSelected') ratesSelected = new EventEmitter<IChartConfig>();
+  @Output('chartsSelected')
+  chartsSelected = new EventEmitter<IChartConfigPanel>();
   isDestroyed$ = new Subject() as Subject<boolean>;
   rForm$ = {} as FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private rxjsWebsocketService: RxjsWebsocketService
+    private rxjsWebsocketService: CoinApiRatePairService
   ) {}
 
   ngOnDestroy(): void {
@@ -52,9 +53,11 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
     this.rForm$.valueChanges
       .pipe(debounceTime(50), takeUntil(this.isDestroyed$))
       .subscribe(
-        (exchangeRatePanelForm: IChartConfig) => {
+        (exchangeRatePanelForm: IChartConfigPanel) => {
           if (this.rForm$.valid) {
-            this.ratesSelected.emit(this.rForm$.value);
+            this.chartsSelected.emit({
+              chartsSelected: exchangeRatePanelForm.chartsSelected,
+            });
           }
         },
         (error) => console.log('exchangeRatePanelForm error', error),
@@ -74,7 +77,7 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
 
   //#region form getters
   get pointCharts$(): FormArray {
-    return this.rForm$.get('pointCharts') as FormArray;
+    return this.rForm$.get('chartsSelected') as FormArray;
   }
 
   getPointChartGroup$(id: number): FormGroup {

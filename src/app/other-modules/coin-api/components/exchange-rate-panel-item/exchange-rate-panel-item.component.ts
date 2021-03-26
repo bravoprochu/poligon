@@ -56,9 +56,7 @@ export class ExchangeRatePanelItemComponent implements OnInit {
         takeUntil(this.isDestroyed$)
       )
       .subscribe(
-        (chartSelectedSearch: any) => {
-          console.log('chartSelectedSearch subs:', chartSelectedSearch);
-        },
+        (chartSelectedSearch: any) => {},
         (error) => console.log('chartSelectedSearch error', error),
         () => console.log('chartSelectedSearch completed..')
       );

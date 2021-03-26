@@ -1,4 +1,60 @@
-<p>exchange-rate-chart works!</p>
-<button mat-raised-button [matBadge]="data.length" (click)="test()">
-  show rates
-</button>
+<app-svg-point-chart
+  (pointSelected)="pointSelected($event, selectedChart!)"
+  [pointChart]="selectedChart?.chart?.pointChart!"
+></app-svg-point-chart>
+
+<mat-form-field>
+  <input
+    type="number"
+    matInput
+    placeholder="chart points"
+    [formControl]="configPointsCount$"
+  />
+</mat-form-field>
+<mat-slider
+  class="mat-form-field slider-container"
+  thumbLabel
+  tickInterval="750"
+  step="5"
+  min="10"
+  max="100"
+  [formControl]="configWidth$"
+></mat-slider>
+
+<mat-slide-toggle [formControl]="configShowHistory$"></mat-slide-toggle>
+
+<div *ngIf="configShowHistory$.value">
+  <p class="mat-body">
+    Collected points: {{ (selectedChart?.chart?.rates)!.length }}
+  </p>
+  <cdk-virtual-scroll-viewport
+    [itemSize]="itemHeight"
+    [style.height.px]="itemHeight * itemOnView"
+  >
+    <div
+      [ngClass]="{ 'odd-item': odd, 'even-item': even }"
+      [style.height.px]="itemHeight"
+      class="viewport-item"
+      *cdkVirtualFor="
+        let rate of selectedChart?.chart?.rates;
+        let index = index;
+        let count = count;
+        let first = first;
+        let last = last;
+        let even = even;
+        let odd = odd
+      "
+    >
+      <div
+        fxLayout
+        fxLayoutAlign="space-between"
+        [style.height.px]="itemHeight"
+      >
+        <h4 class="mat-h4">
+          {{ index + 1 }} | {{ rate.time | date: "medium" }} |
+          <strong>{{ rate.rate }}</strong>
+        </h4>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>

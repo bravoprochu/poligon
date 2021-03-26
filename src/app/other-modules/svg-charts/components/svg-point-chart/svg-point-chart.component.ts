@@ -12,7 +12,6 @@ import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
-import { SVG_MATRIX_TRANSFORMATION } from 'otherModules/svg-charts/const-functions/svg-matrix-transformation';
 import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
 
@@ -73,15 +72,17 @@ export class SvgPointChartComponent implements OnInit {
           this.calcRatios();
 
           this.points = [];
-          this.points = this.pointChart.points.map(
-            (point) =>
-              ({
-                color: point.color,
-                id: point.id,
-                x: this.getOffsetX(point.x),
-                y: this.getOffsetY(point.y),
-              } as IPointChartData)
-          );
+          this.points = this.pointChart.points
+            .slice(0, this.pointChart.pointsCount)
+            .map(
+              (point) =>
+                ({
+                  color: point.color,
+                  id: point.id,
+                  x: this.getOffsetX(point.x),
+                  y: this.getOffsetY(point.y),
+                } as IPointChartData)
+            );
 
           // console.log('svg', this.pointChart);
         },

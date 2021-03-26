@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { IChartConfig } from 'otherModules/coin-api/interfaces/i-charts-config';
+import { IChartConfigPanel } from 'otherModules/coin-api/interfaces/i-charts-config-panel';
 import { IChartsSelected } from 'otherModules/coin-api/interfaces/i-charts-selected';
 import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
 import { ICoinApiExchangeRatePair } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate-pair';
 import { IKeyValue } from 'otherModules/coin-api/interfaces/i-key-value';
-import { RxjsWebsocketService } from 'otherModules/coin-api/services/rxjs-websocket.service';
+import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
-import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
-import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
 import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
 import { merge, Subject } from 'rxjs';
 import {
@@ -27,8 +25,6 @@ import {
 export class RxjsWebsocketsComponent implements OnInit {
   isDestroyed$ = new Subject() as Subject<boolean>;
   isSelected = false;
-  itemHeight = 20;
-  itemOnView = 10;
 
   coinPairAdded$ = new Subject() as Subject<boolean>;
   coinPairId = 0;
@@ -51,7 +47,7 @@ export class RxjsWebsocketsComponent implements OnInit {
   ratePairOptions = [] as IKeyValue<number>[];
   stopStream$ = new Subject() as Subject<boolean>;
 
-  constructor(private rxjsWebsocketService: RxjsWebsocketService) {}
+  constructor(private rxjsWebsocketService: CoinApiRatePairService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -100,7 +96,6 @@ export class RxjsWebsocketsComponent implements OnInit {
       .pipe(startWith([0]), debounceTime(750), takeUntil(this.isDestroyed$))
       .subscribe(
         (pairSelected: number[]) => {
-          console.log('pairSelected subs:', pairSelected);
           this.coinPairsFiltered = [];
           this.coinPairsFiltered = this.coinPairs.filter(
             (f) => f.id === pairSelected.find((p) => p === f.id)
@@ -135,7 +130,6 @@ export class RxjsWebsocketsComponent implements OnInit {
       .pipe(debounceTime(750), takeUntil(this.isDestroyed$))
       .subscribe(
         (coinPairAdded: any) => {
-          console.log('coinPairAdded subs:', coinPairAdded);
           this.prepRatePairAvailableOptions();
         },
         (error) => console.log('coinPairAdded error', error),
@@ -157,39 +151,6 @@ export class RxjsWebsocketsComponent implements OnInit {
 
   getTrades(): void {
     this.rxjsWebsocketService.getExchangeRate();
-  }
-
-  pointSelected(
-    ev: IPointChartDataOutput,
-    selectedChart: IChartsSelected
-  ): void {
-    if (ev.id < 0) {
-      this.isSelected = false;
-      return;
-    }
-
-    const RATES = selectedChart.chart.rates.slice(0, this.maxPointsCount);
-
-    const CURRENT_RATE = RATES[ev.id];
-    const PREV_RATE = ev.id < RATES.length ? RATES[ev.id + 1] : null;
-    const RATE_CHANGE = PREV_RATE ? CURRENT_RATE.rate - PREV_RATE.rate : null;
-    const CHANGE_PERCENTAGE = PREV_RATE
-      ? ((RATE_CHANGE! / +CURRENT_RATE.rate) * 100).toString() + ' %'
-      : '';
-    const IS_INCREASING =
-      PREV_RATE && CURRENT_RATE.rate >= PREV_RATE.rate ? true : false;
-    const date = new Date(CURRENT_RATE.time);
-
-    selectedChart.chart.pointChart.infoCard = {
-      change: RATE_CHANGE != 0 ? RATE_CHANGE!.toString() : '',
-      changePercentage: CHANGE_PERCENTAGE != '0 %' ? CHANGE_PERCENTAGE : '',
-      color: IS_INCREASING ? 'green' : 'red',
-      isIncreasing: IS_INCREASING,
-      subtitle: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-      title: CURRENT_RATE.rate.toString(),
-    } as ISvgChartInfoCard;
-
-    this.isSelected = true;
   }
 
   prepNewPointChart(): IPointChart {
@@ -243,22 +204,22 @@ export class RxjsWebsocketsComponent implements OnInit {
     }));
   }
 
-  ratesSelected(ev: IChartConfig) {
-    console.log('rates selected: ', ev);
+  ratesSelected(ev: IChartConfigPanel) {
+    const test = ev.chartsSelected;
 
     this.selectedCharts = this.coinPairs
       .filter(
         (f) =>
           f.id ===
-          ev.pointCharts
+          ev.chartsSelected
             .map((m) => m.chartSelected.value)
-            .find((id) => id === f.id)
+            .find((id: number) => id === f.id)
       )
       .map(
         (pair: ICoinApiExchangeRatePair, idx: number) =>
           ({
             chart: pair,
-            size: ev.pointCharts[idx].width,
+            width: ev.chartsSelected[idx].width,
           } as IChartsSelected)
       );
   }
@@ -305,7 +266,7 @@ export class RxjsWebsocketsComponent implements OnInit {
     this.setIdAndTrendToPointChartData(point, prevPoint!);
 
     lastPointChart.points.unshift(point);
-    lastPointChart.points = lastPointChart.points.slice(0, this.maxPointsCount);
+    // lastPointChart.points = lastPointChart.points.slice(0, this.maxPointsCount);
 
     /**
      * until number of points is less then maxPointsCount$ (points to render)

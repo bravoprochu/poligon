@@ -12,4 +12,5 @@ export interface IPointChart {
   infoCard: ISvgChartInfoCard;
   isUpdated$: Subject<boolean>;
   points: IPointChartData[];
+  pointsCount: number;
 }
