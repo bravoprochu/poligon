@@ -19,15 +19,15 @@ import { debounceTime, map, takeUntil } from 'rxjs/operators';
   styleUrls: ['./exchange-rate-panel.component.scss'],
 })
 export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
-  @Input('ratePairsOption') ratePairsOptions = [] as IKeyValue<number>[];
   @Output('chartsSelected')
-  chartsSelected = new EventEmitter<IChartConfigPanel>();
+  chartsSelected = new EventEmitter() as EventEmitter<IChartConfigPanel>;
   isDestroyed$ = new Subject() as Subject<boolean>;
+  ratePairsOptions = [] as IKeyValue<number>[];
   rForm$ = {} as FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private rxjsWebsocketService: CoinApiRatePairService
+    private ratePairService: CoinApiRatePairService
   ) {}
 
   ngOnDestroy(): void {
@@ -42,14 +42,29 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
   }
 
   addChart(): void {
-    this.rxjsWebsocketService.addPointChart(this.pointCharts$, this.fb);
+    this.ratePairService.addPointChart(this.pointCharts$, this.fb);
+  }
+
+  getPointChartGroup$(id: number): FormGroup {
+    return this.pointCharts$.at(id) as FormGroup;
   }
 
   initForms(): void {
-    this.rForm$ = this.rxjsWebsocketService.getChartsForm$(this.fb);
+    this.rForm$ = this.ratePairService.getChartsForm$(this.fb);
   }
 
   initObservables(): void {
+    this.ratePairService.ratePairCreated$
+      .pipe(debounceTime(500), takeUntil(this.isDestroyed$))
+      .subscribe(
+        (panelRateGetNewRates: any) => {
+          console.log('panelRateGetNewRates subs:', panelRateGetNewRates);
+          this.ratePairsOptions = this.ratePairService.getRatePairAvailableOptions();
+        },
+        (error) => console.log('panelRateGetNewRates error', error),
+        () => console.log('panelRateGetNewRates completed..')
+      );
+
     this.rForm$.valueChanges
       .pipe(debounceTime(50), takeUntil(this.isDestroyed$))
       .subscribe(
@@ -78,10 +93,6 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
   //#region form getters
   get pointCharts$(): FormArray {
     return this.rForm$.get('chartsSelected') as FormArray;
-  }
-
-  getPointChartGroup$(id: number): FormGroup {
-    return this.pointCharts$.at(id) as FormGroup;
   }
 
   //#endregion

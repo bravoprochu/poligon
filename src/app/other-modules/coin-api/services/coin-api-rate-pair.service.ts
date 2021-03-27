@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { webSocket, WebSocketSubjectConfig } from 'rxjs/webSocket';
+import { webSocket } from 'rxjs/webSocket';
 import { ICoinApiWebsocketHello } from '../interfaces/i-coin-api-websocket-hello';
 import { ICoinApiExchangeRatePair } from '../interfaces/i-coin-api-exchange-rate-pair';
 import { COIN_API_ASSETS_ICONS } from '../data/coin-api-assets_icons';
-import { COIN_API_EXCHANGE_RATE_PAIR_MOCKED } from '../data/coin-api-exchange-rate-pair-mocked';
+
 import {
   FormArray,
   FormBuilder,
@@ -19,17 +19,37 @@ import { ICoinApiExchangeRate } from '../interfaces/i-coin-api-exchange-rate';
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-chart-data';
 
+import { IKeyValue } from '../interfaces/i-key-value';
+import { IChartSelectedRatePair } from '../interfaces/i-chart-selected-rate-pair';
+import { IChartConfigPanel } from '../interfaces/i-charts-config-panel';
+import { IPointChartConfig } from '../interfaces/i-point-chart-config';
+import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
+import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CoinApiRatePairService {
-  coinPairs = [] as ICoinApiExchangeRatePair[];
-  coinPairs$ = new Subject() as Subject<ICoinApiExchangeRatePair[]>;
-  coinPairAdded$ = new Subject() as Subject<boolean>;
+  // chartsSelectedRatePair = [] as IChartSelectedRatePair[];
+  ratePairs = [] as ICoinApiExchangeRatePair[];
+
+  /**
+   * INDICATE every new ratePair added
+   *
+   */
+  ratePairCreated$ = new Subject() as Subject<string>;
+
+  /**
+   * INDICATE every websocket rate transfer to its pair
+   * number indicates pairRateId to filter incomming data on
+   * subscribed components/services
+   *
+   */
+  ratePairAdded$ = new Subject() as Subject<number>;
 
   private coinAPIwebsoecketURl = environment.coinApiIoWebsocketUrl;
-  private coinPairId = 0;
-  private serviceTitle = 'rxjs coinapi coin pair websocket';
+  private ratePairId = 0;
+  private serviceTitle = 'coinapi rate pair websocket';
 
   isConnected$ = new Subject() as Subject<boolean>;
 
@@ -100,11 +120,15 @@ export class CoinApiRatePairService {
 
     this.ws$.next(exchangeRate);
     return this.ws$.pipe(
-      tap((pair) => this.prepPairs(pair as ICoinApiExchangeRate)),
-      switchMap((val) => this.coinPairs$)
+      tap((pair) => this.prepRatePairs(pair as ICoinApiExchangeRate)),
+      switchMap((val) => this.ratePairCreated$)
     );
   }
 
+  /**
+   * out
+   *
+   */
   getExchangeRate(): void {
     const exchangeRate = {
       apikey: environment.coinApiIoKey,
@@ -115,6 +139,23 @@ export class CoinApiRatePairService {
 
     this.ws$.pipe(tap((data) => console.log('ws inside service', data)));
     this.ws$.next(exchangeRate);
+  }
+
+  getRatePairs$(): Observable<any> {
+    const exchangeRate = {
+      apikey: environment.coinApiIoKey,
+      heartbeat: false,
+      subscribe_data_type: ['exrate'],
+      subscribe_filter_asset_id: ['BTC', 'USD'] as string[],
+    } as ICoinApiWebsocketHello;
+
+    this.ws$.next(exchangeRate);
+
+    return this.ws$.pipe(
+      tap((data) => {
+        this.prepRatePairs(data as ICoinApiExchangeRate);
+      })
+    );
   }
 
   getExchangeRatePairMocked(): ICoinApiExchangeRatePair[] {
@@ -139,12 +180,184 @@ export class CoinApiRatePairService {
     });
   }
 
+  getChartSelectedRatePairByPointChartConfig(
+    chartConfig: IPointChartConfig
+  ): IChartSelectedRatePair {
+    const RATE_PAIR_SELECTED = this.ratePairs.find(
+      (rate) => rate.ratePairId === chartConfig.chartSelected.value
+    );
+    const CHART = this.getPointChartByRatePairId(
+      chartConfig.chartSelected.value,
+      chartConfig.pointsCount
+    );
+
+    return {
+      chart: CHART,
+      logoBase: RATE_PAIR_SELECTED?.asset_id_base_logo,
+      logoQuote: RATE_PAIR_SELECTED?.asset_id_quote_logo,
+      pointsCount: chartConfig.pointsCount,
+      ratePairId: RATE_PAIR_SELECTED?.ratePairId,
+      title: RATE_PAIR_SELECTED?.name,
+      width: chartConfig.width,
+    } as IChartSelectedRatePair;
+  }
+
+  getPointChartByRatePairId(
+    id: number,
+    pointCounts = 20 as number
+  ): IPointChart | null {
+    const RATE_PAIR = this.ratePairs.find((f) => f.ratePairId === id);
+    if (!RATE_PAIR) {
+      return null;
+    }
+
+    const RATES = RATE_PAIR.rates;
+    const LAST_RATE_ID =
+      RATES.length >= pointCounts ? pointCounts : RATES.length;
+    const LAST_RATE = RATES[LAST_RATE_ID];
+    const RATES_RANGE = RATES.slice(0, LAST_RATE_ID);
+
+    const POINT_CHART_DATA = RATES_RANGE.map(
+      (rate: ICoinApiExchangeRate, idx: number) => {
+        const IS_LAST = idx + 1 === RATES_RANGE.length ? true : false;
+        const NEXT_RATE = !IS_LAST ? RATES_RANGE[idx + 1] : rate;
+
+        const IS_INCREASING =
+          !IS_LAST && NEXT_RATE.rate < rate.rate ? true : false;
+        let color = 'white';
+        if (!IS_LAST && NEXT_RATE.rate === rate.rate) {
+          color = 'white';
+        } else {
+          color = IS_INCREASING ? 'green' : 'red';
+        }
+
+        return {
+          color: color,
+          id: rate.exchangeRateId,
+          x: new Date(rate.time).getTime(),
+          y: rate.rate,
+        } as IPointChartData;
+      }
+    );
+
+    const X_DATA = POINT_CHART_DATA.map((rate: IPointChartData) => rate.x);
+    const Y_DATA = POINT_CHART_DATA.map((rate: IPointChartData) => rate.y);
+
+    const axisXMax = Math.max(...X_DATA);
+    const axisXMin = Math.min(...X_DATA);
+
+    const axisYMax = Math.max(...Y_DATA);
+    const axisYMin = Math.min(...Y_DATA);
+
+    const POINT_CHART = {
+      axisXMax,
+      axisXMin,
+      axisYMax,
+      axisYMin,
+      diffX: axisXMax - axisXMin,
+      diffY: axisYMax - axisYMin,
+      points: POINT_CHART_DATA,
+      pointsCount: LAST_RATE_ID + 1,
+    } as IPointChart;
+
+    return POINT_CHART;
+  }
+
+  getRatePairAvailableOptions(): IKeyValue<number>[] {
+    return this.ratePairs.map(
+      (pair: ICoinApiExchangeRatePair) =>
+        ({
+          key: pair.name,
+          value: pair.ratePairId,
+        } as IKeyValue<number>)
+    );
+  }
+
+  getRatePairHistoryByRatePairId(ratePairId: number): ICoinApiExchangeRate[] {
+    const RATE_PAIR = this.ratePairs.find(
+      (rate) => rate.ratePairId === ratePairId
+    );
+    return RATE_PAIR ? [...RATE_PAIR.rates] : [];
+  }
+
+  getSvgChartInfoCard(
+    id: number,
+    ratesHistory: ICoinApiExchangeRate[]
+  ): ISvgChartInfoCard | null {
+    /**
+     * points IDs are NOT 0 based, increment started with 1...
+     *
+     */
+    const RATES = ratesHistory;
+    const CURRENT_RATE = RATES.find((f) => f.exchangeRateId === id);
+    if (!CURRENT_RATE) {
+      return null;
+    }
+    const PREV_RATE =
+      id > 1 ? RATES.find((f) => f.exchangeRateId === id - 1) : null;
+    const RATE_CHANGE = PREV_RATE ? CURRENT_RATE.rate - PREV_RATE.rate : null;
+    const CHANGE_PERCENTAGE = PREV_RATE
+      ? ((RATE_CHANGE! / +CURRENT_RATE.rate) * 100).toString() + ' %'
+      : '';
+    const IS_INCREASING =
+      PREV_RATE && CURRENT_RATE.rate >= PREV_RATE.rate ? true : false;
+    const date = new Date(CURRENT_RATE.time);
+
+    return {
+      change: RATE_CHANGE && RATE_CHANGE != 0 ? RATE_CHANGE!.toString() : '',
+      changePercentage: CHANGE_PERCENTAGE != '0 %' ? CHANGE_PERCENTAGE : '',
+      color: IS_INCREASING ? 'green' : 'red',
+      isIncreasing: IS_INCREASING,
+      subtitle: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
+      title: CURRENT_RATE.rate.toString(),
+    } as ISvgChartInfoCard;
+  }
+
+  updateChartsSelectedArr(
+    chartsSelectedRatePair: IChartSelectedRatePair[],
+    config: IChartConfigPanel
+  ): void {
+    /**
+     * remove deleted charts
+     *
+     */
+    const IDS_TO_REMOVE = [] as number[];
+    chartsSelectedRatePair.map((selected, idx: number) => {
+      const FOUND = config.chartsSelected.find(
+        (configChart) => configChart.chartSelected.value === selected.ratePairId
+      );
+      if (!FOUND) {
+        IDS_TO_REMOVE.push(idx);
+      }
+      return selected;
+    });
+    IDS_TO_REMOVE.forEach((id) => chartsSelectedRatePair.splice(id, 1));
+
+    /**
+     * add chart if new
+     *
+     */
+    config.chartsSelected.forEach((chartSelected: IPointChartConfig) => {
+      const SELECTED_ID = chartSelected.chartSelected.value;
+      const ALREADY_ON_LIST = chartsSelectedRatePair.find(
+        (f) => f.ratePairId === SELECTED_ID
+      );
+
+      if (!ALREADY_ON_LIST) {
+        chartsSelectedRatePair.push(
+          this.getChartSelectedRatePairByPointChartConfig(chartSelected)
+        );
+      }
+    });
+  }
+
   removeChartAt(id: number) {}
 
   private convertExchangeRateToPointChartData(
     rate: ICoinApiExchangeRate
   ): IPointChartData {
     return {
+      id: rate.exchangeRateId,
       x: new Date(rate.time).getTime(),
       y: rate.rate,
     } as IPointChartData;
@@ -152,44 +365,45 @@ export class CoinApiRatePairService {
 
   private prepNewPointChart(): IPointChart {
     return {
-      isUpdated$: new Subject(),
       points: [] as IPointChartData[],
     } as IPointChart;
   }
 
-  private prepPairs(rate: ICoinApiExchangeRate): void {
-    const coinPairFound = this.coinPairs.find(
+  private prepRatePairs(rate: ICoinApiExchangeRate): void {
+    /**
+     * assign coinExchangeRate ID - starts with 1;
+     * Used in chartPoint id, and determine next/prev point
+     * based on rates history
+     *
+     */
+    rate.exchangeRateId = 1;
+    const coinPairFound = this.ratePairs.find(
       (f) =>
         f.asset_id_base === rate.asset_id_base &&
         f.asset_id_quote === rate.asset_id_quote
     );
     if (coinPairFound) {
-      /**
-       * update pointChartInfo
-       *
-       */
-      this.updatePointChart(rate, coinPairFound.pointChart);
-
       const rates = [...coinPairFound.rates];
+      rate.exchangeRateId = rates.length + 1;
       rates.unshift(rate);
-      coinPairFound.rates = [...rates];
-    } else {
-      this.coinPairId++;
 
-      let pair = {
+      coinPairFound.rates = [...rates];
+      this.ratePairAdded$.next(coinPairFound.ratePairId);
+    } else {
+      this.ratePairId++;
+      const pair = {
         asset_id_base: rate.asset_id_base,
         asset_id_quote: rate.asset_id_quote,
-        id: this.coinPairId,
+        ratePairId: this.ratePairId,
         name: `${rate.asset_id_base} - ${rate.asset_id_quote}`,
-        pointChart: this.prepNewPointChart(),
         rates: [rate],
       } as ICoinApiExchangeRatePair;
 
-      this.updatePointChart(rate, pair.pointChart);
       this.assignIcon(pair);
+      this.ratePairs.push(pair);
 
-      this.coinPairs.push(pair);
-      this.coinPairAdded$.next(true);
+      this.ratePairCreated$.next(`id: ${pair.ratePairId}, ${pair.name}`);
+      this.ratePairAdded$.next(pair.ratePairId);
     }
   }
 
@@ -228,7 +442,6 @@ export class CoinApiRatePairService {
     this.setIdAndTrendToPointChartData(point, prevPoint!);
 
     lastPointChart.points.unshift(point);
-    // lastPointChart.points = lastPointChart.points.slice(0, this.maxPointsCount);
 
     /**
      * until number of points is less then maxPointsCount$ (points to render)
@@ -260,7 +473,5 @@ export class CoinApiRatePairService {
 
     lastPointChart.diffX = lastPointChart.axisXMax - lastPointChart.axisXMin;
     lastPointChart.diffY = lastPointChart.axisYMax - lastPointChart.axisYMin;
-
-    lastPointChart.isUpdated$.next(true);
   }
 }

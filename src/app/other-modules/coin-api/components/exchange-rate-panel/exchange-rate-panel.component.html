@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" *ngIf="ratePairsOptions.length > 0">
   <div>
     <p>charts length: {{ pointCharts$.controls.length }}</p>
     <button mat-mini-fab [disabled]="pointCharts$.invalid" (click)="addChart()">
@@ -18,5 +18,3 @@
     </ng-container>
   </ng-container>
 </div>
-
-<p>exchange-rate-panel end !</p>

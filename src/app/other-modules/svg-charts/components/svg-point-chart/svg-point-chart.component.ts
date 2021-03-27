@@ -11,9 +11,9 @@ import { IPointChartData } from 'otherModules/svg-charts/interfaces/i-point-char
 import { IPointChart } from 'otherModules/svg-charts/interfaces/i-point-chart';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { Subject } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
 import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces/i-point-chart-selected-point-info';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-svg-point-chart',
@@ -23,6 +23,7 @@ import { IPointChartSelectedPointInfo } from 'otherModules/svg-charts/interfaces
 })
 export class SvgPointChartComponent implements OnInit {
   @Input('pointChart') pointChart = {} as IPointChart;
+  @Input('forceUpdate$') forceUpdate$ = new Subject() as Subject<boolean>;
   @Input('selectedPoint') selectedPoint?: IPointChartSelectedPointInfo;
   @Output()
   pointSelected = new EventEmitter() as EventEmitter<IPointChartDataOutput>;
@@ -65,12 +66,11 @@ export class SvgPointChartComponent implements OnInit {
   initData(): void {}
 
   initObservables(): void {
-    this.pointChart.isUpdated$
+    this.forceUpdate$
       .pipe(startWith(true), takeUntil(this.isDestroyed$))
       .subscribe(
         (pointChart: boolean) => {
           this.calcRatios();
-
           this.points = [];
           this.points = this.pointChart.points
             .slice(0, this.pointChart.pointsCount)
@@ -83,8 +83,6 @@ export class SvgPointChartComponent implements OnInit {
                   y: this.getOffsetY(point.y),
                 } as IPointChartData)
             );
-
-          // console.log('svg', this.pointChart);
         },
         (error) => console.log('pointChart error', error),
         () => console.log('pointChart completed..')
@@ -112,8 +110,8 @@ export class SvgPointChartComponent implements OnInit {
 
   mouseOver(event: MouseEvent, point: IPointChartData) {
     this.pointSelected.emit({
-      event,
-      id: this.points.indexOf(point),
+      id: point.id,
+      event: event,
     } as IPointChartDataOutput);
 
     this.isSelected = true;

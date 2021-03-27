@@ -1,13 +1,14 @@
 <app-svg-point-chart
-  (pointSelected)="pointSelected($event, selectedChart!)"
-  [pointChart]="selectedChart?.chart?.pointChart!"
+  (pointSelected)="pointSelected($event)"
+  [forceUpdate$]="pointChartForceUpdate$"
+  [pointChart]="selectedChart?.chart!"
 ></app-svg-point-chart>
 
 <mat-form-field>
   <input
     type="number"
     matInput
-    placeholder="chart points"
+    placeholder="chart points {{ (selectedChart?.chart?.points)!.length }}"
     [formControl]="configPointsCount$"
   />
 </mat-form-field>
@@ -21,12 +22,17 @@
   [formControl]="configWidth$"
 ></mat-slider>
 
+<button mat-mini-fab (click)="isPlaying = !isPlaying" [disabled]="isPlaying">
+  <mat-icon>play_circle</mat-icon>
+</button>
+<button mat-mini-fab (click)="isPlaying = !isPlaying" [disabled]="!isPlaying">
+  <mat-icon>pause_circle</mat-icon>
+</button>
+
 <mat-slide-toggle [formControl]="configShowHistory$"></mat-slide-toggle>
 
 <div *ngIf="configShowHistory$.value">
-  <p class="mat-body">
-    Collected points: {{ (selectedChart?.chart?.rates)!.length }}
-  </p>
+  <p class="mat-body">Collected points: {{ ratePairHistory.length }}</p>
   <cdk-virtual-scroll-viewport
     [itemSize]="itemHeight"
     [style.height.px]="itemHeight * itemOnView"
@@ -36,7 +42,7 @@
       [style.height.px]="itemHeight"
       class="viewport-item"
       *cdkVirtualFor="
-        let rate of selectedChart?.chart?.rates;
+        let rate of ratePairHistory;
         let index = index;
         let count = count;
         let first = first;

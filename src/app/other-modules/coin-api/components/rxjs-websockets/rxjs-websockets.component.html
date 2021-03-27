@@ -1,48 +1,38 @@
 <app-exchange-rate-panel
-  *ngIf="ratePairOptions.length > 0"
-  (chartsSelected)="ratesSelected($event)"
-  [ratePairsOption]="ratePairOptions"
+  (chartsSelected)="chartsSelected($event)"
 ></app-exchange-rate-panel>
 
 <div class="controls-container">
-  <button mat-raised-button [matBadge]="coinPairs.length" (click)="getTrades()">
-    get exchange rates
-  </button>
   <button mat-mini-fab (click)="stop()"><mat-icon>stop</mat-icon></button>
   <button mat-button (click)="test()">test</button>
-
-  <mat-form-field>
-    <input
-      [formControl]="maxPointsCount$"
-      matInput
-      placeholder="points on chart ({{ maxPointsCount }})"
-    />
-  </mat-form-field>
 </div>
 
 <mat-divider></mat-divider>
 
 <div fxLayout="row wrap">
   <ng-container
-    *ngFor="let selectedChart of selectedCharts; index as i; first as isFirst"
+    *ngFor="
+      let selectedChart of chartsSelectedArr;
+      index as i;
+      first as isFirst
+    "
   >
     <mat-card [fxFlex]="selectedChart.width">
       <div fxLayout fxLayoutAlign="space-between center">
         <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
           <img
-            [attr.src]="selectedChart.chart.asset_id_base_logo"
+            [attr.src]="selectedChart.logoBase"
             mat-card-avatar
             class="example-header-image"
           />
-          <div>&nbsp;=>&nbsp;</div>
           <img
-            [attr.src]="selectedChart.chart.asset_id_quote_logo"
+            [attr.src]="selectedChart.logoQuote"
             mat-card-avatar
             class="example-header-image"
           />
         </div>
         <div>
-          <h2 class="h2">{{ selectedChart.chart.name }}</h2>
+          <h2 class="h2">{{ selectedChart.title }}</h2>
         </div>
       </div>
       <mat-card-content>

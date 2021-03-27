@@ -1,17 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { merge, Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
-import { IChartsSelected } from 'otherModules/coin-api/interfaces/i-charts-selected';
+import { IChartSelected } from 'otherModules/svg-charts/interfaces/i-chart-selected';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
-import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
 import { FormControl } from '@angular/forms';
 import {
-  debounceTime,
-  distinctUntilChanged,
   map,
+  repeat,
+  switchMap,
   takeUntil,
+  takeWhile,
   tap,
 } from 'rxjs/operators';
+import { IChartSelectedRatePair } from 'otherModules/coin-api/interfaces/i-chart-selected-rate-pair';
+import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
+import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
+import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
 
 @Component({
   selector: 'app-exchange-rate-chart',
@@ -20,19 +24,24 @@ import {
   animations: [BP_ANIM_APPEAR_UP_DOWN(350)],
 })
 export class ExchangeRateChartComponent implements OnInit {
-  @Input('selectedChart') selectedChart?: IChartsSelected;
+  @Input('selectedChart') selectedChart?: IChartSelectedRatePair;
   @Output('chartConfigChange')
-  chartConfigChange = new EventEmitter() as EventEmitter<IChartsSelected>;
+  chartConfigChange = new EventEmitter() as EventEmitter<IChartSelected>;
   isDestroyed$ = new Subject() as Subject<boolean>;
   isSelected = false;
+  isPlaying = true;
   itemHeight = 20;
   itemOnView = 10;
 
   configShowHistory$ = new FormControl(true);
   configWidth$ = new FormControl(100);
-  configPointsCount$ = new FormControl(100);
+  configPointsCount$ = new FormControl(20);
 
-  constructor() {}
+  pointChartForceUpdate$ = new Subject() as Subject<boolean>;
+
+  ratePairHistory = [] as ICoinApiExchangeRate[];
+
+  constructor(private ratePairService: CoinApiRatePairService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -42,13 +51,63 @@ export class ExchangeRateChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.initObservables();
-    // this.initData();
-    // this.drawRates();
   }
 
   initObservables(): void {
-    const MERGED_FORM_CONTROLS = merge(
-      this.configWidth$.valueChanges.pipe(
+    const RATE_PAIR_ADDED = this.ratePairService.ratePairAdded$.pipe(
+      takeWhile(() => this.isPlaying),
+      map((id: number) => {
+        /**
+         * check if rate is added to selectedPair
+         *
+         */
+        return id === this.selectedChart?.ratePairId ? id : null;
+      }),
+      takeUntil(this.isDestroyed$)
+    );
+
+    of('')
+      .pipe(
+        switchMap(() => RATE_PAIR_ADDED),
+        repeat(),
+        takeUntil(this.isDestroyed$)
+      )
+      .subscribe(
+        (ratePairAdded: number | null) => {
+          if (ratePairAdded) {
+            /**
+             * update chart - points
+             *
+             */
+            const UPDATED_POINT_CHART = this.ratePairService.getPointChartByRatePairId(
+              this.selectedChart?.ratePairId!,
+              this.selectedChart?.pointsCount
+            );
+
+            if (UPDATED_POINT_CHART) {
+              this.selectedChart!.chart = UPDATED_POINT_CHART;
+              this.pointChartForceUpdate$.next(true);
+            }
+
+            /**
+             * update rates data
+             *
+             */
+            this.ratePairHistory = this.ratePairService.getRatePairHistoryByRatePairId(
+              this.selectedChart!.ratePairId!
+            );
+          }
+        },
+        (error) => console.log('ratePairAdded error', error),
+        () => console.log('ratePairAdded completed..')
+      );
+
+    /**
+     * chart config points on chart and fxFlex width
+     *
+     */
+    this.configWidth$.valueChanges
+      .pipe(
         map((val: number) => {
           if (val && val >= 10) {
             this.selectedChart!.width = val;
@@ -56,9 +115,17 @@ export class ExchangeRateChartComponent implements OnInit {
           } else {
             return null;
           }
-        })
-      ),
-      this.configPointsCount$.valueChanges.pipe(
+        }),
+        takeUntil(this.isDestroyed$)
+      )
+      .subscribe(
+        (configWidthChanged: any) => {},
+        (error) => console.log('configWidthChanged error', error),
+        () => console.log('configWidthChanged completed..')
+      );
+
+    this.configPointsCount$.valueChanges
+      .pipe(
         map((val: number) => {
           if (val && val >= 5) {
             this.selectedChart!.pointsCount = val;
@@ -68,67 +135,40 @@ export class ExchangeRateChartComponent implements OnInit {
           }
         })
       )
-    );
-
-    MERGED_FORM_CONTROLS.pipe(
-      debounceTime(750),
-      distinctUntilChanged(),
-      takeUntil(this.isDestroyed$)
-    ).subscribe(
-      (exchangeRateChartConfig: any) => {
-        console.log('exchangeRateChartConfig subs:', exchangeRateChartConfig);
-        if (exchangeRateChartConfig) {
-          console.log(
-            'chart config value OK, update chart !',
-            exchangeRateChartConfig
-          );
-          this.chartConfigChange.emit(this.selectedChart);
-        } else {
-          console.log(
-            'chart config value to low or just invalid',
-            exchangeRateChartConfig
-          );
-        }
-      },
-      (error) => console.log('exchangeRateChartConfig error', error),
-      () => console.log('exchangeRateChartConfig completed..')
-    );
+      .subscribe(
+        (pointsCountChanged: number | null) => {
+          if (pointsCountChanged) {
+            this.selectedChart!.chart = this.ratePairService.getPointChartByRatePairId(
+              this.selectedChart?.ratePairId!,
+              pointsCountChanged
+            )!;
+          }
+        },
+        (error) => console.log('pointsCountChanged error', error),
+        () => console.log('pointsCountChanged completed..')
+      );
   }
 
-  pointSelected(
-    ev: IPointChartDataOutput,
-    selectedChart: IChartsSelected
-  ): void {
-    if (ev.id < 0) {
+  pointSelected(ev: IPointChartDataOutput): void {
+    /**
+     * points IDs are NOT 0 based, increment started with 1...
+     *
+     */
+    if (ev.id < 1) {
       this.isSelected = false;
       return;
     }
 
-    const RATES = selectedChart.chart.rates.slice(0, 20);
+    const CARD_INFO = this.ratePairService.getSvgChartInfoCard(
+      ev.id,
+      this.ratePairHistory
+    );
 
-    const CURRENT_RATE = RATES[ev.id];
-    if (!CURRENT_RATE) {
+    if (!CARD_INFO) {
       this.isSelected = false;
       return;
     }
-    const PREV_RATE = ev.id < RATES.length ? RATES[ev.id + 1] : null;
-    const RATE_CHANGE = PREV_RATE ? CURRENT_RATE.rate - PREV_RATE.rate : null;
-    const CHANGE_PERCENTAGE = PREV_RATE
-      ? ((RATE_CHANGE! / +CURRENT_RATE.rate) * 100).toString() + ' %'
-      : '';
-    const IS_INCREASING =
-      PREV_RATE && CURRENT_RATE.rate >= PREV_RATE.rate ? true : false;
-    const date = new Date(CURRENT_RATE.time);
-
-    selectedChart.chart.pointChart.infoCard = {
-      change: RATE_CHANGE && RATE_CHANGE != 0 ? RATE_CHANGE!.toString() : '',
-      changePercentage: CHANGE_PERCENTAGE != '0 %' ? CHANGE_PERCENTAGE : '',
-      color: IS_INCREASING ? 'green' : 'red',
-      isIncreasing: IS_INCREASING,
-      subtitle: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-      title: CURRENT_RATE.rate.toString(),
-    } as ISvgChartInfoCard;
-
+    this.selectedChart!.chart.infoCard = CARD_INFO;
     this.isSelected = true;
   }
 
