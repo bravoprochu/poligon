@@ -1,5 +1,13 @@
 # Poligon - TRAINING
 
+# coin API RATE PAIR real time data chart
+
+- websocket real time data,
+- multiple rate pairs charts,
+- individual display config (points on chart),
+- custom chart width,
+- virtual scroll viewport for rates history
+
 # Logs module
 
 - singleton, can be injected on dataFactory services
