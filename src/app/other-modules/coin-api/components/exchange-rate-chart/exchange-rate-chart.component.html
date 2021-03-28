@@ -4,63 +4,100 @@
   [pointChart]="selectedChart?.chart!"
 ></app-svg-point-chart>
 
-<mat-form-field>
-  <input
-    type="number"
-    matInput
-    placeholder="chart points {{ (selectedChart?.chart?.points)!.length }}"
-    [formControl]="configPointsCount$"
-  />
-</mat-form-field>
-<mat-slider
-  class="mat-form-field slider-container"
-  thumbLabel
-  tickInterval="750"
-  step="5"
-  min="10"
-  max="100"
-  [formControl]="configWidth$"
-></mat-slider>
+<mat-expansion-panel expanded="false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Config chart:&nbsp;<strong>{{ selectedChart?.title }}</strong
+      >, points:&nbsp;<strong>{{
+        (selectedChart?.chart?.points)!.length
+      }}</strong
+      >, width:&nbsp;
+      <strong>{{ configWidth$.value }}</strong>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
 
-<button mat-mini-fab (click)="isPlaying = !isPlaying" [disabled]="isPlaying">
-  <mat-icon>play_circle</mat-icon>
-</button>
-<button mat-mini-fab (click)="isPlaying = !isPlaying" [disabled]="!isPlaying">
-  <mat-icon>pause_circle</mat-icon>
-</button>
+  <section fxLayout="column" fxLayoutGap="10px">
+    <figure fxLayout fxLayoutAlign="space-between center">
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          placeholder="chart points {{
+            (selectedChart?.chart?.points)!.length
+          }}"
+          [formControl]="configPointsCount$"
+        />
+      </mat-form-field>
 
-<mat-slide-toggle [formControl]="configShowHistory$"></mat-slide-toggle>
+      <div fxLayout fxLayoutGap="10px">
+        <button
+          mat-mini-fab
+          (click)="isPlaying = !isPlaying"
+          [disabled]="isPlaying"
+        >
+          <mat-icon>play_circle</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="isPlaying = !isPlaying"
+          [disabled]="!isPlaying"
+        >
+          <mat-icon>pause_circle</mat-icon>
+        </button>
+      </div>
+    </figure>
+    <figure>
+      <div class="mat-caption">
+        chart width <small>({{ configWidth$.value }}%)</small>
+      </div>
+      <mat-slider
+        fxFill
+        class="mat-form-field slider-container"
+        thumbLabel
+        tickInterval="750"
+        step="5"
+        min="10"
+        max="100"
+        [formControl]="configWidth$"
+      ></mat-slider>
+    </figure>
 
-<div *ngIf="configShowHistory$.value">
-  <p class="mat-body">Collected points: {{ ratePairHistory.length }}</p>
-  <cdk-virtual-scroll-viewport
-    [itemSize]="itemHeight"
-    [style.height.px]="itemHeight * itemOnView"
-  >
-    <div
-      [ngClass]="{ 'odd-item': odd, 'even-item': even }"
-      [style.height.px]="itemHeight"
-      class="viewport-item"
-      *cdkVirtualFor="
-        let rate of ratePairHistory;
-        let index = index;
-        let count = count;
-        let first = first;
-        let last = last;
-        let even = even;
-        let odd = odd
-      "
+    <mat-slide-toggle [formControl]="configShowHistory$"
+      >Show rates history</mat-slide-toggle
+    >
+  </section>
+
+  <div *ngIf="configShowHistory$.value">
+    <h3 class="mat-h3">Collected points: {{ ratePairHistory.length }}</h3>
+    <cdk-virtual-scroll-viewport
+      [itemSize]="itemHeight"
+      [style.height.px]="itemHeight * itemOnView"
     >
       <div
-        fxLayout
-        fxLayoutAlign="space-between"
+        [ngClass]="{ 'odd-item': odd, 'even-item': even }"
         [style.height.px]="itemHeight"
+        class="viewport-item"
+        *cdkVirtualFor="
+          let rate of ratePairHistory;
+          let index = index;
+          let count = count;
+          let first = first;
+          let last = last;
+          let even = even;
+          let odd = odd
+        "
       >
-        <h4 class="mat-h4">
-          {{ index + 1 }} | {{ rate.time | date: "medium" }} |
-          <strong>{{ rate.rate }}</strong>
-        </h4>
+        <div
+          fxLayout
+          fxLayoutAlign="space-between"
+          [style.height.px]="itemHeight"
+        >
+          <h4 class="mat-h4">
+            {{ index + 1 }} | {{ rate.time | date: "medium" }} |
+            <strong>{{ rate.rate }}</strong>
+          </h4>
+        </div>
       </div>
-    </div>
-  </cdk-virtual-scroll-viewport>
-</div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</mat-expansion-panel>

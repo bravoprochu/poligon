@@ -84,12 +84,6 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
     this.pointCharts$.removeAt(id);
   }
 
-  test(): void {
-    const firstGroup = this.pointCharts$.controls[0] as FormGroup;
-    const searchPhrase = firstGroup.get('searchPhrase');
-    console.log(this.rForm$, searchPhrase);
-  }
-
   //#region form getters
   get pointCharts$(): FormArray {
     return this.rForm$.get('chartsSelected') as FormArray;

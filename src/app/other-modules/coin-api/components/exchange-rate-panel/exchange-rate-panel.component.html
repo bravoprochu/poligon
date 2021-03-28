@@ -1,10 +1,24 @@
 <div fxLayout="column" *ngIf="ratePairsOptions.length > 0">
-  <div>
-    <p>charts length: {{ pointCharts$.controls.length }}</p>
-    <button mat-mini-fab [disabled]="pointCharts$.invalid" (click)="addChart()">
+  <div
+    fxLayout
+    fxLayoutAlign="space-between center"
+    class="config-buttons-container"
+  >
+    <div>
+      <h3 class="mat-h3">Rate Pair config panel</h3>
+      <p class="mat-body">
+        Pairs available: (<strong>{{ ratePairsOptions.length }}</strong
+        >)
+      </p>
+    </div>
+    <button
+      mat-mini-fab
+      [disabled]="pointCharts$.invalid"
+      (click)="addChart()"
+      [matBadge]="pointCharts$.controls.length"
+    >
       <mat-icon>add</mat-icon>
     </button>
-    <button mat-raised-button (click)="test()">test</button>
   </div>
 
   <ng-container [formGroup]="rForm$">
