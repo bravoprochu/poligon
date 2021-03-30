@@ -15,7 +15,6 @@ import {
 import { IChartSelectedRatePair } from 'otherModules/coin-api/interfaces/i-chart-selected-rate-pair';
 import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
-import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
 
 @Component({
   selector: 'app-exchange-rate-chart',

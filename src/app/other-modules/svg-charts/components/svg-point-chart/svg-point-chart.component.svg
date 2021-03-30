@@ -11,7 +11,7 @@
 
     <line x1="75" x2="1125" y1="50" y2="50" stroke="darkgray" stroke-width="1" />
     <text text-anchor="end" x="1250" y="40" font-size="15" font-family="Raleway" font-weight="bold">
-      {{ pointChart.axisYMax }} (max)
+      {{ pointChart.axisYMaxCaption }} (max)
     </text>
 
     <!--
@@ -44,8 +44,20 @@
         -->
     <line x1="75" x2="1125" y1="550" y2="550" stroke="darkgray" stroke-width="1" />
     <text text-anchor="end" x="1250" y="540" font-size="15" font-family="Raleway" font-weight="bold">
-      {{ pointChart.axisYMin }} (min)
+      {{ pointChart.axisYMinCaption }} (min)
     </text>
+
+    <line x1="100" x2="100" y1="530" y2="560" stroke="black" />
+    <text text-anchor="start" x="78" y="570" font-size="20" font-family="Raleway">{{pointChart.axisXMinCaption}}</text>
+
+
+    <line x1="600" x2="600" y1="540" y2="555" stroke="black" />
+    <text text-anchor="middle" x="600" y="570" font-size="20"
+      font-family="Raleway">{{pointChart.axisXMidCaption}}</text>
+
+    <line x1="1100" x2="1100" y1="530" y2="560" stroke="black" />
+    <text text-anchor="end" x="1222" y="570" font-size="20" font-family="Raleway">{{pointChart.axisXMaxCaption}}</text>
+
   </svg>
 
 

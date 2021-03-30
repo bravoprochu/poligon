@@ -244,16 +244,25 @@ export class CoinApiRatePairService {
     const Y_DATA = POINT_CHART_DATA.map((rate: IPointChartData) => rate.y);
 
     const axisXMax = Math.max(...X_DATA);
+    const axisXMaxDate = new Date(axisXMax);
     const axisXMin = Math.min(...X_DATA);
+    const axisXMinDate = new Date(axisXMin);
+
+    const axisXMid = new Date(axisXMin + axisXMax - axisXMin);
 
     const axisYMax = Math.max(...Y_DATA);
     const axisYMin = Math.min(...Y_DATA);
 
     const POINT_CHART = {
       axisXMax,
+      axisXMaxCaption: `${axisXMaxDate.toLocaleDateString()} ${axisXMaxDate.toLocaleTimeString()}`,
+      axisXMidCaption: `${axisXMid.toLocaleDateString()} ${axisXMid.toLocaleTimeString()}`,
       axisXMin,
+      axisXMinCaption: `${axisXMinDate.toLocaleDateString()} ${axisXMinDate.toLocaleTimeString()}`,
       axisYMax,
+      axisYMaxCaption: axisYMax.toString(),
       axisYMin,
+      axisYMinCaption: axisYMin.toString(),
       diffX: axisXMax - axisXMin,
       diffY: axisYMax - axisYMin,
       points: POINT_CHART_DATA,
@@ -363,12 +372,6 @@ export class CoinApiRatePairService {
     } as IPointChartData;
   }
 
-  private prepNewPointChart(): IPointChart {
-    return {
-      points: [] as IPointChartData[],
-    } as IPointChart;
-  }
-
   private prepRatePairs(rate: ICoinApiExchangeRate): void {
     /**
      * assign coinExchangeRate ID - starts with 1;
@@ -422,56 +425,5 @@ export class CoinApiRatePairService {
     } else {
       point.color = prevPoint && prevPoint.y < point.y ? 'green' : 'red';
     }
-  }
-
-  private updatePointChart(
-    rate: ICoinApiExchangeRate,
-    lastPointChart: IPointChart,
-    maxPointsCount: number = 10
-  ): void {
-    const rateX = new Date(rate.time).getTime();
-    const rateY = rate.rate;
-    /**
-     * prev is FIRST element on the array
-     * items are unshift - newest are at the TOP
-     *
-     */
-    const prevPoint = lastPointChart.points ? lastPointChart.points[0] : null;
-    let point = this.convertExchangeRateToPointChartData(rate);
-
-    this.setIdAndTrendToPointChartData(point, prevPoint!);
-
-    lastPointChart.points.unshift(point);
-
-    /**
-     * until number of points is less then maxPointsCount$ (points to render)
-     * check if new point is greater then stored max value
-     * or less then stored min value
-     * else
-     * every time check min/max values
-     *
-     */
-
-    if (lastPointChart.points.length < maxPointsCount) {
-      lastPointChart.axisXMax =
-        lastPointChart.axisXMax > rateX ? lastPointChart.axisXMax : rateX;
-      lastPointChart.axisXMin =
-        lastPointChart.axisXMin < rateX ? lastPointChart.axisXMin : rateX;
-      lastPointChart.axisYMax =
-        lastPointChart.axisYMax > rateY ? lastPointChart.axisYMax : rateY;
-      lastPointChart.axisYMin =
-        lastPointChart.axisYMin < rateY ? lastPointChart.axisYMin : rateY;
-    } else {
-      const pointsX = lastPointChart.points.map((m) => m.x) as number[];
-      lastPointChart.axisXMax = Math.max(...pointsX);
-      lastPointChart.axisXMin = Math.min(...pointsX);
-
-      const pointsY = lastPointChart.points.map((m) => m.y);
-      lastPointChart.axisYMax = Math.max(...pointsY);
-      lastPointChart.axisYMin = Math.min(...pointsY);
-    }
-
-    lastPointChart.diffX = lastPointChart.axisXMax - lastPointChart.axisXMin;
-    lastPointChart.diffY = lastPointChart.axisYMax - lastPointChart.axisYMin;
   }
 }

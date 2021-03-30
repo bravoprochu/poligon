@@ -5,6 +5,12 @@ import { IPointChartSelectedPointInfo } from './i-point-chart-selected-point-inf
 import { ISvgChartInfoCard } from './i-svg-chart-info-card';
 
 export interface IPointChart extends IPointChartBasic {
+  axisYMaxCaption: string;
+  axisYMidCaption: string;
+  axisYMinCaption: string;
+  axisXMaxCaption: string;
+  axisXMidCaption: string;
+  axisXMinCaption: string;
   infoCard: ISvgChartInfoCard;
   pointChart: IPointChartSelectedPointInfo;
   points: IPointChartData[];

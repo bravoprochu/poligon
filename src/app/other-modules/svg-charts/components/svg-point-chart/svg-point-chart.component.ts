@@ -96,11 +96,11 @@ export class SvgPointChartComponent implements OnInit {
      */
     this.chartDataYToDiffYRatio =
       this.pointChart.diffY > 0
-        ? this.chartDataYSize / this.pointChart.diffY
+        ? this.chartDataYSize / +this.pointChart.diffY
         : 1;
     this.chartDataXToDiffXRatio =
       this.pointChart.diffX > 0
-        ? this.chartDataXSize / this.pointChart.diffX
+        ? this.chartDataXSize / +this.pointChart.diffX
         : 1;
   }
 
@@ -128,14 +128,14 @@ export class SvgPointChartComponent implements OnInit {
      */
     return (
       this.chartHeaderHeight +
-      Math.abs((posY - this.pointChart.axisYMax) * this.chartDataYToDiffYRatio)
+      Math.abs((posY - +this.pointChart.axisYMax) * this.chartDataYToDiffYRatio)
     );
   }
 
   getOffsetX(posX: number): number {
     return (
       this.chartLeftPanel +
-      (posX - this.pointChart.axisXMin) * this.chartDataXToDiffXRatio
+      (posX - +this.pointChart.axisXMin) * this.chartDataXToDiffXRatio
     );
   }
 }
