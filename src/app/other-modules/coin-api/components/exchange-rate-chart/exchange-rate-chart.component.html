@@ -7,17 +7,19 @@
 <mat-expansion-panel expanded="false">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      Config chart:&nbsp;<strong>{{ selectedChart?.title }}</strong
-      >, points:&nbsp;<strong>{{
-        (selectedChart?.chart?.points)!.length
-      }}</strong
-      >, width:&nbsp;
-      <strong>{{ configWidth$.value }}</strong>
+      <ng-container *ngIf="!(isXsmall$ | async); else xSmallTitle">
+        Config chart:&nbsp;<strong>{{ selectedChart?.title }}</strong
+        >, points:&nbsp;<strong>{{
+          (selectedChart?.chart?.points)!.length
+        }}</strong
+        >, width:&nbsp;
+        <strong>{{ configWidth$.value }}</strong>
+      </ng-container>
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <section fxLayout="column" fxLayoutGap="10px">
-    <figure fxLayout fxLayoutAlign="space-between center">
+  <section fxLayout="column">
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutGap="5px">
       <mat-form-field>
         <input
           type="number"
@@ -29,7 +31,7 @@
         />
       </mat-form-field>
 
-      <div fxLayout fxLayoutGap="10px">
+      <div fxFlex="50" fxLayout fxLayoutGap="5px">
         <button
           mat-mini-fab
           (click)="isPlaying = !isPlaying"
@@ -45,26 +47,28 @@
           <mat-icon>pause_circle</mat-icon>
         </button>
       </div>
-    </figure>
-    <figure>
-      <div class="mat-caption">
-        chart width <small>({{ configWidth$.value }}%)</small>
-      </div>
-      <mat-slider
-        fxFill
-        class="mat-form-field slider-container"
-        thumbLabel
-        tickInterval="750"
-        step="5"
-        min="10"
-        max="100"
-        [formControl]="configWidth$"
-      ></mat-slider>
-    </figure>
 
-    <mat-slide-toggle [formControl]="configShowHistory$"
-      >Show rates history</mat-slide-toggle
-    >
+      <div fxFill>
+        <div fxFlex="20" class="mat-caption">
+          chart width <small>({{ configWidth$.value }}%)</small>
+        </div>
+        <mat-slider
+          fxFlex="80"
+          class="mat-form-field slider-container"
+          thumbLabel
+          tickInterval="750"
+          step="5"
+          min="10"
+          max="100"
+          [formControl]="configWidth$"
+        ></mat-slider>
+      </div>
+      <div fxFill>
+        <mat-slide-toggle [formControl]="configShowHistory$"
+          >Show rates history</mat-slide-toggle
+        >
+      </div>
+    </div>
   </section>
 
   <div *ngIf="configShowHistory$.value">
@@ -92,12 +96,20 @@
           fxLayoutAlign="space-between"
           [style.height.px]="itemHeight"
         >
-          <h4 class="mat-h4">
+          <h4 *ngIf="!(isXsmall$ | async)" class="mat-h4">
             {{ index + 1 }} | {{ rate.time | date: "medium" }} |
             <strong>{{ rate.rate }}</strong>
+          </h4>
+
+          <h4 *ngIf="isXsmall$ | async" class="mat-h4">
+            {{ rate.time | date: "h:mm:ss" }}, <strong>{{ rate.rate }}</strong>
           </h4>
         </div>
       </div>
     </cdk-virtual-scroll-viewport>
   </div>
 </mat-expansion-panel>
+
+<ng-template #xSmallTitle>
+  <span>config</span>
+</ng-template>

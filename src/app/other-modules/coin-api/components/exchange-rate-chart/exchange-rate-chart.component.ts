@@ -4,17 +4,13 @@ import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-dow
 import { IChartSelected } from 'otherModules/svg-charts/interfaces/i-chart-selected';
 import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 import { FormControl } from '@angular/forms';
-import {
-  map,
-  repeat,
-  switchMap,
-  takeUntil,
-  takeWhile,
-  tap,
-} from 'rxjs/operators';
+import { map, repeat, switchMap, takeUntil, takeWhile } from 'rxjs/operators';
 import { IChartSelectedRatePair } from 'otherModules/coin-api/interfaces/i-chart-selected-rate-pair';
 import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { ICoinApiExchangeRate } from 'otherModules/coin-api/interfaces/i-coin-api-exchange-rate';
+
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { IS_XSMALL } from 'commonFunctions/breakpointObserver/is-xsmall';
 
 @Component({
   selector: 'app-exchange-rate-chart',
@@ -31,6 +27,7 @@ export class ExchangeRateChartComponent implements OnInit {
   isPlaying = true;
   itemHeight = 20;
   itemOnView = 10;
+  isXsmall$ = IS_XSMALL(this.breakpointObs);
 
   configShowHistory$ = new FormControl(true);
   configWidth$ = new FormControl(100);
@@ -40,7 +37,10 @@ export class ExchangeRateChartComponent implements OnInit {
 
   ratePairHistory = [] as ICoinApiExchangeRate[];
 
-  constructor(private ratePairService: CoinApiRatePairService) {}
+  constructor(
+    private breakpointObs: BreakpointObserver,
+    private ratePairService: CoinApiRatePairService
+  ) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);

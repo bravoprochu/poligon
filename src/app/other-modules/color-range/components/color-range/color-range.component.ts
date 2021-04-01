@@ -11,7 +11,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 
 import { Subject } from 'rxjs';
-import { IS_HANDSET } from 'commonFunctions/is-handset';
+import { IS_HANDSET } from 'commonFunctions/breakpointObserver/is-handset';
 import { IColorRangeDialogData } from '../../interfaces/i-color-range-dialog-data';
 import { IColorRangeItem } from '../../interfaces/i-color-range-item';
 import { IColorRangePercantage } from '../../interfaces/i-color-range-percentaga';
