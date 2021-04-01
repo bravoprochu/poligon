@@ -58,7 +58,6 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(500), takeUntil(this.isDestroyed$))
       .subscribe(
         (panelRateGetNewRates: any) => {
-          console.log('panelRateGetNewRates subs:', panelRateGetNewRates);
           this.ratePairsOptions = this.ratePairService.getRatePairAvailableOptions();
         },
         (error) => console.log('panelRateGetNewRates error', error),
@@ -87,6 +86,12 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
   //#region form getters
   get pointCharts$(): FormArray {
     return this.rForm$.get('chartsSelected') as FormArray;
+  }
+
+  get pointChartsLength(): number {
+    return this.rForm$.valid
+      ? this.pointCharts$.controls.length
+      : this.pointCharts$.controls.length - 1;
   }
 
   //#endregion
