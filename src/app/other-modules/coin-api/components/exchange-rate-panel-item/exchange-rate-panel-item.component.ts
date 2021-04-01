@@ -47,8 +47,13 @@ export class ExchangeRatePanelItemComponent implements OnInit {
               val === ''
                 ? [...this.ratePairsOptions]
                 : [
-                    ...this.ratePairsOptions.filter((f) =>
-                      f.key.toLowerCase().includes(val.toLowerCase())
+                    ...this.ratePairsOptions.filter(
+                      (f) =>
+                        f.key
+                          .replace(' - ', '-')
+                          .toLowerCase()
+                          .includes(val.toLowerCase()) ||
+                        f.key.toLowerCase().includes(val.toLowerCase())
                     ),
                   ];
           }
