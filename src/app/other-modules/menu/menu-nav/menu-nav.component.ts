@@ -28,6 +28,8 @@ export class MenuNavComponent implements OnInit, OnDestroy {
   @Input('menuItems') menuItems = [] as IMenuItem[];
   @Output() menuChanged = new EventEmitter();
   isDestroyed$: Subject<boolean> = new Subject();
+  itemSize = 60;
+  itemsOnPage = 8;
   search$: FormControl = new FormControl();
   isHandset$ = IS_HANDSET;
 

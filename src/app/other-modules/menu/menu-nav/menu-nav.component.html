@@ -29,14 +29,20 @@
   </mat-form-field>
 
   <nav fxFill>
-    <cdk-virtual-scroll-viewport [itemSize]="60" class="example-viewport">
+    <cdk-virtual-scroll-viewport
+      [itemSize]="itemSize"
+      [style.height.px]="itemSize * itemsOnPage"
+    >
       <div
         *cdkVirtualFor="let item of menu; index as i; templateCacheSize: 0"
-        class="example-item"
+        [style.height.px]="itemSize"
       >
         <ng-container *ngIf="!item.isBookmarked">
           <ng-container
-            *ngTemplateOutlet="menuItem; context: { data: item, other: 'whaa' }"
+            *ngTemplateOutlet="
+              menuItem;
+              context: { data: item, itemSize: itemSize }
+            "
           ></ng-container>
         </ng-container>
       </div>
@@ -44,10 +50,11 @@
   </nav>
 </div>
 
-<ng-template #menuItem let-item="data">
+<ng-template #menuItem let-item="data" let-itemSize="itemSize">
   <div
     routerLinkActive="active-link"
     class="menu-item"
+    [style.height.px]="itemSize"
     *ngIf="!item.isBookmarked"
     fxLayout="row"
     fxLayoutAlign="space-between center"
