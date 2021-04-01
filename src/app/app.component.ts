@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'otherModules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
-import { IS_HANDSET } from 'commonFunctions/is-handset';
+import { IS_HANDSET } from 'commonFunctions/breakpointObserver/is-handset';
 
 @Component({
   selector: 'app-root',

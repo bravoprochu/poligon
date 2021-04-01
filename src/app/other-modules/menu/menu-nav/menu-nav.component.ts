@@ -15,7 +15,7 @@ import {
   startWith,
   takeUntil,
 } from 'rxjs/operators';
-import { IS_HANDSET } from 'commonFunctions/is-handset';
+import { IS_HANDSET } from 'commonFunctions/breakpointObserver/is-handset';
 import { IMenuItem } from '../interfaces/i-menu-item';
 import { MenuService } from '../menu.service';
 
