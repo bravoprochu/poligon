@@ -247,8 +247,9 @@ export class CoinApiRatePairService {
     const axisXMaxDate = new Date(axisXMax);
     const axisXMin = Math.min(...X_DATA);
     const axisXMinDate = new Date(axisXMin);
+    const diffX = axisXMax - axisXMin;
 
-    const axisXMid = new Date(axisXMin + axisXMax - axisXMin);
+    const axisXMid = new Date((axisXMin + axisXMax) / 2);
 
     const axisYMax = Math.max(...Y_DATA);
     const axisYMin = Math.min(...Y_DATA);
@@ -263,7 +264,7 @@ export class CoinApiRatePairService {
       axisYMaxCaption: axisYMax.toString(),
       axisYMin,
       axisYMinCaption: axisYMin.toString(),
-      diffX: axisXMax - axisXMin,
+      diffX,
       diffY: axisYMax - axisYMin,
       points: POINT_CHART_DATA,
       pointsCount: LAST_RATE_ID + 1,
