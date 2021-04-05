@@ -1,11 +1,10 @@
-<div fxLayout="column" *ngIf="ratePairsOptions.length > 0">
+<div fxLayout="column" *ngIf="ratePairsOptions.length > 0; else collectingData">
   <div
     fxLayout
     fxLayoutAlign="space-between center"
     class="config-buttons-container"
   >
     <div>
-      <h3 class="mat-h3">Rate Pair config panel</h3>
       <p class="mat-body">
         Pairs available: (<strong>{{ ratePairsOptions.length }}</strong
         >)
@@ -24,6 +23,7 @@
   <ng-container [formGroup]="rForm$">
     <ng-container *ngFor="let chart of pointCharts$.controls; index as index">
       <app-exchange-rate-panel-item
+        @appearUpDown
         [rForm$]="getPointChartGroup$(index)"
         [isDisabled]="pointCharts$.controls.length === 1"
         [ratePairsOptions]="ratePairsOptions"
@@ -32,3 +32,7 @@
     </ng-container>
   </ng-container>
 </div>
+
+<ng-template #collectingData>
+  <h3>...collecting data</h3>
+</ng-template>

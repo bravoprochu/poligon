@@ -1,42 +1,47 @@
-<app-exchange-rate-panel
-  (chartsSelected)="chartsSelected($event)"
-></app-exchange-rate-panel>
+<section>
+  <mat-card>
+    <mat-card-title>Rate Pair config panel</mat-card-title>
+    <mat-card-content>
+      <app-exchange-rate-panel
+        (chartsSelected)="chartsSelected($event)"
+      ></app-exchange-rate-panel>
+    </mat-card-content>
+  </mat-card>
 
-<mat-divider></mat-divider>
-
-<div fxLayout="row wrap">
-  <ng-container
-    *ngFor="
-      let selectedChart of chartsSelectedArr;
-      index as i;
-      first as isFirst
-    "
-  >
-    <mat-card [fxFlex]="selectedChart.width">
-      <div fxLayout fxLayoutAlign="space-between center">
-        <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
-          <img
-            [attr.src]="selectedChart.logoBase"
-            mat-card-avatar
-            class="example-header-image"
-          />
-          <img
-            [attr.src]="selectedChart.logoQuote"
-            mat-card-avatar
-            class="example-header-image"
-          />
+  <div fxLayout="row wrap">
+    <ng-container
+      *ngFor="
+        let selectedChart of chartsSelectedArr;
+        index as i;
+        first as isFirst
+      "
+    >
+      <mat-card [fxFlex]="selectedChart.width">
+        <div fxLayout fxLayoutAlign="space-between center">
+          <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
+            <img
+              [attr.src]="selectedChart.logoBase"
+              mat-card-avatar
+              class="example-header-image"
+            />
+            <img
+              [attr.src]="selectedChart.logoQuote"
+              mat-card-avatar
+              class="example-header-image"
+            />
+          </div>
+          <div>
+            <h2 class="h2">{{ selectedChart.title }}</h2>
+          </div>
         </div>
-        <div>
-          <h2 class="h2">{{ selectedChart.title }}</h2>
-        </div>
-      </div>
-      <mat-card-content>
-        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-divider></mat-divider>
 
-        <app-exchange-rate-chart
-          [selectedChart]="selectedChart"
-        ></app-exchange-rate-chart>
-      </mat-card-content>
-    </mat-card>
-  </ng-container>
-</div>
+          <app-exchange-rate-chart
+            [selectedChart]="selectedChart"
+          ></app-exchange-rate-chart>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</section>

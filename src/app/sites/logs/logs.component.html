@@ -1,12 +1,14 @@
-<h2 class="mat-h2">Logs/system errors</h2>
-<div fxLayout="column" fxLayoutGap="10px">
-  <div fxLayout fxLayoutAlign="space-between center">
-    <div class="mat-body">clear logs</div>
-    <div>
-      <button (click)="clearLogs()" mat-raised-button color="accent">
-        clear logs
-      </button>
+<section>
+  <h2 class="mat-h2">Logs/system errors</h2>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout fxLayoutAlign="space-between center">
+      <div class="mat-body">clear logs</div>
+      <div>
+        <button (click)="clearLogs()" mat-raised-button color="accent">
+          clear logs
+        </button>
+      </div>
     </div>
+    <app-error-log></app-error-log>
   </div>
-  <app-error-log></app-error-log>
-</div>
+</section>

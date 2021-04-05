@@ -1,21 +1,23 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Ident </mat-card-title>
-    <mat-card-subtitle>Login/register panel</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-tab-group selectedIndex="0">
-      <mat-tab label="Logowanie" [disabled]="isInProgress$ | async">
-        <div class="form-container">
-          <app-login-user></app-login-user>
-        </div>
-      </mat-tab>
+<section>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ident </mat-card-title>
+      <mat-card-subtitle>Login/register panel</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group selectedIndex="0">
+        <mat-tab label="Logowanie" [disabled]="isInProgress$ | async">
+          <div class="form-container">
+            <app-login-user></app-login-user>
+          </div>
+        </mat-tab>
 
-      <mat-tab label="Rejestracja" [disabled]="isInProgress$ | async">
-        <div class="form-container">
-          <app-register-user></app-register-user>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card-content>
-</mat-card>
+        <mat-tab label="Rejestracja" [disabled]="isInProgress$ | async">
+          <div class="form-container">
+            <app-register-user></app-register-user>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</section>

@@ -11,11 +11,14 @@ import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'otherModules/menu/interfaces/i-menu-item';
 import { MatSidenav } from '@angular/material/sidenav';
 import { IS_HANDSET } from 'commonFunctions/breakpointObserver/is-handset';
+import { RouterOutlet } from '@angular/router';
+import { ROUTE_ANIMATIONS } from './animations/route-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [ROUTE_ANIMATIONS],
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('drawer', { static: false }) drawer!: MatSidenav;
@@ -68,15 +71,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         route: ['/coin-api/tables'],
       },
       {
-        caption: 'websockets',
+        caption: 'Trades',
         icon: 'analytics',
+        info: 'websockets',
         group: 'coin API',
+
         route: ['/coin-api/websockets'],
       },
       {
-        caption: 'RJS Websockets',
+        caption: 'Rate Pairs',
         icon: 'analytics',
         group: 'coin API',
+        info: 'websockets',
         route: ['/coin-api/rxjs-websockets'],
       },
       {
@@ -118,5 +124,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.isHandset === true) {
       this.drawer.close();
     }
+  }
+
+  prepareRoute(outlet: RouterOutlet): string {
+    const res =
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData.animation;
+    return res;
   }
 }

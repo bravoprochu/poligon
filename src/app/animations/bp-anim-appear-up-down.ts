@@ -6,7 +6,7 @@ import {
   style,
 } from '@angular/animations';
 
-export function BP_ANIM_APPEAR_UP_DOWN(animTime = 250, animDelay = 250) {
+export function BP_ANIM_APPEAR_UP_DOWN(animTime = 250, animDelay = 0) {
   return trigger('appearUpDown', [
     transition(':enter', [
       style({

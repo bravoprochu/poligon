@@ -30,4 +30,5 @@
   position: relative;
   margin: auto;
   max-width: 960px;
+  height: calc(max(100vh - 80px));
 }

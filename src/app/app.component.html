@@ -46,10 +46,11 @@
       </div>
     </mat-toolbar>
 
-    <section class="container">
-      <div class="router-outlet-container">
-        <router-outlet></router-outlet>
-      </div>
+    <section
+      class="router-outlet-container"
+      [@routeAnimations]="prepareRoute(outlet)"
+    >
+      <router-outlet class="" #outlet="outlet"></router-outlet>
     </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

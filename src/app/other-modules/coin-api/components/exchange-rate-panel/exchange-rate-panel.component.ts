@@ -12,11 +12,13 @@ import { IKeyValue } from 'otherModules/coin-api/interfaces/i-key-value';
 import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { Subject } from 'rxjs';
 import { debounceTime, map, takeUntil } from 'rxjs/operators';
+import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 
 @Component({
   selector: 'app-exchange-rate-panel',
   templateUrl: './exchange-rate-panel.component.html',
   styleUrls: ['./exchange-rate-panel.component.scss'],
+  animations: [BP_ANIM_APPEAR_UP_DOWN(250)],
 })
 export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
   @Output('chartsSelected')
