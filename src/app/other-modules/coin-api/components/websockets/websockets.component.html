@@ -1,100 +1,122 @@
-<app-color-range [expanded]="isColorExpanded"></app-color-range>
+<section>
+  <app-color-range [expanded]="isColorExpanded"></app-color-range>
 
-<mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <mat-panel-title> Connection settings </mat-panel-title>
-    <mat-panel-description>
-      <span *ngIf="(isHandset$ | async) === false"> Active status:&nbsp;</span>
-      <span *ngIf="isConnected"><strong>is connected</strong></span>
-      <span *ngIf="!isConnected">disconnected</span>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Connection settings </mat-panel-title>
+      <mat-panel-description>
+        <span *ngIf="(isHandset$ | async) === false">
+          Active status:&nbsp;</span
+        >
+        <span *ngIf="isConnected"><strong>is connected</strong></span>
+        <span *ngIf="!isConnected">disconnected</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <div fxLayout>
-    <ng-container *ngTemplateOutlet="buttonConnect"></ng-container>
-    <ng-container *ngTemplateOutlet="buttonDisconnect"></ng-container>
-  </div>
-</mat-expansion-panel>
-
-<mat-expansion-panel hideToggle [expanded]="isTradeExpanded">
-  <mat-expansion-panel-header>
-    <mat-panel-title> Trades </mat-panel-title>
-    <mat-panel-description>
-      <span *ngIf="(isHandset$ | async) === false"
-        >Get Trades from websocket Coin API service</span
-      >
-      <span *ngIf="trades.length > 0">&nbsp;{{ trades.length }} items</span>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <div
-    fxLayout="column"
-    fxLayoutAlign="space-between center"
-    class="trades-container"
-  >
-    <div>
-      <mat-button-toggle-group
-        [formControl]="takerSide$"
-        aria-label="taker side"
-      >
-        <mat-button-toggle value="BUY">Buy</mat-button-toggle>
-        <mat-button-toggle value="SELL">Sell</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-
-    <cdk-virtual-scroll-viewport [itemSize]="125" class="example-viewport">
-      <div *cdkVirtualFor="let t of trades; index as i" class="example-item">
-        <ng-container
-          *ngTemplateOutlet="
-            trade;
-            context: { $implicit: t, color: setBgColor(t.price) }
-          "
-        ></ng-container>
-      </div>
-    </cdk-virtual-scroll-viewport>
-
-    <div fxLayout fxLayoutGap="5px">
-      <button
-        *ngIf="isConnected"
-        [disabled]="isGettingTrades"
-        mat-raised-button
-        color="accent"
-        (click)="initTrades(); isGettingTrades = true"
-      >
-        getTrades
-      </button>
+    <div fxLayout>
       <ng-container *ngTemplateOutlet="buttonConnect"></ng-container>
       <ng-container *ngTemplateOutlet="buttonDisconnect"></ng-container>
     </div>
-  </div>
-</mat-expansion-panel>
+  </mat-expansion-panel>
 
-<ng-template #trade let-item let-color="color">
+  <mat-expansion-panel hideToggle [expanded]="isTradeExpanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Trades </mat-panel-title>
+      <mat-panel-description>
+        <span *ngIf="(isHandset$ | async) === false"
+          >Get Trades from websocket Coin API service</span
+        >
+        <span *ngIf="trades.length > 0">&nbsp;{{ trades.length }} items</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between center"
+      class="trades-container"
+    >
+      <cdk-virtual-scroll-viewport [itemSize]="125" class="example-viewport">
+        <div
+          *cdkVirtualFor="
+            let t of trades;
+            index as i;
+            odd as isOdd;
+            even as isEven
+          "
+          class="example-item"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              trade;
+              context: {
+                $implicit: t,
+                color: setBgColor(t.price),
+                odd: isOdd,
+                even: isEven
+              }
+            "
+          ></ng-container>
+        </div>
+      </cdk-virtual-scroll-viewport>
+
+      <div fxLayout fxLayoutGap="5px">
+        <button
+          *ngIf="isConnected"
+          [disabled]="isGettingTrades"
+          mat-raised-button
+          color="accent"
+          (click)="initTrades(); isGettingTrades = true"
+        >
+          getTrades
+        </button>
+        <ng-container *ngTemplateOutlet="buttonConnect"></ng-container>
+        <ng-container *ngTemplateOutlet="buttonDisconnect"></ng-container>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</section>
+
+<ng-template
+  #trade
+  let-item
+  let-color="color"
+  let-isOdd="odd"
+  ,
+  let-isEven="even"
+>
   <div
     *ngIf="(isHandset$ | async) === false"
     fxLayout
     fxLayoutAlign="space-between"
     class="example-item-data"
+    [ngClass]="{ 'background-odd': isOdd, 'background-even': isEven }"
   >
     <div>
-      <h2 class="mat-h2">
+      <h4 class="mat-h4">
         <span *ngIf="item.taker_side === 'SELL'">Sell</span>
         <span *ngIf="item.taker_side === 'BUY'">Buy</span>
-      </h2>
-      <h3 class="mat-h3">
-        <span class="mat-caption">exchange time: </span>
-        {{ item.time_exchange | date: "medium" }}
-      </h3>
-      <div class="mat-small">
-        <span class="mat-caption">uuuid: </span>{{ item.uuid }}
-      </div>
-      <h4 class="mat-h4">
-        <span class="mat-caption">size: </span>{{ item.size }}
       </h4>
+      <div>
+        <div>
+          <span class="mat-caption">exchange time: </span>
+          {{ item.time_exchange | date: "medium" }}
+        </div>
+        <div class="mat-small">
+          <span class="mat-caption">uuuid: </span>{{ item.uuid }}
+        </div>
+        <div>
+          <span class="mat-caption">size: </span><strong>{{ item.size }}</strong
+          >&nbsp;|&nbsp;
+          <em>{{ item.symbol_id }}</em>
+        </div>
+      </div>
     </div>
-    <div class="mat-display-2">
-      <span class="mat-caption">price: </span>
-      {{ item.price }}
+    <div>
+      <div class="mat-display-2">
+        <span class="mat-caption">price: </span>
+        {{ item.price }}
+      </div>
     </div>
+
     <div fxFlex="0 1 15px" [style.backgroundColor]="color">&nbsp;</div>
   </div>
 
