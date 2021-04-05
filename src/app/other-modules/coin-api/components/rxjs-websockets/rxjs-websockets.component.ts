@@ -10,11 +10,13 @@ import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-char
 import { Subject } from 'rxjs';
 import { IChartSelectedRatePair } from 'otherModules/coin-api/interfaces/i-chart-selected-rate-pair';
 import { takeUntil } from 'rxjs/operators';
+import { BP_ANIM_APPEAR_UP_DOWN } from 'src/app/animations/bp-anim-appear-up-down';
 
 @Component({
   selector: 'app-rxjs-websockets',
   templateUrl: './rxjs-websockets.component.html',
   styleUrls: ['./rxjs-websockets.component.scss'],
+  animations: [BP_ANIM_APPEAR_UP_DOWN(350)],
 })
 export class RxjsWebsocketsComponent implements OnInit {
   isDestroyed$ = new Subject() as Subject<boolean>;
