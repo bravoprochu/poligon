@@ -53,6 +53,10 @@ export class ExchangeRatePanelItemComponent implements OnInit {
                           .replace(' - ', '-')
                           .toLowerCase()
                           .includes(val.toLowerCase()) ||
+                        f.key
+                          .replace(' - ', '')
+                          .toLowerCase()
+                          .includes(val.toLowerCase()) ||
                         f.key.toLowerCase().includes(val.toLowerCase())
                     ),
                   ];
