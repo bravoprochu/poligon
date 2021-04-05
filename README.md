@@ -1,5 +1,9 @@
 # Poligon - TRAINING
 
+# route transition animation
+
+- default animation - with levels params
+
 # coin API RATE PAIR real time data chart
 
 - websocket real time data,
