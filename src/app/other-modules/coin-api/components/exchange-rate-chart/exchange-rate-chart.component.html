@@ -11,7 +11,7 @@
         <ng-container *ngIf="!(isXsmall$ | async); else xSmallTitle">
           Config chart:&nbsp;<strong>{{ selectedChart?.title }}</strong
           >, points:&nbsp;<strong>{{
-            (selectedChart?.chart?.points)!.length
+            selectedChart?.chart?.points?.length
           }}</strong
           >, width:&nbsp;
           <strong>{{ configWidth$.value }}</strong>
@@ -26,7 +26,7 @@
             type="number"
             matInput
             placeholder="chart points {{
-              (selectedChart?.chart?.points)!.length
+              selectedChart?.chart?.points?.length
             }}"
             [formControl]="configPointsCount$"
           />
@@ -73,7 +73,7 @@
     </section>
 
     <div *ngIf="configShowHistory$.value">
-      <h3 class="mat-h3">Collected points: {{ ratePairHistory.length }}</h3>
+      <h3 class="mat-h3">Collected points: {{ ratePairHistory?.length }}</h3>
       <cdk-virtual-scroll-viewport
         [itemSize]="itemHeight"
         [style.height.px]="itemHeight * itemOnView"
@@ -83,7 +83,7 @@
           [style.height.px]="itemHeight"
           class="viewport-item"
           *cdkVirtualFor="
-            let rate of ratePairHistory;
+            let rate of ratePairHistory!;
             let index = index;
             let count = count;
             let first = first;

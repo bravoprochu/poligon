@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IdentModule } from 'otherModules/ident/ident.module';
 
 import { IndicatorProgressComponent } from './indicator-progress.component';
 
@@ -9,6 +10,7 @@ describe('ProgressBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [IndicatorProgressComponent],
+      imports: [IdentModule],
     }).compileComponents();
   });
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { YesNoDialogComponent } from './yes-no-dialog.component';
 
@@ -8,9 +9,10 @@ describe('YesNoDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ YesNoDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [YesNoDialogComponent],
+      imports: [MatDialogModule],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

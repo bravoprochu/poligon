@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 
 import { MenuNavComponent } from './menu-nav.component';
 
@@ -8,9 +9,9 @@ describe('MenuNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuNavComponent ]
-    })
-    .compileComponents();
+      declarations: [MenuNavComponent],
+      imports: [RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {

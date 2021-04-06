@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 
 import { LogsComponent } from './logs.component';
 
@@ -8,9 +9,9 @@ describe('LogsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LogsComponent ]
-    })
-    .compileComponents();
+      declarations: [LogsComponent],
+      providers: [{ provide: MatDialog, useValue: {} }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

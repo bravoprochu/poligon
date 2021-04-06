@@ -53,7 +53,7 @@ export class ExchangeRateChartComponent implements OnInit {
   }
 
   initObservables(): void {
-    const RATE_PAIR_ADDED = this.ratePairService.ratePairAdded$.pipe(
+    const RATE_PAIR_ADDED = this.ratePairService.ratePairAdded$?.pipe(
       takeWhile(() => this.isPlaying),
       map((id: number) => {
         /**

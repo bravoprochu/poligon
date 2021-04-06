@@ -41,8 +41,8 @@ export class ColorChangeDialogComponent implements OnInit {
 
   initForm(): void {
     this.rForm = this.colorService.getColorForm$(this.fb);
-    this.temporaryColor = { ...this.data.selectedColorRange };
-    this.rForm.setValue(this.temporaryColor);
+    this.temporaryColor = { ...this.data!.selectedColorRange! };
+    this.rForm.patchValue(this.temporaryColor!);
     this.rForm.markAsPristine();
   }
 

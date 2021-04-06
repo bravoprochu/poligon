@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { ExchangeRatePanelItemComponent } from './exchange-rate-panel-item.component';
 
@@ -8,9 +10,9 @@ describe('ExchangeRatePanelItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExchangeRatePanelItemComponent ]
-    })
-    .compileComponents();
+      declarations: [ExchangeRatePanelItemComponent],
+      imports: [MatAutocompleteModule, ReactiveFormsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

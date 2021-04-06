@@ -9,8 +9,8 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { observable, Observable, of } from 'rxjs';
-import { repeat, switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { LoginComponent } from '../components/login/login-user.component';
 import { LoginService } from '../services/login.service';
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ColorRangeComponent } from './color-range.component';
 
@@ -8,9 +9,9 @@ describe('ColorRangeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ColorRangeComponent ]
-    })
-    .compileComponents();
+      declarations: [ColorRangeComponent],
+      providers: [{ provide: MatDialog, useValue: {} }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

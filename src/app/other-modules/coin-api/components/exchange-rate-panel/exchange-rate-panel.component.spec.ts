@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ExchangeRatePanelComponent } from './exchange-rate-panel.component';
 
@@ -8,9 +9,10 @@ describe('ExchangeRatePanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExchangeRatePanelComponent ]
-    })
-    .compileComponents();
+      declarations: [ExchangeRatePanelComponent],
+      imports: [ReactiveFormsModule],
+      providers: [],
+    }).compileComponents();
   });
 
   beforeEach(() => {

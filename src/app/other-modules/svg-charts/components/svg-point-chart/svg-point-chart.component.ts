@@ -73,7 +73,7 @@ export class SvgPointChartComponent implements OnInit {
           this.calcRatios();
           this.points = [];
           this.points = this.pointChart.points
-            .slice(0, this.pointChart.pointsCount)
+            ?.slice(0, this.pointChart.pointsCount!)
             .map(
               (point) =>
                 ({

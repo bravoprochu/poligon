@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { CoinApiService } from './coin-api.service';
@@ -6,7 +7,9 @@ describe('CoinApiService', () => {
   let service: CoinApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+    });
     service = TestBed.inject(CoinApiService);
   });
 

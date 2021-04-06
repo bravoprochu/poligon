@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { IdentModule } from '../ident.module';
 
 import { IdentDataFactoryService } from './ident-data-factory.service';
 
@@ -6,7 +7,9 @@ describe('IdentDataFactoryService', () => {
   let service: IdentDataFactoryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [IdentModule],
+    });
     service = TestBed.inject(IdentDataFactoryService);
   });
 

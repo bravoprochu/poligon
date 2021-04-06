@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
+import { of, Subject } from 'rxjs';
 
 import { ExchangeRateChartComponent } from './exchange-rate-chart.component';
 
@@ -8,9 +10,16 @@ describe('ExchangeRateChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExchangeRateChartComponent ]
-    })
-    .compileComponents();
+      declarations: [ExchangeRateChartComponent],
+      providers: [
+        {
+          provide: CoinApiRatePairService,
+          useValue: {
+            ratePairAdded$: of(0),
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
