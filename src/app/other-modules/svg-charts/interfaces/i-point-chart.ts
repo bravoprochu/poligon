@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs';
 import { IPointChartBasic } from './i-point-chart-basic';
 import { IPointChartData } from './i-point-chart-data';
 import { IPointChartSelectedPointInfo } from './i-point-chart-selected-point-info';

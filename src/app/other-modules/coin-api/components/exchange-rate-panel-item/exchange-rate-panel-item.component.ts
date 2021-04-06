@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IKeyValue } from 'otherModules/coin-api/interfaces/i-key-value';
+import { CoinApiRatePairService } from 'otherModules/coin-api/services/coin-api-rate-pair.service';
 import { Subject } from 'rxjs';
 import {
   debounceTime,
@@ -16,14 +17,15 @@ import {
   styleUrls: ['./exchange-rate-panel-item.component.scss'],
 })
 export class ExchangeRatePanelItemComponent implements OnInit {
-  @Input('rForm$') rForm$ = new FormGroup({}) as FormGroup;
   @Input('isDisabled') isDisabled = true;
   @Input('ratePairsOptions') ratePairsOptions = [] as IKeyValue<number>[];
   @Output('delete') delete = new EventEmitter() as EventEmitter<boolean>;
+  @Output('rateSelected') rateSelected = new EventEmitter<IKeyValue<string>>();
+  ratePairName$ = this.coinApiRatePairService.getRatePairNameControl();
   isDestroyed$ = new Subject() as Subject<boolean>;
   ratePairsOptionsFiltered = [] as IKeyValue<number>[];
 
-  constructor() {}
+  constructor(private coinApiRatePairService: CoinApiRatePairService) {}
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -36,7 +38,7 @@ export class ExchangeRatePanelItemComponent implements OnInit {
   }
 
   initObservables(): void {
-    this.chartSelected$.valueChanges
+    this.ratePairName$.valueChanges
       .pipe(
         startWith(''),
         debounceTime(750),
@@ -65,9 +67,13 @@ export class ExchangeRatePanelItemComponent implements OnInit {
         takeUntil(this.isDestroyed$)
       )
       .subscribe(
-        (chartSelectedSearch: any) => {},
-        (error) => console.log('chartSelectedSearch error', error),
-        () => console.log('chartSelectedSearch completed..')
+        (rateSelected$: any) => {
+          if (this.ratePairName$.valid) {
+            this.rateSelected.emit(this.ratePairName$.value);
+          }
+        },
+        (error) => console.log('rateSelected$ error', error),
+        () => console.log('rateSelected$ completed..')
       );
   }
 
@@ -77,9 +83,5 @@ export class ExchangeRatePanelItemComponent implements OnInit {
 
   remove(): void {
     this.delete.emit(true);
-  }
-
-  get chartSelected$(): FormControl {
-    return this.rForm$.get('chartSelected') as FormControl;
   }
 }

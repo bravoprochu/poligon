@@ -24,7 +24,6 @@ import { IChartSelectedRatePair } from '../interfaces/i-chart-selected-rate-pair
 import { IChartConfigPanel } from '../interfaces/i-charts-config-panel';
 import { IPointChartConfig } from '../interfaces/i-point-chart-config';
 import { ISvgChartInfoCard } from 'otherModules/svg-charts/interfaces/i-svg-chart-info-card';
-import { IPointChartDataOutput } from 'otherModules/svg-charts/interfaces/i-point-chart-data-output';
 
 @Injectable({
   providedIn: 'root',
@@ -168,16 +167,19 @@ export class CoinApiRatePairService {
       chartsSelected: fb.array([this.getChartSelectedForm$(fb)]),
     }) as FormGroup;
   }
-
   getChartSelectedForm$(fb: FormBuilder): FormGroup {
     return fb.group({
-      chartSelected: new FormControl(
-        '',
-        FORM_CONTROL_HAS_KEY_VALIDATOR('value')
-      ),
+      ratePair: this.getRatePairNameControl(),
       pointsCount: [20, Validators.required],
       width: [100, Validators.required],
     });
+  }
+
+  getRatePairNameControl(): FormControl {
+    return new FormControl(
+      '',
+      FORM_CONTROL_HAS_KEY_VALIDATOR('value')
+    ) as FormControl;
   }
 
   getChartSelectedRatePairByPointChartConfig(
