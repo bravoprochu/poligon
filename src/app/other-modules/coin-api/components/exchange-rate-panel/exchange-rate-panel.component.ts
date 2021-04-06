@@ -47,10 +47,6 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
     this.ratePairService.addPointChart(this.pointCharts$, this.fb);
   }
 
-  getPointChartGroup$(id: number): FormGroup {
-    return this.pointCharts$.at(id) as FormGroup;
-  }
-
   initForms(): void {
     this.rForm$ = this.ratePairService.getChartsForm$(this.fb);
   }
@@ -79,6 +75,11 @@ export class ExchangeRatePanelComponent implements OnInit, OnDestroy {
         (error) => console.log('exchangeRatePanelForm error', error),
         () => console.log('exchangeRatePanelForm completed..')
       );
+  }
+
+  panelRatePairSelected(event: any, index: number): void {
+    const chart$ = this.pointCharts$.at(index);
+    chart$.get('ratePair')?.setValue(event);
   }
 
   removeChart(id: number): void {

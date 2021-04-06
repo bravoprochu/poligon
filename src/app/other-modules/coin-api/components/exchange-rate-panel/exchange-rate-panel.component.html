@@ -24,7 +24,7 @@
     <ng-container *ngFor="let chart of pointCharts$.controls; index as index">
       <app-exchange-rate-panel-item
         @appearUpDown
-        [rForm$]="getPointChartGroup$(index)"
+        (rateSelected)="panelRatePairSelected($event, index)"
         [isDisabled]="pointCharts$.controls.length === 1"
         [ratePairsOptions]="ratePairsOptions"
         (delete)="removeChart(index)"
