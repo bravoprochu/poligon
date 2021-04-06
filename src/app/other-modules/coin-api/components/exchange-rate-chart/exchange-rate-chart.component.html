@@ -8,7 +8,7 @@
   <mat-expansion-panel expanded="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <ng-container *ngIf="!(isXsmall$ | async); else xSmallTitle">
+        <ng-container *ngIf="(isXsmall$ | async) === false; else xSmallTitle">
           Config chart:&nbsp;<strong>{{ selectedChart?.title }}</strong
           >, points:&nbsp;<strong>{{
             selectedChart?.chart?.points?.length
@@ -97,7 +97,7 @@
             fxLayoutAlign="space-between"
             [style.height.px]="itemHeight"
           >
-            <h4 *ngIf="!(isXsmall$ | async)" class="mat-h4">
+            <h4 *ngIf="(isXsmall$ | async) === false" class="mat-h4">
               {{ index + 1 }} | {{ rate.time | date: "medium" }} |
               <strong>{{ rate.rate }}</strong>
             </h4>

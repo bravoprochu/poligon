@@ -37,7 +37,13 @@
             "style": "camelCase"
           }
         ],
-        "@angular-eslint/no-input-rename": "off"
+        "@angular-eslint/no-input-rename": "off",
+        "@typescript-eslint/camelcase": [
+          "off",
+          {
+            "properties": "never"
+          }
+        ]
       }
     },
     {
@@ -51,6 +57,12 @@
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": [
           "error"
+        ],
+        "@typescript-eslint/camelcase": [
+          "off",
+          {
+            "properties": "never"
+          }
         ]
       }
     }

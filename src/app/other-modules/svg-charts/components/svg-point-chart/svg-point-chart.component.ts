@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -21,7 +22,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
   styleUrls: ['./svg-point-chart.component.scss'],
   animations: [BP_ANIM_APPEAR_UP_DOWN(250, 150)],
 })
-export class SvgPointChartComponent implements OnInit {
+export class SvgPointChartComponent implements OnInit, OnDestroy {
   @Input('pointChart') pointChart = {} as IPointChart;
   @Input('forceUpdate$') forceUpdate$ = new Subject() as Subject<boolean>;
   @Input('selectedPoint') selectedPoint?: IPointChartSelectedPointInfo;

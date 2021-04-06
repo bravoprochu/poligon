@@ -186,10 +186,10 @@ export class CoinApiRatePairService {
     chartConfig: IPointChartConfig
   ): IChartSelectedRatePair {
     const RATE_PAIR_SELECTED = this.ratePairs.find(
-      (rate) => rate.ratePairId === chartConfig.chartSelected.value
+      (rate) => rate.ratePairId === chartConfig.ratePair.value
     );
     const CHART = this.getPointChartByRatePairId(
-      chartConfig.chartSelected.value,
+      chartConfig.ratePair.value,
       chartConfig.pointsCount
     );
 
@@ -316,8 +316,8 @@ export class CoinApiRatePairService {
     const date = new Date(CURRENT_RATE.time);
 
     return {
-      change: RATE_CHANGE && RATE_CHANGE != 0 ? RATE_CHANGE!.toString() : '',
-      changePercentage: CHANGE_PERCENTAGE != '0 %' ? CHANGE_PERCENTAGE : '',
+      change: RATE_CHANGE && RATE_CHANGE !== 0 ? RATE_CHANGE!.toString() : '',
+      changePercentage: CHANGE_PERCENTAGE !== '0 %' ? CHANGE_PERCENTAGE : '',
       color: IS_INCREASING ? 'green' : 'red',
       isIncreasing: IS_INCREASING,
       subtitle: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
@@ -336,7 +336,7 @@ export class CoinApiRatePairService {
     const IDS_TO_REMOVE = [] as number[];
     chartsSelectedRatePair.map((selected, idx: number) => {
       const FOUND = config.chartsSelected.find(
-        (configChart) => configChart.chartSelected.value === selected.ratePairId
+        (configChart) => configChart.ratePair.value === selected.ratePairId
       );
       if (!FOUND) {
         IDS_TO_REMOVE.push(idx);
@@ -350,7 +350,7 @@ export class CoinApiRatePairService {
      *
      */
     config.chartsSelected.forEach((chartSelected: IPointChartConfig) => {
-      const SELECTED_ID = chartSelected.chartSelected.value;
+      const SELECTED_ID = chartSelected.ratePair.value;
       const ALREADY_ON_LIST = chartsSelectedRatePair.find(
         (f) => f.ratePairId === SELECTED_ID
       );
