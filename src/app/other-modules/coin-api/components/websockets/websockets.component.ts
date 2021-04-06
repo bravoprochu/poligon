@@ -72,7 +72,6 @@ export class WebsocketsComponent implements OnInit, OnDestroy {
         (trade: ICoinApiTradesLatest) => {
           this.trades.unshift(trade);
           this.trades = [...this.trades];
-          console.log(trade);
         },
         (error) => console.log('trades error', error),
         () => console.log('trades completed..')
