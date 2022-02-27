@@ -101,7 +101,7 @@ export class BasicTableDataSource<T> extends DataSource<T> {
       this.sort.sortChange,
     ];
 
-    return merge(...obsToMerge$).pipe(
+    return merge([...obsToMerge$]).pipe(
       map((data) => {
         this.filteredData = [
           ...this.filterTableClientSide(
